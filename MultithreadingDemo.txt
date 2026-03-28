@@ -1,0 +1,610 @@
+🔰 STEP 1 — Basics (Must Know First)
+
+✅ 1. Thread vs Process
+Ans - 
+	Process :
+		Independent program
+		Own memory (heap + stack)
+		Heavyweight
+		Example: Chrome, IntelliJ, MySQL server
+		
+	Thread :
+		Lightweight execution unit inside a process
+		Shares memory with other threads
+		Faster communication
+	👉 One process → many threads
+
+✅ 2. Thread vs Runnable (Most Asked)
+Ans -
+		Feature					Thread					Runnable
+		Task + Execution		Combined				Separated
+		Inheritance				Uses Thread class		No inheritance needed
+		Multiple inheritance	❌ No					✅ Yes
+		ExecutorService			❌ Poor support			✅ Designed for it
+		
+👉 Preferred: Runnable
+👉 Because it separates what to do from how to run		
+
+
+✅ 3. start() vs run()
+Ans -
+	start()
+			- Creates new thread
+			- Calls run() internally
+			- Executes concurrently
+	run()
+			- Normal method call
+			- Runs on current thread			
+	👉 Interview line:
+			- start() → new thread
+			- run() → same thread
+
+✅ 4. Can a thread be restarted?
+Ans -
+	❌ NO
+	Thread lifecycle is fixed.
+	Once TERMINATED → cannot start again.
+	start() again → IllegalThreadStateException
+	
+👉 Create new Thread object instead
+
+✅ 5. Thread Lifecycle
+Ans -
+	NEW → RUNNABLE → RUNNING → BLOCKED/WAITING → TERMINATED
+
+Example:
+		Create thread → NEW
+		start() → RUNNABLE
+		CPU executes → RUNNING
+		wait()/sleep()/lock → BLOCKED/WAITING
+		finish → TERMINATED
+
+✅ 6. Context Switching
+Ans -
+		CPU switches between threads.
+
+	🔴 Costly because:
+		Save thread state
+		Load another state
+	No real work during switch
+👉 Too many threads = performance drop
+
+✅ 7. Daemon Thread
+Ans -
+	Background support thread.
+		✔ JVM stops daemon threads automatically when user threads finish
+
+	Examples:
+		Garbage Collector
+		Logging
+		Cache cleanup
+		Monitoring
+		Session timeout checker
+
+✅ 8. Thread Scheduling
+Ans -
+	Handled by OS, not JVM.
+	✔ Priorities are only hints
+	✔ No execution order guarantee
+
+✅ 9. Race Condition
+Ans -
+	Occurs when:
+		👉 Multiple threads modify shared data without synchronization
+
+Example:
+		counter++   // not atomic
+		Production example:
+		Bank balance update
+		Inventory count
+		Ticket booking system
+
+Code : 
+	class BankAccount{
+		private int balance = 1000; 
+		
+		public void withdraw(int amount) {
+			if(balance >= amount){ // step 1 : check
+				try{
+					Thread.sleep(100);
+				}catch(Exception e){
+				}
+				balance -=amount;
+			}
+		}
+		
+		public double getBalance(){
+		return balance;
+		}
+	
+	}
+	
+	public class Demo{
+		public static void main(String args[]) throws Exception{
+		
+			BankAccount acc= new BankAccount();
+			Thread t1 = new Thread(() -> acc.withdraw(700));
+			Thread t2 = new Thread(() -> acc.withdraw(700));
+			
+			t1.start();
+			t2.start();
+			
+			t1.join();
+			t2.join();
+			
+			System.out.println("Final Balance : " +acc.getBalance());
+		}
+	}
+		
+	💥 What Happens Internally
+
+		Initial balance = 1000
+		T1 checks → balance >= 700 → TRUE
+		T2 checks → balance >= 700 → TRUE
+
+		T1 deducts → balance = 300
+		T2 deducts → balance = -400   ❌
+
+👉 Impossible state created
+👉 Real financial corruption	
+
+🎯 Interview One-Line Killer
+	Race condition occurs because check-then-act is not atomic.
+
+
+
+✅ 10. Synchronization
+Ans - 
+	Mechanism to ensure:
+		✔ Only one thread enters critical section
+		✔ Data consistency
+		✔ Thread safety
+	🔒 STEP 2 — Locks & Synchronization
+	
+✅ 11. Object-level vs Class-level Lock
+Ans -
+	Object Lock
+
+		Lock on instance (this)
+
+		Different objects → no blocking
+
+synchronized void withdraw() {}
+Class Lock
+
+Lock on Class object
+
+Blocks all instances
+
+static synchronized void audit() {}
+✅ 12. Can two synchronized methods run on same object?
+
+❌ NO
+
+Because both need the same object lock.
+
+✅ 13. Deadlock
+
+Two threads waiting for each other forever.
+
+T1 → lock A → wait for B  
+T2 → lock B → wait for A
+
+👉 System freezes
+
+✅ 14. Starvation
+
+Thread never gets CPU/resources.
+
+Example:
+
+VIP customers always served first.
+
+✅ 15. Concurrency vs Parallelism
+
+Concurrency → many tasks at once (not necessarily simultaneous)
+Parallelism → tasks truly run at same time (multiple cores)
+
+✅ 16–17. volatile vs synchronized
+volatile
+
+✔ Visibility only
+❌ No atomicity
+❌ No locking
+
+synchronized
+
+✔ Visibility
+✔ Atomicity
+✔ Mutual exclusion
+✔ Full thread safety
+
+👉 volatile ≠ replacement for synchronized
+
+✅ 18–19. wait() in loop & Spurious Wakeup
+
+Thread may wake without notify().
+
+Therefore:
+
+while(conditionNotMet) wait();
+
+NOT if()
+
+✅ 20. Runnable vs Callable
+Feature	Runnable	Callable
+Return value	❌	✅
+Checked exception	❌	✅
+Used with	Thread/Executor	Executor
+Result	❌	Future
+⚙️ STEP 3 — Advanced Synchronization
+✅ 21. Exception in synchronized block
+
+Lock is automatically released when thread exits block — even due to exception.
+
+✅ 22. Reentrant Lock
+
+Same thread can acquire lock multiple times.
+
+Why needed?
+
+👉 Prevent self-deadlock during nested calls
+
+✅ 23–25. synchronized vs ReentrantLock
+synchronized
+
+✔ Simple
+✔ Automatic lock management
+
+ReentrantLock
+
+Advanced features:
+
+Fairness policy
+
+tryLock()
+
+Timeout
+
+Interruptible lock
+
+Multiple conditions
+
+👉 Use for complex concurrency
+
+✅ 26. volatile — What it solves
+
+✔ Visibility
+✔ Ordering
+
+❌ Atomic operations
+❌ Mutual exclusion
+
+✅ 27. Java Memory Model (JMM)
+
+Defines:
+
+✔ Visibility
+✔ Ordering
+✔ Atomicity rules
+
+Ensures consistent behavior across CPUs/JVMs.
+
+✅ 28. Happens-Before
+
+Guarantee:
+
+👉 Actions before X are visible after X
+
+Example:
+
+unlock → lock  
+write volatile → read volatile  
+start() → thread actions  
+thread end → join()
+✅ 29. Instruction Reordering
+
+CPU/compiler may reorder instructions for performance.
+
+Safe for single thread
+Dangerous for multi-threaded code without synchronization
+
+✅ 30–31. AtomicInteger & CAS
+
+AtomicInteger uses CAS (Compare-And-Swap):
+
+if (current == expected)
+    update
+else retry
+
+✔ Lock-free
+✔ High performance under low contention
+
+✅ 32. False Sharing
+
+Different variables in same CPU cache line → performance degradation.
+
+✅ 33. Avoid Visibility Issues
+
+Use:
+
+✔ volatile
+✔ synchronized
+✔ Locks
+✔ Atomic classes
+✔ Concurrent utilities
+
+🔁 STEP 4 — wait/notify & Communication
+✅ 34. wait() vs sleep()
+Feature	wait()	sleep()
+Lock released	✅	❌
+Used for	Communication	Delay
+Requires sync	✅	❌
+✅ 35. notify() vs notifyAll()
+
+notify() → wakes one thread
+notifyAll() → wakes all threads
+
+👉 notifyAll() safer in complex conditions
+
+✅ 36. Which lock released by wait()?
+
+Monitor lock of the object used for wait()
+
+✅ 37. wait() without sync?
+
+❌ IllegalMonitorStateException
+
+Must hold object's lock.
+
+✅ 38. notify before wait
+
+Notification is lost → thread waits forever.
+
+☠️ STEP 5 — Deadlock & Liveness Problems
+✅ 39. Deadlock (again)
+
+Mutual lock dependency → no progress.
+
+✅ 40. Detect Deadlock in Production
+
+Tools:
+
+jstack / kill -3
+
+JConsole
+
+Thread dumps
+
+ThreadMXBean
+
+APM tools
+
+✅ 41. Prevent Deadlock
+
+✔ Lock ordering
+✔ Avoid nested locks
+✔ tryLock with timeout
+✔ Short transactions
+✔ High-level concurrency utilities
+
+✅ 42. Livelock
+
+Threads active but no progress.
+
+Example:
+
+Two people stepping aside repeatedly.
+
+✅ 43. Deadlock vs Livelock
+Deadlock	Livelock
+Blocked	Active
+CPU low	CPU high
+Detectable	Logical issue
+✅ 44. Starvation (again)
+
+Thread never gets resources.
+
+🚀 STEP 6 — Executor Framework & Thread Pools
+✅ 45. execute() vs submit()
+
+execute():
+
+Runnable only
+
+No result
+
+Exceptions thrown immediately
+
+submit():
+
+Runnable/Callable
+
+Returns Future
+
+Exceptions captured
+
+✅ 46. Exception in ExecutorService
+
+execute() → worker thread crashes
+submit() → exception stored in Future
+
+✅ 47. ThreadPoolExecutor
+
+Manages reusable threads efficiently.
+
+Avoids thread creation overhead.
+
+✅ 48. corePoolSize / maxPoolSize / queue
+
+Execution order:
+
+Create core threads
+
+Fill queue
+
+Create extra threads up to max
+
+Reject tasks
+
+✅ 49. Bounded vs Unbounded Queue
+
+Bounded → fixed size
+Unbounded → grows until memory exhausted
+
+✅ 50. CallerRunsPolicy
+
+Rejected task runs in caller thread.
+
+✔ Provides back-pressure
+✔ Prevents task loss
+
+✅ 51. Queue Full Behavior
+
+If queue full:
+
+→ Create extra threads
+→ If max reached → reject task
+
+⚡ STEP 7 — CompletableFuture & Async
+✅ 52–54. Future vs CompletableFuture
+
+Future:
+
+Blocking
+
+Cannot chain
+
+Poor exception handling
+
+CompletableFuture:
+
+Non-blocking
+
+Chainable
+
+Combine tasks
+
+Better error handling
+
+✅ 55. thenApply vs thenCompose
+
+thenApply → transform result
+thenCompose → chain async operation
+
+✅ 56. thenAccept vs thenRun
+
+thenAccept → consumes result
+thenRun → ignores result
+
+✅ 57. Exception Handling
+
+Methods:
+
+exceptionally() → fallback
+
+handle() → success + failure
+
+whenComplete() → side effects
+
+✅ 58. Combine Async Tasks
+
+thenCombine() → merge 2 futures
+
+allOf() → wait for all
+
+anyOf() → first result
+
+🧩 STEP 8 — Concurrent Collections
+✅ 59. HashMap vs ConcurrentHashMap
+
+HashMap:
+❌ Not thread-safe
+
+ConcurrentHashMap:
+✔ Thread-safe
+✔ Fine-grained locking
+✔ CAS
+
+✅ 60. ConcurrentHashMap Java 8 Internals
+
+No segments
+
+Bucket-level locking
+
+CAS insertion
+
+Mostly lock-free reads
+
+Treeify after 8 entries
+
+✅ 61. Why HashMap not thread-safe?
+
+No synchronization → data corruption possible.
+
+✅ 62. CopyOnWriteArrayList
+
+✔ Thread-safe
+✔ Good for read-heavy workloads
+❌ Expensive writes
+
+✅ 63–64. BlockingQueue
+
+Thread-safe queue with blocking behavior.
+
+ArrayBlockingQueue → fixed, array-based
+LinkedBlockingQueue → node-based, better concurrency
+
+🧮 STEP 9 — Advanced Concepts
+✅ 65. Stale Data
+
+Occurs due to CPU caching without visibility guarantees.
+
+✅ 66. ForkJoinPool
+
+Divide-and-conquer parallel processing.
+
+Uses work-stealing.
+
+Parallel streams use it internally.
+
+✅ 67. Odd-Even Printing
+
+Classic wait/notify coordination example.
+
+✅ 68. Thread-Safe Singleton
+
+Best methods:
+
+⭐ Enum Singleton
+⭐ Bill Pugh Holder Pattern
+⭐ Double-checked locking with volatile
+
+✅ 69. Rate Limiter (Semaphore)
+
+Controls number of concurrent requests.
+
+Used in:
+
+API throttling
+
+Resource limits
+
+Connection pools
+
+✅ 70. Parallel API Calls
+
+CompletableFuture enables parallel execution and aggregation of results.
+
+🧠 STEP 10 — Miscellaneous
+✅ 75. Shallow vs Deep Copy
+
+Shallow copy:
+
+Copies object
+
+References shared
+
+Deep copy:
+
+Copies object + nested objects

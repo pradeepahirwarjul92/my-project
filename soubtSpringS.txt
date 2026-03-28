@@ -1,0 +1,1296 @@
+select a.REQ_ID,
+a.REQ_DATE,
+(select max(edate) from CMRS_WT_PFESI_REQ_HIS where reqno=a.req_id and action='SUBMITFORFACTORYMANAGERAPPROVAL'  ) as hodapprovedate,
+(select max(edate) from CMRS_WT_PFESI_REQ_HIS where reqno=a.req_id and action='SUBMITFORSAFETYAPPROVAL'  ) as factorymanagerapprovedate,
+(select max(edate) from CMRS_WT_PFESI_REQ_HIS where reqno=a.req_id and action='APPROVED'  ) as approvedate,
+c.t$desc as department,
+d.t$desc as unitdesc,
+a.REQ_BY as reqby,
+b.t$name as name,
+a.NOS_EMP as noofemp,
+(select trim(t$nama) from  baan.ttccom100804@attd2ln where trim(t$bpid)=trim(a.CONTACTORID) ) as contractorname
+from CMRS_WT_PFESI_REQUEST a , 
+    attd.thrper001 b , 
+    attd.thrmas020 c ,
+    attd.thrmas018 d
+    where 
+    a.req_by=b.t$empno 
+and b.t$deptcd=c.t$code
+and b.t$unitcd=d.t$code
+and a.STATUS='APPROVED' 
+and a.COMPANY_CODE=804
+
+
+
+SELECT DISTINCT( assesor_trainer )
+FROM   lnd_training_details
+WHERE  sch_fdate BETWEEN To_date('29-Feb-2024') AND To_date('23-Sep-2024')
+UNION
+SELECT DISTINCT( trainer2empno )
+FROM   lnd_training_details
+WHERE  sch_fdate BETWEEN To_date('29-Feb-2024') AND To_date('23-Sep-2024')
+UNION
+SELECT DISTINCT( trainer3empno )
+FROM   lnd_training_details
+WHERE  sch_fdate BETWEEN To_date('29-Feb-2024') AND To_date('23-Sep-2024')
+ORDER  BY 1 
+
+----------------------------------------------
+
+SELECT a.assesor_trainer,
+       a.trainer2empno,
+       a.trainer3empno
+FROM   lnd_training_details a
+WHERE  a.sch_fdate BETWEEN To_date('29-Feb-2024') AND To_date('23-Sep-2024')
+ORDER  BY 1 
+
+-------------------------------------------------
+
+
+
+SELECT a.sch_id,
+       a.sch_fdate,
+       a.training_title,
+       b.empno
+FROM   lnd_training_details a,
+       lnd_training_participants b
+WHERE  a.sch_id = b.sch_id
+       AND a.sch_fdate BETWEEN To_date('29-Feb-2024') AND To_date('23-Sep-2024')
+ORDER  BY 1 
+
+---------------------------------------------------
+
+SELECT per.t$empno     AS empno,
+       per.t$name      AS NAME,
+       per.t$unitcd    AS unitcode,
+       unitcd.t$desc   AS unitdesc,
+       per.t$deptcd    AS deptcode,
+       dept.t$desc     AS dept,
+       per.t$grade     AS gradecode,
+       grade.t$desc    AS grade,
+       per.t$catcd     AS categorycode,
+       category.t$desc AS category
+FROM   baan.thrper001804 per,
+       baan.thrmas018804 unitcd,
+       baan.thrmas020804 dept,
+       baan.thrmas007804 grade,
+       baan.thrmas027804 category
+WHERE  per.t$unitcd = unitcd.t$code
+       AND per.t$deptcd = dept.t$code
+       AND per.t$grade = grade.t$code
+       AND per.t$grade > '210'
+       AND per.t$catcd = category.t$code
+       AND To_char(per.t$leavdt, 'ddmmyy') IN( '000000' )
+       AND per.t$empno NOT IN (SELECT DISTINCT( b.empno )
+                               FROM   lnd_training_details a,
+                                      lnd_training_participants b
+                               WHERE  a.sch_id = b.sch_id
+                                      AND a.sch_fdate BETWEEN To_date(
+                                          '29-Feb-2024')
+                                                              AND
+                                                              To_date(
+                                          '23-Sep-2024')
+                                      AND b.empno IS NOT NULL)
+UNION
+SELECT per.t$empno     AS empno,
+       per.t$name      AS NAME,
+       per.t$unitcd    AS unitcode,
+       unitcd.t$desc   AS unitdesc,
+       per.t$deptcd    AS deptcode,
+       dept.t$desc     AS dept,
+       per.t$grade     AS gradecode,
+       grade.t$desc    AS grade,
+       per.t$catcd     AS categorycode,
+       category.t$desc AS category
+FROM   baan.thrper001904 per,
+       baan.thrmas018804 unitcd,
+       baan.thrmas020804 dept,
+       baan.thrmas007804 grade,
+       baan.thrmas027804 category
+WHERE  per.t$unitcd = unitcd.t$code
+       AND per.t$deptcd = dept.t$code
+       AND per.t$grade = grade.t$code
+       AND per.t$catcd = category.t$code
+       AND per.t$grade > '210'
+       AND To_char(per.t$leavdt, 'ddmmyy') IN ( '000000' )
+       AND per.t$empno NOT IN (SELECT DISTINCT( b.empno )
+                               FROM   lnd_training_details a,
+                                      lnd_training_participants b
+                               WHERE  a.sch_id = b.sch_id
+                                      AND a.sch_fdate BETWEEN To_date(
+                                          '29-Feb-2024')
+                                                              AND
+                                                              To_date(
+                                          '23-Sep-2024')
+                                      AND b.empno IS NOT NULL)
+ORDER  BY 4 
+
+
+-----------------------------------------------------------------------
+SELECT per.t$empno     AS empno,
+       per.t$name      AS NAME,
+       per.t$unitcd    AS unitcode,
+       unitcd.t$desc   AS unitdesc,
+       per.t$deptcd    AS deptcode,
+       dept.t$desc     AS dept,
+       per.t$grade     AS gradecode,
+       grade.t$desc    AS grade,
+       per.t$catcd     AS categorycode,
+       category.t$desc AS category
+FROM   baan.thrper001804 per,
+       baan.thrmas018804 unitcd,
+       baan.thrmas020804 dept,
+       baan.thrmas007804 grade,
+       baan.thrmas027804 category
+WHERE  per.t$unitcd = unitcd.t$code
+       AND per.t$deptcd = dept.t$code
+       AND per.t$grade = grade.t$code
+       AND per.t$grade > '210'
+       AND per.t$catcd = category.t$code
+       AND To_char(per.t$leavdt, 'ddmmyy') IN( '000000' )
+       AND per.t$empno NOT IN (SELECT DISTINCT( b.empno )
+                               FROM   lnd_training_details a,
+                                      lnd_training_participants b
+                               WHERE  a.sch_id = b.sch_id
+                                      AND a.sch_fdate BETWEEN To_date(
+                                          '29-Feb-2024')
+                                                              AND
+                                                              To_date(
+                                          '23-Sep-2024')
+                                      AND b.empno IS NOT NULL)
+UNION
+SELECT per.t$empno     AS empno,
+       per.t$name      AS NAME,
+       per.t$unitcd    AS unitcode,
+       unitcd.t$desc   AS unitdesc,
+       per.t$deptcd    AS deptcode,
+       dept.t$desc     AS dept,
+       per.t$grade     AS gradecode,
+       grade.t$desc    AS grade,
+       per.t$catcd     AS categorycode,
+       category.t$desc AS category
+FROM   baan.thrper001904 per,
+       baan.thrmas018804 unitcd,
+       baan.thrmas020804 dept,
+       baan.thrmas007804 grade,
+       baan.thrmas027804 category
+WHERE  per.t$unitcd = unitcd.t$code
+       AND per.t$deptcd = dept.t$code
+       AND per.t$grade = grade.t$code
+       AND per.t$catcd = category.t$code
+       AND per.t$grade > '210'
+       AND To_char(per.t$leavdt, 'ddmmyy') IN ( '000000' )
+       AND per.t$empno NOT IN (SELECT DISTINCT( b.empno )
+                               FROM   lnd_training_details a,
+                                      lnd_training_participants b
+                               WHERE  a.sch_id = b.sch_id
+                                      AND a.sch_fdate BETWEEN To_date(
+                                          '29-Feb-2024')
+                                                              AND
+                                                              To_date(
+                                          '23-Sep-2024')
+                                      AND b.empno IS NOT NULL) 
+									  
+-----------------------------------------------------------------		  
+
+
+SELECT per.t$empno     AS empno,
+       per.t$name      AS NAME,
+       per.t$unitcd    AS unitcode,
+       unitcd.t$desc   AS unitdesc,
+       per.t$deptcd    AS deptcode,
+       dept.t$desc     AS dept,
+       per.t$grade     AS gradecode,
+       grade.t$desc    AS grade,
+       per.t$catcd     AS categorycode,
+       category.t$desc AS category
+FROM   baan.thrper001804 per,
+       baan.thrmas018804 unitcd,
+       baan.thrmas020804 dept,
+       baan.thrmas007804 grade,
+       baan.thrmas027804 category
+WHERE  per.t$unitcd = unitcd.t$code
+       AND per.t$deptcd = dept.t$code
+       AND per.t$grade = grade.t$code
+       AND per.t$grade > '210'
+       AND per.t$catcd = category.t$code
+       AND To_char(per.t$leavdt, 'ddmmyy') IN( '000000' )
+       AND per.t$empno NOT IN (SELECT DISTINCT( b.empno )
+                               FROM   lnd_training_details a,
+                                      lnd_training_participants b
+                               WHERE  a.sch_id = b.sch_id
+                                      AND a.sch_fdate BETWEEN To_date(
+                                          '29-Feb-2024')
+                                                              AND
+                                                              To_date(
+                                          '23-Sep-2024')
+                                      AND b.empno IS NOT NULL)
+UNION
+SELECT per.t$empno     AS empno,
+       per.t$name      AS NAME,
+       per.t$unitcd    AS unitcode,
+       unitcd.t$desc   AS unitdesc,
+       per.t$deptcd    AS deptcode,
+       dept.t$desc     AS dept,
+       per.t$grade     AS gradecode,
+       grade.t$desc    AS grade,
+       per.t$catcd     AS categorycode,
+       category.t$desc AS category
+FROM   baan.thrper001904 per,
+       baan.thrmas018804 unitcd,
+       baan.thrmas020804 dept,
+       baan.thrmas007804 grade,
+       baan.thrmas027804 category
+WHERE  per.t$unitcd = unitcd.t$code
+       AND per.t$deptcd = dept.t$code
+       AND per.t$grade = grade.t$code
+       AND per.t$catcd = category.t$code
+       AND per.t$grade > '210'
+       AND To_char(per.t$leavdt, 'ddmmyy') IN ( '000000' )
+       AND per.t$empno NOT IN (SELECT DISTINCT( b.empno )
+                               FROM   lnd_training_details a,
+                                      lnd_training_participants b
+                               WHERE  a.sch_id = b.sch_id
+                                      AND a.sch_fdate BETWEEN To_date(
+                                          '29-Feb-2024')
+                                                              AND
+                                                              To_date(
+                                          '23-Sep-2024')
+                                      AND b.empno IS NOT NULL) 
+  
+
+
+
+--------------------------------------------------------------------
+ 
+SELECT a.assesor_trainer,
+       c.t$name        AS NAME,
+       d.t$desc        AS department,
+       -- a.training_title,
+       --  a.sch_id,
+       --  a.sch_fdate
+       Count(a.sch_id) AS count
+FROM   lnd_training_details a,
+       baan.thrper001804 c,
+       baan.thrmas020804 d
+WHERE  a.assesor_trainer = c.t$empno
+       AND a.trainer_dept = d.t$code
+       AND a.status = 'Approved'
+       AND a.sch_fdate BETWEEN To_date('31-Mar-2024') AND To_date('01-Mar-2025')
+GROUP  BY a.assesor_trainer,
+          c.t$name,
+          d.t$desc
+ORDER  BY 2 
+
+
+---------------------------------------------------------------
+
+SELECT a.emp_code          AS empcode,
+       b.t$name            AS NAME,
+       c.t$desc            AS unitname,
+       d.t$desc            AS deptname,
+       a.question_no       AS questiono,
+       e.question          AS QUESTION,
+       e.question_category AS questioncat,
+       a.rating_given      AS givenrating,
+       a.remark            AS remark
+FROM   survey_result a,
+       baan.thrper001804 b,
+       baan.thrmas018804 c,
+       baan.thrmas020804 d,
+       survey_question_master e
+WHERE  a.survey_type_id = e.survey_type_id
+       AND a.question_no = e.question_no
+       AND a.survey_period = e.survey_period
+       AND a.fin_year = e.fin_year
+       AND a.emp_code = b.t$empno
+       AND b.t$unitcd = c.t$code
+       AND b.t$deptcd = d.t$code
+       AND a.survey_type_id = 5
+       AND a.fin_year = 2024
+       AND a.survey_period = 1
+ORDER  BY a.emp_code,
+          a.question_no 
+
+
+---------------------------------------------------------
+ SELECT a.sch_id,
+       a.sch_fdate                                               AS trainingdate
+       ,
+       a.training_title                                          AS
+       title,
+       a.training_type                                           AS trainingtype
+       ,
+       b.emp_type                                                AS
+       emptype,
+       b.contractor_code                                         AS
+       contractorcode,
+       b.empno                                                   AS empno,
+       (SELECT t$desc
+        FROM   baan.thrmas027804 y,
+               baan.thrper001804 yy
+        WHERE  y.t$code = yy.t$catcd
+               AND yy.t$empno = b.empno
+        UNION
+        SELECT t$desc
+        FROM   baan.thrmas027804 y,
+               baan.thrper001904 yy
+        WHERE  y.t$code = yy.t$catcd
+               AND yy.t$empno = b.empno
+               AND yy.t$empno NOT IN ( 1224, 1232, 1255, 1291 )) AS
+       employeecategory,
+       (SELECT Initcap(y.t$name)
+        FROM   baan.thrper001804 y
+        WHERE  y.t$empno = empno
+               AND emp_type = 'HEG-Employee'
+        UNION
+        SELECT Initcap(x.empname)
+        FROM   tblemployeecw x
+        WHERE  x.paycode = empno
+               AND emp_type = 'Contract-Employee'
+        UNION
+        SELECT Initcap(Z.t$name)
+        FROM   baan.thrper001904 Z
+        WHERE  Z.t$empno = empno
+               AND emp_type = 'HEG-Employee'
+               AND Z.t$empno NOT IN ( 1224, 1232, 1255, 1291 ))  AS empname,
+       (SELECT Decode(y.t$sex, 1, 'FEMALE',
+                               2, 'MALE')
+        FROM   baan.thrper001804 y
+        WHERE  y.t$empno = empno
+               AND emp_type = 'HEG-Employee'
+        UNION
+        SELECT Decode(x.sex, 'M', 'MALE',
+                             'F', 'FEMALE')
+        FROM   tblemployeecw x
+        WHERE  x.paycode = empno
+               AND emp_type = 'Contract-Employee'
+        UNION
+        SELECT Decode(z.t$sex, 1, 'FEMALE',
+                               2, 'MALE')
+        FROM   baan.thrper001904 Z
+        WHERE  Z.t$empno = empno
+               AND emp_type = 'HEG-Employee')                    AS GENDER,
+       b.trainee_dept                                            AS deptcode,
+       (SELECT z.t$desc
+        FROM   baan.thrmas020804 z
+        WHERE  b.trainee_dept = z.t$code)                        AS deptname,
+       (SELECT cdsc
+        FROM   lnd_training_category
+        WHERE  tcat = a.tcat)                                    AS module,
+       (SELECT tdsc
+        FROM   lnd_training_type
+        WHERE  ttyp = a.ttyp)                                    AS submudule
+FROM   lnd_training_details a,
+       lnd_training_participants b
+WHERE  A.sch_id = b.sch_id
+       AND a.sch_fdate BETWEEN To_date('01-Apr-2023') AND To_date('31-Mar-2024')
+ORDER  BY a.sch_id 
+
+------------------------------------------------------------
+
+SELECT a.sch_fdate,
+       a.sch_tdate,
+       a.training_title,
+       a.training_type,
+       b.emp_type,
+       b.contractor_code,
+       b.empno,
+       (SELECT Initcap(y.t$name)
+        FROM   baan.thrper001804 y
+        WHERE  y.t$empno = empno
+               AND emp_type = 'HEG-Employee'
+        UNION
+        SELECT Initcap(x.empname)
+        FROM   tblemployeecw x
+        WHERE  x.paycode = empno
+               AND emp_type = 'Contract-Employee'
+        UNION
+        SELECT Initcap(Z.t$name)
+        FROM   baan.thrper001904 Z
+        WHERE  Z.t$empno = empno
+               AND emp_type = 'HEG-Employee') AS empname,
+       b.trainee_dept,
+       (SELECT z.t$desc
+        FROM   baan.thrmas020804 z
+        WHERE  b.trainee_dept = z.t$code),
+       b.gift_rewards,
+       b.feed_rat_prog_obj,
+       b.feed_rat_sessions_logic,
+       b.feed_rat_prog_resp,
+       b.feed_rat_course_mat,
+       b.feed_rat_appro_time,
+       b.feed_rat_faculty_knowl,
+       b.feed_rat_faculty_friend,
+       b.feed_rat_faculty_enviorn,
+       b.feed_rat_faculty_active_part
+FROM   lnd_training_details a,
+       lnd_training_participants b
+WHERE  A.sch_id = b.sch_id
+       AND a.sch_fdate BETWEEN To_date('01-Dec-2021') AND To_date('28-Feb-2023')
+ORDER  BY a.training_type 
+
+------------------------------------------------------------
+
+SELECT a.sch_id,
+       a.sch_fdate                              AS trainingdate,
+       a.training_title                         AS title,
+       a.training_type                          AS trainingtype,
+       b.emp_type                               AS emptype,
+       b.contractor_code                        AS contractorcode,
+       b.empno                                  AS empno,
+       (SELECT Initcap(y.t$name)
+        FROM   baan.thrper001804 y
+        WHERE  y.t$empno = empno
+               AND emp_type = 'HEG-Employee'
+               AND y.t$deptcd = b.trainee_dept
+        UNION
+        SELECT Initcap(x.empname)
+        FROM   tblemployeecw x
+        WHERE  x.paycode = empno
+               AND emp_type = 'Contract-Employee'
+        UNION
+        SELECT Initcap(Z.t$name)
+        FROM   baan.thrper001904 Z
+        WHERE  Z.t$empno = empno
+               AND emp_type = 'HEG-Employee'
+               AND z.t$deptcd = b.trainee_dept) AS empname,
+       (SELECT Decode(y.t$sex, 1, 'FEMALE',
+                               2, 'MALE')
+        FROM   baan.thrper001804 y
+        WHERE  y.t$empno = empno
+               AND emp_type = 'HEG-Employee'
+        UNION
+        SELECT Decode(x.sex, 'M', 'MALE',
+                             'F', 'FEMALE')
+        FROM   tblemployeecw x
+        WHERE  x.paycode = empno
+               AND emp_type = 'Contract-Employee'
+        UNION
+        SELECT Decode(z.t$sex, 1, 'FEMALE',
+                               2, 'MALE')
+        FROM   baan.thrper001904 Z
+        WHERE  Z.t$empno = empno
+               AND emp_type = 'HEG-Employee')   AS GENDER,
+       b.trainee_dept                           AS deptcode,
+       (SELECT z.t$desc
+        FROM   baan.thrmas020804 z
+        WHERE  b.trainee_dept = z.t$code)       AS deptname,
+       (SELECT cdsc
+        FROM   lnd_training_category
+        WHERE  tcat = a.tcat)                   AS module,
+       (SELECT tdsc
+        FROM   LND_TRAINING_SUB_CATEGORY
+        WHERE  ttyp = a.ttyp)                   AS submudule
+FROM   lnd_training_details a,
+       lnd_training_participants b
+WHERE  A.sch_id = b.sch_id
+       AND a.sch_fdate BETWEEN To_date('01-Mar-2022') AND To_date('31-Dec-2023')
+ORDER  BY a.sch_fdate 
+
+
+--------------------------------------------------------------------------------
+SELECT b.t$empno,
+       b.t$name,
+       a.sch_id,
+       a.training_title,
+       a.sch_fdate AS trainingdate
+FROM   lnd_training_participants a,
+       baan.thrper001804 b
+WHERE  a.empno = b.t$empno
+       AND b.t$catcd = 140
+       AND To_char(t$leavdt, 'ddmmyy') NOT IN ( '000000' )
+       AND a.sch_fdate BETWEEN To_date('01-Jan-2021') AND To_date('31-Dec-2022')
+ORDER  BY a.sch_fdate 
+
+----------------------------------------------------------------------------------
+SELECT a.sch_id                                      AS id,
+       To_char(a.sch_fdate, 'Mon')                   AS month,
+       a.training_title                              AS title,
+       a.training_type                               AS trainingtype,
+       a.trainer_name                                AS trainername,
+       b.t$desc,
+       c.cdsc                                        AS category,
+       d.tdsc                                        AS subcateogry,
+       (SELECT Count(z.empno)
+        FROM   lnd_training_participants z
+        WHERE  z.sch_id = a.sch_id
+               AND z.emp_type = 'HEG-Employee')      AS hegemployee,
+       (SELECT Count(z.empno)
+        FROM   lnd_training_participants z
+        WHERE  z.sch_id = a.sch_id
+               AND z.emp_type = 'Contract-Employee') AS contemployee
+FROM   lnd_training_details a,
+       baan.thrmas020804 b,
+       lnd_training_category c,
+       lnd_training_type d
+WHERE  c.tcat = a.tcat
+       AND d.ttyp = a.ttyp
+       AND a.trainer_dept = b.t$code
+       AND a.sch_fdate BETWEEN To_date('01-Apr-2022') AND To_date('31-Mar-2023')
+GROUP  BY a.sch_id,
+          To_char(a.sch_fdate, 'Mon'),
+          a.training_title,
+          a.training_type,
+          a.trainer_name,
+          b.t$desc,
+          c.cdsc,
+          d.tdsc
+ORDER  BY 2 
+
+-----------------------------------------------------------------
+SELECT a.empno,
+       b.t$name,
+       c.t$desc,
+       Count(a.sch_id)
+FROM   lnd_training_participants a,
+       baan.thrper001804 b,
+       baan.thrmas020804 c
+WHERE  a.empno = b.t$empno
+       AND b.t$deptcd = c.t$code
+       AND a.emp_type = 'HEG-Employee'
+       AND a.sch_fdate BETWEEN To_date('01-Apr-2023') AND To_date('31-Dec-2023')
+GROUP  BY a.empno,
+          b.t$name,
+          c.t$desc
+HAVING Count (sch_id) < 5 
+
+-----------------------------------------------------------------
+SELECT a.empno
+FROM   lnd_training_participants a,
+       baan.thrper001804 b,
+       baan.thrmas020804 c
+WHERE  a.empno = b.t$empno
+       AND b.t$deptcd = c.t$code
+       AND a.emp_type = 'HEG-Employee'
+       AND a.sch_fdate BETWEEN To_date('01-Apr-2023') AND To_date('31-Dec-2023')
+GROUP  BY a.empno,
+          b.t$name,
+          c.t$desc
+HAVING Count (sch_id) > 5 
+
+------------------------------------------------------ 
+ 
+SELECT a.t$empno,
+       a.t$name,
+       a.t$deptcd,
+       b.t$desc,
+       (SELECT Count(sch_id)
+        FROM   lnd_training_participants
+        WHERE  empno = a.t$empno
+               AND emp_type = 'HEG-Employee'
+               AND sch_fdate BETWEEN To_date('01-Apr-2023') AND To_date(
+                                     '31-Dec-2023'))
+       AS trainingscount
+FROM   baan.thrper001804 a,
+       baan.thrmas020804 b
+WHERE  a.t$deptcd = b.t$code
+       AND To_char(a.t$leavdt, 'ddmmyy') IN( '000000' )
+       AND a.t$empno NOT IN (SELECT a.empno
+                             FROM   lnd_training_participants a,
+                                    baan.thrper001804 b,
+                                    baan.thrmas020804 c
+                             WHERE  a.empno = b.t$empno
+                                    AND b.t$deptcd = c.t$code
+                                    AND a.emp_type = 'HEG-Employee'
+                                    AND a.sch_fdate BETWEEN To_date(
+                                        '01-Apr-2023') AND
+                                                            To_date(
+                                        '31-Dec-2023')
+                             GROUP  BY a.empno,
+                                       b.t$name,
+                                       c.t$desc
+                             HAVING Count (sch_id) >= 5)
+ORDER  BY 3
+UNION
+SELECT a.t$empno,
+       a.t$name,
+       a.t$deptcd,
+       b.t$desc,
+       (SELECT Count(sch_id)
+        FROM   lnd_training_participants
+        WHERE  empno = a.t$empno
+               AND emp_type = 'HEG-Employee'
+               AND sch_fdate BETWEEN To_date('01-Apr-2023') AND To_date(
+                                     '31-Dec-2023'))
+       AS trainingscount
+FROM   baan.thrper001904 a,
+       baan.thrmas020804 b
+WHERE  a.t$deptcd = b.t$code
+       AND To_char(a.t$leavdt, 'ddmmyy') IN( '000000' )
+       AND a.t$empno NOT IN (SELECT a.empno
+                             FROM   lnd_training_participants a,
+                                    baan.thrper001904 b,
+                                    baan.thrmas020804 c
+                             WHERE  a.empno = b.t$empno
+                                    AND b.t$deptcd = c.t$code
+                                    AND a.emp_type = 'HEG-Employee'
+                                    AND a.sch_fdate BETWEEN To_date(
+                                        '01-Apr-2023') AND
+                                                            To_date(
+                                        '31-Dec-2023')
+                             GROUP  BY a.empno,
+                                       b.t$name,
+                                       c.t$desc
+                             HAVING Count (sch_id) >= 5)
+ORDER  BY 3 
+
+-----------------------------------------------------------
+ 
+SELECT a.sch_id,
+       a.trainer_name                         AS trainingname,
+       a.sch_fdate,
+       a.sch_tdate,
+       a.training_title,
+       a.training_type,
+       b.emp_type,
+       b.contractor_code,
+       b.empno,
+       (SELECT Initcap(y.t$name)
+        FROM   baan.thrper001804 y
+        WHERE  y.t$empno = empno
+               AND emp_type = 'HEG-Employee'
+        UNION
+        SELECT Initcap(x.empname)
+        FROM   tblemployeecw x
+        WHERE  x.paycode = empno
+               AND emp_type = 'Contract-Employee'
+        UNION
+        SELECT Initcap(Z.t$name)
+        FROM   baan.thrper001904 Z
+        WHERE  Z.t$empno = empno
+               AND emp_type = 'HEG-Employee') AS empname,
+       b.trainee_dept,
+       (SELECT z.t$desc
+        FROM   baan.thrmas020804 z
+        WHERE  b.trainee_dept = z.t$code)     AS departmentname,
+       b.gift_rewards,
+       b.feed_rat_prog_obj,
+       b.feed_rat_sessions_logic,
+       b.feed_rat_prog_resp,
+       b.feed_rat_course_mat,
+       b.feed_rat_appro_time,
+       b.feed_rat_faculty_knowl,
+       b.feed_rat_faculty_friend,
+       b.feed_rat_faculty_enviorn,
+       b.feed_rat_faculty_active_part
+FROM   lnd_training_details a,
+       lnd_training_participants b
+WHERE  A.sch_id = b.sch_id
+       AND training_type <> 'TSF'
+       AND a.sch_fdate BETWEEN To_date('01-Apr-2023') AND To_date('31-Dec-2023')
+ORDER  BY a.sch_id 
+
+
+--------------------------------------------------------------
+SELECT a.sch_id,
+       a.sch_fdate                              AS trainingdate,
+       a.training_title                         AS title,
+       a.training_type                          AS trainingtype,
+       b.emp_type                               AS emptype,
+       b.contractor_code                        AS contractorcode,
+       b.empno                                  AS empno,
+       (SELECT Initcap(y.t$name)
+        FROM   baan.thrper001804 y
+        WHERE  y.t$empno = empno
+               AND emp_type = 'HEG-Employee'
+               AND y.t$deptcd = b.trainee_dept
+        UNION
+        SELECT Initcap(x.empname)
+        FROM   tblemployeecw x
+        WHERE  x.paycode = empno
+               AND emp_type = 'Contract-Employee'
+        UNION
+        SELECT Initcap(Z.t$name)
+        FROM   baan.thrper001904 Z
+        WHERE  Z.t$empno = empno
+               AND emp_type = 'HEG-Employee'
+               AND z.t$deptcd = b.trainee_dept) AS empname,
+       (SELECT Initcap(yy.t$desc)
+        FROM   baan.thrper001804 y,
+               baan.thrmas027804 yy
+        WHERE  y.t$catcd = yy.t$code
+               AND y.t$empno = empno
+               AND emp_type = 'HEG-Employee'
+               AND y.t$deptcd = b.trainee_dept
+        UNION
+        SELECT 'Contract Employee'
+        FROM   tblemployeecw x
+        WHERE  x.paycode = empno
+               AND emp_type = 'Contract-Employee'
+        UNION
+        SELECT Initcap(zz.t$desc)
+        FROM   baan.thrper001904 z,
+               baan.thrmas027804 ZZ
+        WHERE  z.t$catcd = zz.t$code
+               AND Z.t$empno = empno
+               AND emp_type = 'HEG-Employee'
+               AND z.t$deptcd = b.trainee_dept) AS catdesc,
+       (SELECT Decode(y.t$sex, 1, 'FEMALE',
+                               2, 'MALE')
+        FROM   baan.thrper001804 y
+        WHERE  y.t$empno = empno
+               AND emp_type = 'HEG-Employee'
+        UNION
+        SELECT Decode(x.sex, 'M', 'MALE',
+                             'F', 'FEMALE')
+        FROM   tblemployeecw x
+        WHERE  x.paycode = empno
+               AND emp_type = 'Contract-Employee'
+        UNION
+        SELECT Decode(z.t$sex, 1, 'FEMALE',
+                               2, 'MALE')
+        FROM   baan.thrper001904 Z
+        WHERE  Z.t$empno = empno
+               AND emp_type = 'HEG-Employee')   AS GENDER,
+       b.trainee_dept                           AS deptcode,
+       (SELECT z.t$desc
+        FROM   baan.thrmas020804 z
+        WHERE  b.trainee_dept = z.t$code)       AS deptname,
+       (SELECT cdsc
+        FROM   lnd_training_category
+        WHERE  tcat = a.tcat)                   AS module,
+       (SELECT tdsc
+        FROM   lnd_training_type
+        WHERE  ttyp = a.ttyp)                   AS submudule
+FROM   lnd_training_details a,
+       lnd_training_participants b
+WHERE  A.sch_id = b.sch_id
+       AND a.sch_fdate BETWEEN To_date('01-Apr-2023') AND To_date('31-Dec-2023')
+ORDER  BY a.sch_fdate 
+
+--------------------------------------------------------
+SELECT a.empno                      AS empno,
+       c.t$name                     AS empname,
+       c.t$deptcd                   AS deptcd,
+       (SELECT t$desc
+        FROM   baan.thrmas020804
+        WHERE  t$code = c.t$deptcd) AS deptname,
+       a.year                       AS year,
+       a.ro1                        AS ro1code,
+       (SELECT t$name
+        FROM   baan.thrper001804
+        WHERE  t$empno = a.ro1)     AS ro1name,
+       b.point_id                   AS pointid,
+       (SELECT pont_desc
+        FROM   dpc_point_master
+        WHERE  id = b.point_id)     AS ro1name,
+       b.ro1_obtained_mark          AS ro1obtainedmarks
+FROM   dpc_rating_detail a,
+       dpc_rating_point b,
+       baan.thrper001804 c
+WHERE  a.empno = b.empno
+       AND a.empno = c.t$empno
+       AND a.empno IN (SELECT t$empno
+                       FROM   baan.thrper001804
+                       WHERE  t$deptcd = 155)
+       AND a.year = b.year
+ORDER  BY 1,
+          8 
+		  
+----------------------------------------------
+SELECT a.empno                      AS empno,
+       c.t$name                     AS empname,
+       c.t$deptcd                   AS deptcd,
+       (SELECT t$desc
+        FROM   baan.thrmas020804
+        WHERE  t$code = c.t$deptcd) AS deptname,
+       a.year                       AS year,
+       b.point_id                   AS pointid,
+       (SELECT pont_desc
+        FROM   dpc_point_master
+        WHERE  id = b.point_id)     AS pointdesc,
+       a.ro1                        AS ro1code,
+       (SELECT t$name
+        FROM   baan.thrper001804
+        WHERE  t$empno = a.ro1)     AS ro1name,
+       b.ro1_obtained_mark          AS ro1obtainedmarks,
+       a.ro2                        AS ro2code,
+       (SELECT t$name
+        FROM   baan.thrper001804
+        WHERE  t$empno = a.ro2)     AS ro2name,
+       b.ro2_obtained_mark          AS ro2obtainedmarks,
+       a.ro3                        AS ro3code,
+       (SELECT t$name
+        FROM   baan.thrper001804
+        WHERE  t$empno = a.ro3)     AS ro3name,
+       b.ro3_obtained_mark          AS ro3obtainedmarks,
+       a.status                     AS status
+FROM   dpc_rating_detail a,
+       dpc_rating_point b,
+       baan.thrper001804 c
+WHERE  a.empno = b.empno
+       AND a.empno = c.t$empno
+       AND a.empno IN (SELECT t$empno
+                       FROM   baan.thrper001804
+                       WHERE  t$deptcd = 155)
+       AND a.year = b.year
+ORDER  BY 1,
+          6 
+
+--------------------------------------------------------------------------------------------
+SELECT a.sch_id,
+       a.sch_fdate                                AS trainingdate,
+       a.training_title                           AS title,
+       a.training_type                            AS trainingtype,
+       b.emp_type                                 AS emptype,
+       b.contractor_code                          AS contractorcode,
+       b.empno                                    AS empno,
+       (SELECT Initcap(y.t$name)
+        FROM   baan.thrper001804 y
+        WHERE  y.t$empno = empno
+               AND emp_type = 'HEG-Employee'
+        UNION
+        SELECT Initcap(x.empname)
+        FROM   tblemployeecw x
+        WHERE  x.paycode = empno
+               AND emp_type = 'Contract-Employee'
+        UNION
+        SELECT Initcap(Z.t$name)
+        FROM   baan.thrper001904 Z
+        WHERE  Z.t$empno = empno
+               AND emp_type = 'HEG-Employee'
+        UNION
+        SELECT z.empname
+        FROM   tblemployee z
+        WHERE  To_number(z.paycode) = empno
+               AND z.companycode IN ( 'CRE', 'PRM' )
+               AND emp_type = 'CRE-PRM-Employee') AS empname,
+       (SELECT Initcap(yy.t$desc)
+        FROM   baan.thrper001804 y,
+               baan.thrmas027804 yy
+        WHERE  y.t$catcd = yy.t$code
+               AND y.t$empno = empno
+               AND emp_type = 'HEG-Employee'
+        UNION
+        SELECT 'Contract Employee'
+        FROM   tblemployeecw x
+        WHERE  x.paycode = empno
+               AND emp_type = 'Contract-Employee'
+        UNION
+        SELECT Initcap(zz.t$desc)
+        FROM   baan.thrper001904 z,
+               baan.thrmas027804 ZZ
+        WHERE  z.t$catcd = zz.t$code
+               AND Z.t$empno = empno
+               AND emp_type = 'HEG-Employee')     AS catdesc,
+       (SELECT Decode(y.t$sex, 1, 'FEMALE',
+                               2, 'MALE')
+        FROM   baan.thrper001804 y
+        WHERE  y.t$empno = empno
+               AND emp_type = 'HEG-Employee'
+        UNION
+        SELECT Decode(x.sex, 'M', 'MALE',
+                             'F', 'FEMALE')
+        FROM   tblemployee x
+        WHERE  x.paycode = empno
+               AND emp_type = 'CRE-PRM-Employee'
+               AND x.companycode IN ( 'CRE', 'PRM' )
+        UNION
+        SELECT Decode(x.sex, 'M', 'MALE',
+                             'F', 'FEMALE')
+        FROM   tblemployeecw x
+        WHERE  x.paycode = empno
+               AND emp_type = 'Contract-Employee'
+        UNION
+        SELECT Decode(z.t$sex, 1, 'FEMALE',
+                               2, 'MALE')
+        FROM   baan.thrper001904 Z
+        WHERE  Z.t$empno = empno
+               AND emp_type = 'HEG-Employee')     AS GENDER,
+       b.trainee_dept                             AS deptcode,
+       (SELECT z.t$desc
+        FROM   baan.thrmas020804 z
+        WHERE  b.trainee_dept = z.t$code)         AS deptname,
+       (SELECT cdsc
+        FROM   lnd_training_category
+        WHERE  tcat = a.tcat)                     AS module,
+       (SELECT tdsc
+        FROM   lnd_training_type
+        WHERE  ttyp = a.ttyp)                     AS submudule,
+       a.trduration                               AS duration
+FROM   lnd_training_details a,
+       lnd_training_participants b
+WHERE  A.sch_id = b.sch_id
+       AND a.sch_fdate BETWEEN To_date('01-Apr-2021') AND To_date('31-Mar-2022')
+ORDER  BY a.sch_fdate
+
+SELECT a.sch_fdate,
+       a.training_title,
+       a.no_of_member,
+       a.trduration,
+       a.training_type
+FROM   lnd_training_details a,
+       lnd_training_participants b
+WHERE  a.sch_id = b.sch_id
+       AND Upper(Trim(a.status)) = 'APPROVED'
+       AND a.sch_fdate BETWEEN To_date('01-Jan-2025') AND To_date('31-Jan-2025') 
+---------------------------------------------------------------	   
+	   
+SELECT a.dept_code,
+       (SELECT b.t$desc
+        FROM   attd.thrmas018 b
+        WHERE  b.t$code = a.dept_code),
+       a.confirmer,
+       a.eff_date,
+       a.end_date,
+       b.t$name
+FROM   cmrs_manpower_req_confirmers a,
+       attd.thrper001 b
+WHERE  a.confirmer = b.t$empno
+ORDER  BY 6 	   
+---------------------------------------------
+
+SELECT To_char(To_date(a.date1, 'dd/MM/yyyy hh24:mi:ss'), 'dd-Mon-yyyy') AS mont
+       ,
+       Count(a.batchno)
+       AS
+       batchno
+FROM   rh.torque2ln a
+WHERE  To_date(a.date1, 'dd/mm/yyyy hh24:mi:ss') BETWEEN sysdate - 2 AND sysdate
+GROUP  BY To_char(To_date(a.date1, 'dd/MM/yyyy hh24:mi:ss'), 'dd-Mon-yyyy')
+ORDER  BY 1 
+
+-------------------------------------------------
+
+SELECT a.emp_code          AS empcode,
+       b.t$name            AS NAME,
+       c.t$desc            AS unitname,
+       d.t$desc            AS deptname,
+       a.question_no       AS questiono,
+       e.question          AS QUESTION,
+       e.question_category AS questioncat,
+       a.rating_given      AS givenrating,
+       a.remark            AS remark
+FROM   survey_result a,
+       baan.thrper001804 b,
+       baan.thrmas018804 c,
+       baan.thrmas020804 d,
+       survey_question_master e
+WHERE  a.survey_type_id = e.survey_type_id
+       AND a.question_no = e.question_no
+       AND a.survey_period = e.survey_period
+       AND a.fin_year = e.fin_year
+       AND a.emp_code = b.t$empno
+       AND b.t$unitcd = c.t$code
+       AND b.t$deptcd = d.t$code
+       AND a.survey_type_id = 5
+       AND a.fin_year = 2024
+       AND a.survey_period = 1
+ORDER  BY a.emp_code,
+          a.question_no 
+
+
+--------------------------------------------------
+
+SELECT a.t$code                                                       AS
+       deptCode,
+       Trim(a.t$desc)                                                 AS
+       department,
+       (SELECT Nvl(Sum(b.approved_nos), 0)
+        FROM   hr.manpower_approved_total b
+        WHERE  a.t$code = b.dept
+               AND b.approval_date >= '01-Apr-2021')
+       totalStrengthApproved,
+       ( (SELECT Count(*)
+          FROM   baan.thrper001804 b
+          WHERE  b.t$deptcd = a.t$code
+                 AND To_char(b.t$leavdt, 'ddmmyy') = '000000')
+         + (SELECT Count(*)
+            FROM   baan.thrper001904 b
+            WHERE  b.t$deptcd = a.t$code
+                   AND To_char(b.t$leavdt, 'ddmmyy') = '000000') )
+       totalStrengthActual,
+       ( (SELECT Count(j.empno)
+          FROM   hr.manpower_employee_last_date j
+          WHERE  j.comp = '804'
+                 AND ( To_date(j.last_date) - To_date(sysdate) ) <= 180
+                 AND To_char(j.last_date, 'ddmmyy') <> '000000'
+                 AND j.dept = a.t$code
+                 AND j.empno NOT IN (SELECT Trim(y.repl_empno)
+                                     FROM   hr.manpower_recruitment_reqs y,
+                                            manpower_hiring_details z
+                                     WHERE  y.rqno = z.vacancy_id
+                                            AND Upper(z.stat) IN ( 'CLOSED' )
+                                            AND y.repl_empno IS NOT NULL)
+                 AND To_date(j.last_date) >= To_date(sysdate))
+         + (SELECT Count(*)
+            FROM   hr.manpower_employee_last_date k
+            WHERE  k.comp = '904'
+                   AND ( To_date(k.last_date) - To_date(sysdate) ) <= 30
+                   AND To_char(k.last_date, 'ddmmyy') <> '000000'
+                   AND k.empno NOT IN (SELECT Trim(y.repl_empno)
+                                       FROM   hr.manpower_recruitment_reqs y,
+                                              manpower_hiring_details z
+                                       WHERE  y.rqno = z.vacancy_id
+                                              AND Upper(z.stat) IN ( 'CLOSED' )
+                                              AND y.repl_empno IS NOT NULL)
+                   AND k.dept = a.t$code
+                   AND To_date(k.last_date) >= To_date(sysdate)) )    AS
+       totalStrengthIngrace,
+       (SELECT Nvl(Sum(b.approved_nos), 0)
+        FROM   hr.manpower_approved_total b
+        WHERE  a.t$code = b.dept
+               AND b.catg IN( '100', '110', '120', '125',
+                              '130', '180', '190', '200' )
+               AND b.approval_date >= '01-Apr-2021')                  AS
+       ExeStaffRetainersApproved,
+       (SELECT Count(*)
+        FROM   baan.thrper001804 b
+        WHERE  b.t$deptcd = a.t$code
+               AND To_char(b.t$leavdt, 'ddmmyy') = '000000'
+               AND b.t$catcd IN( '100', '110', '120', '125',
+                                 '130', '180', '190', '200' ))        AS
+       exeStaffRetainersActual,
+       (SELECT Count(*)
+        FROM   baan.thrper001804 b
+        WHERE  b.t$deptcd = a.t$code
+               AND To_char(b.t$leavdt, 'ddmmyy') = '000000'
+               AND b.t$catcd = '100')                                 AS
+       executive,
+       (SELECT Count(*)
+        FROM   baan.thrper001804 b
+        WHERE  b.t$deptcd = a.t$code
+               AND To_char(b.t$leavdt, 'ddmmyy') = '000000'
+               AND b.t$catcd BETWEEN '110' AND '120')                 AS staff,
+       (SELECT Count(*)
+        FROM   baan.thrper001804 b
+        WHERE  b.t$deptcd = a.t$code
+               AND To_char(b.t$leavdt, 'ddmmyy') = '000000'
+               AND b.t$catcd IN( '125', '130' ))                      AS
+       subStaff,
+       (SELECT Count(*)
+        FROM   baan.thrper001804 b
+        WHERE  b.t$deptcd = a.t$code
+               AND To_char(b.t$leavdt, 'ddmmyy') = '000000'
+               AND b.t$catcd BETWEEN '180' AND '200')                 AS
+       retainer,
+       (SELECT Nvl(Sum(b.approved_nos), 0)
+        FROM   hr.manpower_approved_total b
+        WHERE  a.t$code = b.dept
+               AND b.catg IN( '127', '140' )
+               AND b.approval_date >= '01-Apr-2021')                  AS
+       technicalStaffArtisanApproved,
+       (SELECT Count(*)
+        FROM   baan.thrper001804 b
+        WHERE  b.t$deptcd = a.t$code
+               AND To_char(b.t$leavdt, 'ddmmyy') = '000000'
+               AND b.t$catcd IN( '127', '140' ))                      AS
+       technicalStaffArtisanActual,
+       (SELECT Count(*)
+        FROM   baan.thrper001804 b
+        WHERE  b.t$deptcd = a.t$code
+               AND To_char(b.t$leavdt, 'ddmmyy') = '000000'
+               AND b.t$catcd IN( '127' ))                             AS
+       technicalStaff,
+       (SELECT Count(*)
+        FROM   baan.thrper001804 b
+        WHERE  b.t$deptcd = a.t$code
+               AND To_char(b.t$leavdt, 'ddmmyy') = '000000'
+               AND b.t$catcd = '140')                                 AS artisan
+       ,
+       (SELECT Nvl(Sum(b.approved_nos), 0)
+        FROM   hr.manpower_approved_total b
+        WHERE  a.t$code = b.dept
+               AND b.catg IN( '150', '162', '165', '170', '175' )
+               AND b.approval_date >= '01-Apr-2021')                  AS
+       fTEsApprenticeApproved,
+       (SELECT Count(*)
+        FROM   baan.thrper001904 b
+        WHERE  b.t$deptcd = a.t$code
+               AND To_char(b.t$leavdt, 'ddmmyy') = '000000'
+               AND b.t$catcd IN( '150', '162', '165', '170', '175' )) AS
+       fTEsApprenticeActual,
+       (SELECT Count(*)
+        FROM   baan.thrper001904 b
+        WHERE  b.t$deptcd = a.t$code
+               AND To_char(b.t$leavdt, 'ddmmyy') = '000000'
+               AND b.t$catcd = '150')                                 AS
+       fTEsTechnical,
+       (SELECT Count(*)
+        FROM   baan.thrper001904 b
+        WHERE  b.t$deptcd = a.t$code
+               AND To_char(b.t$leavdt, 'ddmmyy') = '000000'
+               AND b.t$catcd = '165')                                 fTEsOther,
+       (SELECT Count(*)
+        FROM   baan.thrper001904 b
+        WHERE  b.t$deptcd = a.t$code
+               AND To_char(b.t$leavdt, 'ddmmyy') = '000000'
+               AND b.t$catcd = '170')                                 AS
+       engineer,
+       (SELECT Count(*)
+        FROM   baan.thrper001904 b
+        WHERE  b.t$deptcd = a.t$code
+               AND To_char(b.t$leavdt, 'ddmmyy') = '000000'
+               AND b.t$catcd = '175')                                 AS diploma
+       ,
+       (SELECT Count(*)
+        FROM   baan.thrper001904 b
+        WHERE  b.t$deptcd = a.t$code
+               AND To_char(b.t$leavdt, 'ddmmyy') = '000000'
+               AND b.t$catcd = '162')                                 AS iti,
+       (SELECT Nvl(Sum(b.approved_nos), 0)
+        FROM   hr.manpower_approved_total b
+        WHERE  a.t$code = b.dept
+               AND b.catg IN( '135' )
+               AND b.approval_date >= '01-Apr-2021')                  AS
+       outSourceApproved
+FROM   baan.thrmas020804 a
+WHERE  a.t$code IN(SELECT m.t$deptcd
+                   FROM   baan.thrmas038804 m
+                   WHERE  m.t$empno IS NOT NULL
+                          AND m.t$efdt = (SELECT Max(n.t$efdt)
+                                          FROM   baan.thrmas038804 n
+                                          WHERE  m.t$deptcd = n.t$deptcd
+                                                 AND n.t$efdt <= To_date(sysdate
+                                                                 ))
+                   UNION
+                   SELECT n.deptcd
+                   FROM   hr.manpower_db_additional_access n
+                   WHERE  To_date(sysdate) BETWEEN efdt AND endt
+                          AND n.empno IS NOT NULL)
+       AND (SELECT Nvl(Sum(b.approved_nos), 0)
+            FROM   hr.manpower_approved_total b
+            WHERE  a.t$code = b.dept
+                   AND b.approval_date >= '01-Apr-2021') > 0
+ORDER  BY 3 DESC 
+
+
+
+
+select count(*) from 
+
+baan.thrper001804 a,
+lnd_training_details b,
+lnd_training_participants c,
+baan.thrmas020804 d,
+baan.thrmas027804 e 
+From 
+where a.t$empno=c.EMPNO
+and b.sch_id=c.t$sch_id
+and c.TRAINEE_DEPT=d.t$code 
+and a.T$CATCD=e.t$code 
+and b.sch_fdate BETWEEN To_date('01-Apr-2023') AND To_date('31-Mar-2024')
+ AND c.emp_type = 'HEG-Employee'
+               AND To_char(a.t$join$dt, 'dd-Mon-yyyy') >=
+                   Add_months(To_char(SYSDATE,
+                              'dd-Mon-yyyy'
+                              ), -36)
+
+
+
+---------------------------------------------------
+
+SELECT 	distinct(c.empno) as empno,
+		a.t$name as name,
+		d.t$desc as department,
+		e.t$desc as category,
+		f.t$desc as designation,
+        to_char(a.T$JOIN$DT,'dd-Mon-yyyy') as joiningdate
+FROM   baan.thrper001804 a,
+       lnd_training_details b,
+       lnd_training_participants c,
+       baan.thrmas020804 d,
+       baan.thrmas027804 e,
+       baan.thrmas007804 f
+WHERE  a.t$empno=c.empno
+AND    b.sch_id=c.sch_id
+AND    c.trainee_dept=d.t$code
+AND    a.t$desgcd=f.t$code
+AND    a.t$catcd=e.t$code
+AND    b.sch_fdate BETWEEN to_date('01-Apr-2023') AND    to_date('31-Mar-2024')
+AND    c.emp_type = 'HEG-Employee'
+--AND    to_char(a.t$join$dt, 'dd-Mon-yyyy') <= add_months(to_char(sysdate, 'dd-Mon-yyyy' ), -36)
+AND  To_char(a.t$leavdt, 'ddmmyy') IN '000000'
+order by 1
+
+
+
+
+
+
+
+SELECT  
+        a.sch_id                                                  AS trainingid,
+        a.training_type                                           AS trainingtype,
+        b.trainee_dept                                            AS deptcode,
+       (SELECT z.t$desc
+        FROM   baan.thrmas020804 z
+        WHERE  b.trainee_dept = z.t$code)                        AS deptname,       
+       (SELECT cdsc
+        FROM   lnd_training_category
+        WHERE  tcat = a.tcat)                                    AS module,
+       (SELECT tdsc
+        FROM   lnd_training_sub_category
+        WHERE  ttyp = a.ttyp)                                    AS submudule,
+        a.training_title                                          AS title,
+        a.sch_fdate                                               AS trainingdate,
+        a.TRDURATION                                               AS duration,
+        b.empno                                                   AS empno,
+        (SELECT Initcap(y.t$name)
+        FROM   baan.thrper001804 y
+        WHERE  y.t$empno = empno
+               AND emp_type = 'HEG-Employee'
+        UNION
+        SELECT Initcap(x.empname)
+        FROM   tblemployeecw x
+        WHERE  x.paycode = empno
+               AND emp_type = 'Contract-Employee'
+          UNION
+        SELECT Initcap(x.empname)
+        FROM   tblemployee x
+        WHERE  x.paycode = empno
+               AND emp_type = 'CRE-PRM-Employee'      
+        UNION
+        SELECT Initcap(Z.t$name)
+        FROM   baan.thrper001904 Z
+        WHERE  Z.t$empno = empno
+               AND emp_type = 'HEG-Employee'
+               AND Z.t$empno NOT IN ( 1224, 1232, 1255, 1291 ))  AS empname,
+          (SELECT t$desc
+        FROM   baan.thrmas027804 y,
+               baan.thrper001804 yy
+        WHERE  y.t$code = yy.t$catcd
+               AND yy.t$empno = b.empno
+        UNION
+        SELECT t$desc
+        FROM   baan.thrmas027804 y,
+               baan.thrper001904 yy
+        WHERE  y.t$code = yy.t$catcd
+               AND yy.t$empno = b.empno
+               AND yy.t$empno NOT IN ( 1224, 1232, 1255, 1291 )) AS employeecategory,      
+         (SELECT t$desc
+        FROM   baan.thrmas007804 y,
+               baan.thrper001804 yy
+        WHERE  y.t$code = yy.t$desgcd
+               AND yy.t$empno = b.empno
+        UNION
+        SELECT t$desc
+        FROM   baan.thrmas007804 y,
+               baan.thrper001904 yy
+        WHERE  y.t$code = yy.t$desgcd
+               AND yy.t$empno = b.empno
+               AND yy.t$empno NOT IN ( 1224, 1232, 1255, 1291 )) AS designation,
+         b.emp_type                                                AS emptype,      
+        (SELECT Decode(y.t$sex, 1, 'FEMALE',
+                               2, 'MALE')
+        FROM   baan.thrper001804 y
+        WHERE  y.t$empno = empno
+               AND emp_type = 'HEG-Employee'
+        UNION
+        SELECT Decode(x.sex, 'M', 'MALE',
+                             'F', 'FEMALE')
+        FROM   tblemployeecw x
+        WHERE  x.paycode = empno
+               AND emp_type = 'Contract-Employee'
+        UNION
+        SELECT Decode(z.t$sex, 1, 'FEMALE',
+                               2, 'MALE')
+        FROM   baan.thrper001904 Z
+        WHERE  Z.t$empno = empno
+               AND emp_type = 'HEG-Employee')                    AS GENDER                
+FROM   lnd_training_details a,
+       lnd_training_participants b
+WHERE  A.sch_id = b.sch_id
+       AND a.sch_fdate BETWEEN To_date('31-Mar-2024') AND To_date('01-Apr-2025')
+ORDER  BY 8 

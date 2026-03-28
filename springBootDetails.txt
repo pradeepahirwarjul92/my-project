@@ -1,0 +1,32 @@
+Company
+ ├── Departments
+ │     └── Employees
+ │            ├── Address (1-1)
+ │            ├── Documents (1-Many)
+ │            └── Projects (Many-Many)
+ 
+ 
+ 🧠 Mapping Types Used
+Relationship			Example
+One-to-One			Employee ↔ Address
+One-to-Many			Department → Employees
+Many-to-One			Employee → Department
+Many-to-Many		Employee ↔ Project
+
+🗄️ Database Design ⭐
+
+🏢 Company
+
+CREATE TABLE company (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100)
+);
+
+
+🏬 Department
+CREATE TABLE department (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  company_id BIGINT,
+  FOREIGN KEY (company_id) REFERENCES company(id)
+);

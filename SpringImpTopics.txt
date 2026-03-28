@@ -1,0 +1,348 @@
+1. Core Spring Boot Concepts
+
+Before microservices, strong Spring Boot fundamentals are required.
+
+Important Topics
+
+Auto Configuration
+
+Starter Dependencies
+
+Spring Boot Annotations
+
+@SpringBootApplication
+
+@RestController
+
+@Service
+
+@Repository
+
+@Component
+
+Dependency Injection
+
+Configuration
+
+application.properties
+
+application.yml
+
+Profiles
+
+@Profile
+
+Spring Boot Actuator
+
+Example:
+
+@RestController
+@RequestMapping("/employee")
+public class EmployeeController {
+
+    @GetMapping("/{id}")
+    public String getEmployee(@PathVariable int id){
+        return "Employee ID : " + id;
+    }
+}
+2. Microservice Architecture Basics
+
+Companies expect you to understand why microservices are used.
+
+Important Concepts
+
+Monolith vs Microservices
+
+Independent deployment
+
+Database per service
+
+Loose coupling
+
+High scalability
+
+Fault tolerance
+
+Example:
+
+E-Commerce System
+
+User Service
+Order Service
+Payment Service
+Product Service
+Notification Service
+
+Each service runs independently.
+
+3. Spring Cloud Components (VERY IMPORTANT) ⭐
+
+These are core microservice tools.
+
+1️⃣ Service Discovery
+
+Service registers itself so other services can find it.
+
+Common Tool:
+
+Netflix Eureka
+
+Architecture
+
+Service A → Eureka Server
+Service B → Eureka Server
+
+Service A → call Service B via Eureka
+
+Annotations
+
+@EnableEurekaServer
+@EnableDiscoveryClient
+2️⃣ API Gateway
+
+Single entry point for all services.
+
+Common Tool:
+
+Spring Cloud Gateway
+
+Benefits
+
+Routing
+
+Authentication
+
+Logging
+
+Rate Limiting
+
+Example
+
+Client
+   |
+API Gateway
+ |     |
+User   Order
+Service Service
+3️⃣ Config Server (Centralized Configuration)
+
+Tool:
+
+Spring Cloud Config
+
+All services get configuration from one place.
+
+Git Repository
+      |
+Config Server
+      |
+Microservices
+4️⃣ Load Balancing
+
+Distributes traffic across multiple service instances.
+
+Tool
+
+Spring Cloud LoadBalancer
+
+Earlier used:
+
+Netflix Ribbon
+
+Example
+
+Order Service
+
+Instance 1
+Instance 2
+Instance 3
+
+Requests distributed automatically.
+
+4. Inter-Service Communication
+1️⃣ REST Communication
+
+Using
+
+RestTemplate
+
+OpenFeign
+
+Feign Example
+
+@FeignClient(name="ORDER-SERVICE")
+public interface OrderClient {
+
+    @GetMapping("/orders/{id}")
+    Order getOrder(@PathVariable int id);
+}
+2️⃣ Asynchronous Communication
+
+Tools
+
+Apache Kafka
+
+RabbitMQ
+
+Example
+
+Order Created Event
+
+Order Service → Kafka → Notification Service
+5. Fault Tolerance / Resilience
+
+Microservices must handle failures.
+
+Tool
+
+Resilience4j
+
+Patterns
+
+Circuit Breaker
+Service A → Service B
+
+If B fails repeatedly
+Circuit Breaker → Stop calling B
+
+Annotation
+
+@CircuitBreaker(name="paymentService")
+6. Distributed Tracing
+
+Helps track requests across services.
+
+Tools
+
+Zipkin
+
+Spring Cloud Sleuth
+
+Example
+
+User Service → Order Service → Payment Service
+
+Trace ID tracks entire request.
+7. Security in Microservices
+
+Important for enterprise systems.
+
+Topics
+
+JWT Authentication
+
+OAuth2
+
+API Gateway Security
+
+Tool
+
+Spring Security
+
+Example Flow
+
+Client → API Gateway → Auth Service → Token
+Client → Other Services with Token
+8. Logging & Monitoring
+
+Tools
+
+ELK Stack
+
+Prometheus
+
+Grafana
+
+9. Containerization (Industry Standard)
+
+Tools
+
+Docker
+
+Kubernetes
+
+Example
+
+Microservice → Docker Container → Kubernetes Cluster
+10. Microservice Design Patterns (Very Important for Interviews)
+
+Patterns used in microservices:
+
+API Gateway Pattern
+
+Circuit Breaker Pattern
+
+Saga Pattern
+
+Database per Service Pattern
+
+Event Driven Architecture
+
+Strangler Pattern
+
+11. Database Management in Microservices
+
+Concepts
+
+Database per service
+
+Event sourcing
+
+CQRS pattern
+
+Example
+
+User Service → MySQL
+Order Service → PostgreSQL
+Payment Service → MongoDB
+12. Testing Microservices
+
+Types
+
+Unit Testing
+
+Integration Testing
+
+Contract Testing
+
+Tools
+
+JUnit
+
+Mockito
+
+Postman
+
+⭐ Most Important Interview Topics (Top 15)
+
+If preparing quickly, focus on:
+
+Spring Boot Architecture
+
+Microservices vs Monolith
+
+Netflix Eureka
+
+Spring Cloud Gateway
+
+OpenFeign
+
+Spring Cloud Config
+
+Resilience4j
+
+Circuit Breaker Pattern
+
+Distributed Tracing
+
+JWT Security
+
+Docker
+
+Kubernetes
+
+Kafka / RabbitMQ
+
+Logging & Monitoring
+
+Microservice Design Patterns

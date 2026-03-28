@@ -1,0 +1,13 @@
+01 - @Component Vs @beans 
+Ans - @Compent - automatically detect and register a class as a spring Bean using component scanning 
+					spring scans packages and automatically created the object 
+					
+	@Bean - 	is used inside a @Configuration class to manually create and configure a bean.
+				- used when you want full controll over object creation
+
+Interview Expected :: 
+@Component is used for automatic bean creation through component scanning, typically for application classes like services and repositories.
+
+@Bean is used inside @Configuration classes to manually create and configure beans, usually for third-party classes or when custom initialization is required.
+
+7989642260

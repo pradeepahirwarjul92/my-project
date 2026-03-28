@@ -1,0 +1,29 @@
+Q1 - Git Workflow 
+Ans - Working Directory (Your Workspace)→ Staging Area (Preparation Zone) → Repository
+
+	- Working Directory (Your Workspace)
+		Example:
+			You edit Employee.java → changes are only in your local file
+	
+	- Staging Area (Preparation Zone)
+		Example:
+			git add Employee.java
+	
+	- Repository (Permanent Storage)
+		Example:
+			git commit -m "Added salary calculation logic"
+			
+git config --global http.proxy http://it%20common:Lnjb@1234@192.168.9.112:808	
+git config --global https.proxy http://it%20common:Lnjb@1234@192.168.9.112:808			
+
+git config --global http.proxy http://username:password@proxy.company.com:8080
+git config --global https.proxy http://username:password@proxy.company.com:8080
+
+
+
+Q02 - git checkout feature1 vs git switch feature1 
+both are same
+
+
+
+

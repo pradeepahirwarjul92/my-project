@@ -1,0 +1,3 @@
+Q1 - SPring bean life cycle 
+Ans public void init() - initilization
+	public void destroy - destroy

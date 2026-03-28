@@ -1,0 +1,138 @@
+Q1 - Difference: save() vs persist()
+Ans 
+| save()                    | persist()    |
+| ------------------------- | ------------ |
+| Returns ID                | No return    |
+| Works outside transaction | No           |
+| Hibernate specific        | JPA standard |
+
+Q2 - get() vs load()
+Ans - 
+	| get()                     | load()           |
+	| ------------------------- | ---------------- |
+	| Returns null if not found | Throws exception |
+	| Hits DB immediately       | Lazy proxy       |
+	| Safe                      | Faster           |
+
+
+Q3 - update() vs merge()
+Ans - 
+	| update()                          | merge()      |
+	| --------------------------------- | ------------ |
+	| Fails if object exists in session | Safe         |
+	| Reattaches object                 | Copies state |
+
+Q4 - Lazy vs Eager Loading
+Ans -
+| Lazy               | Eager             |
+| ------------------ | ----------------- |
+| Loads when needed  | Loads immediately |
+| Better performance | Can slow system   |
+
+Q5 - What is Proxy in Hibernate?
+Ans - Placeholder object used for lazy loading.
+
+Q6 - Types of Associations
+Ans - 
+One-to-One
+One-to-Many
+Many-to-One
+Many-to-Many
+
+Q7 - Bidirectional vs Unidirectional
+Ans -	➡️ Bidirectional: both entities reference each other
+		➡️ Unidirectional: one side only
+	
+Q8 - What is HQL?
+Ans  	➡️ Hibernate Query Language
+		➡️ Works on objects, not tables	
+		
+Q9 - Native SQL Query
+Ans - 	➡️ Direct SQL query inside Hibernate
+	session.createNativeQuery("SELECT * FROM emp");
+	
+Q10 - Criteria API
+Ans - 	➡️ Programmatic way to build queries
+		➡️ Type-safe	
+
+Q11 - 	Types of Cache
+Ans - 	
+🟢 First Level Cache
+	➡️ Session-level
+	➡️ Enabled by default
+	
+🔵 Second Level Cache
+	➡️ SessionFactory-level
+	➡️ Optional
+	➡️ Requires provider
+
+Q12 - Query Cache
+Ans - 	
+	➡️ Caches query results
+	➡️ Works with second-level cache
+	
+Q13 - 	What is Transaction?
+Ans - ➡️ Unit of work executed atomically
+	Transaction tx = session.beginTransaction();
+	tx.commit();
+
+Q14 - Hibernate Object States
+Ans - 	
+	-	Transient — new object
+	-	Persistent — associated with session
+	-	Detached — session closed
+	
+Q15 - 	Dirty Checking
+Ans - 🧠 Key Idea
+			👉 You modify the object
+			👉 Hibernate tracks it
+			👉 No update() needed
+			👉 DB updated automatically
+
+Q16 - What is Cascade in Hibernate?
+Ans - Cascade = Automatic propagation of an operation from parent to child entities.
+When you perform an action on a parent object (save, update, delete, etc.), 
+Hibernate can automatically apply the same action to related child objects.
+👉 Instead of managing each entity separately, Hibernate handles them together.
+
+🧩 Types of Cascade in Hibernate
+⭐ CascadeType.ALL
+
+Applies all operations
+
+PERSIST, MERGE, REMOVE, REFRESH, DETACH
+⭐ CascadeType.PERSIST
+
+Save operation only
+
+⭐ CascadeType.MERGE
+
+Update operation only
+
+⭐ CascadeType.REMOVE
+
+Delete children when parent deleted
+
+⭐ CascadeType.REFRESH
+
+Reload child state from DB
+
+⭐ CascadeType.DETACH
+
+Detach children from session
+
+
+Q17 - N+1 Select Problem
+Ans - 	➡️ Multiple queries executed instead of one join query.
+		➡️ Happens with lazy loading.
+
+Q18 - 	Batch Processing in Hibernate
+Ans - ➡️ Used for inserting/updating large data efficiently.	
+
+
+Q19 - Interceptor vs Event Listener
+Ans - 
+| Interceptor  | Event Listener |
+| ------------ | -------------- |
+| Global       | Fine-grained   |
+| Old approach | Modern         |

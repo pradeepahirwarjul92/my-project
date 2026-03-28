@@ -1,0 +1,47 @@
+Q1: Difference between ArrayList and LinkedList
+
+Answer:
+
+Feature					ArrayList			LinkedList
+Data structure			Dynamic array		Doubly linked list
+Access by index			O(1)				O(n)
+Insert/delete			O(n)				O(1) if position known
+Memory					Less				More (stores node pointers)
+Best use				Random access		Frequent insert/delete
+
+
+Q5: subList() in ArrayList
+List<Integer> list = Arrays.asList(1,2,3,4,5);
+List<Integer> sub = list.subList(1,4);
+System.out.println(sub); // [2,3,4]
+
+Q6: Iterating over List
+for(int i : list) System.out.println(i); // enhanced for
+Iterator<Integer> it = list.iterator();
+while(it.hasNext()) System.out.println(it.next())
+
+Q8: List.of() vs Arrays.asList()
+Feature	Arrays.asList	List.of
+Mutable	Partially (fixed-size)	Immutable
+Null allowed	Yes	No
+
+
+Q31: Difference between HashSet, TreeSet, LinkedHashSet
+
+Feature		HashSet			LinkedHashSet		TreeSet
+Order		None			Insertion			Sorted
+Duplicates	Not allowed		Not allowed			Not allowed
+Null		Yes, 1			Yes, 1				No
+Iterator	Fail-fast		Fail-fast		Fail-fast
+
+
+Q32: HashSet internal storage
+
+Uses HashMap internally
+
+Stores elements as keys, value = dummy object
+
+Hash code → bucket → equals() check
+
+
+Q 4 : 

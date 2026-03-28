@@ -1,0 +1,19 @@
+1 - why use mapToInt
+Ans - mapToInt()is intermediate stream operation
+		use for convert a Stream of objects into a primitive stream
+		mainly used when performing numerice operations sum, average, max, or min 
+		
+2 - difference between  .mapToInt(Integer::parseInt)
+						.mapToInt(Integer::intValue)	
+Ans - 	
+	Feature 	parseInt 		intValue	
+	Input Type 	String			Integer
+	Conversion	String->int 	Integer ->int
+	Used For 	Parsing text	Removing boxing
+	
+	mapToInt(Integer::parseInt)
+	
+
+3 -
+Ans -  	
+		
