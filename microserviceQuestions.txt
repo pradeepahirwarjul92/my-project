@@ -1,0 +1,147 @@
+01. Service Discovery and Service Registry in Microservices
+Ans - 
+🔹 Why We Need This?
+
+Without service discovery ❌:
+	-	Hardcode URLs
+	-	Difficult scaling
+	-	Services break if IP changes
+
+With service discovery ✅:
+	-	Dynamic communication
+	-	Auto-scaling support
+	-	Fault tolerance
+	-	Load balancing
+	
+
+02. 	============== Load Balancing ==============
+Ans - Load balancing = distributing requests across multiple service instances to improve performance and reliability
+
+		============TYPE OF LOAD BALANCING==============
+
+	* Client-Side
+Note: Client-Side Load Balancer Provided by Spring Cloud: Spring Cloud Load Balancer, Netflix Ribbon
+
+Advantages of Client-Side Load Balancing
+	-	In the case of the traditional load balancer approach no more single point of failure.
+	-	Less network latency as the client can directly call the backend servers.
+	-	Cost Reduction as there is no need for server-side load balancing.
+
+Disadvantages of Client-Side Load Balancing
+	-	The microservice code is combined with the load balancer's logic.		
+	
+
+	* Server-Side
+Server-Side Load Balancer Provided by Spring Cloud: Spring Cloud Gateway, Netflix Zuul	
+
+
+03 Microservices Intracommunication Tyoe
+Ans - 
+1️⃣ Synchronous Communication
+
+In synchronous communication, the client waits for the server to respond before proceeding.
+
+a) REST/HTTP APIs
+How it works: Service A calls Service B via HTTP using JSON or XML.
+Tools: RestTemplate, WebClient, FeignClient.
+Pros: Simple, widely supported, human-readable, easy to debug.
+Cons: Tight coupling, slow if the called service is down or slow.
+Example:
+order-service calls inventory-service to check stock.
+b) gRPC
+How it works: Uses HTTP/2 and Protocol Buffers for communication.
+Pros: Faster than REST, binary format (efficient), supports streaming.
+Cons: More complex, requires protobuf definitions, not as human-readable.
+Use case: High-performance internal service communication.
+c) GraphQL
+How it works: Service A queries Service B with flexible queries instead of fixed endpoints.
+Pros: Single endpoint, only fetch needed data.
+Cons: Complexity increases for multiple services, caching tricky.
+Use case: BFF (Backend for Frontend) layer aggregating multiple services.
+2️⃣ Asynchronous Communication
+
+In asynchronous communication, the client doesn’t wait for a response. Useful for decoupled systems and event-driven architectures.
+
+a) Message Queues
+How it works: Service sends a message to a queue (like RabbitMQ, ActiveMQ). Another service consumes the message.
+Pros: Decoupled, reliable, can handle spikes in traffic.
+Cons: More complex to debug, eventual consistency.
+Use case: Order confirmation emails, inventory updates.
+b) Event Streaming / Publish-Subscribe
+How it works: Services publish events to a broker (Kafka, AWS Kinesis). Subscribers process events.
+Pros: Loose coupling, highly scalable, good for analytics and audit trails.
+Cons: Eventual consistency, requires monitoring.
+Use case: Inventory changes trigger order fulfillment.
+c) WebSockets
+How it works: Persistent connection between client and server for real-time updates.
+Pros: Real-time communication.
+Cons: Connection management, scaling is harder.
+Use case: Chat apps, live dashboards.
+d) Server-Sent Events (SSE)
+How it works: Server pushes updates to client over HTTP.
+Pros: Simpler than WebSockets for one-way communication.
+Use case: Live feed of stock prices, notifications.
+3️⃣ Database/Shared Storage (Indirect Communication)
+How it works: Services communicate by reading/writing the same database or cache (Redis, S3).
+Pros: Simple for some use cases.
+Cons: Tight coupling, violates microservice independence.
+Use case: Rare, usually in legacy or transitional systems.
+4️⃣ API Gateway / Aggregation Layer
+How it works: Clients call the API Gateway which calls multiple services and aggregates results.
+Pros: Reduces number of client calls, hides internal microservice structure.
+Cons: Gateway becomes critical, potential bottleneck.
+Use case: Mobile apps fetching data from multiple microservices.
+
+
+5️⃣ Choosing the Right Communication
+| Communication Type | Pros                                | Cons                                  | Use Case                          |
+| ------------------ | ----------------------------------- | ------------------------------------- | --------------------------------- |
+| REST/HTTP          | Simple, readable                    | Tight coupling, slow                  | Internal APIs, external clients   |
+| FeignClient        | Declarative, integrates with Eureka | Slight learning curve                 | Microservices with Spring Cloud   |
+| gRPC               | Fast, binary, streaming             | Complex setup                         | High-performance internal calls   |
+| Message Queue      | Decoupled, reliable                 | Async, debugging harder               | Order processing, notifications   |
+| Event Streaming    | Scalable, decoupled                 | Eventual consistency                  | Analytics, microservices triggers |
+| WebSocket/SSE      | Real-time updates                   | Scaling and connection management     | Live dashboards, chats            |
+| Database sharing   | Simple                              | Tight coupling, violates independence | Legacy systems                    |
+| API Gateway        | Aggregation, simplifies client      | Bottleneck                            | Mobile/web client aggregation     |
+
+
+
+Q4 - RequestInterceptor in feign client 
+
+
+
+Q5 - RestTemplate all Method
+🧠 Easy Trick to Remember
+Method					Purpose
+getForObject			GET → only data
+getForEntity			GET → full response
+postForObject			POST → only data
+postForEntity			POST → full response
+put						UPDATE
+delete					DELETE
+exchange				⭐ Everything
+
+
+🧠 Why OAuth 2.0 is Required?
+❌ Problem without OAuth:
+Apps store user passwords ❌
+High security risk ❌
+Password reuse danger ❌
+✅ With OAuth:
+No password sharing ✔
+Secure token-based access ✔
+Centralized authentication ✔
+Supports SSO (Single Sign-On) ✔
+
+
+| Role                 | Meaning                     |
+| -------------------- | --------------------------- |
+| Resource Owner       | User                        |
+| Client               | Your app                    |
+| Authorization Server | Auth server (like Keycloak) |
+| Resource Server      | API                         |
+
+
+
+15307

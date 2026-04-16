@@ -1,0 +1,274 @@
+Enterprise Microservice Architecture (Real Company Standard)
+
+1. Client Layer
+	Technologies
+		Web UI → Angular / React
+		Mobile App → Flutter / Android / iOS
+		Third-party systems → REST / GraphQL APIs
+		
+	Purpose
+		Users access system through:
+			Browser
+			Mobile app
+			External partners
+	
+	Client → API Gateway	
+
+2. API Gateway Layer
+		Technology
+			Spring Cloud Gateway
+			Kong
+			NGINX
+			AWS API Gateway
+		Used For
+
+			✅ Single entry point
+			✅ Authentication
+			✅ Rate limiting
+			✅ Request logging
+			✅ Routing
+			✅ Load balancing	
+		
+		Example:
+			/api/users → User Service
+			/api/orders → Order Service
+			/api/products → Product Service	
+
+3. Service Discovery
+	Technology: 
+			Netflix Eureka
+			Consul
+			Kubernetes DNS
+	
+	Used For:
+		When services move or scale dynamically:
+		Order Service → asks Eureka → where is Inventory Service?
+	
+	Benefits :
+			✅ Dynamic service registration
+			✅ No hardcoded URLs
+			✅ Auto discovery	
+
+5. Authentication / Security
+		Technology
+			Keycloak
+			OAuth2
+			JWT
+			Spring Security
+		
+		Used For
+			Authentication:
+				Login → token generated → token verified in gateway
+		
+		Benefits:
+			✅ SSO
+			✅ Role-based access
+			✅ Secure APIs		
+
+
+6. Core Business Services
+
+		Example services:
+
+				User Service
+					Used For
+						Registration
+						Login
+						Profile
+						Roles
+					Database
+						PostgreSQL / MySQL
+
+				Product Service
+					Used For
+						Product catalog
+						Pricing
+						Stock details
+					Database
+						MongoDB / PostgreSQL
+
+				Order Service
+					Used For
+						Place order
+						Order history
+						Status tracking
+					Database
+						PostgreSQL
+
+				Inventory Service
+					Used For
+						Stock management
+						Reserve items
+					Database
+						Redis + SQL
+				
+				Payment Service
+					Used For
+						Payment processing
+						Refund
+						Wallet
+				
+				Notification Service
+					Used For
+						Email
+						SMS
+						Push notifications
+						
+
+7. Inter-Service Communication
+			
+	Synchronous Communication
+			Technology
+				REST API
+				OpenFeign
+
+			Used for:
+			Order → Product Service
+
+		Example:
+
+				@FeignClient(name="inventory-service")
+				public interface InventoryClient {
+				   @GetMapping("/stock/{id}")
+				   StockDTO checkStock(@PathVariable Long id);
+				}
+
+	Asynchronous Communication
+			Technology
+				Apache Kafka
+				RabbitMQ
+		Used for:
+			Order Created → Kafka → Notification Service
+		Benefits:
+			✅ Loose coupling
+			✅ Better performance
+			✅ Retry support						
+
+8. Cache Layer
+		Technology
+			Redis
+		Used For
+
+		Store:
+			Session
+			Frequently accessed data
+			Product details
+			OTP
+		Benefits:
+			✅ Faster response
+			✅ Reduce DB load
+
+9. Database Layer
+
+	Different DB per service.
+		Technology
+			
+			Relational
+				PostgreSQL
+				MySQL
+			
+			NoSQL
+				MongoDB
+				Cassandra
+				
+			Search
+				Elasticsearch			
+
+10. Distributed Tracing
+		Technology
+			Zipkin
+			Jaeger
+			Sleuth / Micrometer Tracing
+
+			Used for:
+				Track request flow
+
+					Gateway → Order → Inventory → Payment
+
+		Find:
+			slow service
+			failed service
+
+
+11. Logging
+		Technology
+			ELK Stack
+			Elasticsearch
+			Logstash
+			Kibana
+		or
+		Grafana Loki
+
+		Used for:
+			centralized logs
+			error tracking
+			search logs 			
+
+12. Monitoring
+		Technology
+			Prometheus
+			Grafana
+			Spring Boot Actuator
+
+		Monitor:
+			CPU
+			Memory
+			Request time
+			Error rate			
+
+13. Circuit Breaker / Fault Tolerance
+		Technology
+			Resilience4j
+
+			Used for:
+				If service fails:
+				Order → Inventory fails → fallback response
+
+			Benefits:
+				✅ Prevent cascading failure
+
+	Example:
+			@CircuitBreaker(name="inventory", fallbackMethod="fallback")	
+
+14. CI/CD Pipeline
+		Technology
+			GitHub
+			Jenkins
+			GitLab CI
+			Docker
+			Kubernetes
+			ArgoCD
+
+		Flow:
+
+			Code Push
+			   ↓
+			Build
+			   ↓
+			Test
+			   ↓
+			Docker Image
+			   ↓
+			Push to registry
+			   ↓
+			Deploy			
+
+15. Containerization
+		Technology
+			Docker
+			
+		Each service:		
+		FROM openjdk:21
+		COPY app.jar app.jar
+		ENTRYPOINT ["java","-jar","app.jar"]	
+		
+
+16. Orchestration
+		Technology
+			Kubernetes
+
+		Used for:
+			✅ Auto scaling
+			✅ Self healing
+			✅ Rolling updates
+			✅ Service discovery		

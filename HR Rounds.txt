@@ -1,0 +1,82 @@
+01. What are your salary expectations?
+Ans - My current package is 4.6 LPA, but over the last few year I have moved into backend microservices development and production support responsibilities.
+Because of that , I am looking for a compensation that reflect current market standard for this role. 
+
+02. “Our budget is only 7.5 LPA”
+Ans - I understand the budget constraints, and 7.5 LPA is withing the range I had in mind.
+		For me, the role, learning opportunity, and long-term growth are equally important, so I would be comfortable 
+		moving forward at that level if the overall opportunity is a good fit.
+		
+03. We can only give hike on current salary ?
+Ans - I understand that many organizations follow a percentage-based hike model on current compensation.
+		At the same time, my expectation is based more on the responsibilities of this role and the market value for my current skill set in Java, Spring Boot, and microservices.
+		I would appreciate if the company could consider the role value along with my current compensation while deciding the final package.
+
+04 - Can you explain the gap in your career ? 
+Ans - After my apprenticeship, I spent time strengthening my technical foundation in java 
+and backend development while working on personal 
+and freelance prohect to improve my practical experience. 
+During that period I focused on Spring Boot, Database design , REST API's and 
+later transitioned into enterprise backend development. 
+That phase helped me become more confident in production level development.
+
+05. You have 5+ years experience but your salary is 4.6 LPA, why?
+Ans - My current compensation was based on the company's internal structure and earlier role scope.
+		Over time my responsibilities expanded into backend microservices, API security, CI/CD, and production support, 
+		but the compensation did not fully align with that growth.
+		That is one of the reason I am now looking for an opportunity that better reflects my technical experience.
+
+06. You have many technologies listed. Are you hands-on with all of them?	
+Ans - I have hands-on working experience with my core technologies such as Java, Spring Boot, REST APIs, Spring Security, Docker and Jenkins. 
+	Some technologies like Kafka, Redis and Resilience4j where Used in 
+	specific projects where I worked on Implementation and SUpport, so my exposure level varies depending on the technology.
+	
+07. Which technologies are your strongest?
+Ans - My strongest areas are Java, Spring Boot, REST API development, Spring Security, Hibernate, SQL optimization, and microservices design. 
+		I am also comfortable with Docker-based deployments and Jenkins pipeline integration.
+
+08. Did you design architecture or only work on modules?
+Ans - I have mainly worked on backend service design and implementation. While the 
+	overall architecture was discussed within the team, I contributed to designing 
+	service-level components such as API contracts, database structure, service 
+	communication, security flow, and deployment readiness.
+
+09. Why do you want to change your current company?
+Ans - I am looking for a role where I can work on larger-scale backend systems, 
+stronger microservices architecture, and continue growing technically. 
+My current role gave me a solid foundation, and now I want an opportunity that 
+better matches my experience and long-term career goals.
+
+10. Why use Kafka?
+ans - Kafka is useful for asynchronous communication between microservices. 
+Instead of direct service-to-service dependency, services can publish and 
+consume events, which improves scalability, reliability, and performance under 
+high traffic.
+
+11. Why Redis?
+Ans - Redis is mainly used for caching frequently accessed data to reduce database 
+load and improve API response time. It helps improve performance in read-heavy applications.
+
+12. Why Docker? 
+Ans - Docker helps package the application with all dependencies into a container so it runs consistently across development, testing, and production environments.
+
+
+13. What was your role in Jenkins?
+Ans - My role was mainly integrating application builds with Jenkins pipelines for automated compilation, testing, packaging, and deployment. I worked with deployment scripts and monitored build failures for faster release cycles.
+
+14. Can you handle senior backend role?
+And - Yes. Over the last few years I have worked on backend service development, production issue handling, performance optimization, and secure API design. I believe I can contribute effectively while continuing to grow in a more challenging backend role.
+
+15. Tell me about yourself
+Ans - My name is Pradeep Ahirwar, and I am a Java Backend Engineer with over 5 years of experience in developing enterprise applications.
+
+I have been primarily working with Java, Spring Boot, Hibernate, and REST API development, and in my current role I have been involved in building microservices using Spring Cloud components like Eureka, Config Server, and API Gateway.
+I have also worked with technologies such as Kafka for asynchronous communication, Redis for caching, Docker for containerization, and Jenkins for CI/CD automation. My focus has been on building secure, scalable, and high-performance backend systems.
+In my current organization, I have worked on designing REST APIs, improving application performance, optimizing database queries, and supporting production deployments. One of my key contributions was reducing API response time significantly through caching and backend optimization.
+At this stage of my career, I am looking for an opportunity where I can work on larger-scale backend systems, contribute more to architecture decisions, and continue growing as a backend engineer.
+
+
+
+
+
+
