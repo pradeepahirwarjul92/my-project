@@ -271,4 +271,39 @@ Enterprise Microservice Architecture (Real Company Standard)
 			✅ Auto scaling
 			✅ Self healing
 			✅ Rolling updates
-			✅ Service discovery		
+			✅ Service discovery	
+
+17. Artifact Repository
+		Technology
+			Nexus
+			JFrog Artifactory
+
+		Store:
+
+			JAR files
+			Docker images
+			dependencies		
+
+18. Infrastructure Automation
+		Technology
+			Ansible
+			Terraform
+	
+		Used for:
+			server setup
+			deployment automation
+			cloud provisioning	
+
+19. Message/Event Driven Architecture
+		Technology
+			Kafka
+			Event Sourcing
+
+		Flow:
+
+		Order placed
+		→ Event published
+		→ Inventory updated
+		→ Notification sent
+		→ Analytics updated			
+		

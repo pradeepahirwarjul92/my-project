@@ -10,23 +10,30 @@ Memory					Less				More (stores node pointers)
 Best use				Random access		Frequent insert/delete
 
 
-Q5: subList() in ArrayList
-List<Integer> list = Arrays.asList(1,2,3,4,5);
+Q2: subList() in ArrayList
+							index [0,1,2,3,4]
+List<Integer> list = Arrays.asList(1,2,3,4,5); 
 List<Integer> sub = list.subList(1,4);
 System.out.println(sub); // [2,3,4]
 
-Q6: Iterating over List
+Q3: Iterating over List
 for(int i : list) System.out.println(i); // enhanced for
 Iterator<Integer> it = list.iterator();
 while(it.hasNext()) System.out.println(it.next())
 
-Q8: List.of() vs Arrays.asList()
-Feature	Arrays.asList	List.of
-Mutable	Partially (fixed-size)	Immutable
-Null allowed	Yes	No
+Q4: List.of() vs Arrays.asList()
+| Feature         | Arrays.asList() | List.of() |
+| --------------- | --------------- | --------- |
+| Java version    | 1.2             | 9         |
+| Mutable values  | Yes             | No        |
+| Add/remove      | No              | No        |
+| Null allowed    | Yes             | No        |
+| Immutable       | No              | Yes       |
+| Backed by array | Yes             | No        |
 
 
-Q31: Difference between HashSet, TreeSet, LinkedHashSet
+
+Q5: Difference between HashSet, TreeSet, LinkedHashSet
 
 Feature		HashSet			LinkedHashSet		TreeSet
 Order		None			Insertion			Sorted
@@ -35,7 +42,7 @@ Null		Yes, 1			Yes, 1				No
 Iterator	Fail-fast		Fail-fast		Fail-fast
 
 
-Q32: HashSet internal storage
+Q6: HashSet internal storage
 
 Uses HashMap internally
 
@@ -44,4 +51,5 @@ Stores elements as keys, value = dummy object
 Hash code → bucket → equals() check
 
 
-Q 4 : 
+Q 7 :
+redis port - 6379

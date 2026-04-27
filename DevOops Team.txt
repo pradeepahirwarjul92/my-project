@@ -1,0 +1,155 @@
+Main work of DevOps team
+1. Source Code Management
+
+Manage application code versions.
+
+Technologies:
+
+Git (rebase, stash, )
+GitHub
+GitLab
+Bitbucket
+
+Work:
+
+store code
+manage branches
+pull requests
+merge changes
+2. CI/CD Pipeline
+
+Automate build, test and deployment.
+
+Technologies:
+
+Jenkins
+GitHub Actions
+GitLab CI/CD
+Azure DevOps
+
+Work:
+
+auto build
+unit testing
+deploy to server
+rollback if failed
+3. Containerization
+
+Package app with dependencies.
+
+Technologies:
+
+Docker
+Podman
+
+Work:
+
+create container image
+same app works in all environments
+4. Container Orchestration
+
+Manage many containers automatically.
+
+Technologies:
+
+Kubernetes
+Helm
+
+Work:
+
+scaling
+load balancing
+self-healing
+zero downtime deployment
+5. Infrastructure Automation (IaC)
+
+Create servers automatically.
+
+Technologies:
+
+Terraform
+Ansible
+Puppet
+
+Work:
+
+create VM/server
+install software
+configure environment automatically
+6. Cloud Management
+
+Deploy apps on cloud.
+
+Technologies:
+
+Amazon Web Services
+Microsoft Azure
+Google Cloud
+
+Work:
+
+manage servers
+storage
+networking
+scaling
+7. Monitoring & Logging
+
+Watch application health.
+
+Technologies:
+
+Prometheus
+Grafana
+ELK Stack
+Datadog
+
+Work:
+
+CPU usage
+memory
+errors
+alerts
+8. Security Automation (DevSecOps)
+
+Security inside pipeline.
+
+Technologies:
+
+SonarQube
+Trivy
+Vault
+
+Work:
+
+scan code
+detect vulnerabilities
+protect secrets
+Simple workflow
+
+Developer writes code → push to Git → CI/CD runs → Docker image build → Kubernetes deploy → Monitoring checks system
+
+Example real project flow
+
+Spring Boot app deployment
+
+Developer pushes code to GitHub
+Jenkins builds project
+Docker creates image
+Terraform creates server
+Ansible configures server
+Kubernetes deploys container
+Prometheus monitors app
+
+This is how most DevOps teams connect tools together.
+
+Important skills in DevOps team
+
+DevOps engineers usually know:
+
+Linux
+Networking
+Shell scripting
+Cloud
+Automation
+Monitoring
+Security

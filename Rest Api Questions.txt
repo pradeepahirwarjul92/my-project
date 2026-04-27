@@ -1,0 +1,533 @@
+Q01 - Explain Rest API to me, you have 30 seconds ? 
+Ans - A REST API is a way for two applications to talk over HTTP using URLs.
+
+You send a request:
+	GET → read data
+	POST → create data
+	PUT → update data
+	DELETE → remove data
+REST API = standardized way for systems to exchange data using HTTP URLs and methods.
+
+Q02 - Two users withdraw 5000 at the same time from an account with 7000 
+		balance. How does your java code handle this ?	
+Ans - 
+In real banking systems use:
+	ReentrantLock
+	database transaction
+	optimistic/pessimistic locking
+	because synchronization works only inside one JVM.		
+
+Q03	.ACID properties Explain in simple terms + real life example + advanced Internals
+Ans - 
+	1. Atomicity - > "All or Nothing " 
+		A transaction must complete fully or not happen at all.
+	
+Real life
+
+ATM cash withdrawal:
+
+cash dispensed
+balance updated
+Both must happen together.
+
+	2. Consistency → "Rules must remain valid"
+		Transaction moves DB from one valid state to another.
+	Real life
+
+Cinema booking:
+Only one person can get seat A1.
+
+Consistency prevents:
+❌ double booking
+
+	3.Isolation → "Users don't interfere"
+		Multiple transactions behave as if running one by one.
+		
+	Example
+
+Two people try buying last ticket.
+
+Without isolation:
+
+User1 sees ticket available
+User2 sees ticket available
+Both purchase
+
+❌ duplicate sale
+
+With isolation:
+Only one succeeds.	
+
+Real life
+
+Online shopping:
+Only one buyer gets the last item.
+
+
+	4.	Durability → "Committed means permanent"
+		Once committed, data survives crash.
+		Real life
+
+		UPI payment successful message:
+		Money should not disappear after server restart.
+	
+	
+A → All or nothing
+C → Correct state
+I → Independent transactions
+D → Data stays forever	
+
+
+Q04 - If a microservice suddenly starts receiving a high number of requests, how would you handle it ?
+Ans - 
+	1. Auto Scaling (First solution)
+		Increase number of service instances.
+	2. Load Balancer
+		Distribute traffic across instances.
+			Tools:
+				Nginx
+				Kubernetes Service
+				AWS ELB
+	3.	Rate Limiting	
+			Prevent abuse.
+			Example - Max 100 requests per minute per user
+		Extra requests:		429 Too Many Requests
+	
+	4. Circuit Breaker
+		Protect downstream systems.	
+		If DB slow:	stop sending more requests.
+		
+		Using:
+			Resilience4j
+				@CircuitBreaker(name="paymentService")
+	5.	Caching		
+			Avoid repeated DB hits.
+				Same product requested 500 times
+			Instead:	
+					Cache result in Redis
+			Use:
+				Redis	
+	6. 	Queue Heavy Work	
+			Move slow tasks to background.
+				Example:
+					email sending
+					report generation
+					notifications
+
+				Use:
+					Apache Kafka
+					RabbitMQ
+	7.	Bulkhead Pattern
+			Separate resources.
+				Example:- Order service threads separate from payment threads	
+			One overloaded module won’t crash others.
+			
+	8.	Database Protection - DB often becomes bottleneck.	
+			Use:
+				✅ connection pooling
+				✅ read replicas
+				✅ caching
+				✅ optimized indexes
+	
+	9.	 Monitoring & Alerts	
+			Detect issue quickly.
+				Use:
+					Prometheus
+					Grafana
+					ELK Stack
+
+				Track:
+					CPU
+					memory
+					latency
+					error rate
+					request count
+		
+Advanced internals
+
+	When load rises:
+		Gateway checks limits
+		Load balancer distributes
+		Autoscaler creates pods
+		Cache reduces DB calls
+		Queue absorbs spike
+		Circuit breaker protects dependencies	
+
+Q05 - your cache expired and suddenly your database crashed . explain what just happend
+Ans - When the cache expired, many requests simultaneously missed the cache and directly hit the database. This sudden spike overloaded the DB, exhausted connections, and caused a crash — a classic cache stampede leading to cascading failure. 		
+
+Q06 - Api Response list
+ANs - 
+	I) 1XX Informational
+	Request received, continue processing.
+			-	100 Continue
+			-	101	Switching Protocols
+			-	102	Processing
+			-	103	Early Hints
+			
+	
+	II) 2XX Success Response
+	200 (OK) request Successful
+	201 (Created) Resourse Created
+	202 Accepted
+	203 Non-Authoritative Information
+	204 (No content) Sucess but no reponse body
+	205 Rest Content
+	206 Partical Content
+	207 Multi Status
+	
+	
+	
+	III) 3XX Redirection
+		301	Moved Permanently
+		302	Found
+		303	See Other
+		304 Not Modified
+		305	Use Proxy
+		306 Unused
+		307 Temporary Redirect
+		308 Permanent Redirect
+	
+	IV)	4XX Client Error
+		400 Bad Request
+		401 Unauthorized		
+		403 Forbidden
+		404 Not Found
+		407 Proxy Authentication Required
+		408 Request Timeout
+		409 Conflict
+		414 URI Too Long
+		415 Unsupported Media Type
+		426 Upgrade Required
+		429 Too Many Requests
+		431 Request Header Fields Too Large
+		
+
+
+		
+	
+	V) 5XX Server Errors
+		Problem on server side
+		
+		500 Internal Server Error
+		501 Not implemented
+		502 Bad Gateway
+		503 Service Unavailable
+		504 Gateway Timeout
+
+500 → Generic crash
+501 → Can't do it
+502 → Wrong upstream
+503 → Busy
+504 → Timeout
+	Memory sentence:
+"Crash, Can't, Wrong, Busy, Timeout"	
+		
+		
+		505 HTTP Version Not Supported
+		506 Variant Also Negotiates
+		507 Insufficient Storage
+		508 Loop Detected
+505 → HTTP version issue
+506 → Negotiation issue
+507 → Storage full
+508 → Infinite loop
+Memory:
+"Protocol, Negotiation, Storage, Loop"
+		
+		510 Not Extended
+		511 Network Authentication Required
+510 → Feature missing
+511 → Network login needed
+Memory:
+"Extension, Authentication"
+
+
+Best interview shortcut
+
+Usually interviewers mostly expect:
+✅ 500 Internal server error
+✅ 502 Bad gateway
+✅ 503 Service unavailable
+✅ 504 Gateway timeout
+		
+
+Q07 - Your Rest Api is working fine locally but giving 403 errors in production . How would you debug it ?		
+Ans - 	1. Verify authentication token	
+			Check whether JWT/token is reaching production.
+		2. 	Check authorization rules
+		3.	Check CORS / proxy restrictions
+		4. 	Compare environment configs
+		
+Q08 - What is Role based acess control 
+ans -
+| Role     | Permissions      |
+| -------- | ---------------- |
+| Admin    | All permissions  |
+| Manager  | View reports     |
+| Employee | Edit own profile |
+		
+		
+Q09 - what is depndency injection and Inverse of control and what is main differenct in both to clear interviwer asking ?
+ANs 
+| Concept | Meaning                         |
+| ------- | ------------------------------- |
+| IoC     | Principle/design concept        |
+| DI      | Implementation technique of IoC |
+		
+Inversion of Control means the framework controls object creation instead of the programmer.
+Dependency Injection is a technique where the framework injects required dependencies into a class.
+IoC is the broader principle, and DI is one way to implement it.
+
+Q10 - how to configure multiple environment into spring boot
+ans - To configure multiple environments in Spring Boot, you usually use Spring Profiles so each environment has its own configuration.
+
+Common environments:
+
+Development (dev)
+Testing (test)
+Staging (stage)
+Production (prod)		
+In Spring Boot, multiple environments are configured using Spring Profiles.
+Separate property files like application-dev.properties and application-prod.properties are created, and the active profile is selected using spring.profiles.active.
+	
+		
+Q11 - how to improve performance into spring boot application
+Ans -	Spring Boot Performance Improvement — Short Note
+
+To improve performance in a Spring Boot application:
+
+Use connection pooling → reuse DB connections (HikariCP)
+Enable caching → reduce repeated DB calls using Redis
+Use pagination → load only required records
+Avoid N+1 queries → optimize JPA fetching
+Use DTOs → reduce response size
+Use async processing → prevent request blocking
+Add DB indexes → faster query execution
+Enable compression → reduce response payload
+Tune thread pool/JVM → better concurrency
+Monitor with Spring Boot Actuator → detect bottlenecks
+
+
+Q12 - Why use intern() ? 
+In Java, the intern() method is used to manage and optimize memory by ensuring that only one unique copy of a particular string value exists in the String Constant Pool (SCP).
+
+Q13 - What us the concept called when an inherited method in java is redefined in a subclass?
+ANs - 	Method Overriding
+
+Q14 - How does 10GB file become 3GB when zipped ? 
+Ans - his happens when:
+	The file has a lot of redundancy
+	It is text, logs, raw data, spreadsheets, etc.
+	These compress very well.
+	But if the file is already compressed (like MP4, JPG, PNG, ZIP itself):
+	It won’t shrink much
+	
+Q15 - Your frontemd is on localhost:3000 and backend:8000 why do you get a CORS error ? 	
+ans - 🧠 Important concept
+
+CORS is not a frontend bug.
+
+It is:
+
+a browser security rule
+enforced to prevent malicious websites from stealing data
+🟢 Quick summary
+
+You get CORS error because:
+
+Frontend (3000) and backend (8000) are different origins, so browser blocks request unless backend allows it.
+
+
+Q16 - You have an array [1,2,3,4] can yu split it into 2 subsets with equals sum ? 
+Ans - package challenge60.days.day05;
+
+public class SplitIntoTwoSubsets {
+	public static boolean canPartition(int[] nums) {
+		int sum = 0;
+
+		// Step 1 : calculate total sum
+
+		for (int num : nums) {
+			sum += num;
+		}
+
+		// If sum is odd, can't split equally
+		if (sum % 2 != 0) {
+			return false;
+		}
+
+		int target = sum / 2;
+
+		// Step 2 : DP array
+		boolean[] dp = new boolean[target + 1];
+		dp[0] = true;
+
+		// Step 3 : subset sum logic
+
+		for (int num : nums) {
+			for (int i = target; i >= num; i--) {
+				dp[i] = dp[i] || dp[i - num];
+			}
+		}
+
+		return dp[target];
+
+	}
+
+	public static void main(String[] args) {
+		int arr[] = { 1, 2, 3, 4 };
+		System.out.println(canPartition(arr));
+	}
+
+}
+
+Q17 - Explain all 4 OOPs pillars with one single real word example ?
+Ans - 
+	One-line memory trick (very important for interviews)
+	
+	Encapsulation → Protect data (Car engine hidden)
+	Abstraction → Hide complexity (just drive)
+	Inheritance → Reuse (Car → Electric Car)
+	Polymorphism → Many forms (drive behaves differently)
+	
+Q18 - An API returns response in 100ms for US users but 2 seconds for india how do you fix gloabal latency ?
+AnS - ⚖️ Summary (interview-ready answer)
+
+To fix global latency:
+
+Deploy servers in multiple regions (US, India, EU)
+Use CDN for caching and static responses
+Implement geo-based routing (send users to nearest server)
+Use database replication or global DBs
+Optimize payload size and compression
+Add caching layers (Redis + CDN)
+Move compute closer using edge computing
+
+Q19 - Your cache expired . and suddenly your database crashed. Exmpalin what just happended.
+Ans - 
+1 . Cache locking (prevent stampede)
+Only one request rebuilds cache 
+	- first request - goes to DB
+	- Others wait or get stale cache
+
+2. TTL jitter
+		- Instead of all keys expiring at same time 
+			Add random expiry offset 
+
+3. Stale cache (Serve old data)
+if cache expired 
+	Serve slightly old data
+	Refresh in background 
+4. Rate limiting 
+		Prevent DB overloaded
+		- Limit request per user/IP
+
+5. Circuit breaker 
+	If DB is failing 
+		-	stop sending traffic temporarily
+		-	return fallback response
+
+6. Pre-warming cache
+	before expiry 
+			refresh cache proactively
+			
+7. Scale database 
+		read replicas
+		sharding 
+		connection pooling
+		
+Q20 - Your load balancer is returning 503 errors for 20% of traffic, what are your immediate step ? 
+Ans - 
+🧠 Situation
+	"Load balancer is returning 503 for ~20% of traffic"
+	A 503 usually means : 
+		-	backend targets are unhealthy OR
+		-	no capacity / overloaded OR
+		-	LB routing / config issue OR
+		-	dependency failure causing app to reject traffic
+
+🚨 Immediate Steps (5–10 min)
+	1.  Confirm issue
+			Check if 503 is global/regional
+			Verify dashboards (error rate, latency, CPU)
+	2.  Check load balancer health
+			Unhealthy targets?
+			Failed health checks?
+			No healthy backend = 503
+	3.	Check recent changes
+			Deploys, config, autoscaling, network changes
+	4.	Mitigate fast
+			Rollback recent deploy
+			Scale up instances/pods
+			Remove bad instances
+	5. 	Failover (if high impact)
+			Route traffic to healthy region
+			Shift traffic / enable fallback mode 
+			
+
+Q21 - how load balancer decides which server to send traffic ?
+
+🔄 End-to-end flow (simple mental model)
+
+When a request comes in:
+
+Receive request at LB
+Filter out unhealthy servers
+Apply routing algorithm
+Apply stickiness rules (if any)
+Forward request to selected server
+Return response			
+		
+Q22 . An OTP is valid for exactly 30 seconds, even through no one stored it anywhere . How does server verify it without ever saving it?
+Ans -	“The server doesn’t store OTPs because it uses a time-based one-time password algorithm (TOTP). Both client and server share a secret key. The OTP is generated by applying a cryptographic hash (like HMAC) on the secret key combined with the current time window (usually 30 seconds). During verification, the server recomputes the OTP using the same secret and current time window and compares it with the user input. Since both sides independently derive the same value, no OTP storage is required.”	
+
+Q23 - what is actual execution order of an SQL query ? 
+	(FROM, WHERE, GROUP BY, HAVING, SELECT , ORDER BY)
+	SELECT department, COUNT(*) AS emp_count
+FROM employees
+WHERE salary > 50000
+GROUP BY department
+HAVING COUNT(*) > 5
+ORDER BY emp_count DESC;
+
+And - 🔍 Step-by-step meaning
+	1. FROM (data source selection)
+		-	Tables are loaded
+		-	Joins are applied
+	👉 “Where is the data coming from?”
+
+	2.	WHERE (row filtering)
+		-	Filters individual rows
+		-	Happens BEFORE grouping
+	👉 “Which rows are allowed?”
+		
+	3.	GROUP BY (aggregation formation)
+		-	Groups rows into buckets
+	👉 “How do we group data?”
+		
+	4.	HAVING (filter groups)
+		-	Filters aggregated groups
+		-	Works like WHERE but after grouping
+	👉 “Which groups should remain?”
+	
+	5.	SELECT (projection)
+		-	Chooses columns
+		-	Computes expressions, aggregates
+	👉 “What should be displayed?”
+
+	6.	ORDER BY (sorting final result)
+		-	Sorts final output
+	👉 “How should results be ordered?”		
+
+Q24 - 	Why count(*) is faster than count(column) ?
+Ans - “COUNT(*) counts all rows and doesn’t require checking any column values, while COUNT(column) counts only non-null values 
+and requires a NULL check for each row. Because of this, COUNT(*) can be slightly faster, especially on large tables or when the 
+column contains NULLs. Additionally, databases often optimize COUNT(*) to use indexes or metadata. However, in modern databases, 
+the performance difference is usually minimal as query optimizers handle both efficiently.”
+
+Q25 - horizontal scalling vs vertical scalling ?
+Ans -“Vertical scaling means increasing the power of a single server, like adding more CPU or RAM. Horizontal scaling means adding more servers and distributing the load among them. Vertical scaling is simple but has limits and a single point of failure, while horizontal scaling is more scalable and reliable but adds system complexity.”
+
+	
+

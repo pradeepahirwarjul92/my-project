@@ -1,0 +1,1 @@
+1- As Redis is single threaded, how to handles multiple request ? 

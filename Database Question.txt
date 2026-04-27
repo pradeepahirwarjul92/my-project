@@ -1,0 +1,8 @@
+1- Write me a query to find the second highest salary. Now explain what happend internally.
+2-your DB query takes 5 seconds on 50 million rows . No code chnage allowed . Fix it .
+3 -What is a Hashmap and how does it work internally ? Most devs get this wrong .
+4- Your database is slow because of too manu read requests. How do you fix it without just buying a more expensive database?
+5 - Your Api is getting 10000 request/second from One user. How do you stop it without breaking your system.
+6 - Your payment service makes wait 10 seconds. No Infrastructure change allowed . Ho do you fix?
+7- Your system handles 20M transaction per day. How would you design the table, and what are your core considerations?
+8- Why is HTTPS more secure than HTTP?

@@ -1,0 +1,327 @@
+01 	- 	What is difference between == and .equals() in java ?
+Ans -	== → compares references (memory address) for objects
+		.equals() → compares content (logical equality)
+	👉 Example: Two different String objects with same text → == false, .equals() true
+
+02 - What is the difference between Hashmap and ConcurrentHashMap();
+Ans -	HashMap
+			-	Not thread-safe
+			-	Faster in single-threaded environments
+		ConcurrentHashMap
+			-	Thread-safe (used in multi-threading)
+			-	Uses segment locking / CAS (not full locking like Hashtable)
+			-	Better performance in concurrent apps
+
+03 - What happend if you override equals() but not hashcode();
+Ans -	This breaks the contract between equals and hashCode:
+			-	Equal objects must have same hashCode
+			If not:
+			-	Collections like HashMap, HashSet behave incorrectly
+			-	You may not retrieve objects properly
+
+04 - What is the difference between String, StringBuilder, and String Buffer?
+Ans -	String
+			-	Immutable
+			-	Thread-safe (because immutable)
+		StringBuilder
+			-	Mutable
+			-	Not thread-safe
+			-	Fastest
+		StringBuffer
+			-	Mutable
+			-	Thread-safe (synchronized)
+			-	Slower than StringBuilder
+
+05 - Can we change return type in method overloading and overriding ?
+Ans -	Overloading
+			-	Return type can change, but method parameters must differ
+		Overriding
+			-	Return type must be same or covariant (subtype allowed)
+
+06 - What is the difference between composition and inheritance?
+Ans -	
+		Inheritance ("is-a")
+			-	Strong relationship
+			-	Example: Dog is a Animal
+		Composition ("has-a")
+			-	Flexible, loosely coupled
+			-	Example: Car has an Engine
+	👉 Composition is generally preferred (better design flexibility)
+
+07 - WHat us the difference between throw and throws ?
+Ans -
+	throw
+		-	Used to explicitly throw an exception
+		-	Inside method body
+	throws
+		-	Declares exceptions a method might throw
+		-	In method signature
+
+08 - What is use of ifnal , finally, and finalize()?
+Ans -
+		final
+			-	Keyword → constant, prevent inheritance/override
+		finally
+			-	Block → always executes (cleanup code)
+		finalize()
+			-	Method called by GC before object destruction (deprecated in modern Java)
+
+09 - What is OutOfMemoryError and when does it occur?
+Ans - 
+Occurs when JVM cannot allocate memory
+Common cases:
+	-	Heap space full
+	-	Too many objects
+	-	Memory leaks
+	-	Infinite object creation
+
+10 - Explain how Garbage Collection works in Java (Vbasic idea,)
+Ans -
+		-	JVM automatically frees memory
+		-	Removes unused objects (no references)
+		-	Uses algorithms like:
+			-	Mark and Sweep
+			-	Generational GC
+	👉 Helps prevent memory leaks (but not all cases)
+
+11 - What is the difference between synchronized block and ReentrantLock? When woulf you use each ?
+Ans - 
+	synchronized :
+			-	Simpler
+			-	Automatically releases lock
+			-	No advanced control
+	ReentrantLock :
+			-	More flexible
+			-	Supports:
+					tryLock()
+					fairness policy
+					interruptible locks
+		👉 Use:
+			synchronized → simple cases
+			ReentrantLock → complex concurrency control
+
+12 - When Kafka is flooded with million of messages per seconds, what keeps data safe and consistent ?
+Ans -
+1 . Partitioning + Replication
+		-	Topics are split into partitions → allows parallel processing
+		-	Each partition is replicated across brokers
+		-	One leader, multiple followers
+		-	If a broker fails → follower becomes leader
+		👉 Ensures fault tolerance + availability
+
+2.	Acknowledgment Settings (acks)		
+	Producers control durability using:
+		-	acks=0 → no guarantee
+		-	acks=1 → leader writes only
+		-	acks=all → strongest guarantee (all replicas confirm)
+	👉 High throughput systems usually tune this carefully
+
+3.	In-Sync Replicas (ISR)
+	-	Kafka maintains a list of replicas that are fully caught up
+	-	Writes succeed only if required ISR members acknowledge
+	👉 Prevents data loss when replicas lag behind
+
+4. 	Write-Ahead Log (Commit Log)
+	-	Kafka stores data in an append-only log
+	-	Disk writes are sequential → very fast and reliable
+	👉 Even at huge scale, disk I/O remains efficient
+5. 	Producer Idempotence
+	-	Prevents duplicate messages during retries
+	-	Ensures exactly-once delivery (producer side)
+	👉 Critical under heavy load or network retries
+6. 	Transactions (Exactly-Once Semantics)
+	-	Kafka supports atomic writes across partitions
+	Ensures:
+		-	No duplicates
+		-	No partial writes
+	👉 Used in financial or critical pipelines
+	
+7. 	Consumer Offset Management
+		-	Consumers track what they’ve read via offsets
+		-	Offsets can be committed manually or automatically
+	👉 Helps maintain processing consistency
+8. 	Backpressure Handling
+		-	Kafka naturally buffers data in partitions
+		-	Consumers can lag without losing data
+	👉 Prevents system crashes under spikes
+9. 	Batching & Compression
+		-	Producers batch messages
+		-	Compression reduces network load
+	👉 Maintains performance without sacrificing reliability
+10. ZooKeeper / KRaft (Metadata Management)
+		-	Older Kafka uses Apache ZooKeeper
+		-	Newer versions use KRaft mode (Kafka Raft consensus)
+	👉 Keeps cluster state consistent		
+		
+
+13 - Your app works perfectly on localhost but crashes in production. You hava 10 minutes. What do you check first ?		
+Ans - 
+	👉 1. Check logs
+			-	See the error message — it usually tells you what broke.
+
+	👉 2. Check configuration
+		Things like:
+			-	Database URL
+			-	API keys
+			-	Environment variables
+
+	👉 3. Check environment differences
+			-	Java version
+			-	OS differences
+			-	Missing files or settings
+
+	👉 4. Check database / network
+			-	Is DB running?
+			-	Can app connect?
+		
+14 - If two microservice need to communicate, What options do you have and how do you choose ?		
+Ans - 
+	1. REST API (HTTP)
+			Simple, widely used
+			One service calls another directly
+		👉 Use when: you need quick, simple request–response
+
+	2. gRPC
+			Faster than REST (binary, not JSON)
+			Strong contract (Protobuf)
+		👉 Use when: performance is important (internal services)
+
+	3. Message Queue (async)
+			Examples: Apache Kafka, RabbitMQ
+			Services communicate via messages
+			No direct dependency
+		👉 Use when: you want loose coupling + high scalability
+	
+	4. Event-driven
+			One service publishes events, others listen
+		👉 Use when: multiple services react to same action
+		
+15 - How did the API response time drop 2s to 200ms ?	
+Ans 
+	1. Database optimization (biggest win)
+			Added proper indexes
+			Removed slow queries / N+1 queries
+			Reduced unnecessary joins
+		👉 Often cuts seconds to milliseconds
+	
+	2. Caching
+			Stored frequent results in cache (like Redis / in-memory)
+			Avoided hitting DB every time
+		👉 Huge speed improvement for repeated requests
+
+	3. Async processing
+			Moved heavy tasks (emails, reports, logging) to background jobs
+		
+		👉 API returns faster because it doesn’t wait
+	
+	4. Reduced payload size
+			Returned only required fields (DTO optimization)
+			Removed large JSON structures
+		👉 Less data = faster response
+	
+	5. Connection pooling
+			Reused DB connections instead of creating new ones
+		👉 Reduced connection overhead
+	6. Service optimization
+			Removed extra microservice calls
+			Reduced network hops
+		👉 Fewer dependencies = faster response
+	7. Infra improvements
+			Better CPU / memory allocation
+			Load balancing across servers	
+		
+16. You have 30 seconds stack vs Heap memory explain use of both in java ?	
+Ans - 
+	Stack memory
+		-	Stores method calls and local variables
+		-	Each thread has its own stack
+		-	Works in LIFO (last in, first out) order
+		-	Automatically cleared when method ends
+	👉 Example: primitive variables, references inside methods
+	
+	Heap memory
+		-	Stores objects and class instances
+		-	Shared across all threads
+		-	Managed by Garbage Collector
+		-	Stays until no reference exists
+	👉 Example: objects created using new
+
+	Simple difference
+		-	Stack = fast, temporary (method work)
+		-	Heap = shared, long-term (objects)
+
+17. If INDEXES make DATABASE FASTER ? why don't you create index on all columns ? 		
+Ans - 
+		1. Slower writes (INSERT / UPDATE / DELETE)
+				-	Every index must also be updated when data changes
+			👉 More indexes = slower writes
+
+		2. Extra storage
+				-	Indexes take additional disk space
+			👉 Too many indexes = heavy storage cost
+
+		3. Maintenance overhead
+				-	Database must keep indexes updated and balanced
+			👉 More indexes = more internal work
+
+		4. Not all columns are useful for search
+				-	Index helps only when you filter, join, or sort frequently
+				-	Columns like gender, flags, status may not benefit much
+
+		5. Wrong indexes can hurt performance
+				-	If column has low uniqueness (e.g., “true/false”)
+			👉 Index may not be used effectively
+
+18 - Find all missing number arr ={1,2,1,2,5,8}	?	
+Ans 
+package com.heg.arrayQuestions;
+
+import java.util.HashSet;
+
+public class FindMissingNumber {
+	
+	public static void main(String[] args) {
+		int[] arr = {1,2,1,2,5,8};
+		
+		HashSet<Integer> set = new HashSet();
+		
+		// Add array elements to set (remove duplicates)
+		
+		for(int num : arr) {
+			set.add(num);
+		}
+		
+		// Find max value in array 
+		int max = 0; 
+		for(int num : arr) {
+			if(num > max) {
+				max=num;
+			}
+		}
+		
+		//print missing numbers from 1 to max 
+		System.out.println("Missing numbers :: ");
+		for(int i = 1 ; i <= max ; i++) {
+			if(!set.contains(i)) {
+				System.out.println(i + " ");
+			}
+		}
+		
+	}
+
+}
+
+
+19 - your Singleton class is supposed to have  ONE instance. But multiple objects are created in production how do you debug and fix this ?
+Ans - “I would first log constructor calls to confirm multiple instances, then check threading issues, reflection misuse, serialization, and classloader behavior. I would fix it using Enum Singleton or a thread-safe double-checked locking implementation.”
+
+20. What is the String pool in java ?
+Ans - 👉 String Pool is a memory area where Java stores and reuses String literals to save memory
+
+	Key points:
+		-	Improves memory efficiency
+		-	Stored in heap memory
+		-	Only String literals go to pool automatically
+		-	intern() can manually add String to pool
+		
+21 		

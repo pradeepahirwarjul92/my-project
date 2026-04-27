@@ -1,0 +1,11 @@
+mamta yadav - 1959
+Actual execution order inside database
+FROM → identify tables
+JOIN → combine tables
+WHERE → filter rows
+GROUP BY → group rows
+HAVING → filter groups
+SELECT → choose columns
+DISTINCT → remove duplicates
+ORDER BY → sort result
+LIMIT / OFFSET → return final rows

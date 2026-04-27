@@ -78,6 +78,10 @@ public class Singleton {
     
 }
 
+NOTE :: Why is instance not declared as final in lazy Singleton?
+We cannot make the Singleton instance final in lazy initialization because final requires initialization during class loading, while lazy 
+initialization creates the object only when getInstance() is called. Using final would convert it into eager initialization.
+
 REAL EXAMPLE : 👉 “In Spring, all beans are Singleton by default and managed by the IoC container, 
 			so most services, repositories, controllers, and components in 
 			real production systems are actually Singleton instances.” 🚀
@@ -1873,6 +1877,36 @@ public class MediatorPatternDemo {
 
 	-----------------------------------
 06 - Memento Pattern
+ans - Memento = Save before change
+class AccountMemento{
+private final double balance;
+
+public AccountMemento(doble balance){
+this.balance = balance;
+}
+
+public double getBalance(){
+return balance;
+}
+}
+
+class BankAccount{
+private double balance;
+
+public BankAccount(double balance){
+this.balance= balance;
+}
+
+public void withdraw(double amount){
+balance -=amount;
+}
+
+pulbic void showBalance(){
+sout("Balance" + balance);
+}
+}
+
+
 	-----------------------------------
 07 - Observer Pattern
 Ans - Observer Pattern = One-to-many dependency where change in one object triggers updates in others automatically.
@@ -2173,8 +2207,11 @@ public class TemplateMethodPatternDemo {
 	
 -----------------------------------
 11 - Visitor Pattern
-Ans - The Visitor Pattern is a behavioral design pattern that lets yoy add new operation to existing object structures without modifyig those structures.
-	Defination 2 - Visitor Pattern allows you to seprate algorithm (operations) from the objects on which they operate
+Ans - The Visitor Pattern is a behavioral design pattern that lets you 
+add new operation to existing object structures without modifyig those 
+structures.
+	Defination 2 - Visitor Pattern allows you to seprate algorithm 
+	(operations) from the objects on which they operate
 	
 	Real-Life Example 
 		Think of a Tax calculator : 

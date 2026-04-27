@@ -1,0 +1,875 @@
+01 - What are the major features of Java 8?
+Ans - Lambda, Functional Interfaces, Streams, Default methods, Optional, Date & Time API, Method References, CompletableFuture.
+
+02 - What is a Lambda Expression?
+Ans - Anonymous function that enables functional programming and reduces boilerplate code.
+
+03 - Why were Lambdas introduced?
+Ans - To support functional programming and make code concise & readable.
+
+04 - Syntax of Lambda Expression
+Ans - (args) -> expression
+
+05 - What is a Functional Interface?
+Ans - Interface with exactly one abstract method.
+
+06 - @FunctionalInterface annotation – purpose?
+Ensures only one abstract method exists (compile-time check).
+
+07 - Common functional interfaces
+
+	I) Predicate<T> - Take one argument , return booleab
+		boolean test(T t)  - filter
+
+		Predicate<Integer> isEven= n -> n%2 ==0;
+        System.out.println(isEven.test(2));
+
+
+	II) Function<T, R> -  Takes one argument, returns a result
+		R apply (T t) - stream().map(function)
+		
+		Function<String,Integer> lengthFunc = s -> s.length();
+        System.out.println(lengthFunc.apply("java")); //4 
+		
+
+	III) Consumer<T> - Takes one argument, returns nothing (void)
+		void accept(T t)  - forEach(consumer)
+	 
+		Consumer<String> print = s -> System.out.println(s);
+        print.accept("Hello Java");
+	 
+
+	IV)	Supplier<T> - Takes no argument, returns a value
+		T get() - Optional.orElseGet(supplier)
+		
+		Supplier<Date> dateSupplier = () -> new Date();
+        System.out.println(dateSupplier.get());
+
+
+08 - What is Stream API?
+	Used to process collections in a functional, declarative way.
+
+09 - Difference between Stream and Collection
+	| Collection 		| Stream |
+	|---------			|-------|
+	| Stores data 		| Processes data |
+	| Reusable 			| One-time use |
+	| Eager 			| Lazy |
+
+10 - Intermediate vs Terminal operations
+Ans - Intermediate operations are lazy and return a Stream, while terminal operations trigger execution and produce a result.
+
+		Intermediate: map(), filter()
+		Terminal: collect(), forEach(), reduce()
+
+11 - What is Lazy Evaluation?
+Ans - Stream operations execute only when terminal operation is called.
+
+12 - map() vs flatMap() with example.
+Ans - map() is used when one input produces one output.
+	  flatMap() is used when one input produces multiple outputs and we need to flatten them into a single stream. 
+	
+map() transforms each elements into exactly one output element. 
+syntax - Stream<R> map(Function<T,R> mapper) 
+List<String> names = Arrays.asList("ram","ramesh","shyam","mohan");
+        
+        List<String> upperNames =    names.stream()
+                                            .map(name -> name.toUpperCase())
+                                            .collect(Collectors.toList());
+        
+        System.out.println(upperNames);
+        
+        //find length 
+        
+        List<Integer> lengths =    names.stream()
+                                        .map(String::length)
+                                        .collect(Collectors.toList());
+        
+        System.out.println(lengths);
+		
+		OUTPUT - [RAM, RAMESH, SHYAM, MOHAN]
+					[3, 6, 5, 5]
+
+flatMap() - transforms each element into multiple elements 
+		(Stream inside Stream) and then flattens them into a single Stream.
+	
+	syntax	- Stream<R> flatMap(Function<T,Stream<R>> mapper)
+	
+	  List<List<String>> list = Arrays.asList(
+                Arrays.asList("Java","Spring"),
+                Arrays.asList("Hibernate","JPA"),
+                Arrays.asList("Docker","Kubernetes")
+        );
+        
+      List<String> result =  list.stream()
+                    .flatMap(innerList -> innerList.stream())
+                    .collect(Collectors.toList());
+      
+        System.out.println(result); 
+		
+		OUTPUT - [Java, Spring, Hibernate, JPA, Docker, Kubernetes]
+
+	Real Time Example - 
+	/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package com.heg.test;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+/**
+ *
+ * @author softwaredeveloper
+ */
+class Student {
+String name;
+List<String> subjects;
+
+    public Student(String name, List<String> subjects) {
+        this.name = name;
+        this.subjects = subjects;
+    }
+
+    public List<String> getSubjects() {
+        return subjects;
+    }
+
+}
+public class RealTimeExample {
+    
+    public static void main(String[] args) {
+        List<Student> students = Arrays.asList(
+                new Student("Ram", Arrays.asList("Math","Physics")),
+                new Student("Shyam", Arrays.asList("Chemistry","Biology"))
+        );
+        
+        
+        List<List<String>> subjects = students.stream()
+                .map(Student :: getSubjects)
+                .collect(Collectors.toList());
+        
+        System.out.println(subjects);
+        
+        //Instend this using flatmap 
+       List<String> allSubjects =  students.stream()
+                                        .flatMap(e -> e.getSubjects().stream())
+                                       // .map(s -> s.toUpperCase())
+                                        .collect(Collectors.toList());       
+        System.out.println(allSubjects);
+        
+        
+        
+    }
+    
+}
+
+
+
+
+
+
+13 . What is Parallel Stream?
+Ans - Stream that runs operations in multiple threads using ForkJoinPool.
+	Parallel Stream is a Stream API feature that processes elements concurrently using the Fork/Join framework to utilize multi-core processors and improve performance.
+	
+14 . forEach() vs forEachOrdered() explain both case . 
+Ans - forEach() does not guarantee order in parallel streams, while forEachOrdered() maintains encounter order but may reduce parallel performance.
+
+
+15 . What is Optional?
+Ans - Optional<T> is a container object introduced in Java 8 that may or may not contain a non-null value.
+	  It is used to avoid NullPointerException (NPE).
+Container to avoid NullPointerException.
+
+
+16 . orElse() vs orElseGet()
+
+Ans - orElse() → always executes
+	orElseGet() → lazy execution
+
+17. Can Optional be null?
+Ans - ❌ No, Optional itself should never be null.
+
+18 . Types of Method References
+
+Static → Class::method
+
+Instance → obj::method
+
+Constructor → Class::new
+
+
+19 . Difference between Lambda and Method Reference
+Ans - Lambda creates behavior, while Method Reference reuses existing behavior.
+
+20 . Why default methods introduced?
+Ans - To add new methods to interfaces without breaking implementations.
+	Default methods were introduced in Java 8 to allow adding new methods to interfaces without breaking existing implementations, 
+	enabling backward compatibility and supporting functional programming features like the Stream API.
+
+21 . Can default methods be overridden?
+Ans - ✅ Yes
+
+22 . Can interfaces have static methods?
+Ans - ✅ Yes (Java 8 onwards)
+
+23 . Problems with old Date API?
+Ans - The old Date API had problems like mutability, lack of thread safety,
+ confusing month indexing, poor timezone handling,
+ deprecated methods, and bad design. 
+ Java 8 introduced the java.time API to provide immutable, thread-safe, and well-designed date-time classes.
+
+1. Not Thread-Safe
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	If multiple threads use the same instance → ❌ unpredictable results.
+	
+	Reason : 
+	- It is mutable
+	- It maintains internal state 
+	
+👉 Causes race conditions in multithreading.
+
+2 . Mutable Classes 
+	Date date = new Date();
+	date.setYear(120); //changes internal state 
+	
+	Mutable objects are dangerous because:
+		- Hard to debug
+		- Not thread-safe
+		- Side effects occur
+
+3.  Confusing and Poor Design
+	Date date = new Date(2024, 1, 1);
+
+	Problems : 
+	 -	Year start from 1900
+	 - Month start from 0
+Very confusing.
+
+4. Month Index Starts from 0
+
+	Calendar cal = Calendar.getInstance();
+	cal.set(2024, 0, 1);  // 0 means January
+		❌ Not intuitive
+		❌ Easy to make mistakes	
+		
+5. 	No Clear Separation of Concepts	
+	Old API mixes everything:
+		Date
+		Time
+		Timezone
+		Formatting
+	All in one messy structure.
+
+	No clear distinction like:
+		Date only
+		Time only
+		Date + Time
+		Zoned time
+
+6. 	Poor Timezone Handling 
+		Handling timezones was complex:
+			-	TimeZone tz = TimeZone.getTimeZone("Asia/Kolkata");
+			-	Calendar cal = Calendar.getInstance(tz);
+		Very verbose and error-prone.	
+
+7. 	Hard to Perform Calculations
+		Example: Add 10 days
+			-	Calendar cal = Calendar.getInstance();
+			-	cal.add(Calendar.DATE, 10);
+
+
+			-	Not readable
+			-	Too many constants
+			-	Very procedural
+
+8. 	Deprecated Methods
+		Many methods in Date were deprecated because of bad design
+			-	date.getYear();   // Deprecated
+			-	date.getMonth();  // Deprecated
+
+9. 	No Fluent API
+		Old API is not readable.
+			-	Calendar cal = Calendar.getInstance();
+			-	cal.add(Calendar.MONTH, 1);
+			-	cal.add(Calendar.DATE, 5);
+	Hard to read compared to modern API.
+	
+	
+	
+24. How is new Date API thread-safe?
+Ans - The Java 8 Date-Time API is thread-safe because its classes are immutable. They are final, contain private final fields, 
+	and do not provide setters. All modification methods return new objects instead of changing existing ones, eliminating shared mutable 
+	state and the need for synchronization.
+
+25. Future vs CompletableFuture
+Ans - Future = Basic async
+	CompletableFuture = Advanced async + Functional style
+
+		1 - Blocking vs Non-Blocking
+				Future - 
+					String result = future.get(); // blocks			
+					Main thread waits.
+
+				CompletableFuture
+					future.thenAccept(result -> 
+					System.out.println(result));
+		
+		2 - Chaining Example
+		
+
+Non-blocking callback.
+		
+	| Future 		| CompletableFuture |
+	|---------------|----------------|
+	| Blocking 		| Non-blocking |
+	| No chaining 	| Supports chaining |
+	| Limited 		| Powerful async |
+
+26.  thenApply() vs thenCompose()
+Ans - 	thenApply() → transforms result
+		thenCompose() → flattens async calls
+		
+		“thenApply() is used when the callback returns a normal value, while thenCompose() is used when the callback itself returns another CompletableFuture, preventing nested futures.”
+
+27 . Common Collectors
+
+Ans - 	toList() 		→ Collect to List
+		toSet()			→ Collect unique elements
+		groupingBy()	→ Multiple groups
+		partitioningBy()→ Two groups
+		joining()		→ Convert to String
+		
+		groupingBy vs partitioningBy
+			groupingBy → multiple groups
+			partitioningBy → only two groups (true/false)
+			
+
+
+28 . Are streams faster than loops?
+Ans - ❌ Not always. Streams focus on readability, not speed.
+
+29 . Stateful lambda – good or bad?
+Ans - ❌ Bad practice (thread-safety issues)
+
+30 . Can streams modify original collection?
+Ans - ❌ No
+
+31. Can we reuse a stream?
+Ans - ❌ No → IllegalStateException
+	No, a stream cannot be reused after a terminal operation. Once a stream is consumed, it is closed, 
+		and attempting to operate on it again results in IllegalStateException. To reuse logic,
+		a new stream must be created from the source.
+	
+	Example - Stream<String> stream = Stream.of("Java","Spring","Boot");
+			stream.forEach(System.out::println);
+			// X Reusing same stream
+			stream.count();
+			//Netflix movie streaming 🎬	
+
+32. Can lambda throw checked exception?
+Ans - ❌ Not directly (must handle or wrap)
+
+33 . Difference between findFirst() and findAny()?
+Ans - 
+	findFirst()
+
+		-	Maintains encounter order
+		-	Even in parallel, must respect order
+		-	Slightly slower in parallel
+
+	findAny()
+	
+		-	Does not care about order
+		-	Optimized for parallel
+		-	Can return any matching element
+
+	
+	findFirst → ordered
+	findAny → faster in parallel
+
+34. Filter even numbers using streams
+Ans - List<Integer> evenList = 	list.stream().filter( n -> n%2 ==0).collect(Collectors.toList());
+
+35. Find duplicate elements using streams
+Ans -  import java.util.*;
+import java.util.stream.*;
+
+public class FindDuplicates {
+    public static void main(String[] args) {
+
+        List<Integer> numbers =
+                Arrays.asList(1, 2, 3, 4, 2, 5, 3, 6);
+
+        Set<Integer> seen = new HashSet<>();
+
+        Set<Integer> duplicates =
+                numbers.stream()
+                       .filter(n -> !seen.add(n)) //keeps only duplicate elements because HashSet.add() returns false for values already present.
+                       .collect(Collectors.toSet());
+
+        System.out.println(duplicates);
+    }
+}
+
+
+36 . Sort a list using lambda
+Ans -   // Reverse Natural Order (Number/String) 
+        List<Integer> naturalSortedOrderAsc = list.stream()
+                .distinct()
+                .sorted()
+                .collect(Collectors.toList());
+        System.out.println("naturalSortedOrderAsc  :: " + naturalSortedOrderAsc);
+
+        List<Integer> naturalSortedOrderDesc = list.stream()
+                .distinct()
+                .sorted(Comparator.reverseOrder())
+                .collect(Collectors.toList());
+        System.out.println("naturalSortedOrderDesc :: " + naturalSortedOrderDesc);
+
+37. Convert list to map using streams
+Ans -    Map<String,Long> salaryDept = employees.stream()
+                                        .collect(Collectors.groupingBy(
+                                                Employee::getDepartment, 
+                                                Collectors.summingLong(Employee::getSalary))
+                                        );
+
+38. Count frequency of characters in a string
+Ans  Map<Character,Long> map1 =  str.chars()
+                                        .mapToObj(c -> (char) c)
+                                        .collect(Collectors.groupingBy(
+                                                        Function.identity(),
+                                                         Collectors.counting()
+                                        ));
+       
+        System.out.println("map1:: " +map1);
+
+39. Find max/min using streams
+Ans -  int max = list.stream().mapToInt(Integer::intValue).max().orElse(0);
+        System.out.println("max :: " + max);
+		
+		int min = list.stream().mapToInt(Integer::intValue).min().orElse(0);
+        System.out.println("min :: " + min);
+		
+
+40. Why are lambda expressions stateless? What problems occur if they aren’t?
+Ans - 
+
+41. Can a lambda access instance and static variables? Explain rules.
+
+42. Why must local variables used inside lambda be effectively final?
+
+43. Difference between anonymous inner class vs lambda (memory & behavior)?
+
+44. Can lambda expressions be serialized?
+
+45. How does Java implement lambdas internally (invokedynamic)?
+
+46. Can you overload methods with functional interfaces?
+
+47. Why does this behave differently in lambda vs anonymous class?
+
+
+48. Can a functional interface have default methods?
+
+49. Can it have static methods?
+
+50. Why does Comparator remain functional despite many methods?
+
+51. Difference between UnaryOperator and Function?
+
+52. When would you prefer BiFunction over Function?
+
+53. How to create a custom functional interface?
+
+54. Can functional interfaces extend other interfaces?
+
+55. Why are streams lazy?
+
+56. What happens internally when a stream pipeline executes?
+
+57. Why are streams not stored anywhere?
+
+58. How does short-circuiting work (findFirst, anyMatch)?
+
+59. Why is forEach() discouraged for business logic?
+
+60. Difference between forEach() and forEachOrdered()?
+
+61. Can you modify a collection while streaming over it?
+
+62. Why are streams single-use?
+
+63. Real-world use case for flatMap()?
+
+64. Why does flatMap() reduce nesting?
+
+65. Difference between map() and flatMap() return types?
+
+66. What happens if flatMap() returns null?
+
+67. How does Java decide thread count in parallel streams?
+
+68. What is the ForkJoinPool?
+
+69. Why parallel streams can be slower than sequential?
+
+70. Is parallel stream suitable for database calls?
+
+71. Why shared mutable state breaks parallel streams?
+
+72. How do you debug parallel stream issues?
+
+73. Difference between collect() and reduce()?
+
+74. How does groupingBy() work internally?
+
+75. groupingBy vs groupingByConcurrent?
+
+76. partitioningBy vs groupingBy with boolean?
+
+77. How to collect into a custom collection?
+
+78. How does joining() work for strings?
+
+79. Why Optional should not be used as a field or method parameter?
+
+80. Difference between map() and flatMap() in Optional?
+
+81. When should Optional be returned from methods?
+
+82. Why is Optional.get() considered dangerous?
+
+83. Optional vs null – performance impact?
+
+84. Why is new Date API immutable?
+
+85. Difference between Instant and LocalDateTime?
+
+86. How does time-zone handling improve in Java 8?
+
+87. How do you convert old Date to LocalDateTime?
+
+88. Difference between thenApply(), thenAccept(), thenRun()?
+
+89. How does exception handling work in CompletableFuture?
+
+90. Why peek() should not be used for logic?
+
+91. Can a stream be infinite?
+
+92. What happens if an exception occurs inside a stream?
+
+93. Why Optional is not Serializable by default?
+
+94. Why is Stream not a data structure?
+
+95. How does stream pipeline fusion improve performance?
+
+96. What is a Spliterator? Why is it important?
+
+97. Difference between Iterator and Spliterator?
+
+98. How does trySplit() work in parallel streams?
+
+99. What is characteristics() in Spliterator?
+
+100. Why do parallel streams perform poorly with LinkedList?
+
+101. What happens if stream source is infinite?
+
+101. How does limit() behave on parallel streams?
+
+101. Why does distinct() behave differently in parallel streams?
+
+101. Do lambdas create objects at runtime?
+
+101. How does Java 8 reduce anonymous class overhead?
+
+101. Where are lambda expressions stored in memory?
+
+101. Difference between stateless and stateful lambdas?
+
+101. How does escape analysis affect lambdas?
+
+101. Are lambdas cached by JVM?
+
+101. Why lambdas improve GC performance?
+
+101. When does method reference fail but lambda works?
+
+101. Ambiguity issues with method references?
+
+101. Constructor reference with generics – how does it work?
+
+101. Difference between Class::instanceMethod and obj::instanceMethod?
+
+101. Can method references be overloaded?
+
+101. How does Collector work internally?
+
+101. What are supplier, accumulator, combiner?
+
+101. Why combiner is critical for parallel streams?
+
+101. What happens if combiner is incorrect?
+
+101. Can you write a custom Collector?
+
+101. Why toMap() throws exception on duplicate keys?
+
+101. How to handle duplicate keys in toMap()?
+
+101. Why reduce() is unsafe with mutable objects?
+
+101. Why Optional should not be used with streams improperly?
+
+101. Difference between Optional.orElseThrow() and orElseGet()?
+
+101. Why Optional was not added to collections?
+
+101. Optional in serialization – issues?
+
+101. Why Optional is discouraged in setters?
+
+101. Diamond problem in interfaces – how Java 8 solved it?
+
+101. What happens if two interfaces have same default method?
+
+101. How do you explicitly call an interface’s default method?
+
+101. Can default methods be synchronized?
+
+101. Why default methods can’t override Object methods?
+
+101. Difference between thenCompose() and thenCombine()?
+
+101. How do you chain async DB + REST calls?
+
+101. How does CompletableFuture.allOf() work?
+
+101. Difference between allOf() and anyOf()?
+
+101. How do you handle timeouts in CompletableFuture?
+
+101. What is the default thread pool used?
+
+101. Why blocking inside CompletableFuture is dangerous?
+
+101. Difference between parallelStream() and CompletableFuture?
+
+101. Why streams are bad for complex async workflows?
+
+101. When should you avoid Java 8 features completely?
+
+1 - why use mapToInt
+Ans - mapToInt()is intermediate stream operation
+		use for convert a Stream of objects into a primitive stream
+		mainly used when performing numerice operations sum, average, max, or min 
+		
+2 - difference between  .mapToInt(Integer::parseInt)
+						.mapToInt(Integer::intValue)	
+Ans - 	
+	Feature 	parseInt 		intValue	
+	Input Type 	String			Integer
+	Conversion	String->int 	Integer ->int
+	Used For 	Parsing text	Removing boxing
+	
+	mapToInt(Integer::parseInt)
+	
+
+3 -
+Ans -  	
+
+1. What is Stream API in Java 8?
+Ans - I use Stream to write clean, declarative, and maintainable code for bulk data operation like filtering, transaformation, aggregation, and grouping - 
+without explict iteration . 
+	Technically, Stream works on pipeline model : 
+	  Source - collection.stream()
+	  Intermediate operation(Lazy) - filter(), map(), sorted(), distinct()
+	  Terminal operations - collect(),reduce(),count(),foreach
+
+ Key points I usually highlight :
+	# Lazy evaluation improves performance
+	# Support parallel processing using parallelStream()
+	# Encourages immutability and side-effect-free logic
+	# Works well with Collectors for grouping, partitioning, summarizing 
+	
+
+2. 	Difference between Collection and Stream?
+Ans - # Collection
+		. Used to store data in memory.
+		. Supports CRUD operations (add, remove, update).
+		. Uses external iteration (for-loop, iterator).
+		. Data is available immediately.
+		. Can be iterated multiple time
+		
+	  # Stream
+		. Used to process data, not store it.
+		. Supports functional-style operations like filter, map, reduce.
+		. Uses internal iteration.
+		. Follows a pipeline model (lazy intermediate operations + terminal operation).
+		. Cannot be reused once consumed.
+
+3. 	What is the difference between intermediate and terminal operations?	
+Ans - 	Intermediate operations are lazy and optimized — operations are processed in a single pass when terminal operation is called.
+		Terminal operation is mandatory; without it, stream does nothing.
+		After terminal operation, the stream cannot be reused.
+	
+4. What happens if no terminal operation is used?
+Ans 	Without a terminal operation, stream pipeline is not executed.
+		No data processing happens.
+		No exception is thrown.
+		Stream behaves like a blueprint until a terminal operation is called.
+		
+5. What is lazy evaluation in Streams?
+Ans - 	Lazy evaluation means intermediate operations in a stream are executed only when a terminal operation is called, 
+allowing optimized and efficient single-pass data processing.	
+
+6. Can a Stream be reused after a terminal operation?
+Ans - A Stream cannot be reused after a terminal operation because it gets consumed. To process the data again, a new Stream must be created from the source.
+
+7. What is the difference between map() and flatMap()?
+Ans - map() is used for simple transformation of elements, whereas flatMap() is used when the transformation produces nested streams and we need to flatten them 
+into a single stream.
+
+8. What is the difference between filter() and distinct()?
+Ans - filter() is used for conditional filtering based on business logic, whereas distinct() is specifically used to eliminate duplicate elements using equals and hashCode.
+
+9 . What is peek() used for?
+Ans -  
+🔹 Purpose of peek()
+	Performs an action on each element
+	Does not modify the stream
+	Mainly used for logging / debugging
+	Lazy — executes only when terminal operation is called
+
+
+ List<Integer> list = Arrays.asList(10,2,6,8,4,85,0,45,6,4,7,4,1,5,12);
+    List<Integer> peekDemo =   list.stream()
+               .filter(n -> n >10)
+               .peek(n -> System.out.println("After filter::" +n))
+               .map(n -> n*2)
+               .collect(Collectors.toList());
+    
+        System.out.println("peek demo :: " +peekDemo);
+		
+10. What is the difference between forEach() and forEachOrdered()?
+Ans - 	forEach() focuses on performance and may not preserve order in parallel streams, whereas forEachOrdered() guarantees encounter order even in parallel processing, 
+with a possible performance trade-off.	
+
+11 - What is Collectors class?
+Ans -	The Collectors class in Stream API (introduced in Java 8) is a utility class that provides factory methods to collect 
+		stream elements into different forms like List, Set, Map, or perform grouping, partitioning, and aggregation.		
+		It is mainly used with the collect() terminal operation.
+		
+12 - What is the default Map implementation used by groupingBy()?
+Ans - By default, groupingBy() uses a HashMap, but we can provide a custom Map supplier 
+			like LinkedHashMap or TreeMap if ordering or sorting is required.
+		
+	🔥 Important Points
+			Default Map → HashMap
+			Order is not guaranteed
+
+13 - How to change the Map type in groupingBy()?
+Ans - To change the Map type in groupingBy(), we use the overloaded method 
+	that accepts a Map supplier, allowing us to use LinkedHashMap, TreeMap, or 
+	any custom Map implementation as per requirement.
+	
+	🔥 Why This Works
+			Internally, groupingBy():
+				Uses the provided Supplier to create the Map.
+				Accumulates values per key.
+				Uses combiner for parallel streams.
+			
+14 - What is a downstream collector?	
+Ans - A downstream collector is a collector that is applied after grouping or partitioning, to further process the grouped elements.
+	Internally
+
+🔥 Internally
+	groupingBy(classifier, downstreamCollector)
+		First → classify elements by key
+		Then → apply downstream collector on each group
+		Instead of List<T>, you get aggregated or transformed result
+
+15 - Difference between groupingBy() and partitioningBy()?
+Ans - partitioningBy() is a specialized version of groupingBy() for boolean conditions, 
+always producing two groups, while groupingBy() is more flexible and can create 
+multiple groups based on any classification function.	
+
+16 - What is counting() collector?
+Ans - counting() is a downstream collector in Java 8 Stream API that counts the number of elements in a stream or within each group.
+	counting() is a downstream collector used to count elements in a stream or within grouped results, returning the count as a Long value.	
+	
+17 - Difference between summingLong() and mapToLong().sum()?
+Ans - 	1 - summingLong()
+			- It is a Collectors
+			- Used inside collect()
+			- Mostly used as a downstream collector (e.g. with groupingBy)
+	
+		2 - mapToLong().sum()
+			-	Uses primitive stream (LongStream)
+			- 	Terminal operation
+			-	More direct and slightly more efficient
+	
+	🔥 Key Differences
+	summingLong()						mapToLong().sum()
+	Collector							Terminal operation
+	Used inside collect()				Direct sum on primitive stream
+	Good for grouping/aggregation		Good for simple summation
+	Slight boxing overhead				More performance optimized
+	
+18 - 	What is collectingAndThen()?
+Ans - collectinAndThen() is used to apply a final transformation after a collector finished its operation, 
+	enabling post-processing of collected results within the same stream pipeline.
+	
+	🔥 Why it's Used
+	- When result of collector need post-processing
+	- Help avoid extra stream operation
+	- Keep logic inside collect() pipeline
+
+
+19 - How to make grouping result immutable?
+Ans - To make the grouping result immutable, we use collectingAndThen() to wrap the result with an unmodifiable collection.	
+	
+		 Map<String,List<Employee>> immutableList = employees.stream()
+                .collect(Collectors.collectingAndThen(
+                        Collectors.groupingBy(Employee::getDepartment), 
+                        Collections::unmodifiableMap
+                ));
+				
+20 -	Difference between Comparable and Comparator?
+Ans - 	🔥 Real-World Understanding
+		Use Comparable when class has a single natural order (e.g., Employee by ID).
+		Use Comparator when sorting varies (by salary, name, date, etc.).
+			
+		Comparable defines the natural ordering of a class internally using compareTo(), 
+		while Comparator allows multiple custom sorting strategies externally using compare(), 
+		providing greater flexibility.	
+	
+21 - What is Comparator.comparing()?
+Ans - Comparator.comparing() is a Java 8 utility method that creates a Comparator 
+	based on a key extractor function, making sorting more concise, readable, 
+	and flexible compared to traditional Comparator implementations.
+
+22 - What is Comparator.comparingLong()?
+Ans - Comparator.comparingLong() is used to create a comparator based on a long 
+primitive field, avoiding boxing overhead and providing better performance compared 
+to Comparator.comparing() when dealing with primitive long values.	
+	
+23 - How to reverse sorting using streams?
+Ans - in java8, we can reverse sorting in stream using : 
+	# Comparator.reverseOrder()
+	# .reversed() method
+	# Custom comparator
+	
+
+24 - How to sort by multiple fields?
+Ans - 	In Java 8, multi-level sorting is achieved using Comparator.comparing() followed by thenComparing(), 
+allowing clean, readable, and flexible sorting logic across multiple fields.
+

@@ -1,0 +1,322 @@
+60-Day Java Backend Interview Roadmap (5 Years Experience)
+Phase 1 — Strengthen Core Java (Days 1–10)
+Day 1 — Java OOP Deep Dive
+Concepts
+Encapsulation
+Inheritance
+Polymorphism
+Abstraction
+Interface vs Abstract class
+Practice
+Create Employee hierarchy
+Use polymorphism
+Override methods properly
+Interview Questions
+Why is multiple inheritance not in Java?
+Marker interface vs annotation?
+Day 2 — Collections Framework
+Concepts
+List vs Set vs Map
+HashMap internal
+ConcurrentHashMap
+ArrayList vs LinkedList
+Practice
+Custom sorting
+Comparable vs Comparator
+LRU cache implementation basics
+Day 3 — Java 8 Features
+Concepts
+Lambda
+Stream API
+Functional interfaces
+Optional
+Method reference
+Practice
+Filter employees
+Group by department
+Count duplicate strings
+Day 4 — Multithreading
+Concepts
+Thread lifecycle
+Runnable vs Callable
+ExecutorService
+Future
+Synchronization
+Practice
+Producer consumer
+Thread pool example
+Day 5 — Advanced Concurrency
+Concepts
+volatile
+synchronized
+Lock
+Deadlock
+CountDownLatch
+CompletableFuture
+Practice
+Async REST call handling
+Day 6 — JVM Internals
+Concepts
+Heap
+Stack
+Metaspace
+GC types
+Memory leaks
+Practice
+Analyze OutOfMemory examples
+Day 7 — Exception Handling
+Concepts
+checked vs unchecked
+custom exceptions
+global exception handling
+Practice
+Spring Boot exception handling
+Day 8 — Serialization
+Concepts
+Serializable
+transient
+serialVersionUID
+Day 9 — Design Patterns
+Concepts
+Singleton
+Factory
+Builder
+Strategy
+Observer
+Practice
+Implement builder pattern
+Day 10 — Revision + Mock
+Practice:
+25 Java interview questions
+Explain answers aloud
+Phase 2 — Spring Boot Mastery (Days 11–20)
+Day 11 — Spring Core
+IOC
+Dependency Injection
+Bean lifecycle
+@Component
+@Service
+@Repository
+Day 12 — Spring Boot Internals
+Auto configuration
+Starter dependencies
+application.yml
+profiles
+Day 13 — REST API
+GET
+POST
+PUT
+DELETE
+RequestBody
+ResponseEntity
+Validation
+Practice:
+Build CRUD API
+Day 14 — Spring Data JPA
+Entity mapping
+Lazy vs eager
+Cascade
+Pagination
+Practice:
+Employee service CRUD
+Day 15 — Hibernate Internals
+First level cache
+N+1 issue
+JPQL
+native query
+Day 16 — Security Basics
+JWT
+Authentication
+Authorization
+Spring Security flow
+Day 17 — Logging
+SLF4J
+Logback
+MDC
+Correlation ID
+Day 18 — Testing
+JUnit
+Mockito
+MockMvc
+Practice:
+Unit test service layer
+Day 19 — Validation & Exception
+@Valid
+custom validator
+global exception handling
+Day 20 — Revision
+Mock 1:
+Spring Boot interview questions
+Phase 3 — Database + SQL (Days 21–30)
+Day 21 — SQL Basics
+joins
+group by
+subquery
+Practice:
+20 SQL queries
+Day 22 — Advanced SQL
+window functions
+CTE
+indexes
+Day 23 — Transactions
+ACID
+isolation levels
+propagation
+Day 24 — Performance
+query optimization
+explain plan
+indexing strategy
+Day 25 — JDBC
+connection pool
+prepared statement
+Day 26 — DB Design
+normalization
+denormalization
+Day 27 — Real scenarios
+order management DB design
+Day 28 — Stored procedures basics
+Day 29 — SQL Mock
+Day 30 — Revision
+Phase 4 — Microservices (Days 31–40)
+Day 31 — Architecture
+monolith vs microservices
+service decomposition
+Day 32 — API Gateway
+routing
+filtering
+Day 33 — Service Discovery
+Eureka
+Consul
+Day 34 — Inter-service Communication
+RestTemplate
+WebClient
+OpenFeign
+Day 35 — Resilience
+circuit breaker
+retry
+fallback
+Day 36 — Messaging
+Apache Kafka basics
+producer consumer
+partitions
+Day 37 — Distributed tracing
+Zipkin
+Sleuth
+Day 38 — Config Server
+centralized config
+Day 39 — Deployment concepts
+Docker
+Kubernetes basics
+Day 40 — Mock Interview
+Explain architecture of your project
+Phase 5 — System Design (Days 41–50)
+Day 41 — HLD Basics
+scalability
+load balancing
+cache
+Day 42 — Design URL shortener
+Day 43 — Design payment system
+Day 44 — Design inventory system
+Day 45 — Caching
+Redis
+cache eviction
+Day 46 — Rate limiting
+Day 47 — Database scaling
+Day 48 — Event driven design
+Day 49 — CAP theorem
+Day 50 — Mock design interview
+Phase 6 — Interview Preparation (Days 51–60)
+Day 51 — Resume preparation
+Be ready for:
+current project
+responsibilities
+achievements
+Day 52 — Tell me about yourself
+Prepare:
+2 minute intro
+technical journey
+current role
+Day 53 — Project explanation
+Explain:
+architecture
+challenges
+fixes
+Day 54 — Scenario questions
+Examples:
+production issue
+memory leak
+slow API
+Day 55 — Coding round
+Practice:
+String problems
+collections
+streams
+Day 56 — HR round
+Prepare:
+why change?
+expected salary?
+notice period?
+Day 57 — Mock full interview
+Day 58 — Weak areas revision
+Day 59 — Final revision
+Day 60 — Interview simulation
+One full mock:
+Java
+Spring
+SQL
+Microservices
+HR
+Daily Practice Routine (Important)
+Every day spend:
+
+2 hours concepts
+Study one topic deeply
+1 hour coding
+Implement examples
+1 hour interview Q&A
+Speak answers loudly
+30 min resume/project discussion
+Most Important Topics to Master
+Priority order:
+Must master
+✅ Core Java
+✅ Spring Boot
+✅ SQL
+✅ Microservices
+✅ Project explanation
+High value
+✅ Kafka
+✅ Redis
+✅ Docker
+✅ System design
+Expected Interview Questions
+They often ask:
+
+Java
+HashMap internal?
+fail fast vs fail safe?
+volatile vs synchronized?
+Spring
+bean lifecycle?
+transaction propagation?
+@Autowired internal?
+SQL
+index?
+normalization?
+deadlock?
+Microservices
+service communication?
+distributed transaction?
+resiliency?
+Final 10-Day Focus
+In final days focus only on:
+
+✅ project explanation
+✅ confidence
+✅ speaking clarity
+✅ scenario answers
+Because 5-year interviews are more about:
+
+“Can you handle production systems?”
+
+not just syntax.

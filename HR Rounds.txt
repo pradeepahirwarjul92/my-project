@@ -76,6 +76,22 @@ In my current organization, I have worked on designing REST APIs, improving appl
 At this stage of my career, I am looking for an opportunity where I can work on larger-scale backend systems, contribute more to architecture decisions, and continue growing as a backend engineer.
 
 
+16 . HR asked me - How long will you stay with us ? 
+Ans - I am looking for a stabl, long-term opportunity where I can grow with the company. If I'm able to learn, 
+contribute meaniningfully, and see career growth here, I would definitely like to stay for a long time.
+I'm not looking for a short-term switch 
+
+17 - Tell me about a time you handled pressure .
+Ans - “In one of my projects, a production issue caused high API response time just before a release. 
+I stayed calm, checked logs, and quickly found a database query issue 
+due to a missing index. I coordinated with the team, applied a fix, and 
+restored the system. We were able to stabilize production and proceed 
+with the release. It taught me how to stay focused and solve problems 
+under pressure.”
+
+18 - 
+
+
 
 
 
