@@ -1,0 +1,56 @@
+Jenkins Interview Questions (6 Years Experience)
+🟢 Core Jenkins Basics (1–10)
+What is Jenkins and how does it work internally?
+What is the difference between Freestyle and Pipeline jobs?
+What are Jenkins plugins and why are they important?
+What is a Jenkins master-agent architecture?
+What is a Jenkins node?
+What are executors in Jenkins?
+What is a workspace in Jenkins?
+How does Jenkins store build history?
+What is a Jenkins job?
+What is the difference between continuous integration and continuous delivery?
+🟡 Jenkins Pipeline (11–25)
+What is a Declarative Pipeline?
+What is a Scripted Pipeline?
+Difference between Declarative vs Scripted pipeline?
+What are stages in Jenkins pipeline?
+What are steps in Jenkins pipeline?
+What is the use of post section in pipeline?
+What is agent any?
+How do you define environment variables in Jenkins pipeline?
+What is input step in pipeline?
+How do you handle manual approval in Jenkins pipeline?
+How do you retry failed stages?
+What is parallel execution in Jenkins pipeline?
+How do you share libraries in Jenkins? (Shared Libraries)
+What is Jenkinsfile and why is it used?
+How do you parameterize Jenkins pipelines?
+🔵 SCM & Webhooks (26–32)
+How does Jenkins integrate with GitHub/GitLab?
+What is a webhook in Jenkins?
+How does polling SCM work?
+Difference between webhook and polling?
+How do you secure Jenkins webhook triggers?
+What happens when webhook fails?
+How do you trigger Jenkins build automatically from Git push?
+🟣 Build & Deployment (33–40)
+How do you deploy a Spring Boot application using Jenkins?
+How do you deploy WAR files to Tomcat using Jenkins?
+How do you handle rollback in Jenkins pipeline?
+How do you manage different environments (dev/qa/prod)?
+How do you manage secrets in Jenkins?
+What is Jenkins credentials binding plugin?
+How do you restart services using Jenkins pipeline?
+How do you validate deployment success in pipeline?
+🔴 Advanced Jenkins (41–50)
+How do you scale Jenkins for large enterprise systems?
+What are shared libraries in Jenkins and why use them?
+How do you optimize Jenkins performance?
+How do you troubleshoot a failed Jenkins job?
+What is Blue Ocean in Jenkins?
+How do you implement CI/CD for microservices using Jenkins?
+How do you handle concurrent builds?
+What are pipeline as code best practices?
+How do you integrate Jenkins with Docker and Kubernetes?
+What are common production issues in Jenkins and how do you solve them?

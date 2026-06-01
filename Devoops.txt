@@ -1,0 +1,290 @@
+What is DevOps?
+
+DevOps = Development + Operations
+👉 هدف: Faster delivery, automation, stability
+
+🧱 1. Version Control (Code Management)
+🔹 Tools:
+	Git	
+💡 Use:
+Code tracking
+Branching (feature, release, hotfix)
+
+⚙️ 2. Build Tools (Compile & Package)
+🔹 Tools:
+Maven
+💡 Use:
+Compile Java code
+Manage dependencies
+Create JAR/WAR
+
+🔄 3. CI/CD Tools (Automation)
+🔹 Tools:
+Jenkins ⭐ (MOST IMPORTANT)
+GitHub Actions
+GitLab CI/CD
+Azure DevOps
+💡 Pipeline Flow:
+Code → Build → Test → Deploy
+
+🐳 4. Containerization
+🔹 Tools:
+Docker ⭐
+💡 Why Docker?
+Same environment everywhere
+No “works on my machine” issue
+
+☸️ 5. Container Orchestration
+🔹 Tools:
+Kubernetes ⭐
+Docker Swarm
+💡 Use:
+Auto scaling
+Load balancing
+Self-healing apps
+
+☁️ 6. Cloud Platforms
+🔹 Tools:
+Amazon Web Services ⭐
+Microsoft Azure
+Google Cloud Platform
+💡 Services:
+EC2 (VM)
+S3 (Storage)
+RDS (Database)
+
+📦 7. Artifact Repository
+🔹 Tools:
+Nexus Repository
+JFrog Artifactory
+💡 Use:
+Store JAR/WAR builds
+
+🔍 8. Code Quality & Security
+🔹 Tools:
+SonarQube ⭐
+Checkmarx
+💡 Use:
+Detect bugs
+Remove vulnerabilities
+
+📊 9. Monitoring & Logging
+🔹 Tools:
+Prometheus
+Grafana
+ELK Stack
+(Elasticsearch + Logstash + Kibana)
+💡 Use:
+Server monitoring
+Error tracking
+
+🔐 10. Configuration Management
+🔹 Tools:
+Ansible ⭐
+Puppet
+Chef
+💡 Use:
+Server setup automation
+
+🧪 11. Testing Tools
+🔹 Tools:
+JUnit
+Mockito
+Selenium
+
+🔑 12. Infrastructure as Code (IaC)
+🔹 Tools:
+Terraform ⭐
+AWS CloudFormation
+💡 Use:
+Create infrastructure using code
+
+🧠 13. DevOps Lifecycle (Interview Key)
+Plan → Code → Build → Test → Release → Deploy → Monitor
+🎯 14. MUST-KNOW STACK (For YOU – Java Developer)
+
+
+Q1 - Git Workflow 
+Ans - Working Directory (Your Workspace)→ Staging Area (Preparation Zone) → Repository
+
+	- Working Directory (Your Workspace)
+		Example:
+			You edit Employee.java → changes are only in your local file
+	
+	- Staging Area (Preparation Zone)
+		Example:
+			git add Employee.java
+	
+	- Repository (Permanent Storage)
+		Example:
+			git commit -m "Added salary calculation logic"
+			
+git config --global http.proxy http://it%20common:Lnjb@1234@192.168.9.112:808	
+git config --global https.proxy http://it%20common:Lnjb@1234@192.168.9.112:808			
+
+git config --global http.proxy http://username:password@proxy.company.com:8080
+git config --global https.proxy http://username:password@proxy.company.com:8080
+
+
+
+Q02 - git checkout feature1 vs git switch feature1 
+both are same
+
+
+Main work of DevOps team
+1. Source Code Management
+
+Manage application code versions.
+
+Technologies:
+
+Git (rebase, stash, )
+GitHub
+GitLab
+Bitbucket
+
+Work:
+
+store code
+manage branches
+pull requests
+merge changes
+2. CI/CD Pipeline
+
+Automate build, test and deployment.
+
+Technologies:
+
+Jenkins
+GitHub Actions
+GitLab CI/CD
+Azure DevOps
+
+Work:
+
+auto build
+unit testing
+deploy to server
+rollback if failed
+3. Containerization
+
+Package app with dependencies.
+
+Technologies:
+
+Docker
+Podman
+
+Work:
+
+create container image
+same app works in all environments
+4. Container Orchestration
+
+Manage many containers automatically.
+
+Technologies:
+
+Kubernetes
+Helm
+
+Work:
+
+scaling
+load balancing
+self-healing
+zero downtime deployment
+5. Infrastructure Automation (IaC)
+
+Create servers automatically.
+
+Technologies:
+
+Terraform
+Ansible
+Puppet
+
+Work:
+
+create VM/server
+install software
+configure environment automatically
+6. Cloud Management
+
+Deploy apps on cloud.
+
+Technologies:
+
+Amazon Web Services
+Microsoft Azure
+Google Cloud
+
+Work:
+
+manage servers
+storage
+networking
+scaling
+7. Monitoring & Logging
+
+Watch application health.
+
+Technologies:
+
+Prometheus
+Grafana
+ELK Stack
+Datadog
+
+Work:
+
+CPU usage
+memory
+errors
+alerts
+8. Security Automation (DevSecOps)
+
+Security inside pipeline.
+
+Technologies:
+
+SonarQube
+Trivy
+Vault
+
+Work:
+
+scan code
+detect vulnerabilities
+protect secrets
+Simple workflow
+
+Developer writes code → push to Git → CI/CD runs → Docker image build → Kubernetes deploy → Monitoring checks system
+
+Example real project flow
+
+Spring Boot app deployment
+
+Developer pushes code to GitHub
+Jenkins builds project
+Docker creates image
+Terraform creates server
+Ansible configures server
+Kubernetes deploys container
+Prometheus monitors app
+
+This is how most DevOps teams connect tools together.
+
+Important skills in DevOps team
+
+DevOps engineers usually know:
+
+Linux
+Networking
+Shell scripting
+Cloud
+Automation
+Monitoring
+Security
+
+

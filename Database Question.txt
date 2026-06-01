@@ -1,8 +1,304 @@
-1- Write me a query to find the second highest salary. Now explain what happend internally.
-2-your DB query takes 5 seconds on 50 million rows . No code chnage allowed . Fix it .
-3 -What is a Hashmap and how does it work internally ? Most devs get this wrong .
-4- Your database is slow because of too manu read requests. How do you fix it without just buying a more expensive database?
-5 - Your Api is getting 10000 request/second from One user. How do you stop it without breaking your system.
-6 - Your payment service makes wait 10 seconds. No Infrastructure change allowed . Ho do you fix?
-7- Your system handles 20M transaction per day. How would you design the table, and what are your core considerations?
-8- Why is HTTPS more secure than HTTP?
+Actual execution order inside database
+FROM → identify tables
+JOIN → combine tables
+WHERE → filter rows
+GROUP BY → group rows
+HAVING → filter groups
+SELECT → choose columns
+DISTINCT → remove duplicates
+ORDER BY → sort result
+LIMIT / OFFSET → return final rows
+
+==============================
+DATABASE INTERVIEW TOP QUESTIONS
+==============================
+
+1. What is the difference between DBMS and RDBMS?
+
+2. What is a Primary Key?
+
+3. What is a Foreign Key?
+
+4. What is the difference between Primary Key and Unique Key?
+
+5. What is a Composite Key?
+
+6. What is a Candidate Key?
+
+7. What is a Surrogate Key?
+
+8. What are Database Constraints?
+
+9. What is Normalization?
+
+10. Explain 1NF, 2NF, 3NF, and BCNF.
+
+11. What is Denormalization?
+
+12. What is the difference between DELETE, TRUNCATE, and DROP?
+
+13. What is the difference between WHERE and HAVING?
+
+14. What is the difference between GROUP BY and ORDER BY?
+
+15. What is the difference between UNION and UNION ALL?
+
+16. What is the difference between INNER JOIN and OUTER JOIN?
+
+17. Explain INNER JOIN with example.
+
+18. Explain LEFT JOIN with example.
+
+19. Explain RIGHT JOIN with example.
+
+20. Explain FULL OUTER JOIN with example.
+
+21. What is SELF JOIN?
+
+22. What is CROSS JOIN?
+
+23. What is a Subquery?
+
+24. What is a Correlated Subquery?
+
+25. What is the difference between JOIN and Subquery?
+
+26. What is a CTE (Common Table Expression)?
+
+27. Find the highest salary.
+
+28. Find the second highest salary.
+
+29. Find the nth highest salary.
+
+30. Find duplicate records in a table.
+
+31. Delete duplicate records from a table.
+
+32. Find employees without a department.
+
+33. Find employees earning more than the average salary.
+
+34. Find the top 3 salaries in each department.
+
+35. Find the department with the highest average salary.
+
+36. What is an Index?
+
+37. How does an Index work internally?
+
+38. What is a B-Tree Index?
+
+39. What is a Clustered Index?
+
+40. What is a Non-Clustered Index?
+
+41. What is a Composite Index?
+
+42. What is a Covering Index?
+
+43. What is a Unique Index?
+
+44. What is the difference between Clustered and Non-Clustered Index?
+
+45. Why can too many indexes be a problem?
+
+46. What is a Full Table Scan?
+
+47. What is an Index Scan?
+
+48. What is Query Optimization?
+
+49. What is an Execution Plan?
+
+50. How do you read an EXPLAIN plan?
+
+51. Query takes 5 seconds on 50 million rows. How will you optimize it?
+
+52. What is ACID?
+
+53. Explain Atomicity.
+
+54. Explain Consistency.
+
+55. Explain Isolation.
+
+56. Explain Durability.
+
+57. What is a Transaction?
+
+58. What is COMMIT?
+
+59. What is ROLLBACK?
+
+60. What is SAVEPOINT?
+
+61. What are Transaction Isolation Levels?
+
+62. What is Read Uncommitted?
+
+63. What is Read Committed?
+
+64. What is Repeatable Read?
+
+65. What is Serializable?
+
+66. What is a Dirty Read?
+
+67. What is a Non-Repeatable Read?
+
+68. What is a Phantom Read?
+
+69. What is Locking?
+
+70. What is a Shared Lock?
+
+71. What is an Exclusive Lock?
+
+72. What is Row-Level Locking?
+
+73. What is Table-Level Locking?
+
+74. What is a Deadlock?
+
+75. How do you prevent Deadlocks?
+
+76. What is Optimistic Locking?
+
+77. What is Pessimistic Locking?
+
+78. What is a View?
+
+79. What is a Materialized View?
+
+80. Difference between View and Materialized View?
+
+81. What is a Stored Procedure?
+
+82. What is a Function?
+
+83. Difference between Stored Procedure and Function?
+
+84. What are Triggers?
+
+85. What is a Sequence?
+
+86. What is Partitioning?
+
+87. What is Sharding?
+
+88. What is Replication?
+
+89. What is Database Mirroring?
+
+90. What is a Cursor?
+
+91. What is a Temporary Table?
+
+92. What is a Common Table Expression (CTE)?
+
+93. What are Window Functions?
+
+94. What is ROW_NUMBER()?
+
+95. What is RANK()?
+
+96. What is DENSE_RANK()?
+
+97. What is LEAD()?
+
+98. What is LAG()?
+
+99. What is Pagination in SQL?
+
+100. Difference between OFFSET/FETCH and ROW_NUMBER() pagination?
+
+=================================
+JAVA + SPRING BOOT DB QUESTIONS
+=================================
+
+101. What is JDBC?
+
+102. Explain JDBC Architecture.
+
+103. Statement vs PreparedStatement.
+
+104. Why is PreparedStatement faster?
+
+105. What is SQL Injection?
+
+106. How does PreparedStatement prevent SQL Injection?
+
+107. What is Batch Processing in JDBC?
+
+108. What is Connection Pooling?
+
+109. What is HikariCP?
+
+110. What is JPA?
+
+111. What is Hibernate?
+
+112. Difference between JPA and Hibernate.
+
+113. What is EntityManager?
+
+114. What is Persistence Context?
+
+115. What is the First-Level Cache?
+
+116. What is the Second-Level Cache?
+
+117. What is the N+1 Query Problem?
+
+118. What is Lazy Loading?
+
+119. What is Eager Loading?
+
+120. Difference between FetchType.LAZY and FetchType.EAGER.
+
+121. What are Cascade Types?
+
+122. What is @Transactional?
+
+123. How does @Transactional work internally?
+
+124. What is Dirty Checking in Hibernate?
+
+125. What is Optimistic Locking using @Version?
+
+126. What is Pessimistic Locking in JPA?
+
+127. What is the difference between save() and saveAndFlush()?
+
+128. What is the difference between getById() and findById()?
+
+129. What is the Open Session In View (OSIV) pattern?
+
+130. How do you optimize Hibernate performance?
+
+=================================
+MOST ASKED TOP 20
+=================================
+
+1. Second Highest Salary
+2. DELETE vs TRUNCATE vs DROP
+3. INNER JOIN vs LEFT JOIN
+4. UNION vs UNION ALL
+5. Primary Key vs Unique Key
+6. What is an Index?
+7. Clustered vs Non-Clustered Index
+8. ACID Properties
+9. Transaction Isolation Levels
+10. Deadlock
+11. Optimistic vs Pessimistic Locking
+12. Stored Procedure vs Function
+13. View vs Materialized View
+14. Find Duplicate Records
+15. Query Optimization
+16. Execution Plan
+17. How Index Works Internally
+18. N+1 Query Problem
+19. @Transactional Internal Working
+20. Query takes 5 seconds on 50 million rows. How will you optimize it?
+

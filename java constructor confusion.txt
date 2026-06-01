@@ -1,3 +1,200 @@
+01. What is cursor and how many types of cursor in java ? 
+Ans - Cursor is a concept used to iterate (move step-by-step) through a collection of objects, 
+
+Types of cursors in java -
+
+1. Enumeration
+		-	Introduced in early versions of Java (legacy classes like Vector and Hashtable).
+		-	Used to read elements one by one.
+		-	Read-only → you cannot modify or remove elements.
+	Methods:
+		-	hasMoreElements()
+		-	nextElement()
+		
+2. Iterator
+		-	Applicable to all collection classes (like ArrayList, HashSet, etc.).
+		-	Supports removal of elements while iterating.
+	Methods:
+		-	hasNext()
+		-	next()
+		-	remove()
+
+3. ListIterator
+		-	Only for list-based collections (like ArrayList, LinkedList).
+		-	More powerful than Iterator.
+
+	Features:
+		Can move forward and backward
+		Can add, remove, and modify elements
+
+		Methods:
+			-	hasNext(), next()
+			-	hasPrevious(), previous()
+			-	add(), remove(), set()
+
+	🔹 Summary
+		Enumeration → Read-only, legacy
+		Iterator → Read + remove
+		ListIterator → Read + add + remove + update + bidirectional
+
+02.	How arraylist work internally ? 	
+Ans - 
+An ArrayList in Java is a resizable array implementation of the List. Internally, it is based on a dynamic array, not a linked structure.
+
+1 - Internal Structure 
+		-	ArrayList uses an internal array:
+		transient Object[] elementData;		
+		-	This array stores all the elements.
+		-	Initially, it may be empty or of a small default capacity (commonly 10).
+		
+2 - Adding Elements
+	When you do:
+		list.add("A");
+	
+	What happens internally:
+		Element is placed in the internal array.
+		If the array has space → directly inserted.
+		If full → resizing happens.
+		
+		Resizing process:
+						New array is created (usually 1.5x larger than old size).
+						Old elements are copied to the new array.
+						New element is added.
+👉 This resizing is costly (O(n)), but happens occasionally.
+
+3. Accessing Elements
+		list.get(index);
+		Direct access using index.
+		Time complexity: O(1) (very fast).
+	Because it is array-based, elements are stored in contiguous memory.
+
+4. Removing Elements
+		list.remove(index);
+	
+	What happens:
+		Element is removed.
+		All elements after it are shifted left.
+		Array size remains same, but logical size decreases.
+
+👉 Time complexity: O(n) due to shifting. 	
+
+5. Size vs Capacity
+		Size → number of actual elements
+		Capacity → size of internal array
+	Example:
+		Size = 5
+		Capacity = 10
+
+6. Growth Formula
+		When ArrayList grows:
+			New Capacity = Old Capacity + (Old Capacity / 2)
+		So growth is around 50% increase.
+		
+7. Key Characteristics
+
+✔ Fast random access (O(1))
+✔ Slow insertion/removal in middle (O(n))
+✔ Dynamic resizing
+✔ Uses array internally		
+
+8. Simple Mental Model
+	Think of ArrayList like:
+		A normal array that automatically creates a bigger array and copies data whenever it becomes full.
+		
+		
+		
+Q3. short arr using bubble short 
+Ans - 
+package challenge60.days.day06;
+
+public class BubbleSortExample {
+	public static void main(String[] args) {
+		int[] arr = {5, 1, 4, 2, 8};
+		int n = arr.length;
+		
+		for(int i =0 ; i< n-1 ; i++) {
+			for(int j = 0 ;j<n -i-1; j++) {
+				if(arr[j] > arr[j+1]) {
+					int temp = arr[j];
+					arr[j] =arr[j+1];
+					arr[j+1]=temp;
+				}
+			}
+		}
+		
+		//print result 
+		for(int num : arr) {
+			System.out.print(num + " ");
+		}		
+	}
+}
+
+🔹 Key Points (for interview)
+Time Complexity: O(n²)
+Space Complexity: O(1)
+Stable sorting algorithm
+Simple but inefficient for large datasets
+
+Q3 - mapToInt vs boxed()
+
+| Feature     | `mapToInt()`       | `.boxed()`         |
+| ----------- | ------------------ | ------------------ |
+| Direction   | Object → Primitive | Primitive → Object |
+| Output      | `IntStream`        | `Stream<Integer>`  |
+| Performance | Faster             | Slower             |
+| Use case    | Calculations       | Collections        |
+
+
+Q4 - array convert into list 
+package challenge60.days.day07;
+
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Example {
+	public static void main(String[] args) {
+		int[] x = { 10, 9, 11, 5, 6, 17 };
+
+		List<Integer> list = Arrays.stream(x).boxed() // conver int stream into object stream
+				.sorted(Comparator.reverseOrder())
+				.collect(Collectors.toList());
+		System.out.println(list);
+
+		int sum = Arrays.stream(x).boxed() // convert primitive stream to object stream for sorting purpose
+				.sorted(Comparator.reverseOrder()) // sort descending order
+				.limit(3) // top 3
+				.mapToInt(Integer::intValue) // convert object to instream
+				.sum();
+
+		System.out.println(sum);
+
+		List<Integer> list1 = Arrays.asList(5, 45, 6, 1, 9, 6);
+
+		int[] arry = list.stream().mapToInt(Integer::intValue) // convert object intstream
+				.toArray();
+		for (int a : arry) {
+			System.out.print(a + " ");
+		}
+
+	}
+
+}
+
+
+💡 Senior-Level Tip
+
+👉 Avoid unnecessary conversions:
+
+If you only need sum → don’t use .boxed()
+Use .boxed() only when:
+You need sorting with comparator
+You need collections
+
+
+
+
 01 - What are the major features of Java 8?
 Ans - Lambda, Functional Interfaces, Streams, Default methods, Optional, Date & Time API, Method References, CompletableFuture.
 
@@ -458,214 +655,178 @@ Ans -  int max = list.stream().mapToInt(Integer::intValue).max().orElse(0);
 		
 
 40. Why are lambda expressions stateless? What problems occur if they aren’t?
-Ans - 
+Ans - Lambdas are designed to operate without maintaining mutable state.
+benefit - 
+	- 	Thread Safe
+	-	Easier Parallel execution
+	-	Predictable behaviour
+
+Problem with stateful lambdas:
+List<Integer> list = Arrays.asList(1,2,3,4);
+int[] sum = {0};
+
+list.forEach(i -> sum[0] += i); // stateful
+
+In parallel streams:
+
+list.parallelStream()
+    .forEach(i -> sum[0] += i);
+
+	
 
 41. Can a lambda access instance and static variables? Explain rules.
+Ans - YEs 
+class Test {
+    int instanceVar = 10;
+    static int staticVar = 20;
+
+    void demo() {
+        Runnable r = () -> {
+            System.out.println(instanceVar);
+            System.out.println(staticVar);
+        };
+    }
+}
+
+Rules:
+		-	Instance variables can be modified.
+		-	Static variables can be modified.
+		-	Local variables must be effectively final.
+
+
+
 
 42. Why must local variables used inside lambda be effectively final?
+Ans - 
+	Local variables live on stack.
+	Lambda may execute after method finishes.
+	
+	int x = 10;
+	Runnable r = () -> System.out.println(x);
+	x = 20; // compile error
+
+	JVM copies value into lambda object.	
+	Allowing modification would create inconsistent states.
+
 
 43. Difference between anonymous inner class vs lambda (memory & behavior)?
+Ans -
+| Feature              | Lambda       | Anonymous Class  |
+| -------------------- | ------------ | ---------------- |
+| Separate .class file | No           | Yes              |
+| Memory               | Less         | More             |
+| this keyword         | Outer object | Anonymous object |
+| Performance          | Better       | Slower           |
+| Boilerplate          | Minimal      | More             |
+
+Runnable r1 = () -> System.out.println(this);
+
+Runnable r2 = new Runnable() {
+    public void run() {
+        System.out.println(this);
+    }
+};
+
+this points differently.
+
 
 44. Can lambda expressions be serialized?
+ANs - Yes, only if target functional interface extends Serializable.
+
+@FunctionalInterface
+interface MyFunc extends Serializable {
+    void run();
+}
+
 
 45. How does Java implement lambdas internally (invokedynamic)?
+Ans - Java 8 uses:
+	invokedynamic
+	instead of generating anonymous class files.
+
+	Process:
+			Compiler creates lambda metadata.
+			JVM sees invokedynamic.
+			LambdaMetafactory creates implementation.
+			JVM may cache instance.
+
+	Benefits:
+			Less memory
+			Faster startup
+			Better optimization	
+	
+	
 
 46. Can you overload methods with functional interfaces?
+Ans - 
+	Yes. 
+	Java allows method overloading with different functional interfaces. However, if multiple functional interfaces have compatible abstract method signatures, 
+	a lambda expression may match more than one overloaded method, causing a compile-time ambiguity error. In such cases, explicit casting or assigning the lambda to a 
+	specific functional interface type is required.
 
-47. Why does this behave differently in lambda vs anonymous class?
 
 
 48. Can a functional interface have default methods?
+Ans - Yes, a functional interface can have default methods.
 
-49. Can it have static methods?
+A functional interface is required to have exactly one abstract method, but it can contain:
 
-50. Why does Comparator remain functional despite many methods?
+Default methods
+Static methods
+Private methods (Java 9+)
+Methods inherited from Object
+
+These do not affect its functional-interface status.
+
 
 51. Difference between UnaryOperator and Function?
+Ans - Function<T,R> represents an operation that accepts a value of type T and returns a value of type R. UnaryOperator<T> is a specialization of Function<T,T> 
+where both the input and output are of the same type. Use UnaryOperator when the operation transforms a value without changing its type, and Function when the return 
+type may differ from the input type
 
-52. When would you prefer BiFunction over Function?
 
-53. How to create a custom functional interface?
 
 54. Can functional interfaces extend other interfaces?
+Ans - Yes. A functional interface can extend one or more interfaces, provided that after inheritance it still contains exactly one abstract method.
+ If multiple inherited interfaces introduce different abstract methods, the interface is no longer functional. If inherited abstract methods have the same signature, they count
+ as a single abstract method, and the interface remains functional.
 
 55. Why are streams lazy?
+Ans -A stream does not process data when intermediate operations are called. Instead, it builds a pipeline and executes it only when a terminal operation is invoked.
 
-56. What happens internally when a stream pipeline executes?
 
-57. Why are streams not stored anywhere?
 
 58. How does short-circuiting work (findFirst, anyMatch)?
+Ans - Short-circuiting allows a stream pipeline to terminate early once the final result is known. Operations such as findFirst(), findAny(), anyMatch(), allMatch(), noneMatch(), and limit() 
+do not necessarily process the entire stream. During execution, elements flow through the pipeline one at a time. When the terminal operation determines that no further elements are needed, it 
+signals cancellation, causing the stream to stop requesting additional elements from the underlying Spliterator. This improves performance and enables efficient handling of large or infinite streams.
 
 59. Why is forEach() discouraged for business logic?
-
-60. Difference between forEach() and forEachOrdered()?
+Ans -forEach() is primarily intended for side effects such as logging, printing, or triggering actions. Using it for business logic often introduces mutable shared state, reduces readability, 
+makes code harder to test, and can cause thread-safety issues with parallel streams. Stream operations such as map, filter, reduce, and collect express business logic more declaratively and 
+take better advantage of the Stream API's design principles.
 
 61. Can you modify a collection while streaming over it?
-
-62. Why are streams single-use?
-
-63. Real-world use case for flatMap()?
-
-64. Why does flatMap() reduce nesting?
-
-65. Difference between map() and flatMap() return types?
-
-66. What happens if flatMap() returns null?
-
-67. How does Java decide thread count in parallel streams?
-
-68. What is the ForkJoinPool?
-
-69. Why parallel streams can be slower than sequential?
-
-70. Is parallel stream suitable for database calls?
-
-71. Why shared mutable state breaks parallel streams?
-
-72. How do you debug parallel stream issues?
+Generally, no. Modifying the source collection during stream traversal can cause a ConcurrentModificationException because streams rely on iterators or spliterators that expect the
+ collection structure to remain unchanged during processing. Instead, use operations like removeIf(), collect results into a new collection, or perform modifications after the
+ stream has completed. Concurrent collections such as CopyOnWriteArrayList are exceptions because they provide safe snapshot-based iteration.
 
 73. Difference between collect() and reduce()?
+Ans -reduce() combines stream elements into a single result using an associative accumulation operation and is typically used for calculations such as sum, max, min, or string concatenation. collect() 
+accumulates elements into a mutable result container such as a List, Set, Map, or custom object. While reduce() is best suited for immutable reductions, collect() is specifically designed for mutable 
+accumulation and is generally more efficient and safer for parallel stream processing.
 
-74. How does groupingBy() work internally?
 
 75. groupingBy vs groupingByConcurrent?
+| Feature                   | `groupingBy()`                                         | `groupingByConcurrent()`          |
+| ------------------------- | ------------------------------------------------------ | --------------------------------- |
+| Return Type               | `Map<K, V>`                                            | `ConcurrentMap<K, V>`             |
+| Default Map               | `HashMap`                                              | `ConcurrentHashMap`               |
+| Thread-Safe               | No                                                     | Yes                               |
+| Best for Parallel Streams | Not optimized                                          | Optimized                         |
+| Ordering                  | Can preserve encounter order (depending on downstream) | Usually does not preserve order   |
+| Performance               | Good for sequential streams                            | Better for large parallel streams |
 
-76. partitioningBy vs groupingBy with boolean?
-
-77. How to collect into a custom collection?
-
-78. How does joining() work for strings?
-
-79. Why Optional should not be used as a field or method parameter?
-
-80. Difference between map() and flatMap() in Optional?
-
-81. When should Optional be returned from methods?
-
-82. Why is Optional.get() considered dangerous?
-
-83. Optional vs null – performance impact?
-
-84. Why is new Date API immutable?
-
-85. Difference between Instant and LocalDateTime?
-
-86. How does time-zone handling improve in Java 8?
-
-87. How do you convert old Date to LocalDateTime?
-
-88. Difference between thenApply(), thenAccept(), thenRun()?
-
-89. How does exception handling work in CompletableFuture?
-
-90. Why peek() should not be used for logic?
-
-91. Can a stream be infinite?
-
-92. What happens if an exception occurs inside a stream?
-
-93. Why Optional is not Serializable by default?
-
-94. Why is Stream not a data structure?
-
-95. How does stream pipeline fusion improve performance?
-
-96. What is a Spliterator? Why is it important?
-
-97. Difference between Iterator and Spliterator?
-
-98. How does trySplit() work in parallel streams?
-
-99. What is characteristics() in Spliterator?
-
-100. Why do parallel streams perform poorly with LinkedList?
-
-101. What happens if stream source is infinite?
-
-101. How does limit() behave on parallel streams?
-
-101. Why does distinct() behave differently in parallel streams?
-
-101. Do lambdas create objects at runtime?
-
-101. How does Java 8 reduce anonymous class overhead?
-
-101. Where are lambda expressions stored in memory?
-
-101. Difference between stateless and stateful lambdas?
-
-101. How does escape analysis affect lambdas?
-
-101. Are lambdas cached by JVM?
-
-101. Why lambdas improve GC performance?
-
-101. When does method reference fail but lambda works?
-
-101. Ambiguity issues with method references?
-
-101. Constructor reference with generics – how does it work?
-
-101. Difference between Class::instanceMethod and obj::instanceMethod?
-
-101. Can method references be overloaded?
-
-101. How does Collector work internally?
-
-101. What are supplier, accumulator, combiner?
-
-101. Why combiner is critical for parallel streams?
-
-101. What happens if combiner is incorrect?
-
-101. Can you write a custom Collector?
-
-101. Why toMap() throws exception on duplicate keys?
-
-101. How to handle duplicate keys in toMap()?
-
-101. Why reduce() is unsafe with mutable objects?
-
-101. Why Optional should not be used with streams improperly?
-
-101. Difference between Optional.orElseThrow() and orElseGet()?
-
-101. Why Optional was not added to collections?
-
-101. Optional in serialization – issues?
-
-101. Why Optional is discouraged in setters?
-
-101. Diamond problem in interfaces – how Java 8 solved it?
-
-101. What happens if two interfaces have same default method?
-
-101. How do you explicitly call an interface’s default method?
-
-101. Can default methods be synchronized?
-
-101. Why default methods can’t override Object methods?
-
-101. Difference between thenCompose() and thenCombine()?
-
-101. How do you chain async DB + REST calls?
-
-101. How does CompletableFuture.allOf() work?
-
-101. Difference between allOf() and anyOf()?
-
-101. How do you handle timeouts in CompletableFuture?
-
-101. What is the default thread pool used?
-
-101. Why blocking inside CompletableFuture is dangerous?
-
-101. Difference between parallelStream() and CompletableFuture?
-
-101. Why streams are bad for complex async workflows?
-
-101. When should you avoid Java 8 features completely?
 
 1 - why use mapToInt
 Ans - mapToInt()is intermediate stream operation
@@ -873,3 +1034,1350 @@ Ans - in java8, we can reverse sorting in stream using :
 Ans - 	In Java 8, multi-level sorting is achieved using Comparator.comparing() followed by thenComparing(), 
 allowing clean, readable, and flexible sorting logic across multiple fields.
 
+========== KEY POINTS ================
+
+01. Constructor Overloading
+Ans - You can have multiple constructors with different parameters.
+	Car() { }
+	Car(String name) { }
+	Car(String name, int price) { }
+
+02.	Used for initialization - Commonly used to assign values to instance variables.
+
+03. No inheritance of constructors - Constructors are not inherited, 
+but can be called using super().
+
+04. What is the use of this() in constructors?
+Ans - It is used to call another constructor in the same class.
+	class A{
+	A(){
+		this(10);
+		System.out.println("Default Paramter Called ... ");
+	}
+	
+	A(int x){
+		System.out.println(x);
+	}
+	
+}
+public class ConstructorDemo {
+	public static void main(String[] args) {
+		A a = new A(); //
+	}
+}
+
+OUTPUT :: 
+10
+Default Paramter Called ...
+
+05. What is the use of super()?
+
+06. No. Constructors cannot be overridden because they are not inherited.
+
+07. No. Constructors cannot be static.
+
+08. Calling one constructor from another using this() or super().
+
+09. Can we throw exceptions in a constructor? 
+Ans -	Yes, constructors can throw exceptions using throws.
+
+10.	What is the first line of a constructor?
+Ans - Either this() or super() (implicitly super() if not written).
+
+11. What happens internally when an object is created?
+Ans - Expected Depth : 
+		-	Memory allocation in heap
+		-	Default values assigned
+		-	Constructor is called
+		-	Object references stored in stack
+		
+	👉 Strong candidates may mention:
+		-	Class loading
+		-	Object initialization sequence
+		-	JVM memory model	
+
+12. Explain constructor chaining in complex inheritance
+Ans - 
+class A{
+	A(){		
+		System.out.println("A ......... ");
+	}	
+}
+
+class B extends A{
+	B(){
+		System.out.println("B ......... ");
+	}
+}
+
+class C extends B{
+	C(){
+		System.out.println("C ......... ");
+	}
+}
+public class ConstructorDemo {
+	public static void main(String[] args) {
+		A a = new C(); //
+	}
+}
+
+- OUTPUT :: Answer: A → B → C
+
+13. What is the order of execution in object creation?
+Ans -
+	-	Static block
+	-	Static variables
+	-	Instance block
+	-	Constructor		
+
+14. How do constructors behave with cloning and serialization?
+Ans -
+	Cloning: constructor is NOT called
+	Deserialization: constructor is NOT called
+👉 Important for senior-level understanding	
+
+15. When would you avoid using constructors?
+Ans 👉 Prefer:
+		-	Factory methods
+		-	Builder pattern
+		-	Dependency injection frameworks
+
+
+16. Constructor + Method Override Trap		
+Ans - class A {
+    A() {
+        System.out.println("A Constructor");
+        show();
+    }
+    void show() {
+        System.out.println("A show");
+    }
+}
+
+class B extends A {
+    int x = 10;
+
+    void show() {
+        System.out.println("B show: " + x);
+    }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        A obj = new B(); //
+    }
+}
+
+Output :: 
+		A Constructor
+		B show: 0
+
+👉 Why tricky?
+			-	show() is overridden → child method is called
+			-	But x is not initialized yet → default value 0		
+
+17. Static Method vs Overriding
+Ans - 
+class M1 {
+	static void show() {
+		System.out.println("A static .. ");
+	}
+}
+
+
+class M2 extends M1{
+	static void show() {
+		System.out.println("B static .. ");
+	}
+	
+}
+public class Test02 {
+	public static void main(String[] args) {
+		M1 m1= new M2();
+		m1.show();
+	}
+
+}
+
+
+output :: A static .. 
+
+👉 Concept:
+
+		-	Static methods are not overridden, they are hidden
+		-	Method call depends on reference type, not object	
+
+18. 
+Ans - class A {
+    int x = 10;
+}
+
+class B extends A {
+    int x = 20;
+}
+
+public class Test {
+    public static void main(String[] args) {
+        A obj = new B();
+        System.out.println(obj.x);
+    }
+}
+
+output - 10
+
+Concept:
+		-	Variables are not polymorphic
+		-	Access depends on reference type		
+
+ -----------------------------------------------------------------------
+ 
+ =================== COMPOSITION ================================
+ 
+ 19. Compostion (String HAS-A)
+ Ans - 
+		-	String relationship
+		-	Child cannot exist indenpendently of parent
+		-	If parent is destroyed -> child is also destroyed
+	
+	👉 Example:
+		House has-a Romm (room does't exist without house)
+		
+package challenge60.days.day07;
+
+class Engine {
+	void start() {
+		System.out.println("Engine started .. ");
+	}
+}
+
+class TurboEngine extends Engine {
+	void start() {
+		System.out.println("Turbo Engine started");
+	}
+}
+
+class Car {
+	// Engine is create inside Car - String ownership
+
+	private Engine engine;
+
+	Car() {
+		// Car is directly creating Engine
+		// So Car is responsible for Engine lifecycle
+		// You cannot change Engine easily
+		// You cannot inject different Engine types
+		engine = new Engine();
+		// Car is permanently tied to this Engine class
+		// You cannot pass:
+		// TurboEngine
+		// ElectricEngine
+	}
+
+	void drive() {
+		engine.start();
+		System.out.println("Car is moving .. ");
+	}
+}
+
+class Car2 {
+	private Engine engine;
+
+	Car2(Engine engine) {
+		this.engine = engine;
+	}
+
+	void drive() {
+		engine.start();
+		System.out.println("Car is moving .. ");
+	}
+
+}
+
+public class CompositionVsAggregationDemo {
+
+	public static void main(String[] args) {
+		Car car = new Car();
+		car.drive();
+
+		Engine engine = new Engine(); // create outside
+		Car2 car2 = new Car2(engine);
+		car.drive();
+
+		Engine engine2 = new TurboEngine();
+		Car2 car3 = new Car2(engine2);
+		car3.drive();
+	}
+
+}
+
+
+
+
+20. Composition vs Aggregation 
+Ans - 
+| Before (Composition)      | After (Aggregation)       |
+| ------------------------- | ------------------------- |
+| Engine created inside Car | Engine created outside    |
+| Car controls lifecycle    | Caller controls lifecycle |
+| Tight coupling            | Loose coupling            |
+| Hard to extend            | Easy to extend            |
+ 
+ 
+ 9 . What is peek() used for?
+Ans -  
+🔹 Purpose of peek()
+	Performs an action on each element
+	Does not modify the stream
+	Mainly used for logging / debugging
+	Lazy — executes only when terminal operation is called
+
+
+ List<Integer> list = Arrays.asList(10,2,6,8,4,85,0,45,6,4,7,4,1,5,12);
+    List<Integer> peekDemo =   list.stream()
+               .filter(n -> n >10)
+               .peek(n -> System.out.println("After filter::" +n))
+               .map(n -> n*2)
+               .collect(Collectors.toList());
+    
+        System.out.println("peek demo :: " +peekDemo);
+		
+
+
+
+24 - How to sort by multiple fields?
+Ans - 	In Java 8, multi-level sorting is achieved using Comparator.comparing() followed by thenComparing(), 
+allowing clean, readable, and flexible sorting logic across multiple fields.
+
+01 	- 	What is difference between == and .equals() in java ?
+Ans -	== → compares references (memory address) for objects
+		.equals() → compares content (logical equality)
+	👉 Example: Two different String objects with same text → == false, .equals() true
+
+02 - What is the difference between Hashmap and ConcurrentHashMap();
+Ans -	HashMap
+			-	Not thread-safe
+			-	Faster in single-threaded environments
+		ConcurrentHashMap
+			-	Thread-safe (used in multi-threading)
+			-	Uses segment locking / CAS (not full locking like Hashtable)
+			-	Better performance in concurrent apps
+
+03 - What happend if you override equals() but not hashcode();
+Ans -	This breaks the contract between equals and hashCode:
+			-	Equal objects must have same hashCode
+			If not:
+			-	Collections like HashMap, HashSet behave incorrectly
+			-	You may not retrieve objects properly
+
+04 - What is the difference between String, StringBuilder, and String Buffer?
+Ans -	String
+			-	Immutable
+			-	Thread-safe (because immutable)
+		StringBuilder
+			-	Mutable
+			-	Not thread-safe
+			-	Fastest
+		StringBuffer
+			-	Mutable
+			-	Thread-safe (synchronized)
+			-	Slower than StringBuilder
+
+05 - Can we change return type in method overloading and overriding ?
+Ans -	Overloading
+			-	Return type can change, but method parameters must differ
+		Overriding
+			-	Return type must be same or covariant (subtype allowed)
+
+06 - What is the difference between composition and inheritance?
+Ans -	
+		Inheritance ("is-a")
+			-	Strong relationship
+			-	Example: Dog is a Animal
+		Composition ("has-a")
+			-	Flexible, loosely coupled
+			-	Example: Car has an Engine
+	👉 Composition is generally preferred (better design flexibility)
+
+07 - WHat us the difference between throw and throws ?
+Ans -
+	throw
+		-	Used to explicitly throw an exception
+		-	Inside method body
+	throws
+		-	Declares exceptions a method might throw
+		-	In method signature
+
+08 - What is use of ifnal , finally, and finalize()?
+Ans -
+		final
+			-	Keyword → constant, prevent inheritance/override
+		finally
+			-	Block → always executes (cleanup code)
+		finalize()
+			-	Method called by GC before object destruction (deprecated in modern Java)
+
+09 - What is OutOfMemoryError and when does it occur?
+Ans - 
+Occurs when JVM cannot allocate memory
+Common cases:
+	-	Heap space full
+	-	Too many objects
+	-	Memory leaks
+	-	Infinite object creation
+	
+
+10 - Explain how Garbage Collection works in Java (Vbasic idea,)
+Ans -
+		-	JVM automatically frees memory
+		-	Removes unused objects (no references)
+		-	Uses algorithms like:
+			-	Mark and Sweep
+			-	Generational GC
+	👉 Helps prevent memory leaks (but not all cases)
+
+11 - What is the difference between synchronized block and ReentrantLock? When woulf you use each ?
+Ans - 
+	synchronized :
+			-	Simpler
+			-	Automatically releases lock
+			-	No advanced control
+	ReentrantLock :
+			-	More flexible
+			-	Supports:
+					tryLock()
+					fairness policy
+					interruptible locks
+		👉 Use:
+			synchronized → simple cases
+			ReentrantLock → complex concurrency control
+
+12 - When Kafka is flooded with million of messages per seconds, what keeps data safe and consistent ?
+Ans -
+1 . Partitioning + Replication
+		-	Topics are split into partitions → allows parallel processing
+		-	Each partition is replicated across brokers
+		-	One leader, multiple followers
+		-	If a broker fails → follower becomes leader
+		👉 Ensures fault tolerance + availability
+
+2.	Acknowledgment Settings (acks)		
+	Producers control durability using:
+		-	acks=0 → no guarantee
+		-	acks=1 → leader writes only
+		-	acks=all → strongest guarantee (all replicas confirm)
+	👉 High throughput systems usually tune this carefully
+
+3.	In-Sync Replicas (ISR)
+	-	Kafka maintains a list of replicas that are fully caught up
+	-	Writes succeed only if required ISR members acknowledge
+	👉 Prevents data loss when replicas lag behind
+
+4. 	Write-Ahead Log (Commit Log)
+	-	Kafka stores data in an append-only log
+	-	Disk writes are sequential → very fast and reliable
+	👉 Even at huge scale, disk I/O remains efficient
+	
+5. 	Producer Idempotence
+	-	Prevents duplicate messages during retries
+	-	Ensures exactly-once delivery (producer side)
+	👉 Critical under heavy load or network retries
+6. 	Transactions (Exactly-Once Semantics)
+	-	Kafka supports atomic writes across partitions
+	Ensures:
+		-	No duplicates
+		-	No partial writes
+	👉 Used in financial or critical pipelines
+	
+7. 	Consumer Offset Management
+		-	Consumers track what they’ve read via offsets
+		-	Offsets can be committed manually or automatically
+	👉 Helps maintain processing consistency
+8. 	Backpressure Handling
+		-	Kafka naturally buffers data in partitions
+		-	Consumers can lag without losing data
+	👉 Prevents system crashes under spikes
+9. 	Batching & Compression
+		-	Producers batch messages
+		-	Compression reduces network load
+	👉 Maintains performance without sacrificing reliability
+10. ZooKeeper / KRaft (Metadata Management)
+		-	Older Kafka uses Apache ZooKeeper
+		-	Newer versions use KRaft mode (Kafka Raft consensus)
+	👉 Keeps cluster state consistent	
+
+
+Final Interview Closing (Power Statement)
+
+“So in short, Kafka combines partitioning, replication, ISR, acknowledgments, and commit logs for durability; idempotence and transactions for correctness; and offsets plus buffering 
+for consistency under load. That’s why even at millions of messages per second, it remains fault-tolerant and reliable.”
+“In real systems, we balance performance vs durability by tuning acks, replication factor, and batch size based on use case.”	
+		
+
+13 - Your app works perfectly on localhost but crashes in production. You hava 10 minutes. What do you check first ?		
+Ans - 
+	👉 1. Check logs
+			-	See the error message — it usually tells you what broke.
+
+	👉 2. Check configuration
+		Things like:
+			-	Database URL
+			-	API keys
+			-	Environment variables
+
+	👉 3. Check environment differences
+			-	Java version
+			-	OS differences
+			-	Missing files or settings
+
+	👉 4. Check database / network
+			-	Is DB running?
+			-	Can app connect?
+		
+14 - If two microservice need to communicate, What options do you have and how do you choose ?		
+Ans - 
+	1. REST API (HTTP)
+			Simple, widely used
+			One service calls another directly
+		👉 Use when: you need quick, simple request–response
+
+	2. gRPC
+			Faster than REST (binary, not JSON)
+			Strong contract (Protobuf)
+		👉 Use when: performance is important (internal services)
+
+	3. Message Queue (async)
+			Examples: Apache Kafka, RabbitMQ
+			Services communicate via messages
+			No direct dependency
+		👉 Use when: you want loose coupling + high scalability
+	
+	4. Event-driven
+			One service publishes events, others listen
+		👉 Use when: multiple services react to same action
+		
+15 - How did the API response time drop 2s to 200ms ?	
+Ans 
+	1. Database optimization (biggest win)
+			Added proper indexes
+			Removed slow queries / N+1 queries
+			Reduced unnecessary joins
+		👉 Often cuts seconds to milliseconds
+	
+	2. Caching
+			Stored frequent results in cache (like Redis / in-memory)
+			Avoided hitting DB every time
+		👉 Huge speed improvement for repeated requests
+
+	3. Async processing
+			Moved heavy tasks (emails, reports, logging) to background jobs
+		
+		👉 API returns faster because it doesn’t wait
+	
+	4. Reduced payload size
+			Returned only required fields (DTO optimization)
+			Removed large JSON structures
+		👉 Less data = faster response
+	
+	5. Connection pooling
+			Reused DB connections instead of creating new ones
+		👉 Reduced connection overhead
+	6. Service optimization
+			Removed extra microservice calls
+			Reduced network hops
+		👉 Fewer dependencies = faster response
+	7. Infra improvements
+			Better CPU / memory allocation
+			Load balancing across servers	
+		
+16. You have 30 seconds stack vs Heap memory explain use of both in java ?	
+Ans - 
+	Stack memory
+		-	Stores method calls and local variables
+		-	Each thread has its own stack
+		-	Works in LIFO (last in, first out) order
+		-	Automatically cleared when method ends
+	👉 Example: primitive variables, references inside methods
+	
+	Heap memory
+		-	Stores objects and class instances
+		-	Shared across all threads
+		-	Managed by Garbage Collector
+		-	Stays until no reference exists
+	👉 Example: objects created using new
+
+	Simple difference
+		-	Stack = fast, temporary (method work)
+		-	Heap = shared, long-term (objects)
+
+17. If INDEXES make DATABASE FASTER ? why don't you create index on all columns ? 		
+Ans - 
+		1. Slower writes (INSERT / UPDATE / DELETE)
+				-	Every index must also be updated when data changes
+			👉 More indexes = slower writes
+
+		2. Extra storage
+				-	Indexes take additional disk space
+			👉 Too many indexes = heavy storage cost
+
+		3. Maintenance overhead
+				-	Database must keep indexes updated and balanced
+			👉 More indexes = more internal work
+
+		4. Not all columns are useful for search
+				-	Index helps only when you filter, join, or sort frequently
+				-	Columns like gender, flags, status may not benefit much
+
+		5. Wrong indexes can hurt performance
+				-	If column has low uniqueness (e.g., “true/false”)
+			👉 Index may not be used effectively
+
+18 - Find all missing number arr ={1,2,1,2,5,8}	?	
+Ans 
+package com.heg.arrayQuestions;
+
+import java.util.HashSet;
+
+public class FindMissingNumber {
+	
+	public static void main(String[] args) {
+		int[] arr = {1,2,1,2,5,8};
+		
+		HashSet<Integer> set = new HashSet();
+		
+		// Add array elements to set (remove duplicates)
+		
+		for(int num : arr) {
+			set.add(num);
+		}
+		
+		// Find max value in array 
+		int max = 0; 
+		for(int num : arr) {
+			if(num > max) {
+				max=num;
+			}
+		}
+		
+		//print missing numbers from 1 to max 
+		System.out.println("Missing numbers :: ");
+		for(int i = 1 ; i <= max ; i++) {
+			if(!set.contains(i)) {
+				System.out.println(i + " ");
+			}
+		}
+		
+	}
+
+}
+
+
+19 - your Singleton class is supposed to have  ONE instance. But multiple objects are created in production how do you debug and fix this ?
+Ans - “I would first log constructor calls to confirm multiple instances, then check threading issues, reflection misuse, serialization, and classloader behavior. 
+I would fix it using Enum Singleton or a thread-safe double-checked locking implementation.”
+
+20. What is the String pool in java ?
+Ans - 👉 String Pool is a memory area where Java stores and reuses String literals to save memory
+
+	Key points:
+		-	Improves memory efficiency
+		-	Stored in heap memory
+		-	Only String literals go to pool automatically
+		-	intern() can manually add String to pool
+		
+21 		Q1: Difference between ArrayList and LinkedList
+
+Answer:
+
+Feature					ArrayList			LinkedList
+Data structure			Dynamic array		Doubly linked list
+Access by index			O(1)				O(n)
+Insert/delete			O(n)				O(1) if position known
+Memory					Less				More (stores node pointers)
+Best use				Random access		Frequent insert/delete
+
+
+Q2: subList() in ArrayList
+							index [0,1,2,3,4]
+List<Integer> list = Arrays.asList(1,2,3,4,5); 
+List<Integer> sub = list.subList(1,4);
+System.out.println(sub); // [2,3,4]
+
+Q3: Iterating over List
+for(int i : list) System.out.println(i); // enhanced for
+Iterator<Integer> it = list.iterator();
+while(it.hasNext()) System.out.println(it.next())
+
+Q4: List.of() vs Arrays.asList()
+| Feature         | Arrays.asList() | List.of() |
+| --------------- | --------------- | --------- |
+| Java version    | 1.2             | 9         |
+| Mutable values  | Yes             | No        |
+| Add/remove      | No              | No        |
+| Null allowed    | Yes             | No        |
+| Immutable       | No              | Yes       |
+| Backed by array | Yes             | No        |
+
+
+
+Q5: Difference between HashSet, TreeSet, LinkedHashSet
+
+Feature		HashSet			LinkedHashSet		TreeSet
+Order		None			Insertion			Sorted
+Duplicates	Not allowed		Not allowed			Not allowed
+Null		Yes, 1			Yes, 1				No
+Iterator	Fail-fast		Fail-fast		Fail-fast
+
+
+Q6: HashSet internal storage
+
+Uses HashMap internally
+
+Stores elements as keys, value = dummy object
+
+Hash code → bucket → equals() check
+
+
+
+56. What happens internally when a stream pipeline executes?
+Ans - 
+1. Create source
+2. Build pipeline
+3. Terminal starts execution
+4. Process one element at a time
+5. Pass through each stage
+6. Produce result
+
+57. Why are streams not stored anywhere?
+Ans - Streams are not stored because a stream is not a data structure; it is a lazy pipeline that processes elements from the source 
+on demand without creating intermediate storage.
+
+58. How does short-circuiting work (findFirst, anyMatch)?
+Ans - Short-circuiting works by allowing terminal operations like findFirst() or anyMatch() to stop the stream traversal as soon as 
+the result is determined, using internal cancellation to prevent processing remaining elements.
+
+63. Real-world use case for flatMap()?
+Ans - A real-world use case of flatMap() is flattening nested collections, such as extracting all orders 
+	from multiple customers into a single list for processing or reporting.
+
+
+66. What happens if flatMap() returns null?
+And - If flatMap() returns null, Java throws a NullPointerException because flatMap() expects every mapper function to return a 
+valid Stream, even if it is an empty stream.
+
+68. What is the ForkJoinPool?
+Ans - 
+The ForkJoinPool is a special thread pool in Java designed to efficiently execute tasks that can be:
+
+split into smaller subtasks (fork)
+processed in parallel
+combined later (join)
+
+It is part of Java's concurrency framework.
+
+I. Functional Interfaces & Lambda Internals
+JVM Mechanics: How does Java 8 reduce anonymous class overhead using invokedynamic, and are lambdas cached or stored in a specific memory area?
+
+State & Lifecycle: Distinguish between stateless and stateful lambdas. How do escape analysis and GC performance benefit from the lambda architecture?
+
+Method Reference Nuances: Compare Class::instanceMethod vs. obj::instanceMethod. In what scenarios does a lambda work where a method reference fails (e.g., ambiguity or generics)?
+
+Constructor References: How do constructor references interact with generics and overloading?
+
+II. Stream API: Mechanics & Performance
+Data Structures: Why is a Stream not considered a data structure, and why do parallel streams perform poorly with LinkedList compared to ArrayList or arrays?
+
+Pipeline Fusion: Explain stream pipeline fusion. How does it optimize performance, and what happens if an exception occurs mid-pipeline?
+
+Infinite Streams: How can a stream be infinite, and what are the behavioral risks when using limit() or distinct() on an infinite parallel stream?
+
+Side Effects & Safety: Why is peek() discouraged for logic, and why does shared mutable state break the thread-safety of parallel streams?
+
+Spliterator Mastery: What is a Spliterator, how do its characteristics() affect optimization, and how does trySplit() manage the decomposition of parallel tasks?
+
+III. Advanced Collectors & Reductions
+Collect vs. Reduce: Explain the fundamental difference between collect() and reduce(). Why is reduce() considered unsafe when used with mutable objects?
+
+Grouping & Partitioning: Compare groupingBy() vs. groupingByConcurrent() and explain why partitioningBy is more efficient than groupingBy for boolean keys.
+
+Custom Collector Architecture: Describe the internal roles of the supplier, accumulator, and combiner. Why is a correct combiner implementation vital for parallel streams?
+
+Map Handling: How does joining() work for strings internally, and how do you handle duplicate key collisions in toMap()?
+
+IV. The Optional Pattern
+Design Philosophy: Why was Optional not added to collections, and why is it discouraged as a class field, method parameter, or setter?
+
+Functional Usage: Compare map() vs. flatMap() in Optional. Why are orElseGet() and orElseThrow() preferred over the "dangerous" get()?
+
+Performance & Serialization: What is the performance impact of Optional vs. null, and why is Optional not Serializable by default?
+
+V. CompletableFuture & Asynchrony
+Chaining & Composition: Distinguish between thenApply(), thenAccept(), and thenRun(). When should you use thenCompose() versus thenCombine()?
+
+Error & Timeout Management: How does exception handling work in a CompletableFuture chain, and how do you implement timeouts?
+
+Resource Management: What is the default thread pool for CompletableFuture, and why is blocking (e.g., DB/REST calls) inside it dangerous for the rest of the application?
+
+Parallel Streams vs. CompletableFuture: When should you choose one over the other for complex async workflows?
+
+VI. Modern Date/Time & Interface Changes
+Immutability & Design: Why is the New Date API (java.time) immutable? Contrast Instant vs. LocalDateTime regarding time-zone handling.
+
+Legacy Migration: How do you safely convert a legacy java.util.Date to modern types like LocalDateTime?
+
+Interface Evolution: How does Java 8 solve the Diamond Problem with default methods, and why can these methods not override Object methods like equals() or hashCode()?
+
+Concurrency in Interfaces: Can default methods be synchronized, and how do you explicitly invoke a specific interface's default implementation?
+
+VII. General Best Practices
+The "When Not To Use" Rule: Under what specific architectural conditions should you avoid Java 8 features (Streams/Lambdas) entirely in favor of traditional loops or patterns?
+
+
+1 - why use mapToInt
+Ans - mapToInt()is intermediate stream operation
+		use for convert a Stream of objects into a primitive stream
+		mainly used when performing numerice operations sum, average, max, or min 
+		
+2 - difference between  .mapToInt(Integer::parseInt)
+						.mapToInt(Integer::intValue)	
+Ans - 	
+	Feature 	parseInt 		intValue	
+	Input Type 	String			Integer
+	Conversion	String->int 	Integer ->int
+	Used For 	Parsing text	Removing boxing
+	
+	mapToInt(Integer::parseInt)
+	
+
+3 -
+Ans -  	
+
+1. What is Stream API in Java 8?
+Ans - I use Stream to write clean, declarative, and maintainable code for bulk data operation like filtering, transaformation, aggregation, and grouping - 
+without explict iteration . 
+	Technically, Stream works on pipeline model : 
+	  Source - collection.stream()
+	  Intermediate operation(Lazy) - filter(), map(), sorted(), distinct()
+	  Terminal operations - collect(),reduce(),count(),foreach
+
+ Key points I usually highlight :
+	# Lazy evaluation improves performance
+	# Support parallel processing using parallelStream()
+	# Encourages immutability and side-effect-free logic
+	# Works well with Collectors for grouping, partitioning, summarizing 
+	
+
+2. 	Difference between Collection and Stream?
+Ans - # Collection
+		. Used to store data in memory.
+		. Supports CRUD operations (add, remove, update).
+		. Uses external iteration (for-loop, iterator).
+		. Data is available immediately.
+		. Can be iterated multiple time
+		
+	  # Stream
+		. Used to process data, not store it.
+		. Supports functional-style operations like filter, map, reduce.
+		. Uses internal iteration.
+		. Follows a pipeline model (lazy intermediate operations + terminal operation).
+		. Cannot be reused once consumed.
+
+3. 	What is the difference between intermediate and terminal operations?	
+Ans - 	Intermediate operations are lazy and optimized — operations are processed in a single pass when terminal operation is called.
+		Terminal operation is mandatory; without it, stream does nothing.
+		After terminal operation, the stream cannot be reused.
+	
+4. What happens if no terminal operation is used?
+Ans 	Without a terminal operation, stream pipeline is not executed.
+		No data processing happens.
+		No exception is thrown.
+		Stream behaves like a blueprint until a terminal operation is called.
+		
+5. What is lazy evaluation in Streams?
+Ans - 	Lazy evaluation means intermediate operations in a stream are executed only when a terminal operation is called, 
+allowing optimized and efficient single-pass data processing.	
+
+6. Can a Stream be reused after a terminal operation?
+Ans - A Stream cannot be reused after a terminal operation because it gets consumed. To process the data again, a new Stream must be created from the source.
+
+7. What is the difference between map() and flatMap()?
+Ans - map() is used for simple transformation of elements, whereas flatMap() is used when the transformation produces nested streams and we need to flatten them 
+into a single stream.
+
+8. What is the difference between filter() and distinct()?
+Ans - filter() is used for conditional filtering based on business logic, whereas distinct() is specifically used to eliminate duplicate elements using equals and hashCode.
+
+9 . What is peek() used for?
+Ans -  
+🔹 Purpose of peek()
+	Performs an action on each element
+	Does not modify the stream
+	Mainly used for logging / debugging
+	Lazy — executes only when terminal operation is called
+
+
+ List<Integer> list = Arrays.asList(10,2,6,8,4,85,0,45,6,4,7,4,1,5,12);
+    List<Integer> peekDemo =   list.stream()
+               .filter(n -> n >10)
+               .peek(n -> System.out.println("After filter::" +n))
+               .map(n -> n*2)
+               .collect(Collectors.toList());
+    
+        System.out.println("peek demo :: " +peekDemo);
+		
+10. What is the difference between forEach() and forEachOrdered()?
+Ans - 	forEach() focuses on performance and may not preserve order in parallel streams, whereas forEachOrdered() guarantees encounter order even in parallel processing, 
+with a possible performance trade-off.	
+
+11 - What is Collectors class?
+Ans -	The Collectors class in Stream API (introduced in Java 8) is a utility class that provides factory methods to collect 
+		stream elements into different forms like List, Set, Map, or perform grouping, partitioning, and aggregation.		
+		It is mainly used with the collect() terminal operation.
+		
+12 - What is the default Map implementation used by groupingBy()?
+Ans - By default, groupingBy() uses a HashMap, but we can provide a custom Map supplier 
+			like LinkedHashMap or TreeMap if ordering or sorting is required.
+		
+	🔥 Important Points
+			Default Map → HashMap
+			Order is not guaranteed
+
+13 - How to change the Map type in groupingBy()?
+Ans - To change the Map type in groupingBy(), we use the overloaded method 
+	that accepts a Map supplier, allowing us to use LinkedHashMap, TreeMap, or 
+	any custom Map implementation as per requirement.
+	
+	🔥 Why This Works
+			Internally, groupingBy():
+				Uses the provided Supplier to create the Map.
+				Accumulates values per key.
+				Uses combiner for parallel streams.
+			
+14 - What is a downstream collector?	
+Ans - A downstream collector is a collector that is applied after grouping or partitioning, to further process the grouped elements.
+	Internally
+
+🔥 Internally
+	groupingBy(classifier, downstreamCollector)
+		First → classify elements by key
+		Then → apply downstream collector on each group
+		Instead of List<T>, you get aggregated or transformed result
+
+15 - Difference between groupingBy() and partitioningBy()?
+Ans - partitioningBy() is a specialized version of groupingBy() for boolean conditions, 
+always producing two groups, while groupingBy() is more flexible and can create 
+multiple groups based on any classification function.	
+
+16 - What is counting() collector?
+Ans - counting() is a downstream collector in Java 8 Stream API that counts the number of elements in a stream or within each group.
+	counting() is a downstream collector used to count elements in a stream or within grouped results, returning the count as a Long value.	
+	
+17 - Difference between summingLong() and mapToLong().sum()?
+Ans - 	1 - summingLong()
+			- It is a Collectors
+			- Used inside collect()
+			- Mostly used as a downstream collector (e.g. with groupingBy)
+	
+		2 - mapToLong().sum()
+			-	Uses primitive stream (LongStream)
+			- 	Terminal operation
+			-	More direct and slightly more efficient
+	
+	🔥 Key Differences
+	summingLong()						mapToLong().sum()
+	Collector							Terminal operation
+	Used inside collect()				Direct sum on primitive stream
+	Good for grouping/aggregation		Good for simple summation
+	Slight boxing overhead				More performance optimized
+	
+18 - 	What is collectingAndThen()?
+Ans - collectinAndThen() is used to apply a final transformation after a collector finished its operation, 
+	enabling post-processing of collected results within the same stream pipeline.
+	
+	🔥 Why it's Used
+	- When result of collector need post-processing
+	- Help avoid extra stream operation
+	- Keep logic inside collect() pipeline
+
+
+19 - How to make grouping result immutable?
+Ans - To make the grouping result immutable, we use collectingAndThen() to wrap the result with an unmodifiable collection.	
+	
+		 Map<String,List<Employee>> immutableList = employees.stream()
+                .collect(Collectors.collectingAndThen(
+                        Collectors.groupingBy(Employee::getDepartment), 
+                        Collections::unmodifiableMap
+                ));
+				
+20 -	Difference between Comparable and Comparator?
+Ans - 	🔥 Real-World Understanding
+		Use Comparable when class has a single natural order (e.g., Employee by ID).
+		Use Comparator when sorting varies (by salary, name, date, etc.).
+			
+		Comparable defines the natural ordering of a class internally using compareTo(), 
+		while Comparator allows multiple custom sorting strategies externally using compare(), 
+		providing greater flexibility.	
+	
+21 - What is Comparator.comparing()?
+Ans - Comparator.comparing() is a Java 8 utility method that creates a Comparator 
+	based on a key extractor function, making sorting more concise, readable, 
+	and flexible compared to traditional Comparator implementations.
+
+22 - What is Comparator.comparingLong()?
+Ans - Comparator.comparingLong() is used to create a comparator based on a long 
+primitive field, avoiding boxing overhead and providing better performance compared 
+to Comparator.comparing() when dealing with primitive long values.	
+	
+23 - How to reverse sorting using streams?
+Ans - in java8, we can reverse sorting in stream using : 
+	# Comparator.reverseOrder()
+	# .reversed() method
+	# Custom comparator
+	
+
+24 - How to sort by multiple fields?
+Ans - 	In Java 8, multi-level sorting is achieved using Comparator.comparing() followed by thenComparing(), 
+allowing clean, readable, and flexible sorting logic across multiple fields.
+
+1 - why use mapToInt
+Ans - mapToInt()is intermediate stream operation
+		use for convert a Stream of objects into a primitive stream
+		mainly used when performing numerice operations sum, average, max, or min 
+		
+2 - difference between  .mapToInt(Integer::parseInt)
+						.mapToInt(Integer::intValue)	
+Ans - 	
+	Feature 	parseInt 		intValue	
+	Input Type 	String			Integer
+	Conversion	String->int 	Integer ->int
+	Used For 	Parsing text	Removing boxing
+	
+	mapToInt(Integer::parseInt)
+	
+
+01 	- 	What is difference between == and .equals() in java ?
+Ans -	== → compares references (memory address) for objects
+		.equals() → compares content (logical equality)
+	👉 Example: Two different String objects with same text → == false, .equals() true
+
+02 - What is the difference between Hashmap and ConcurrentHashMap();
+Ans -	HashMap
+			-	Not thread-safe
+			-	Faster in single-threaded environments
+		ConcurrentHashMap
+			-	Thread-safe (used in multi-threading)
+			-	Uses segment locking / CAS (not full locking like Hashtable)
+			-	Better performance in concurrent apps
+
+03 - What happend if you override equals() but not hashcode();
+Ans -	This breaks the contract between equals and hashCode:
+			-	Equal objects must have same hashCode
+			If not:
+			-	Collections like HashMap, HashSet behave incorrectly
+			-	You may not retrieve objects properly
+
+04 - What is the difference between String, StringBuilder, and String Buffer?
+Ans -	String
+			-	Immutable
+			-	Thread-safe (because immutable)
+		StringBuilder
+			-	Mutable
+			-	Not thread-safe
+			-	Fastest
+		StringBuffer
+			-	Mutable
+			-	Thread-safe (synchronized)
+			-	Slower than StringBuilder
+
+05 - Can we change return type in method overloading and overriding ?
+Ans -	Overloading
+			-	Return type can change, but method parameters must differ
+		Overriding
+			-	Return type must be same or covariant (subtype allowed)
+
+06 - What is the difference between composition and inheritance?
+Ans -	
+		Inheritance ("is-a")
+			-	Strong relationship
+			-	Example: Dog is a Animal
+		Composition ("has-a")
+			-	Flexible, loosely coupled
+			-	Example: Car has an Engine
+	👉 Composition is generally preferred (better design flexibility)
+
+07 - WHat us the difference between throw and throws ?
+Ans -
+	throw
+		-	Used to explicitly throw an exception
+		-	Inside method body
+	throws
+		-	Declares exceptions a method might throw
+		-	In method signature
+
+08 - What is use of ifnal , finally, and finalize()?
+Ans -
+		final
+			-	Keyword → constant, prevent inheritance/override
+		finally
+			-	Block → always executes (cleanup code)
+		finalize()
+			-	Method called by GC before object destruction (deprecated in modern Java)
+
+09 - What is OutOfMemoryError and when does it occur?
+Ans - 
+Occurs when JVM cannot allocate memory
+Common cases:
+	-	Heap space full
+	-	Too many objects
+	-	Memory leaks
+	-	Infinite object creation
+
+10 - Explain how Garbage Collection works in Java (Vbasic idea,)
+Ans -
+		-	JVM automatically frees memory
+		-	Removes unused objects (no references)
+		-	Uses algorithms like:
+			-	Mark and Sweep
+			-	Generational GC
+	👉 Helps prevent memory leaks (but not all cases)
+
+11 - What is the difference between synchronized block and ReentrantLock? When woulf you use each ?
+Ans - 
+	synchronized :
+			-	Simpler
+			-	Automatically releases lock
+			-	No advanced control
+	ReentrantLock :
+			-	More flexible
+			-	Supports:
+					tryLock()
+					fairness policy
+					interruptible locks
+		👉 Use:
+			synchronized → simple cases
+			ReentrantLock → complex concurrency control
+
+12 - When Kafka is flooded with million of messages per seconds, what keeps data safe and consistent ?
+Ans -
+1 . Partitioning + Replication
+		-	Topics are split into partitions → allows parallel processing
+		-	Each partition is replicated across brokers
+		-	One leader, multiple followers
+		-	If a broker fails → follower becomes leader
+		👉 Ensures fault tolerance + availability
+
+2.	Acknowledgment Settings (acks)		
+	Producers control durability using:
+		-	acks=0 → no guarantee
+		-	acks=1 → leader writes only
+		-	acks=all → strongest guarantee (all replicas confirm)
+	👉 High throughput systems usually tune this carefully
+
+3.	In-Sync Replicas (ISR)
+	-	Kafka maintains a list of replicas that are fully caught up
+	-	Writes succeed only if required ISR members acknowledge
+	👉 Prevents data loss when replicas lag behind
+
+4. 	Write-Ahead Log (Commit Log)
+	-	Kafka stores data in an append-only log
+	-	Disk writes are sequential → very fast and reliable
+	👉 Even at huge scale, disk I/O remains efficient
+5. 	Producer Idempotence
+	-	Prevents duplicate messages during retries
+	-	Ensures exactly-once delivery (producer side)
+	👉 Critical under heavy load or network retries
+6. 	Transactions (Exactly-Once Semantics)
+	-	Kafka supports atomic writes across partitions
+	Ensures:
+		-	No duplicates
+		-	No partial writes
+	👉 Used in financial or critical pipelines
+	
+7. 	Consumer Offset Management
+		-	Consumers track what they’ve read via offsets
+		-	Offsets can be committed manually or automatically
+	👉 Helps maintain processing consistency
+8. 	Backpressure Handling
+		-	Kafka naturally buffers data in partitions
+		-	Consumers can lag without losing data
+	👉 Prevents system crashes under spikes
+9. 	Batching & Compression
+		-	Producers batch messages
+		-	Compression reduces network load
+	👉 Maintains performance without sacrificing reliability
+10. ZooKeeper / KRaft (Metadata Management)
+		-	Older Kafka uses Apache ZooKeeper
+		-	Newer versions use KRaft mode (Kafka Raft consensus)
+	👉 Keeps cluster state consistent		
+		
+
+13 - Your app works perfectly on localhost but crashes in production. You hava 10 minutes. What do you check first ?		
+Ans - 
+	👉 1. Check logs
+			-	See the error message — it usually tells you what broke.
+
+	👉 2. Check configuration
+		Things like:
+			-	Database URL
+			-	API keys
+			-	Environment variables
+
+	👉 3. Check environment differences
+			-	Java version
+			-	OS differences
+			-	Missing files or settings
+
+	👉 4. Check database / network
+			-	Is DB running?
+			-	Can app connect?
+		
+14 - If two microservice need to communicate, What options do you have and how do you choose ?		
+Ans - 
+	1. REST API (HTTP)
+			Simple, widely used
+			One service calls another directly
+		👉 Use when: you need quick, simple request–response
+
+	2. gRPC
+			Faster than REST (binary, not JSON)
+			Strong contract (Protobuf)
+		👉 Use when: performance is important (internal services)
+
+	3. Message Queue (async)
+			Examples: Apache Kafka, RabbitMQ
+			Services communicate via messages
+			No direct dependency
+		👉 Use when: you want loose coupling + high scalability
+	
+	4. Event-driven
+			One service publishes events, others listen
+		👉 Use when: multiple services react to same action
+		
+15 - How did the API response time drop 2s to 200ms ?	
+Ans 
+	1. Database optimization (biggest win)
+			Added proper indexes
+			Removed slow queries / N+1 queries
+			Reduced unnecessary joins
+		👉 Often cuts seconds to milliseconds
+	
+	2. Caching
+			Stored frequent results in cache (like Redis / in-memory)
+			Avoided hitting DB every time
+		👉 Huge speed improvement for repeated requests
+
+	3. Async processing
+			Moved heavy tasks (emails, reports, logging) to background jobs
+		
+		👉 API returns faster because it doesn’t wait
+	
+	4. Reduced payload size
+			Returned only required fields (DTO optimization)
+			Removed large JSON structures
+		👉 Less data = faster response
+	
+	5. Connection pooling
+			Reused DB connections instead of creating new ones
+		👉 Reduced connection overhead
+	6. Service optimization
+			Removed extra microservice calls
+			Reduced network hops
+		👉 Fewer dependencies = faster response
+	7. Infra improvements
+			Better CPU / memory allocation
+			Load balancing across servers	
+		
+16. You have 30 seconds stack vs Heap memory explain use of both in java ?	
+Ans - 
+	Stack memory
+		-	Stores method calls and local variables
+		-	Each thread has its own stack
+		-	Works in LIFO (last in, first out) order
+		-	Automatically cleared when method ends
+	👉 Example: primitive variables, references inside methods
+	
+	Heap memory
+		-	Stores objects and class instances
+		-	Shared across all threads
+		-	Managed by Garbage Collector
+		-	Stays until no reference exists
+	👉 Example: objects created using new
+
+	Simple difference
+		-	Stack = fast, temporary (method work)
+		-	Heap = shared, long-term (objects)
+
+17. If INDEXES make DATABASE FASTER ? why don't you create index on all columns ? 		
+Ans - 
+		1. Slower writes (INSERT / UPDATE / DELETE)
+				-	Every index must also be updated when data changes
+			👉 More indexes = slower writes
+
+		2. Extra storage
+				-	Indexes take additional disk space
+			👉 Too many indexes = heavy storage cost
+
+		3. Maintenance overhead
+				-	Database must keep indexes updated and balanced
+			👉 More indexes = more internal work
+
+		4. Not all columns are useful for search
+				-	Index helps only when you filter, join, or sort frequently
+				-	Columns like gender, flags, status may not benefit much
+
+		5. Wrong indexes can hurt performance
+				-	If column has low uniqueness (e.g., “true/false”)
+			👉 Index may not be used effectively
+
+18 - Find all missing number arr ={1,2,1,2,5,8}	?	
+Ans 
+package com.heg.arrayQuestions;
+
+import java.util.HashSet;
+
+public class FindMissingNumber {
+	
+	public static void main(String[] args) {
+		int[] arr = {1,2,1,2,5,8};
+		
+		HashSet<Integer> set = new HashSet();
+		
+		// Add array elements to set (remove duplicates)
+		
+		for(int num : arr) {
+			set.add(num);
+		}
+		
+		// Find max value in array 
+		int max = 0; 
+		for(int num : arr) {
+			if(num > max) {
+				max=num;
+			}
+		}
+		
+		//print missing numbers from 1 to max 
+		System.out.println("Missing numbers :: ");
+		for(int i = 1 ; i <= max ; i++) {
+			if(!set.contains(i)) {
+				System.out.println(i + " ");
+			}
+		}
+		
+	}
+
+}
+
+
+19 - your Singleton class is supposed to have  ONE instance. But multiple objects are created in production how do you debug and fix this ?
+Ans - “I would first log constructor calls to confirm multiple instances, then check threading issues, reflection misuse, serialization, and classloader behavior. I would fix it using Enum Singleton or a thread-safe double-checked locking implementation.”
+
+20. What is the String pool in java ?
+Ans - 👉 String Pool is a memory area where Java stores and reuses String literals to save memory
+
+	Key points:
+		-	Improves memory efficiency
+		-	Stored in heap memory
+		-	Only String literals go to pool automatically
+		-	intern() can manually add String to pool
+		
+	

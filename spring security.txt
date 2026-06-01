@@ -1,0 +1,28 @@
+1- Spring security internal working 
+Ans - when dependency added 
+	Spring Boot auto-configures : 
+	
+			DelegatingFilterProxy
+				↓
+			SpringSecurityFilterChain
+				↓
+			UsernamePasswordAuthenticationFilter
+				↓
+			BasicAuthenticationFilter
+				↓
+			Authorization Filter
+	
+Request Flow - 
+
+		Client Request
+			↓
+		Security Filter Chain
+			↓
+		Authentication Check
+			↓
+		Authorization Check
+			↓
+		Controller
+			↓
+		Response	
+			
