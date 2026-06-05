@@ -1,0 +1,96 @@
+Circuit Breaker Pattern in Microservices
+
+Ans -A Circuit Breaker is a design pattern used to prevent cascading failures 
+when one service is unavailable or responding slowly.
+
+Example
+
+	Suppose:
+				Order Service
+						|
+						v
+				Payment Service
+
+When Order Service calls Payment Service:
+	paymentService.makePayment();
+	
+If Payment Service is down:
+
+Request waits until timeout.
+Threads get blocked.
+CPU and memory increase.
+Entire application may become unavailable.
+
+Circuit Breaker prevents this by stopping calls to a failing service temporarily.
+
+
+Circuit Breaker States
+
+1. Closed State (Normal)
+Request
+   ↓
+Payment Service
+   ↓
+Response
+
+All requests are allowed.
+
+Failure Rate < Threshold
+
+Example:
+100 Requests
+2 Failures
+
+Circuit remains Closed.
+
+2. Open State
+If failures exceed threshold:
+100 Requests
+60 Failures
+
+Circuit opens.
+
+Request
+   ↓
+Circuit Breaker
+   ↓
+Rejected Immediately
+
+No calls go to Payment Service.
+
+
+3. Half-Open State
+
+After some wait time:
+30 Seconds Passed
+
+Allow a few test requests.
+
+Request
+   ↓
+Payment Service
+
+Success
+Half Open
+   ↓
+Closed
+
+Failure
+Half Open
+   ↓
+Open Again
+
+
+
+
+
+
+Implementation Using Resilience4j (Spring Boot)
+The most common implementation today is with Resilience4j.
+
+Step 1: Add Dependency
+
+
+
+
+				

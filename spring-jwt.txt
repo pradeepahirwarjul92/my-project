@@ -1,0 +1,121 @@
+001 - What is JWT?
+Ans - JWT (JSON Web Token) is an open standard (RFC 7519) for securely transmitting claims between parties as a 
+		JSON object. It is commonly used for authentication and authorization.
+
+
+002 - What are the three parts of a JWT?	
+Ans - A JWT consists of:
+
+		Header – contains metadata such as algorithm and token type.
+		Payload – contains claims (user information).
+		Signature – verifies that the token has not been modified.
+	
+	Format :
+		header.payload.signature
+
+
+003 - How is a JWT signature generated?
+Ans	- 	For HS256:
+			HMACSHA256(
+				base64Url(header) + "." + base64Url(payload),secret_key
+		)
+		
+
+004 - Can anyone read the JWT payload?
+Ans	- 	Yes.
+
+JWT payloads are Base64URL encoded, not encrypted.
+
+Anyone possessing the token can decode and read the payload.
+
+
+005 - If the server does not store JWT anywhere, how does it know whether the token was modified?
+Ans	- 	The server does not need to store the token. It stores only the secret key (HS256) or private key (RS256). 
+		When a JWT is received, the server recalculates the signature using the received header and payload 
+		and compares it with the signature inside the token. If they match, the token is authentic; otherwise, 
+		it has been tampered with and is rejected. This is why JWT authentication is stateless.
+
+
+006 - What are registered claims in JWT?
+Ans	- 	| Claim | Meaning         |
+| ----- | --------------- |
+| `iss` | Issuer          |
+| `sub` | Subject         |
+| `aud` | Audience        |
+| `exp` | Expiration time |
+| `nbf` | Not before      |
+| `iat` | Issued at       |
+| `jti` | JWT ID          |
+
+						 		
+
+007 - What happens if a JWT expires?
+Ans	- 	The server rejects the token and returns an authentication error (commonly HTTP 401 Unauthorized).
+		The user must obtain a new token or use a refresh token.
+
+
+008 - What is a Refresh Token?
+Ans	- 	A refresh token is a long-lived credential used to obtain a new access token 
+		without requiring the user to log in again.
+
+
+009 - Difference between Access Token and Refresh Token?
+Ans	- 	
+| Access Token           | Refresh Token                 |
+| ---------------------- | ----------------------------- |
+| Short-lived            | Long-lived                    |
+| Sent with API requests | Used to get new access tokens |
+| Contains user claims   | Usually contains minimal data |
+| Expires quickly        | Expires less frequently       |
+
+
+
+010 - What is the difference between HS256 and RS256?
+Ans	- 	
+HS256
+Symmetric algorithm:
+Same key for signing and verification
+
+RS256
+Asymmetric algorithm:
+Private key -> Sign
+Public key -> Verify
+
+RS256 is commonly used in enterprise and OAuth systems.
+
+011 - What is the "alg=none" vulnerability?
+Ans	- 	Older JWT implementations accepted:
+	{
+  "alg": "none"
+}
+
+and skipped signature verification.
+
+Attackers could forge tokens.
+
+Modern libraries reject this by default.
+
+
+012 - How does JWT verification work?
+Ans	- 	The server:
+
+Receives the token.
+Decodes header and payload.
+Recreates the signature.
+Compares signatures.
+Checks expiration and other claims.
+Grants or denies access.
+
+
+
+013 - Can Payload Be Read?
+Ans	- 	Yes.
+
+JWT is encoded, not encrypted.
+
+014 - Difference Between Encoding and Encryption?
+Ans	- 	
+Encoding:
+	- Anyone can decode
+Encryption:
+	- Only key holder can decrypt
