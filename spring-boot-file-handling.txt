@@ -1,0 +1,315 @@
+=================================
+SPRING BOOT FILE HANDLING
+=================================
+
+BASICS
+
+1. What is MultipartFile?
+2. How does file upload work in Spring Boot?
+3. How does file download work?
+4. What is multipart/form-data?
+5. Difference between File and MultipartFile?
+6. How do you upload a file?
+7. How do you download a file?
+8. How do you store files?
+9. Database vs File System storage?
+10. File metadata storage?
+
+UPLOAD
+
+11. Single file upload?
+12. Multiple file upload?
+13. File size validation?
+14. File type validation?
+15. Content-Type validation?
+16. MIME type validation?
+17. File extension validation?
+18. Virus scanning integration?
+19. Upload progress tracking?
+20. Chunked upload?
+
+DOWNLOAD
+
+21. File download endpoint?
+22. Resource interface?
+23. ByteArrayResource?
+24. InputStreamResource?
+25. FileSystemResource?
+26. Streaming file download?
+27. Resume download support?
+28. Content-Disposition header?
+29. Download performance optimization?
+30. Download security?
+
+LARGE FILES
+
+31. Handling 1GB+ files?
+32. Streaming uploads?
+33. Streaming downloads?
+34. Memory issues?
+35. InputStream usage?
+36. OutputStream usage?
+37. Buffering strategies?
+38. Chunk processing?
+39. Async file processing?
+40. File processing performance?
+
+DATABASE STORAGE
+
+41. Store file in database?
+42. BLOB?
+43. CLOB?
+44. Oracle BLOB handling?
+45. Advantages of DB storage?
+46. Disadvantages of DB storage?
+47. Performance considerations?
+48. Backup implications?
+49. Large object optimization?
+50. Production best practices?
+
+CLOUD STORAGE
+
+51. AWS S3 integration?
+52. Azure Blob Storage?
+53. Google Cloud Storage?
+54. Presigned URLs?
+55. Direct upload to S3?
+56. Multipart upload to S3?
+57. S3 download strategy?
+58. Cloud storage security?
+59. File encryption?
+60. Cost optimization?
+
+SECURITY
+
+61. Path traversal attack?
+62. File upload vulnerabilities?
+63. Malicious file upload?
+64. File type spoofing?
+65. Virus scanning?
+66. Content validation?
+67. Secure file names?
+68. Authorization checks?
+69. Authentication requirements?
+70. File encryption at rest?
+
+PERFORMANCE
+
+71. Large file upload optimization?
+72. Large file download optimization?
+73. Streaming vs byte array?
+74. Memory consumption?
+75. Thread pool usage?
+76. Async processing?
+77. CDN integration?
+78. Compression?
+79. Cache headers?
+80. Performance monitoring?
+
+PRODUCTION TROUBLESHOOTING
+
+81. Upload fails for large files.
+82. OutOfMemoryError during upload.
+83. Slow download issue.
+84. Corrupted files.
+85. S3 timeout issue.
+86. Disk full issue.
+87. File permission issue.
+88. High memory consumption.
+89. Upload works locally not in prod.
+90. Large file processing issue.
+
+DESIGN QUESTIONS
+
+91. Design file upload service.
+92. Design document management system.
+93. Design image storage service.
+94. Design video upload system.
+95. Design distributed file storage.
+96. Design secure file sharing.
+97. Design file processing pipeline.
+98. Design file versioning system.
+99. Design cloud file storage architecture.
+100. Explain a production file handling issue.
+
+
+Most Asked Senior-Level Questions
+
+1. MultipartFile
+2. File Upload API
+3. File Download API
+4. Streaming vs Byte Array
+5. Large File Handling
+6. Database vs File System Storage
+7. AWS S3 Integration
+8. Presigned URLs
+9. File Upload Security
+10. Path Traversal Prevention
+11. Memory Optimization
+12. Async File Processing
+13. Chunk Upload
+14. Cloud Storage Design
+15. Production Troubleshooting
+
+File Upload Example
+@RestController
+@RequestMapping("/files")
+public class FileController {
+
+    @PostMapping("/upload")
+    public String upload(
+            @RequestParam("file")
+            MultipartFile file)
+            throws Exception {
+
+        file.transferTo(
+                new File(
+                "/uploads/" +
+                file.getOriginalFilename()));
+
+        return "Uploaded";
+    }
+}
+
+
+Multiple File Upload
+
+@PostMapping("/upload")
+public String uploadFiles(
+        @RequestParam("files")
+        MultipartFile[] files) {
+
+    for(MultipartFile file : files) {
+
+        // process file
+
+    }
+
+    return "Success";
+}
+
+
+File Download Example
+
+@GetMapping("/download")
+public ResponseEntity<Resource>
+download() {
+
+    Resource resource =
+       new FileSystemResource(
+       "/uploads/test.pdf");
+
+    return ResponseEntity.ok()
+            .header(
+             HttpHeaders.CONTENT_DISPOSITION,
+             "attachment; filename=test.pdf")
+            .body(resource);
+}
+
+
+Large File Download (Preferred)
+
+@GetMapping("/stream")
+public ResponseEntity<InputStreamResource>
+downloadLargeFile()
+throws Exception {
+
+    File file =
+        new File("/uploads/big.zip");
+
+    InputStreamResource resource =
+        new InputStreamResource(
+            new FileInputStream(file));
+
+    return ResponseEntity.ok()
+            .body(resource);
+}
+
+
+Why?
+Does not load entire file into memory.
+
+Senior Interview Question
+Byte Array vs Streaming
+
+Bad:
+byte[] data =
+ Files.readAllBytes(path);
+ 
+ Problem:
+
+1 GB file
+
+1 GB Heap Usage
+
+Good:
+
+InputStreamResource
+
+Streams data in chunks.
+
+
+
+File Upload Size Configuration
+spring.servlet.multipart.max-file-size=100MB
+
+spring.servlet.multipart.max-request-size=100MB
+
+Frequently asked.
+
+
+Database vs File System
+| Database     | File System        |
+| ------------ | ------------------ |
+| Easy Backup  | Better Performance |
+| ACID         | Lower DB Load      |
+| Expensive    | Scalable           |
+| BLOB Storage | Preferred          |
+
+Interview answer:
+
+Store metadata in DB.
+Store files in S3/File System.
+
+
+AWS S3 Architecture
+
+Client
+  |
+Upload
+  |
+Spring Boot
+  |
+S3 Bucket
+
+
+Better:
+
+Client
+ |
+Presigned URL
+ |
+S3 Direct Upload
+
+
+Advantages:
+
+No server load
+Faster uploads
+Lower bandwidth usage
+
+
+
+Design Question
+Upload 5 GB Video Files
+
+Recommended:
+
+1. Chunk Upload
+2. S3 Multipart Upload
+3. Async Processing
+4. Metadata DB
+5. CDN Delivery
+6. Virus Scan
+7. Retry Support
+8. Resumable Upload

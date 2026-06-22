@@ -1,0 +1,376 @@
+=========================================
+MICROSERVICE INTERCOMMUNICATION
+=========================================
+
+BASICS
+
+1. What is microservice communication?
+2. Why do microservices need communication?
+3. Synchronous vs Asynchronous communication?
+4. Service-to-Service communication?
+5. What are communication patterns?
+6. REST communication?
+7. Messaging communication?
+8. Event-driven communication?
+9. Request-response pattern?
+10. Publish-subscribe pattern?
+
+REST COMMUNICATION
+
+11. How does one microservice call another?
+12. RestTemplate vs WebClient?
+13. Why is RestTemplate deprecated?
+14. Feign Client?
+15. OpenFeign advantages?
+16. Connection pooling?
+17. Timeout configuration?
+18. Retry configuration?
+19. Error handling?
+20. API versioning?
+
+WEBCLIENT
+
+21. What is WebClient?
+22. Why use WebClient?
+23. Blocking vs Non-blocking?
+24. WebFlux communication?
+25. Connection timeout?
+26. Read timeout?
+27. Retry mechanism?
+28. Circuit breaker integration?
+29. WebClient performance tuning?
+30. Production troubleshooting?
+
+SERVICE DISCOVERY
+
+31. What is Service Discovery?
+32. Why is Service Discovery needed?
+33. Eureka?
+34. Consul?
+35. Kubernetes Service Discovery?
+36. Client-side discovery?
+37. Server-side discovery?
+38. Registration process?
+39. Heartbeats?
+40. Service deregistration?
+
+API GATEWAY
+
+41. What is API Gateway?
+42. Why use API Gateway?
+43. Spring Cloud Gateway?
+44. Gateway routing?
+45. JWT validation at Gateway?
+46. Rate limiting?
+47. Request filtering?
+48. Response filtering?
+49. Gateway caching?
+50. Gateway troubleshooting?
+
+MESSAGING
+
+51. Kafka communication?
+52. RabbitMQ communication?
+53. JMS?
+54. Event-driven architecture?
+55. Producer?
+56. Consumer?
+57. Consumer group?
+58. Dead Letter Queue?
+59. Retry topics?
+60. Message ordering?
+
+RESILIENCE
+
+61. Circuit Breaker?
+62. Retry pattern?
+63. Timeout pattern?
+64. Bulkhead pattern?
+65. Fallback mechanism?
+66. Resilience4j?
+67. Cascading failure?
+68. Service degradation?
+69. Graceful fallback?
+70. Production resiliency?
+
+TRANSACTIONS
+
+71. Can @Transactional work across microservices?
+72. Distributed transaction?
+73. Two Phase Commit?
+74. XA transaction?
+75. Saga Pattern?
+76. Choreography Saga?
+77. Orchestration Saga?
+78. Compensation transaction?
+79. Eventual consistency?
+80. Transaction troubleshooting?
+
+OBSERVABILITY
+
+81. Distributed tracing?
+82. OpenTelemetry?
+83. Zipkin?
+84. Jaeger?
+85. Correlation ID?
+86. Structured logging?
+87. Metrics collection?
+88. Prometheus?
+89. Grafana?
+90. Troubleshooting inter-service latency?
+
+SECURITY
+
+91. JWT propagation?
+92. OAuth2 communication?
+93. Client Credentials Flow?
+94. Service-to-Service authentication?
+95. mTLS?
+96. API Gateway security?
+97. Token validation?
+98. Secure internal APIs?
+99. Secret management?
+100. Production security practices?
+
+Most Asked Senior-Level Questions
+
+1. REST vs Messaging
+2. RestTemplate vs WebClient
+3. Feign Client
+4. Service Discovery
+5. Eureka vs Kubernetes Discovery
+6. API Gateway
+7. Circuit Breaker
+8. Retry Strategy
+9. Kafka vs RabbitMQ
+10. Saga Pattern
+11. Distributed Transactions
+12. JWT Propagation
+13. OpenTelemetry
+14. Service-to-Service Authentication
+15. Production Troubleshooting
+
+Common Architecture
+          Client
+             |
+             v
+      API Gateway
+             |
+   ------------------
+   |       |        |
+   v       v        v
+Order   Payment   Inventory
+Service Service   Service
+
+
+Synchronous Communication
+
+Using WebClient
+@Service
+public class OrderService {
+
+    private final WebClient webClient;
+
+    public Mono<String> getPayment() {
+
+        return webClient.get()
+                .uri("http://payment-service/payments/1")
+                .retrieve()
+                .bodyToMono(String.class);
+    }
+}
+
+Flow:
+Order Service
+      |
+      v
+Payment Service
+      |
+      v
+Response
+
+Pros:
+
+Simple
+Immediate response
+
+Cons:
+
+Tight coupling
+Failure propagation
+
+
+Asynchronous Communication
+
+Kafka Example
+
+Order Service
+      |
+ Publish Event
+      |
+      v
+Kafka Topic
+      |
+      v
+Payment Service
+      |
+      v
+Inventory Service
+
+Pros:
+
+Loose coupling
+Scalability
+Reliability
+
+Cons:
+
+Eventual consistency
+More complexity
+
+
+REST vs Kafka
+| Feature     | REST       | Kafka           |
+| ----------- | ---------- | --------------- |
+| Response    | Immediate  | Async           |
+| Coupling    | High       | Low             |
+| Scalability | Medium     | High            |
+| Reliability | Lower      | Higher          |
+| Use Case    | Query APIs | Business Events |
+
+
+Service Discovery
+
+Without Discovery:
+
+Order Service
+
+http://10.10.1.25:8080
+
+Problem:
+
+IP changes
+Scaling issues
+
+With Discovery:
+
+Order Service
+      |
+      v
+payment-service
+      |
+      v
+Eureka/Kubernetes
+
+
+Circuit Breaker Flow
+
+Order Service
+      |
+      v
+Payment Service
+      |
+      X Failure
+      |
+Circuit Opens
+      |
+Fallback Response
+
+Resilience4j usually used.
+
+
+JWT Propagation
+Client
+ |
+JWT
+ |
+API Gateway
+ |
+JWT
+ |
+Order Service
+ |
+JWT
+ |
+Payment Service
+
+
+Common interview question:
+Should each microservice validate JWT?
+
+Answer:
+Yes.
+
+Each microservice should act as a Resource Server and validate JWT independently.
+
+
+Distributed Transaction Question
+Scenario
+
+Order Service
+
+Payment Service
+
+Inventory Service
+
+Question:
+
+Can @Transactional manage all three?
+
+Answer:
+
+NO
+
+@Transactional works within a single application/database boundary.
+
+Use:
+
+Saga Pattern
+
+
+Production Troubleshooting Scenario
+API latency increased from 100ms to 5s
+
+Investigation:
+
+1. Gateway logs
+2. Distributed traces
+3. Service metrics
+4. Database latency
+5. Thread dumps
+6. Network latency
+7. Circuit breaker metrics
+8. Kafka lag
+9. Connection pools
+10. Downstream dependencies
+
+Common Design Question
+
+How would you design communication for:
+
+Order Service
+Payment Service
+Inventory Service
+Notification Service
+
+Recommended:
+Order -> Payment (REST/WebClient)
+
+Payment Success -> Kafka Event
+
+Inventory Update -> Kafka Consumer
+
+Notification -> Kafka Consumer
+
+This gives:
+
+Immediate payment result
+Loose coupling for downstream actions
+Better scalability and resilience
+
+One-Line Interview Answer
+Microservice intercommunication can be implemented using synchronous protocols such as REST/WebClient/Feign for 
+immediate responses, 
+and asynchronous messaging systems such as Kafka or RabbitMQ for scalable, loosely coupled, event-driven 
+communication. Production systems typically combine both approaches with service discovery, API gateways, circuit breakers, 
+distributed tracing, and secure service-to-service authentication.

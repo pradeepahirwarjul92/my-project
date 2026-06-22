@@ -1,0 +1,60 @@
+In our project, some APIs had very long URLs because the service name,
+module name, and action names were included in the path.
+
+Example:
+
+/employee-management-service/api/v1/getEmployeeDetailsByEmployeeId/{id}
+
+We redesigned them using REST principles and API Gateway routing.
+
+Changed to:
+
+/api/v1/employees/{id}
+
+Benefits:
+1. Cleaner URLs
+2. Easier for frontend teams
+3. Better API documentation
+4. Consistent REST standards
+5. Reduced maintenance effort
+
+
+Short Interview Answer (2-3 lines)
+
+We shortened URLs by following RESTful naming conventions,
+using resource-based paths instead of action-based paths,
+and moving service-specific details behind API Gateway routing.
+
+
+Follow-up Questions Interviewers May Ask
+
+1. What is a RESTful URL?
+2. Why use nouns instead of verbs?
+3. How do you version APIs?
+4. How do you handle backward compatibility?
+5. What is API Gateway routing?
+6. How do you avoid URL conflicts?
+7. How do you design URLs for nested resources?
+8. What are path variables and query parameters?
+9. What URL naming conventions do you follow?
+10. How do you deprecate old URLs?
+
+
+Real Example
+
+Before:
+
+GET /customer-service/api/v1/getCustomerOrdersByCustomerId/101
+
+After:
+
+GET /api/v1/customers/101/orders
+
+
+Senior-Level Interview Statement
+
+
+We standardized APIs using REST resource naming,
+kept URLs concise, used API versioning (/v1),
+leveraged API Gateway for service abstraction,
+and ensured backward compatibility through versioned endpoints.

@@ -1,0 +1,269 @@
+====================================
+SWAGGER / OPENAPI - 75 QUESTIONS
+====================================
+
+BASICS
+
+1. What is Swagger?
+2. What is OpenAPI Specification?
+3. Difference between Swagger and OpenAPI?
+4. Why do we use Swagger?
+5. Benefits of API documentation?
+6. What problems does Swagger solve?
+7. What is Swagger UI?
+8. What is OpenAPI 3.0?
+9. What is OpenAPI YAML?
+10. What is OpenAPI JSON?
+
+SPRING BOOT INTEGRATION
+
+11. How do you integrate Swagger with Spring Boot?
+12. What is springdoc-openapi?
+13. Difference between Springfox and springdoc-openapi?
+14. How do you expose Swagger UI?
+15. How do you customize API documentation?
+16. How do you hide APIs from Swagger?
+17. How do you document request parameters?
+18. How do you document path variables?
+19. How do you document response models?
+20. How do you document enums?
+
+ANNOTATIONS
+
+21. What is @Operation?
+22. What is @Tag?
+23. What is @Schema?
+24. What is @Parameter?
+25. What is @ApiResponse?
+26. What is @RequestBody annotation in OpenAPI?
+27. How do you document validation constraints?
+28. How do you document examples?
+29. How do you document error responses?
+30. How do you group APIs?
+
+API DESIGN
+
+31. What is contract-first API development?
+32. What is code-first API development?
+33. Pros and cons of contract-first?
+34. Pros and cons of code-first?
+35. How do you version APIs?
+36. URI versioning vs Header versioning?
+37. How do you deprecate APIs?
+38. How do you document deprecated APIs?
+39. How do you manage backward compatibility?
+40. What is API governance?
+
+SECURITY
+
+41. How do you secure Swagger UI?
+42. How do you integrate JWT with Swagger?
+43. How do you add Bearer Authentication?
+44. How do you document OAuth2 authentication?
+45. How do you test secured APIs in Swagger?
+46. How do you hide internal APIs?
+47. Should Swagger be exposed in Production?
+48. How do you restrict Swagger access?
+49. How do you configure API keys?
+50. How do you document security requirements?
+
+OPENAPI SPECIFICATION
+
+51. What are components?
+52. What are schemas?
+53. What are paths?
+54. What are request bodies?
+55. What are responses?
+56. What are security schemes?
+57. What are reusable components?
+58. What is oneOf?
+59. What is anyOf?
+60. What is allOf?
+
+CODE GENERATION
+
+61. What is OpenAPI Generator?
+62. How do you generate clients from OpenAPI?
+63. How do you generate server stubs?
+64. Benefits of code generation?
+65. Drawbacks of code generation?
+66. How do you share API contracts across teams?
+67. How do you automate OpenAPI generation?
+68. How do you validate OpenAPI specs?
+69. How do you test generated clients?
+70. How do you maintain large API specifications?
+
+PRODUCTION TROUBLESHOOTING
+
+71. Swagger UI not loading. How do you investigate?
+72. API missing from documentation. Why?
+73. JWT authentication not working in Swagger.
+74. OpenAPI docs differ from implementation.
+75. How would you design API documentation for 100+ microservices?
+
+
+Most Asked Senior-Level Questions
+
+1. Swagger vs OpenAPI
+2. Contract-First vs Code-First
+3. Springdoc vs Springfox
+4. OpenAPI 3.0 Features
+5. JWT Authentication in Swagger
+6. OAuth2 Integration
+7. API Versioning
+8. API Deprecation Strategy
+9. OpenAPI Code Generation
+10. Swagger Security Best Practices
+11. API Governance
+12. Reusable Schemas
+13. Client SDK Generation
+14. API Documentation Strategy
+15. Production Swagger Access Control
+
+Spring Boot 3 / Spring Security JWT Configuration
+
+Maven Dependency
+
+<dependency>
+    <groupId>org.springdoc</groupId>
+    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+    <version>2.x.x</version>
+</dependency>
+
+Swagger Configuration with JWT
+
+@Configuration
+@OpenAPIDefinition(
+    info = @Info(
+        title = "Employee API",
+        version = "1.0",
+        description = "Employee Management APIs"
+    )
+)
+public class OpenApiConfig {
+
+    @Bean
+    public OpenAPI customOpenAPI() {
+
+        return new OpenAPI()
+                .addSecurityItem(
+                    new SecurityRequirement()
+                            .addList("Bearer Authentication")
+                )
+                .components(
+                    new Components()
+                            .addSecuritySchemes(
+                                "Bearer Authentication",
+                                new SecurityScheme()
+                                        .name("Bearer Authentication")
+                                        .type(SecurityScheme.Type.HTTP)
+                                        .scheme("bearer")
+                                        .bearerFormat("JWT")
+                            )
+                );
+    }
+}
+
+
+Secure Controller Example
+
+@RestController
+@RequestMapping("/employees")
+@Tag(name = "Employee APIs")
+public class EmployeeController {
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Get Employee By Id")
+    @ApiResponse(
+            responseCode = "200",
+            description = "Employee Found"
+    )
+    public Employee getEmployee(
+            @PathVariable Long id) {
+
+        return service.getEmployee(id);
+    }
+}
+
+Common Interview Scenario
+
+Question
+Swagger is exposed in Production.
+Is it okay?
+
+Answer:
+Generally NO.
+
+Options:
+
+1. Disable Swagger in Prod
+2. Restrict by Role
+3. VPN Access
+4. Internal Network Only
+5. API Gateway Protection
+
+
+JWT + Swagger Flow
+
+User
+ |
+ v
+Swagger UI
+ |
+ | Bearer JWT
+ |
+ v
+Spring Security Filter
+ |
+ v
+JWT Validation
+ |
+ v
+Controller
+
+
+API Versioning Question
+
+URI Versioning
+
+/api/v1/employees
+/api/v2/employees
+
+Header Versioning
+X-API-VERSION: 2
+
+Interview preference:
+
+Public APIs -> URI Versioning
+Enterprise APIs -> Header Versioning possible
+
+Design Question
+
+How would you manage API docs for 100 microservices?
+
+1. OpenAPI Specification for each service
+2. API Gateway Aggregation
+3. Central Developer Portal
+4. Automated OpenAPI Generation
+5. Contract Validation in CI/CD
+6. API Versioning Standards
+7. Security Documentation
+8. Reusable Schemas
+9. Governance Rules
+10. SDK Generation
+
+
+Topics to Know Thoroughly
+
+Swagger vs OpenAPI
+Springdoc OpenAPI
+OpenAPI 3.0
+@Operation
+@Schema
+JWT Integration
+OAuth2 Integration
+API Versioning
+Contract-First Design
+Code Generation
+Swagger Security
+API Governance

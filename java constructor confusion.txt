@@ -1,3 +1,283 @@
+JAVA CONSTRUCTOR INTERVIEW QUESTIONS (50)
+
+=================================
+CONSTRUCTOR BASICS (1-15)
+=================================
+
+1. What is a constructor in Java?
+2. Why do we use constructors?
+3. What is the purpose of a constructor?
+4. What are the rules for creating a constructor?
+5. Can a constructor have a return type?
+6. Can a constructor be private?
+7. Can a constructor be final?
+8. Can a constructor be static?
+9. Can a constructor be abstract?
+10. Can a constructor be synchronized?
+11. What is a default constructor?
+12. What is a no-argument constructor?
+13. What is a parameterized constructor?
+14. Difference between constructor and method?
+15. When is a constructor called?
+
+=================================
+DEFAULT CONSTRUCTOR (16-20)
+=================================
+
+16. What is a default constructor?
+17. Who creates the default constructor?
+18. When is the default constructor generated?
+19. What happens if parameterized constructor is present?
+20. How can we explicitly create a default constructor?
+
+=================================
+PARAMETERIZED CONSTRUCTOR (21-25)
+=================================
+
+21. What is a parameterized constructor?
+22. Why use parameterized constructors?
+23. Can we overload constructors?
+24. How is constructor overloading implemented?
+25. Constructor with multiple parameters example.
+
+=================================
+CONSTRUCTOR OVERLOADING (26-30)
+=================================
+
+26. What is constructor overloading?
+27. Can constructors be overloaded?
+28. Difference between method overloading and constructor overloading?
+29. How does Java resolve overloaded constructors?
+30. Real-world use of constructor overloading?
+
+=================================
+THIS KEYWORD (31-35)
+=================================
+
+31. What is this() constructor call?
+32. Why use this()?
+33. Can this() and super() be used together?
+34. What happens if this() is not first statement?
+35. Constructor chaining using this().
+
+=================================
+SUPER CONSTRUCTOR (36-40)
+=================================
+
+36. What is super()?
+37. Why use super() in constructors?
+38. When is super() called automatically?
+39. Can we call parameterized parent constructor?
+40. Constructor execution order in inheritance?
+
+=================================
+ADVANCED CONSTRUCTOR QUESTIONS (41-50)
+=================================
+
+41. Can constructor throw exceptions?
+42. Can constructor be inherited?
+43. Can constructor be overridden?
+44. Why constructors cannot be overridden?
+45. What is constructor chaining?
+46. What is copy constructor?
+47. Does Java support copy constructor?
+48. How to create immutable class using constructor?
+49. Singleton pattern using private constructor?
+50. Difference between constructor and initialization block?
+
+=================================
+MOST ASKED INTERVIEW QUESTIONS
+=================================
+
+1. Constructor vs Method
+2. Default Constructor
+3. Parameterized Constructor
+4. Constructor Overloading
+5. Constructor Chaining
+6. this() vs super()
+7. Can Constructor be Overridden?
+8. Can Constructor be Inherited?
+9. Private Constructor
+10. Singleton using Constructor
+
+=================================
+IMPORTANT INTERVIEW ANSWERS
+=================================
+
+Q. Can a constructor be overridden?
+
+No.
+Constructors are not inherited, therefore they cannot be overridden.
+
+---------------------------------
+
+Q. Can a constructor be overloaded?
+
+Yes.
+A class can have multiple constructors with different parameter lists.
+
+---------------------------------
+
+Q. Can a constructor be private?
+
+Yes.
+Used in Singleton and Utility classes.
+
+Example:
+
+class Singleton {
+    private Singleton() {
+    }
+}
+
+---------------------------------
+
+Q. Difference between Constructor and Method?
+
+Constructor:
+- Same name as class
+- No return type
+- Called automatically during object creation
+
+Method:
+- Any valid name
+- Has return type
+- Called explicitly
+
+---------------------------------
+
+Q. What is constructor chaining?
+
+Calling one constructor from another constructor using this() or super().
+
+Example:
+
+class Test {
+    Test() {
+        this(10);
+    }
+
+    Test(int x) {
+        System.out.println(x);
+    }
+}
+
+---------------------------------
+
+Q. Difference between this() and super()?
+
+this()
+- Calls current class constructor
+
+super()
+- Calls parent class constructor
+
+Both must be first statement in constructor.
+
+---------------------------------
+
+Q. Can constructor be static?
+
+No.
+
+Reason:
+Constructor belongs to object creation.
+Static belongs to class.
+
+---------------------------------
+
+Q. Can constructor return a value?
+
+No.
+
+Constructors never have a return type.
+
+---------------------------------
+
+Q. Execution Order in Inheritance?
+
+Parent Constructor
+↓
+Child Constructor
+
+Example:
+
+class Parent {
+    Parent() {
+        System.out.println("Parent");
+    }
+}
+
+class Child extends Parent {
+    Child() {
+        System.out.println("Child");
+    }
+}
+
+Output:
+Parent
+Child
+
+
+
+
+Common Java Backend Interview Coding Questions on Constructors
+
+// 1. Constructor Overloading
+class Employee {
+    Employee() {}
+
+    Employee(int id) {}
+
+    Employee(int id, String name) {}
+}
+
+// 2. Constructor Chaining
+class Demo {
+    Demo() {
+        this(100);
+    }
+
+    Demo(int x) {
+        System.out.println(x);
+    }
+}
+
+
+// 3. Singleton using Private Constructor
+class Singleton {
+    private static Singleton instance = new Singleton();
+
+    private Singleton() {}
+
+    public static Singleton getInstance() {
+        return instance;
+    }
+}
+
+// 4. Parent-Child Constructor Execution
+class Parent {
+    Parent() {
+        System.out.println("Parent");
+    }
+}
+
+class Child extends Parent {
+    Child() {
+        System.out.println("Child");
+    }
+}
+
+
+// 5. Copy Constructor Style (Java)
+class Student {
+    int id;
+
+    Student(Student s) {
+        this.id = s.id;
+    }
+}
+
 01. What is cursor and how many types of cursor in java ? 
 Ans - Cursor is a concept used to iterate (move step-by-step) through a collection of objects, 
 

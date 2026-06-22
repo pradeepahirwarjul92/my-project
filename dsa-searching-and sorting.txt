@@ -1,0 +1,232 @@
+JAVA DSA SEARCHING & SORTING - 100 INTERVIEW QUESTIONS
+
+=================================
+SEARCHING BASICS (1-20)
+=================================
+
+1. What is searching?
+2. Types of searching algorithms?
+3. What is Linear Search?
+4. Time Complexity of Linear Search?
+5. Space Complexity of Linear Search?
+6. What is Binary Search?
+7. Requirements for Binary Search?
+8. Time Complexity of Binary Search?
+9. Space Complexity of Binary Search?
+10. Iterative Binary Search.
+11. Recursive Binary Search.
+12. Find first occurrence using Binary Search.
+13. Find last occurrence using Binary Search.
+14. Count occurrences using Binary Search.
+15. Find floor of an element.
+16. Find ceil of an element.
+17. Search in nearly sorted array.
+18. Search in infinite sorted array.
+19. Search in 2D Matrix.
+20. Search in rotated sorted array.
+
+=================================
+LINEAR SEARCH PROBLEMS (21-30)
+=================================
+
+21. Find an element in array.
+22. Find largest element.
+23. Find smallest element.
+24. Find second largest element.
+25. Find second smallest element.
+26. Find duplicate elements.
+27. Find missing number.
+28. Find frequency of element.
+29. Find first repeating element.
+30. Find first non-repeating element.
+
+=================================
+BINARY SEARCH PROBLEMS (31-50)
+=================================
+
+31. Binary Search Implementation.
+32. Search Insert Position.
+33. Find Peak Element.
+34. Find Minimum in Rotated Array.
+35. Find Rotation Count.
+36. Find Single Element in Sorted Array.
+37. Square Root using Binary Search.
+38. Nth Root of Number.
+39. Median of Two Sorted Arrays.
+40. Allocate Minimum Pages.
+41. Aggressive Cows Problem.
+42. Painter Partition Problem.
+43. Capacity to Ship Packages.
+44. Koko Eating Bananas.
+45. Split Array Largest Sum.
+46. Magnetic Force Between Balls.
+47. Find Peak in Mountain Array.
+48. Search Bitonic Array.
+49. Search in Infinite Array.
+50. Find First Positive Number.
+
+=================================
+SORTING BASICS (51-65)
+=================================
+
+51. What is sorting?
+52. Why sorting is needed?
+53. Types of sorting algorithms?
+54. Stable Sorting Algorithm?
+55. Unstable Sorting Algorithm?
+56. In-place Sorting?
+57. Out-place Sorting?
+58. Adaptive Sorting?
+59. Internal Sorting?
+60. External Sorting?
+61. Comparison-based Sorting?
+62. Non-comparison Sorting?
+63. Best Sorting Algorithm?
+64. Which sorting is fastest?
+65. When to use each sorting algorithm?
+
+=================================
+BUBBLE SORT (66-70)
+=================================
+
+66. Bubble Sort Algorithm.
+67. Time Complexity of Bubble Sort.
+68. Space Complexity of Bubble Sort.
+69. Advantages of Bubble Sort.
+70. Optimized Bubble Sort.
+
+=================================
+SELECTION SORT (71-75)
+=================================
+
+71. Selection Sort Algorithm.
+72. Time Complexity of Selection Sort.
+73. Space Complexity of Selection Sort.
+74. Advantages of Selection Sort.
+75. Selection Sort Implementation.
+
+=================================
+INSERTION SORT (76-80)
+=================================
+
+76. Insertion Sort Algorithm.
+77. Time Complexity of Insertion Sort.
+78. Space Complexity of Insertion Sort.
+79. Advantages of Insertion Sort.
+80. Insertion Sort Implementation.
+
+=================================
+ADVANCED SORTING (81-95)
+=================================
+
+81. Merge Sort Algorithm.
+82. Time Complexity of Merge Sort.
+83. Space Complexity of Merge Sort.
+84. Quick Sort Algorithm.
+85. Time Complexity of Quick Sort.
+86. Space Complexity of Quick Sort.
+87. Heap Sort Algorithm.
+88. Counting Sort Algorithm.
+89. Radix Sort Algorithm.
+90. Bucket Sort Algorithm.
+91. Shell Sort Algorithm.
+92. Tim Sort Algorithm.
+93. External Merge Sort.
+94. K-way Merge Sort.
+95. Hybrid Sorting Algorithms.
+
+=================================
+SORTING PROBLEMS (96-100)
+=================================
+
+96. Sort Colors (0,1,2).
+97. Merge Intervals.
+98. Kth Largest Element.
+99. Top K Frequent Elements.
+100. Sort Characters by Frequency.
+
+=================================
+MOST ASKED SEARCHING QUESTIONS
+=================================
+
+1. Linear Search
+2. Binary Search
+3. First Occurrence
+4. Last Occurrence
+5. Count Occurrences
+6. Search Rotated Array
+7. Peak Element
+8. Floor and Ceil
+9. Search Insert Position
+10. Find Minimum in Rotated Array
+
+=================================
+MOST ASKED SORTING QUESTIONS
+=================================
+
+1. Bubble Sort
+2. Selection Sort
+3. Insertion Sort
+4. Merge Sort
+5. Quick Sort
+6. Heap Sort
+7. Counting Sort
+8. Radix Sort
+9. Sort Colors
+10. Merge Intervals
+
+=================================
+IMPORTANT INTERVIEW COMPLEXITIES
+=================================
+
+Linear Search      -> O(n)
+Binary Search      -> O(log n)
+
+Bubble Sort        -> O(n²)
+Selection Sort     -> O(n²)
+Insertion Sort     -> O(n²)
+
+Merge Sort         -> O(n log n)
+Quick Sort Avg     -> O(n log n)
+Quick Sort Worst   -> O(n²)
+
+Heap Sort          -> O(n log n)
+
+Counting Sort      -> O(n+k)
+Radix Sort         -> O(d*(n+k))
+Bucket Sort Avg    -> O(n)
+
+=================================
+TOP 20 MUST-DO QUESTIONS
+=================================
+
+1. Linear Search
+2. Binary Search
+3. Search Rotated Array
+4. First & Last Occurrence
+5. Peak Element
+6. Floor & Ceil
+7. Bubble Sort
+8. Selection Sort
+9. Insertion Sort
+10. Merge Sort
+11. Quick Sort
+12. Heap Sort
+13. Counting Sort
+14. Sort Colors
+15. Merge Intervals
+16. Kth Largest Element
+17. Top K Frequent Elements
+18. Koko Eating Bananas
+19. Allocate Minimum Pages
+20. Median of Two Sorted Arrays
+
+Java Backend Interview Focus:
+- Binary Search
+- Search Rotated Array
+- Merge Sort
+- Quick Sort
+- Heap Sort
+- Top K Problems
+- Sorting-Based Array Problems
+- Binary Search on Answer

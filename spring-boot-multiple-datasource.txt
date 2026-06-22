@@ -1,0 +1,231 @@
+=========================================
+SPRING BOOT MULTIPLE DATASOURCE
+=========================================
+
+1. Why do we need multiple datasources?
+2. How do you configure multiple datasources in Spring Boot?
+3. What is @Primary?
+4. Why is @Primary required?
+5. How do you create multiple DataSource beans?
+6. How do you configure multiple EntityManagerFactory beans?
+7. How do you configure multiple TransactionManager beans?
+8. How do repositories know which datasource to use?
+9. What is @EnableJpaRepositories?
+10. How do you separate repositories per datasource?
+
+11. Can one service use multiple databases?
+12. How do transactions work with multiple datasources?
+13. What happens if DB1 commits and DB2 fails?
+14. What is distributed transaction?
+15. XA transaction?
+16. What is JTA?
+17. What is Atomikos?
+18. Why are distributed transactions difficult?
+19. Saga vs XA transactions?
+20. How do you troubleshoot datasource issues?
+
+21. Read-Write datasource routing?
+22. AbstractRoutingDataSource?
+23. Multi-tenant datasource strategy?
+24. Dynamic datasource switching?
+25. Connection pool tuning?
+26. HikariCP with multiple datasources?
+27. Lazy initialization?
+28. Transaction propagation with multiple DBs?
+29. Oracle + MySQL integration?
+30. Production troubleshooting scenarios?
+
+application.yml
+
+spring:
+
+  datasource:
+    customer:
+      url: jdbc:oracle:thin:@localhost:1521:ORCL
+      username: customer_user
+      password: customer_pwd
+      driver-class-name: oracle.jdbc.driver.OracleDriver
+
+    reporting:
+      url: jdbc:oracle:thin:@localhost:1521:ORCL
+      username: report_user
+      password: report_pwd
+      driver-class-name: oracle.jdbc.driver.OracleDriver
+	  
+	  
+	  Customer DataSource
+	  
+	  @Configuration
+@EnableJpaRepositories(
+        basePackages =
+        "com.demo.customer.repo",
+        entityManagerFactoryRef =
+        "customerEntityManager",
+        transactionManagerRef =
+        "customerTransactionManager"
+)
+public class CustomerDbConfig {
+}
+
+
+DataSource Bean
+
+@Bean
+@Primary
+@ConfigurationProperties(
+        prefix="spring.datasource.customer")
+public DataSource customerDataSource() {
+
+    return DataSourceBuilder.create()
+            .build();
+}
+
+
+EntityManagerFactory
+
+@Bean
+@Primary
+public LocalContainerEntityManagerFactoryBean
+customerEntityManager(
+EntityManagerFactoryBuilder builder) {
+
+    return builder
+            .dataSource(customerDataSource())
+            .packages(
+             "com.demo.customer.entity")
+            .build();
+}
+
+
+Transaction Manager
+
+@Bean
+@Primary
+public PlatformTransactionManager
+customerTransactionManager(
+EntityManagerFactory emf) {
+
+    return new JpaTransactionManager(emf);
+}
+
+
+Reporting DataSource
+@Configuration
+@EnableJpaRepositories(
+        basePackages =
+        "com.demo.reporting.repo",
+        entityManagerFactoryRef =
+        "reportEntityManager",
+        transactionManagerRef =
+        "reportTransactionManager"
+)
+public class ReportingDbConfig {
+}
+
+
+
+Repository Structure
+
+customer
+
+   entity
+   repo
+   service
+
+reporting
+
+   entity
+   repo
+   service
+   
+
+Transaction Example
+
+Customer DB
+
+@Transactional(
+ transactionManager =
+ "customerTransactionManager"
+)
+public void saveCustomer() {
+
+}
+
+
+Reporting DB
+
+@Transactional(
+ transactionManager =
+ "reportTransactionManager"
+)
+public void saveReport() {
+
+}
+
+
+
+
+Senior Interview Question
+
+Why @Primary?
+@Bean
+@Primary
+public DataSource customerDataSource()
+
+Answer:
+
+Spring finds multiple DataSource beans.
+
+Without @Primary
+
+NoUniqueBeanDefinitionException
+
+will occur.
+
+Very common question.
+
+
+One Service Using Two Databases
+
+@Service
+public class CustomerService {
+
+   private final CustomerRepo customerRepo;
+
+   private final ReportRepo reportRepo;
+
+}
+
+Possible.
+
+But transaction discussion follows.
+
+
+Most Asked Senior-Level Questions
+
+1. Multiple Datasource Configuration
+2. @Primary
+3. Multiple EntityManagerFactory
+4. Multiple TransactionManager
+5. @EnableJpaRepositories
+6. XA Transactions
+7. JTA
+8. Atomikos
+9. Saga Pattern
+10. Read-Write Splitting
+11. AbstractRoutingDataSource
+12. Multi-Tenant Design
+13. Connection Pool Tuning
+14. Oracle + MySQL Integration
+15. Production Troubleshooting
+
+One-Line Interview Answer
+
+In Spring Boot multiple datasource configuration requires:
+
+1. Separate DataSource beans
+2. Separate EntityManagerFactory beans
+3. Separate TransactionManager beans
+4. Separate repository packages using @EnableJpaRepositories
+
+For cross-database consistency, use XA/JTA transactions or Saga patterns depending on architecture.

@@ -1,0 +1,1032 @@
+1. JVM Architecture
+2. Class Loader
+3. Parent Delegation Model
+4. Heap vs Stack
+5. Method Area
+6. Metaspace
+7. JIT Compiler
+8. Interpreter vs JIT
+9. Garbage Collection
+10. Minor GC vs Major GC
+11. G1 GC
+12. ZGC
+13. StackOverflowError
+14. OutOfMemoryError
+15. Memory Leak
+16. Heap Dump Analysis
+17. Thread Dump Analysis
+18. JNI
+19. Runtime Data Areas
+20. JVM Tuning
+
+JVM INTERVIEW QUESTIONS & PRODUCTION TROUBLESHOOTING (TOP 100)
+
+=================================
+JVM BASICS (1-20)
+=================================
+
+1. What is JVM?
+2. What is JRE?
+3. What is JDK?
+4. Difference between JVM, JRE and JDK?
+5. What are JVM responsibilities?
+6. What is bytecode?
+7. How JVM executes bytecode?
+8. What is platform independence?
+9. What is JVM architecture?
+10. What are JVM components?
+11. What is Class Loader?
+12. What is Execution Engine?
+13. What is Runtime Data Area?
+14. What is JIT Compiler?
+15. What is Interpreter?
+16. What is HotSpot JVM?
+17. What is JNI?
+18. What are Native Libraries?
+19. What is JVM startup process?
+20. What is JVM shutdown process?
+
+=================================
+CLASS LOADER (21-35)
+=================================
+
+21. What is Class Loader?
+22. Types of Class Loaders?
+23. Bootstrap Class Loader?
+24. Extension Class Loader?
+25. Application Class Loader?
+26. What is Parent Delegation Model?
+27. Why Parent Delegation Model?
+28. What is Class Loading?
+29. What is Linking?
+30. What is Verification?
+31. What is Preparation?
+32. What is Resolution?
+33. What is Initialization?
+34. Can Class Loaders be customized?
+35. How to create Custom Class Loader?
+
+=================================
+MEMORY MANAGEMENT (36-55)
+=================================
+
+36. What is Heap Memory?
+37. What is Stack Memory?
+38. Difference between Heap and Stack?
+39. What is Method Area?
+40. What is Metaspace?
+41. What is Program Counter Register?
+42. What is Native Method Stack?
+43. What is Runtime Constant Pool?
+44. What is Object Allocation?
+45. What happens when new keyword is used?
+46. Where are objects stored?
+47. Where are local variables stored?
+48. Where are static variables stored?
+49. What is Stack Frame?
+50. What is Memory Leak?
+51. What is OutOfMemoryError?
+52. What is StackOverflowError?
+53. Difference between OOM and SOE?
+54. How to analyze memory usage?
+55. How JVM allocates memory?
+
+=================================
+GARBAGE COLLECTION (56-75)
+=================================
+
+56. What is Garbage Collection?
+57. Why Garbage Collection is needed?
+58. How Garbage Collection works?
+59. What is GC Root?
+60. What is Reachability Analysis?
+61. What is Minor GC?
+62. What is Major GC?
+63. What is Full GC?
+64. Difference between Minor and Major GC?
+65. Difference between Major and Full GC?
+66. What is Young Generation?
+67. What is Eden Space?
+68. What is Survivor Space?
+69. What is Old Generation?
+70. What is Promotion?
+71. What is Stop The World?
+72. What is GC Pause?
+73. What is Object Aging?
+74. How to force Garbage Collection?
+75. Why System.gc() is not guaranteed?
+
+=================================
+GC ALGORITHMS (76-85)
+=================================
+
+76. What is Serial GC?
+77. What is Parallel GC?
+78. What is CMS GC?
+79. What is G1 GC?
+80. What is ZGC?
+81. What is Shenandoah GC?
+82. Which GC is default?
+83. Difference between G1 and ZGC?
+84. Which GC is best for low latency?
+85. Which GC is best for large heaps?
+
+=================================
+JIT & PERFORMANCE (86-95)
+=================================
+
+86. What is JIT Compiler?
+87. Why JIT is needed?
+88. Interpreter vs JIT?
+89. What is Hot Method?
+90. What is HotSpot Optimization?
+91. What is Escape Analysis?
+92. What is Method Inlining?
+93. What is Dead Code Elimination?
+94. What is Tiered Compilation?
+95. How JVM improves performance?
+
+=================================
+ADVANCED JVM (96-100)
+=================================
+
+96. What is Safepoint?
+97. What is Biased Locking?
+98. What is Lock Coarsening?
+99. What is Lock Elimination?
+100. What is JVM Tuning?
+
+=================================================
+MOST ASKED JVM TROUBLESHOOTING QUESTIONS
+=================================================
+
+1. Application suddenly became slow.
+2. CPU utilization reached 100%.
+3. Heap memory usage continuously increasing.
+4. Frequent Full GC observed.
+5. OutOfMemoryError in Production.
+6. Metaspace OutOfMemoryError.
+7. High GC pause time.
+8. Memory leak in application.
+9. Thread deadlock issue.
+10. Application hangs intermittently.
+11. JVM restart unexpectedly.
+12. High thread count.
+13. Long GC cycles.
+14. Heap dump analysis.
+15. Thread dump analysis.
+16. G1GC tuning issue.
+17. Database connection pool exhaustion.
+18. Native memory leak.
+19. High response time due to GC.
+20. CPU spike after deployment.
+
+=================================================
+PRODUCTION TROUBLESHOOTING SCENARIOS
+=================================================
+
+Scenario 1:
+Application Slow
+
+Check:
+
+jstat -gc PID 1000
+
+Possible Causes:
+- Full GC
+- DB slow query
+- Deadlock
+- CPU spike
+
+-------------------------------------------------
+
+Scenario 2:
+CPU 100%
+
+Commands:
+
+top -H -p PID
+
+jstack PID > threaddump.txt
+
+Look for:
+- Infinite loops
+- High CPU threads
+- Deadlock
+
+-------------------------------------------------
+
+Scenario 3:
+OutOfMemoryError
+
+Error:
+
+java.lang.OutOfMemoryError: Java heap space
+
+Check:
+
+jmap -heap PID
+
+Heap Dump:
+
+jmap -dump:live,file=heap.hprof PID
+
+Analyze:
+- Eclipse MAT
+- VisualVM
+
+-------------------------------------------------
+
+Scenario 4:
+Metaspace OOM
+
+Error:
+
+java.lang.OutOfMemoryError: Metaspace
+
+Reasons:
+- Dynamic class loading
+- Proxy generation
+- ClassLoader leak
+
+Fix:
+
+-XX:MaxMetaspaceSize=512m
+
+-------------------------------------------------
+
+Scenario 5:
+StackOverflowError
+
+Cause:
+
+Infinite Recursion
+
+Example:
+
+void test() {
+   test();
+}
+
+-------------------------------------------------
+
+Scenario 6:
+Frequent Full GC
+
+Check:
+
+jstat -gc PID
+
+Reasons:
+- Small Heap
+- Memory Leak
+- Large Object Creation
+
+Fix:
+
+Increase Heap
+
+-Xms4g
+-Xmx4g
+
+-------------------------------------------------
+
+Scenario 7:
+Memory Leak
+
+Symptoms:
+- Heap continuously grows
+- Frequent Full GC
+- OOM
+
+Tools:
+
+jmap
+MAT
+VisualVM
+
+-------------------------------------------------
+
+Scenario 8:
+Thread Deadlock
+
+Command:
+
+jstack PID
+
+Output:
+
+Found one Java-level deadlock
+
+-------------------------------------------------
+
+Scenario 9:
+Application Freeze
+
+Check:
+
+jstack PID
+
+Possible Reasons:
+- Deadlock
+- Long GC
+- Infinite Loop
+
+-------------------------------------------------
+
+Scenario 10:
+GC Pause Too High
+
+Check:
+
+-Xlog:gc*
+
+Possible Fix:
+
+Use G1GC
+
+-XX:+UseG1GC
+
+=================================================
+IMPORTANT JVM COMMANDS
+=================================================
+
+Find JVM Process:
+
+jps -l
+
+GC Statistics:
+
+jstat -gc PID
+
+Heap Information:
+
+jmap -heap PID
+
+Heap Dump:
+
+jmap -dump:live,file=heap.hprof PID
+
+Thread Dump:
+
+jstack PID
+
+Memory Histogram:
+
+jmap -histo PID
+
+GC Logs:
+
+-Xlog:gc*
+
+=================================================
+TOP 30 JVM QUESTIONS FOR JAVA BACKEND INTERVIEWS
+=================================================
+
+1. JVM Architecture
+2. Class Loader
+3. Parent Delegation Model
+4. Heap vs Stack
+5. Method Area
+6. Metaspace
+7. Runtime Constant Pool
+8. Object Creation Process
+9. Garbage Collection
+10. Minor GC
+11. Major GC
+12. Full GC
+13. G1GC
+14. ZGC
+15. CMS GC
+16. JIT Compiler
+17. Interpreter vs JIT
+18. OutOfMemoryError
+19. StackOverflowError
+20. Memory Leak
+21. Heap Dump
+22. Thread Dump
+23. Deadlock
+24. GC Tuning
+25. JVM Tuning
+26. Safepoint
+27. Escape Analysis
+28. Method Inlining
+29. Native Memory
+30. Production Troubleshooting
+
+INTERVIEW TIP:
+
+For 5+ years Java Backend roles, focus heavily on:
+- Heap vs Stack
+- Class Loader
+- Parent Delegation
+- G1GC
+- OOM Analysis
+- Heap Dump
+- Thread Dump
+- Deadlock
+- GC Logs
+- JVM Tuning
+- Memory Leak Investigation
+- CPU Troubleshooting
+
+
+
+# Java Garbage Collection (GC) Notes
+
+## What is Garbage Collection?
+
+Garbage Collection (GC) is an automatic memory management process that removes objects from memory that are no longer reachable by the application.
+
+Example:
+
+```java
+Employee emp = new Employee();
+emp = null; // Eligible for GC
+```
+
+When no active reference points to an object, it becomes eligible for garbage collection.
+
+---
+
+# Java Memory Structure
+
+## Stack Memory
+
+Stores:
+
+* Method calls
+* Local variables
+* Object references
+
+Example:
+
+```java
+public void test() {
+    Employee emp = new Employee();
+}
+```
+
+The reference variable `emp` is stored in Stack Memory.
+
+---
+
+## Heap Memory
+
+Stores:
+
+* Objects
+* Instance variables
+
+Example:
+
+```java
+Employee emp = new Employee();
+```
+
+The Employee object is stored in Heap Memory.
+
+---
+
+# Heap Layout
+
+```text
+Heap
+│
+├── Young Generation
+│     ├── Eden
+│     ├── Survivor S0
+│     └── Survivor S1
+│
+└── Old Generation
+```
+
+Java 8+
+
+```text
+Metaspace
+```
+
+Stores:
+
+* Class Metadata
+* Method Metadata
+* Constant Pool Information
+
+---
+
+# Object Lifecycle
+
+## Step 1: Object Creation
+
+```java
+Employee emp = new Employee();
+```
+
+Object created in Eden Space.
+
+---
+
+## Step 2: Minor GC
+
+When Eden becomes full:
+
+```text
+Eden → Survivor Space
+```
+
+Live objects are moved to Survivor Space.
+
+---
+
+## Step 3: Promotion
+
+After surviving several Minor GCs:
+
+```text
+Survivor → Old Generation
+```
+
+Object gets promoted.
+
+---
+
+## Step 4: Object Removal
+
+```java
+emp = null;
+```
+
+Object becomes unreachable and can be removed by GC.
+
+---
+
+# GC Roots
+
+GC starts searching from GC Roots.
+
+Types of GC Roots:
+
+1. Local Variables
+2. Static Variables
+3. Active Threads
+4. JNI References
+
+If an object can be reached from a GC Root, it is considered alive.
+
+---
+
+# Reachability Analysis
+
+## Reachable Object
+
+```java
+Employee emp = new Employee();
+```
+
+Object is alive.
+
+---
+
+## Unreachable Object
+
+```java
+Employee emp = new Employee();
+emp = null;
+```
+
+Object is eligible for GC.
+
+---
+
+# Types of Garbage Collection
+
+## Minor GC
+
+* Occurs in Young Generation
+* Fast operation
+* Frequent
+
+---
+
+## Major GC
+
+* Occurs in Old Generation
+* Slower than Minor GC
+
+---
+
+## Full GC
+
+Cleans:
+
+* Young Generation
+* Old Generation
+* Metaspace
+
+Most expensive GC operation.
+
+---
+
+# Stop-The-World (STW)
+
+During GC, application threads are paused.
+
+```text
+Application Running
+        ↓
+      GC Starts
+        ↓
+All Threads Paused
+        ↓
+      GC Ends
+        ↓
+Application Resumes
+```
+
+Modern collectors aim to reduce pause times.
+
+---
+
+# Evolution of Garbage Collectors
+
+====================================
+JAVA 1.0 - SERIAL GC
+====================
+
+Characteristics:
+
+* Single Thread
+* Stop-The-World
+* Suitable for Small Applications
+
+JVM Option:
+
+```bash
+-XX:+UseSerialGC
+```
+
+Advantages:
+
+* Simple
+* Low memory overhead
+
+Disadvantages:
+
+* Long pause times
+* Poor scalability
+
+---
+
+====================================
+JAVA 1.4 - PARALLEL GC
+======================
+
+Also called:
+
+Throughput Collector
+
+Uses multiple threads for GC work.
+
+JVM Option:
+
+```bash
+-XX:+UseParallelGC
+```
+
+Advantages:
+
+* High throughput
+* Faster than Serial GC
+
+Disadvantages:
+
+* Still Stop-The-World
+
+Best For:
+
+* Batch Jobs
+* ETL Processing
+* Reporting Systems
+
+---
+
+====================================
+JAVA 5/6 - CMS GC
+=================
+
+CMS = Concurrent Mark Sweep
+
+Goal:
+
+Reduce pause times.
+
+Phases:
+
+1. Initial Mark (STW)
+2. Concurrent Mark
+3. Remark (STW)
+4. Concurrent Sweep
+
+Advantages:
+
+* Low latency
+* Concurrent processing
+
+Problems:
+
+* Memory Fragmentation
+* Concurrent Mode Failure
+* Difficult tuning
+
+JVM Option:
+
+```bash
+-XX:+UseConcMarkSweepGC
+```
+
+Removed in Java 14.
+
+---
+
+====================================
+JAVA 7u4 - G1 GC
+================
+
+G1 = Garbage First
+
+Introduced to replace CMS.
+
+JVM Option:
+
+```bash
+-XX:+UseG1GC
+```
+
+Default Collector from Java 9.
+
+---
+
+# G1 Heap Structure
+
+Instead of Young and Old continuous spaces:
+
+```text
+R1 R2 R3 R4 R5
+R6 R7 R8 R9 R10
+```
+
+Heap divided into Regions.
+
+Region size:
+
+1 MB to 32 MB
+
+---
+
+# Working of G1
+
+Example:
+
+```text
+Region 1 = 90% garbage
+Region 2 = 20% garbage
+Region 3 = 85% garbage
+```
+
+G1 collects:
+
+```text
+Region 1
+Region 3
+```
+
+First.
+
+Hence the name:
+
+Garbage First.
+
+---
+
+# G1 Collection Types
+
+1. Young GC
+2. Mixed GC
+3. Full GC
+
+Advantages:
+
+* Predictable pause times
+* No fragmentation
+* Large heap support
+
+---
+
+====================================
+JAVA 11 - G1 IMPROVEMENTS
+=========================
+
+Enhancements:
+
+* Parallel Full GC
+* Faster Full GC
+* Better performance
+
+---
+
+====================================
+JAVA 12 - SHENANDOAH GC
+=======================
+
+Developed by Red Hat.
+
+JVM Option:
+
+```bash
+-XX:+UseShenandoahGC
+```
+
+Goal:
+
+Ultra-Low Pause Times
+
+Characteristics:
+
+* Concurrent Compaction
+* Concurrent Evacuation
+* Very Small Pauses
+
+Best For:
+
+* Trading Systems
+* Real-Time Applications
+
+---
+
+====================================
+JAVA 15 - ZGC
+=============
+
+ZGC = Z Garbage Collector
+
+Developed by Oracle.
+
+JVM Option:
+
+```bash
+-XX:+UseZGC
+```
+
+Goal:
+
+Pause Time Independent of Heap Size
+
+Heap Examples:
+
+```text
+2 GB
+20 GB
+200 GB
+```
+
+Pause time remains very small.
+
+---
+
+# ZGC Characteristics
+
+* Concurrent Marking
+* Concurrent Relocation
+* Concurrent Compaction
+* Colored Pointers
+
+Advantages:
+
+* Extremely Low Latency
+* Huge Heap Support
+
+Typical Pause:
+
+Less than 1-2 ms
+
+---
+
+====================================
+JAVA 21 GC LANDSCAPE
+====================
+
+Active Collectors:
+
+1. Serial GC
+2. Parallel GC
+3. G1 GC (Default)
+4. Shenandoah GC
+5. ZGC
+
+Removed:
+
+CMS GC
+
+---
+
+# Which GC Should I Use?
+
+Small Application:
+
+```bash
+-XX:+UseSerialGC
+```
+
+Batch Processing:
+
+```bash
+-XX:+UseParallelGC
+```
+
+Spring Boot / Enterprise Applications:
+
+```bash
+-XX:+UseG1GC
+```
+
+Low Latency Applications:
+
+```bash
+-XX:+UseZGC
+```
+
+Huge Heap Applications:
+
+```bash
+-XX:+UseZGC
+```
+
+---
+
+# Useful JVM Monitoring Commands
+
+List Java Processes:
+
+```bash
+jps
+```
+
+GC Statistics:
+
+```bash
+jstat -gc <pid>
+```
+
+Heap Information:
+
+```bash
+jmap -heap <pid>
+```
+
+Object Histogram:
+
+```bash
+jmap -histo <pid>
+```
+
+Thread Dump:
+
+```bash
+jstack <pid>
+```
+
+JVM Diagnostics:
+
+```bash
+jcmd <pid>
+```
+
+---
+
+# Frequently Asked Interview Questions
+
+1. What is Garbage Collection?
+2. What is Minor GC?
+3. What is Major GC?
+4. What is Full GC?
+5. What is Stop-The-World?
+6. What is Promotion?
+7. What is GC Root?
+8. What is Reachability Analysis?
+9. Difference between Stack and Heap?
+10. Difference between Minor GC and Major GC?
+11. Difference between Serial and Parallel GC?
+12. Why was CMS removed?
+13. Why did G1 replace CMS?
+14. What is Memory Fragmentation?
+15. What is Concurrent Mode Failure?
+16. What is Mixed GC in G1?
+17. What are G1 Regions?
+18. What are Colored Pointers in ZGC?
+19. Difference between G1 and ZGC?
+20. Which GC is default in Java 21?
+
+Answer:
+
+Default Garbage Collector in Java 21 = G1 GC.

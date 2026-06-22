@@ -1,0 +1,187 @@
+CREATE TABLE ms_employee (
+    emp_id NUMBER PRIMARY KEY,
+    emp_name VARCHAR2(50),
+    salary NUMBER,
+    dept_id NUMBER,
+    manager_id NUMBER,
+    hire_date DATE
+);
+
+INSERT INTO ms_employee VALUES (1,'JOHN',100000,10,NULL,DATE '2020-01-01');
+INSERT INTO ms_employee VALUES (2,'ALICE',90000,10,1,DATE '2021-02-01');
+INSERT INTO ms_employee VALUES (3,'BOB',85000,10,1,DATE '2021-03-01');
+INSERT INTO ms_employee VALUES (4,'DAVID',75000,20,1,DATE '2022-01-01');
+INSERT INTO ms_employee VALUES (5,'EMMA',70000,20,4,DATE '2022-02-01');
+INSERT INTO ms_employee VALUES (6,'MIKE',65000,30,4,DATE '2023-01-01');
+INSERT INTO ms_employee VALUES (7,'SARA',95000,30,1,DATE '2021-05-01');
+INSERT INTO ms_employee VALUES (8,'TOM',85000,20,4,DATE '2023-03-01');
+
+COMMIT;
+
+
+
+CREATE TABLE ms_department (
+    dept_id NUMBER PRIMARY KEY,
+    dept_name VARCHAR2(50)
+);
+
+INSERT INTO department VALUES (10,'ENGINEERING');
+INSERT INTO department VALUES (20,'HR');
+INSERT INTO department VALUES (30,'FINANCE');
+INSERT INTO department VALUES (40,'SALES');
+
+COMMIT;
+
+
+--------------- 100 Questions --------------------------------------------
+
+=========================
+ORACLE SQL - 100 QUESTIONS
+=========================
+
+BASIC SQL
+
+1. What is the difference between WHERE and HAVING?
+2. What is DISTINCT?
+3. How do you retrieve unique values from a column?
+4. What is the difference between COUNT(*) and COUNT(column)?
+5. How do you find NULL values?
+6. Why does '= NULL' not work?
+7. What is ORDER BY?
+8. How do you sort data in descending order?
+9. How do you retrieve the first 5 rows in Oracle 10g?
+10. What is ROWNUM?
+11. What is the difference between CHAR and VARCHAR2?
+12. What is the difference between TRUNCATE and DELETE?
+13. What is the difference between DELETE and DROP?
+14. What is a primary key?
+15. What is a unique key?
+16. What is a foreign key?
+17. What is a check constraint?
+18. What is a not null constraint?
+19. What are aggregate functions?
+20. What is GROUP BY?
+
+JOINS
+
+21. What is INNER JOIN?
+22. What is LEFT OUTER JOIN?
+23. What is RIGHT OUTER JOIN?
+24. What is FULL OUTER JOIN?
+25. What is SELF JOIN?
+26. What is CROSS JOIN?
+27. What is an Equi Join?
+28. What is a Non-Equi Join?
+29. Find employees and their managers using SELF JOIN.
+30. Find departments without employees.
+31. Find employees without departments.
+32. Difference between JOIN and SUBQUERY.
+33. Explain Cartesian Product.
+34. Join three tables and retrieve data.
+35. How do you identify duplicate rows using joins?
+
+SUBQUERIES
+
+36. What is a subquery?
+37. What is a correlated subquery?
+38. What is a non-correlated subquery?
+39. Find employees earning more than average salary.
+40. Find second highest salary using subquery.
+41. Find third highest salary.
+42. Find Nth highest salary.
+43. Difference between EXISTS and IN.
+44. Difference between EXISTS and JOIN.
+45. Difference between IN and ANY.
+46. Difference between ANY and ALL.
+47. What is a scalar subquery?
+48. Can a subquery return multiple columns?
+49. How does a correlated subquery execute?
+50. Rewrite a subquery using JOIN.
+
+GROUP BY / HAVING
+
+51. Find department-wise employee count.
+52. Find department-wise maximum salary.
+53. Find department-wise minimum salary.
+54. Find department-wise average salary.
+55. Find departments having more than 5 employees.
+56. Find departments having average salary greater than 50000.
+57. Difference between WHERE and HAVING.
+58. Find duplicate records using GROUP BY.
+59. Find unique records using GROUP BY.
+60. How do aggregate functions treat NULL values?
+
+ANALYTIC FUNCTIONS
+
+61. What is ROW_NUMBER()?
+62. What is RANK()?
+63. What is DENSE_RANK()?
+64. Difference between RANK and DENSE_RANK.
+65. Difference between ROW_NUMBER and RANK.
+66. Find top 3 salaries.
+67. Find top 3 salaries per department.
+68. What is PARTITION BY?
+69. What is OVER() clause?
+70. Difference between GROUP BY and PARTITION BY.
+71. Calculate running total.
+72. Calculate moving average.
+73. Use LAG() to find previous salary.
+74. Use LEAD() to find next salary.
+75. Use ROW_NUMBER() for pagination.
+
+ORACLE-SPECIFIC
+
+76. What is ROWNUM?
+77. Why does WHERE ROWNUM > 1 fail?
+78. Difference between ROWNUM and ROW_NUMBER().
+79. What is DUAL table?
+80. What is CONNECT BY?
+81. What is START WITH?
+82. What is LEVEL pseudo column?
+83. Write an employee hierarchy query.
+84. What is NVL()?
+85. Difference between NVL(), NVL2(), and COALESCE().
+
+INDEXES
+
+86. What is an index?
+87. What is a B-Tree index?
+88. What is a Bitmap index?
+89. What is a Composite Index?
+90. What is a Function-Based Index?
+91. What is Cardinality?
+92. Why might Oracle ignore an index?
+93. What is Index Range Scan?
+94. What is Index Unique Scan?
+95. What is Full Table Scan?
+
+PERFORMANCE TUNING
+
+96. What is EXPLAIN PLAN?
+97. How do you read an execution plan?
+98. What is Cost Based Optimizer (CBO)?
+99. What are Optimizer Statistics?
+100. A query suddenly becomes slow in production. How would you troubleshoot it?
+
+Most Important Coding Questions (Practice Daily)
+
+1. Highest salary
+2. Second highest salary
+3. Third highest salary
+4. Nth highest salary
+5. Duplicate records
+6. Delete duplicate records
+7. Employees earning more than manager
+8. Department-wise highest salary
+9. Department-wise second highest salary
+10. Top 3 salaries per department
+11. Running total
+12. Moving average
+13. Consecutive records
+14. Missing IDs
+15. Odd and even rows
+16. Pivot rows to columns
+17. Unpivot columns to rows
+18. Employee hierarchy using CONNECT BY
+19. Pagination using ROWNUM
+20. Query optimization using indexes

@@ -83,14 +83,219 @@ Open Again
 
 
 
+=================================
+CIRCUIT BREAKER - 50 QUESTIONS
+=================================
+
+1. What is a Circuit Breaker pattern?
+2. Why do we need Circuit Breakers?
+3. What problem does Circuit Breaker solve?
+4. What is a cascading failure?
+5. How does Circuit Breaker prevent system failure?
+6. Difference between Retry and Circuit Breaker?
+7. Difference between Timeout and Circuit Breaker?
+8. Difference between Bulkhead and Circuit Breaker?
+9. What is Resilience4j?
+10. Why is Hystrix deprecated?
+
+CIRCUIT STATES
+
+11. What is CLOSED state?
+12. What is OPEN state?
+13. What is HALF-OPEN state?
+14. How does Circuit Breaker move from CLOSED to OPEN?
+15. How does Circuit Breaker move from OPEN to HALF-OPEN?
+16. How does Circuit Breaker move back to CLOSED?
+17. What happens when Circuit Breaker is OPEN?
+18. How are failures counted?
+19. What is Failure Rate Threshold?
+20. What is Sliding Window?
+
+CONFIGURATION
+
+21. What is Sliding Window Size?
+22. What is Minimum Number Of Calls?
+23. What is Wait Duration In Open State?
+24. What is Permitted Calls In Half Open State?
+25. What is Slow Call Duration Threshold?
+26. What is Slow Call Rate Threshold?
+27. Difference between Count Based and Time Based Window?
+28. How do you configure Resilience4j?
+29. How do you expose Circuit Breaker metrics?
+30. How do you monitor Circuit Breakers?
+
+SPRING BOOT
+
+31. How do you implement Circuit Breaker in Spring Boot?
+32. How do you implement fallback methods?
+33. What happens when fallback fails?
+34. Can fallback call another service?
+35. How do you chain retries with Circuit Breaker?
+36. How do you integrate WebClient with Circuit Breaker?
+37. How do you integrate RestTemplate with Circuit Breaker?
+38. How do you use Circuit Breaker with Feign Client?
+39. What annotations are used in Resilience4j?
+40. How do you test Circuit Breaker?
+
+PRODUCTION SCENARIOS
+
+41. Payment service is down. How will Circuit Breaker help?
+42. Notification service latency increases. What happens?
+43. How do you choose failure threshold?
+44. What metrics would you monitor?
+45. Why might a Circuit Breaker open too frequently?
+46. What is a false positive Circuit Breaker opening?
+47. How do you troubleshoot OPEN state issues?
+48. How do you tune Circuit Breaker in production?
+49. Explain a real-world Circuit Breaker implementation.
+50. Difference between Retry, Timeout, Rate Limiter and Circuit Breaker?
 
 
-Implementation Using Resilience4j (Spring Boot)
-The most common implementation today is with Resilience4j.
+=================================
+JAVA TROUBLESHOOTING - 100 QUESTIONS
+=================================
 
-Step 1: Add Dependency
+CPU ISSUES
+
+1. Application CPU suddenly becomes 95%. How do you investigate?
+2. Which Linux commands will you use?
+3. How do you identify high CPU threads?
+4. How do you map thread id to thread dump?
+5. How do you analyze thread dumps?
+6. What is a CPU-bound application?
+7. What causes infinite loops?
+8. How do you detect busy waiting?
+9. What tools do you use for CPU profiling?
+10. How do you troubleshoot GC-related CPU spikes?
+
+MEMORY ISSUES
+
+11. Difference between Heap and Stack?
+12. What causes OutOfMemoryError?
+13. Types of OutOfMemoryError?
+14. How do you capture Heap Dump?
+15. How do you analyze Heap Dump?
+16. What is Memory Leak?
+17. How do you detect Memory Leak?
+18. What tools do you use for Heap Analysis?
+19. What is MAT tool?
+20. What is Dominator Tree?
+
+THREAD ISSUES
+
+21. What is Deadlock?
+22. How do you identify Deadlock?
+23. How do you capture Thread Dump?
+24. Which command generates Thread Dump?
+25. What is thread starvation?
+26. What is lock contention?
+27. What is blocked thread?
+28. What is waiting thread?
+29. What is runnable thread?
+30. How do you analyze thread dump?
+
+GC TROUBLESHOOTING
+
+31. What is Full GC?
+32. What is Minor GC?
+33. Why are Full GCs dangerous?
+34. How do you analyze GC logs?
+35. What causes frequent Full GCs?
+36. What causes promotion failure?
+37. What is GC overhead limit exceeded?
+38. Which GC collectors have you used?
+39. G1GC troubleshooting?
+40. How do you reduce GC pauses?
+
+DATABASE ISSUES
+
+41. Query suddenly becomes slow.
+42. How do you investigate Oracle slow queries?
+43. Explain execution plan.
+44. What is Full Table Scan?
+45. Why is index not used?
+46. How do you find blocking sessions?
+47. What is deadlock in Oracle?
+48. How do you find long running queries?
+49. What is cardinality?
+50. What is bind variable peeking?
+
+MICROSERVICES
+
+51. One microservice response time increased from 100ms to 5 sec.
+52. How do you trace service-to-service calls?
+53. How do you use distributed tracing?
+54. What metrics do you check first?
+55. How do you troubleshoot API failures?
+56. How do you identify network latency?
+57. How do you investigate downstream failures?
+58. What is cascading failure?
+59. How do you prevent cascading failures?
+60. How do you troubleshoot service mesh issues?
+
+WEBFLUX
+
+61. Why is WebFlux slow?
+62. How do you identify blocking code?
+63. What happens when block() is used?
+64. How do you detect blocking JDBC calls?
+65. What is BlockHound?
+66. How do you analyze reactive thread usage?
+67. How do you troubleshoot backpressure?
+68. Why is Netty event loop blocked?
+69. How do you monitor WebClient?
+70. How do you tune WebFlux applications?
+
+KUBERNETES
+
+71. Pod keeps restarting. How do you investigate?
+72. What is CrashLoopBackOff?
+73. How do you check pod logs?
+74. How do you investigate OOMKilled?
+75. How do you analyze readiness probe failures?
+76. How do you analyze liveness probe failures?
+77. Why are pods not getting traffic?
+78. How do you investigate node resource issues?
+79. How do you troubleshoot DNS issues?
+80. How do you troubleshoot ingress issues?
+
+SPRING BOOT
+
+81. Application startup suddenly increased from 30 sec to 3 min.
+82. Bean creation failure troubleshooting.
+83. Connection pool exhaustion.
+84. HikariCP troubleshooting.
+85. High response times in Spring Boot.
+86. Thread pool exhaustion.
+87. Async task failures.
+88. Memory leak in Spring Boot.
+89. Actuator endpoints for troubleshooting.
+90. Production logging strategy.
+
+REAL SCENARIOS
+
+91. CPU 100%, Memory Normal.
+92. Memory 95%, CPU Normal.
+93. Database healthy but APIs slow.
+94. APIs healthy but UI slow.
+95. Sudden increase in response time after deployment.
+96. Increased GC pauses after deployment.
+97. Oracle database connection exhaustion.
+98. Thread pool exhausted.
+99. Kafka consumer lag increasing.
+100. System works in UAT but fails in Production.
 
 
+Senior-Level Scenario Questions (Asked Very Frequently)
 
-
+1. API latency increased from 100ms to 10s. Walk me through your investigation.
+2. Production CPU reached 100%. What commands will you run?
+3. Heap memory keeps growing. How do you find the leak?
+4. Thread count increased from 200 to 5000. What will you do?
+5. Oracle query takes 50ms in Dev but 10s in Prod. Why?
+6. Kubernetes pod restarts every 15 minutes. How do you debug?
+7. WebFlux service becomes unresponsive under load. Why?
+8. Circuit Breaker remains OPEN. How do you troubleshoot?
+9. Kafka lag increases continuously. How do you investigate?
+10. After deployment, application response time doubled. What checks do you perform first?
 				

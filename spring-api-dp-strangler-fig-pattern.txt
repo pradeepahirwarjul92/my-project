@@ -1,0 +1,205 @@
+Strangler Fig Pattern in Spring Boot / Microservices
+
+The Strangler Fig Pattern is a migration pattern used to gradually replace a legacy monolithic application with new microservices 
+without a big-bang rewrite.
+
+What is it?
+
+Instead of:
+
+Old Monolith
+     |
+Rewrite Everything
+     |
+Big Bang Release
+
+You do:
+
+           Client
+              |
+              v
+         API Gateway
+          /      \
+         /        \
+        v          v
+ Legacy App   New Microservice
+ 
+ Gradually move functionality from the monolith to microservices.
+ 
+ Why "Strangler Fig"?
+ 
+ A strangler fig tree grows around an existing tree and slowly replaces it.
+ 
+ Similarly:
+ 
+ Legacy System
+      ↓
+New Services Added Around It
+      ↓
+Features Moved One By One
+      ↓
+Legacy Removed
+
+
+--------------- Real Example ------------
+
+Suppose Monolith has:
+		Customer Module
+		Order Module
+		Payment Module
+		Inventory Module
+		
+Step 1:
+	Monolith
+ ├─ Customer
+ ├─ Order
+ ├─ Payment
+ └─ Inventory
+ 
+
+Step 2: Extract Payment Service 
+	API Gateway
+      |
+ ------------
+ |          |
+ v          v
+Monolith   Payment Service
+
+Step 3: Extract Inventory
+
+API Gateway
+      |
+ ---------------------
+ |         |         |
+ v         v         v
+Monolith Payment Inventory
+
+Step 4:
+Customer Service
+Order Service
+Payment Service
+Inventory Service
+
+Monolith retired.
+
+
+
+------------Spring Boot Implementation--------
+
+API Gateway Routing
+
+Example using Spring Cloud Gateway:
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: payment-service
+          uri: lb://PAYMENT-SERVICE
+          predicates:
+            - Path=/payments/**
+
+        - id: legacy-service
+          uri: http://legacy-app:8080
+          predicates:
+            - Path=/**
+
+Flow
+/payments/**
+        |
+        v
+PAYMENT-SERVICE
+
+Anything Else
+        |
+        v
+Legacy Monolith
+
+
+Users don't know whether the request is going to old or new system.
+
+Before Migration
+
+	GET /legacy/payment/process
+
+Handled by:
+	Handled by:
+
+
+After Migration
+	Gateway routes:
+			GET /payments/process
+			
+	to:
+			Payment Microservice
+
+Database Migration Strategy
+
+Bad Approach
+Microservice
+      |
+Shared Monolith Database
+
+Causes:
+
+Tight Coupling
+Schema Dependency
+Deployment Risk
+Preferred Approach
+Payment Service
+      |
+Payment Database
+
+Inventory Service
+      |
+Inventory Database
+
+Each service owns its data.
+
+Benefits
+1. No Big Bang Rewrite
+2. Lower Risk
+3. Faster Delivery
+4. Easier Rollback
+5. Incremental Migration
+6. Business Continuity
+7. Independent Deployments
+Challenges
+1. Data Synchronization
+2. Distributed Transactions
+3. Shared Database Issues
+4. Duplicate Logic During Migration
+5. API Compatibility
+6. Monitoring Complexity
+
+
+Common Architecture Diagram
+
+                Client
+                   |
+                   v
+          Spring Cloud Gateway
+                   |
+       -------------------------
+       |           |           |
+       v           v           v
+ Legacy App   Payment MS   Order MS
+       |
+       v
+ Legacy DB
+
+
+Follow-up Questions Frequently Asked
+
+1. Why not rewrite the monolith completely?
+2. How do you route traffic during migration?
+3. How do you handle shared databases?
+4. How do you synchronize data?
+5. How do you roll back a migrated service?
+6. How do you monitor old and new systems together?
+7. What role does API Gateway play?
+8. How do you avoid distributed transaction issues?
+9. How do you migrate authentication?
+10. What challenges did you face in production?
+
+			
+

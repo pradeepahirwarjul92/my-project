@@ -1,0 +1,168 @@
+JAVA DSA MATH & LOGIC - 100 INTERVIEW QUESTIONS
+
+=================================
+BASIC MATH (1-20)
+=================================
+
+1. Check if a number is even or odd.
+2. Find factorial of a number.
+3. Find factorial using recursion.
+4. Find factorial using iteration.
+5. Check if a number is prime.
+6. Print all prime numbers up to N.
+7. Count number of prime numbers in a range.
+8. Find GCD (HCF) of two numbers.
+9. Find LCM of two numbers.
+10. Check if a number is palindrome.
+11. Reverse a number.
+12. Count digits in a number.
+13. Sum of digits of a number.
+14. Product of digits of a number.
+15. Find power of a number.
+16. Calculate x^n using recursion.
+17. Calculate x^n using Binary Exponentiation.
+18. Check if a number is Armstrong.
+19. Check if a number is Perfect Number.
+20. Check if a number is Strong Number.
+
+=================================
+NUMBER THEORY (21-40)
+=================================
+
+21. Find all divisors of a number.
+22. Count divisors of a number.
+23. Check if number is divisible by 3.
+24. Check if number is divisible by 9.
+25. Check if number is divisible by 11.
+26. Find prime factors of a number.
+27. Sieve of Eratosthenes.
+28. Segmented Sieve.
+29. Find nth prime number.
+30. Find Euler Totient Function.
+31. Modular Arithmetic Basics.
+32. Modular Addition.
+33. Modular Multiplication.
+34. Modular Division.
+35. Modular Exponentiation.
+36. Find GCD using Euclidean Algorithm.
+37. Extended Euclidean Algorithm.
+38. Find Modular Inverse.
+39. Chinese Remainder Theorem.
+40. Check Coprime Numbers.
+
+=================================
+FIBONACCI & RECURSION (41-50)
+=================================
+
+41. Print Fibonacci Series.
+42. Find nth Fibonacci Number.
+43. Fibonacci using Recursion.
+44. Fibonacci using Dynamic Programming.
+45. Fibonacci using Matrix Exponentiation.
+46. Sum of Fibonacci Series.
+47. Tribonacci Sequence.
+48. Recursive Sum of N numbers.
+49. Recursive Product of N numbers.
+50. Tower of Hanoi.
+
+=================================
+BIT MANIPULATION (51-70)
+=================================
+
+51. Check if a number is power of 2.
+52. Check if a number is power of 4.
+53. Count set bits.
+54. Count unset bits.
+55. Find odd occurring number.
+56. Find two odd occurring numbers.
+57. Swap two numbers without temp variable.
+58. Get ith bit.
+59. Set ith bit.
+60. Clear ith bit.
+61. Toggle ith bit.
+62. Check if ith bit is set.
+63. Find rightmost set bit.
+64. Find leftmost set bit.
+65. Check if number is even using bitwise.
+66. XOR of all numbers from 1 to N.
+67. Find missing number using XOR.
+68. Find unique element using XOR.
+69. Generate subsets using bit masking.
+70. Bitwise AND, OR, XOR operations.
+
+=================================
+LOGICAL REASONING (71-85)
+=================================
+
+71. Find missing number in sequence.
+72. Find next number in series.
+73. Find odd one out.
+74. Number pattern problems.
+75. Alphabet pattern problems.
+76. Clock angle problem.
+77. Train crossing problem.
+78. Speed, Distance and Time.
+79. Relative Speed.
+80. Boats and Streams.
+81. Work and Time.
+82. Pipes and Cisterns.
+83. Percentage Problems.
+84. Profit and Loss.
+85. Simple and Compound Interest.
+
+=================================
+PROBLEM SOLVING LOGIC (86-100)
+=================================
+
+86. FizzBuzz Problem.
+87. Happy Number.
+88. Magic Number.
+89. Strong Number.
+90. Automorphic Number.
+91. Neon Number.
+92. Spy Number.
+93. Harshad Number.
+94. Kaprekar Number.
+95. Generate Pascal Triangle.
+96. Find Row in Pascal Triangle.
+97. Josephus Problem.
+98. N-Queen Logic.
+99. Rat in Maze Logic.
+100. Sudoku Validation Logic.
+
+=================================
+MOST ASKED INTERVIEW QUESTIONS
+=================================
+
+1. Prime Number
+2. Palindrome Number
+3. Armstrong Number
+4. Fibonacci Series
+5. GCD and LCM
+6. Power of Number
+7. Factorial
+8. Sieve of Eratosthenes
+9. Count Set Bits
+10. Power of Two
+11. Missing Number
+12. XOR Based Problems
+13. Happy Number
+14. Pascal Triangle
+15. Josephus Problem
+16. Modular Exponentiation
+17. Bit Manipulation
+18. FizzBuzz
+19. Number Patterns
+20. Mathematical Logic Puzzles
+
+For Java Backend Interviews, focus especially on:
+- Prime Numbers
+- GCD/LCM
+- Fibonacci
+- Bit Manipulation
+- Missing Number
+- XOR Problems
+- Pascal Triangle
+- Mathematical Reasoning
+- Modular Arithmetic
+- Recursion Basics

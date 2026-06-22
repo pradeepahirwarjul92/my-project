@@ -1,0 +1,748 @@
+ ============= STRUCTURAL DESIGN PATTERN ===================	
+ 
+ 01 - Adapter Pattern 
+ Ans  - 
+			-	Its Structural Design pattern
+			-	connect two incompatible interface so they can work together
+
+
+In simple words:
+		Adapter Pattern converts the interface of a class into another interface that the client expects.			
+		
+
+1️ . Problem Statement
+	Suppose system has a notification service that sends notification using common interface 
+	
+	Application expects this method : 
+		sendNotification(String message);
+	
+But external services provide different methods : 
+
+Service 				Method 	
+--------------------------------------
+Email Service 		sendEmail(String msg)
+SMS Service 		sendSms(String msg)		
+Push Service 		sendPush(String msg)
+
+Problem 
+	Your application cannot directly use these services becayse method names are different 
+Example issue : 
+EmailService email = new EmailService();
+email.sendEmail("Hello");	
+
+But your system expects 
+notification.sendNotification("Hello");
+
+Interfaces do not match.
+✔ Solution → Adapter Pattern
+
+
+2. Target Interface (Expected by Client)
+	This is the interface your application understands.
+	
+	public interface NotificationService {
+
+    void sendNotification(String message);
+}
+
+3 . Existing Services (Incompatible Interfaces)
+
+	Email Service
+public class EmailService {
+
+    public void sendEmail(String msg){
+        System.out.println("Email Sent: " + msg);
+    }
+}
+SMS Service
+public class SmsService {
+
+    public void sendSms(String msg){
+        System.out.println("SMS Sent: " + msg);
+    }
+}
+
+
+4. Adapter Implementation
+	Adpater converts expected method -> actual service method
+	
+	public class EmailAdapter implements NotificationService {
+
+    private EmailService emailService;
+
+    public EmailAdapter() {
+        this.emailService = new EmailService();
+    }
+
+    @Override
+    public void sendNotification(String message) {
+        emailService.sendEmail(message);
+    }
+}
+
+
+public class SmsAdapter implements NotificationService {
+
+    private SmsService smsService;
+
+    public SmsAdapter() {
+        this.smsService = new SmsService();
+    }
+
+    @Override
+    public void sendNotification(String message) {
+        smsService.sendSms(message);
+    }
+}
+
+
+5 . Client Code
+
+public class   {
+
+    public static void main(String[] args) {
+
+        NotificationService email =
+                new EmailAdapter();
+
+        NotificationService sms =
+                new SmsAdapter();
+
+        email.sendNotification("Welcome User");
+
+        sms.sendNotification("OTP: 1234");
+    }
+}
+
+6 - Output
+Email Sent: Welcome User
+SMS Sent: OTP: 1234
+
+
+7 - Execution Flow
+Client
+   ↓
+NotificationService interface
+   ↓
+Adapter
+   ↓
+Actual Service
+
+
+
+
+---------------------------------------
+02. BRIDGE DESIGN PATTERN
+Ans - Bridge Dsign Pattern is a Structural Design Pattern that separated abstraction from implementation so that both can change independently.
+Instead of creating many subclasses for every combination, Bridge splits the class into two hierarchies 
+
+	-	Abstraction
+	-	Implementation
+🧠 Simple Definition
+
+👉 “Bridge pattern decouples what you do (abstraction) from how you do it (implementation).”
+	
+This avoids class explosion	
+
+Think of a Remote Control + TV
+
+Remote → abstraction (what user interacts with)
+TV → implementation (Sony, LG, Samsung)
+
+👉 You can use same remote logic with different TVs
+👉 And change TV without changing remote
+
+
+Example : 
+package com.heg.dp.structural.bridge;
+
+// Implementtation Interface
+interface Color{
+    void applyColor();
+}
+
+
+// Create Abstraction
+
+abstract class Shape{
+    protected Color color;
+
+    public Shape(Color color) {
+        this.color = color;
+    }
+    
+    abstract void draw();
+    
+}
+
+
+class RedColor implements Color{
+
+    @Override
+    public void applyColor() {
+        System.out.println("Applying Red Color");
+    }
+    
+}
+
+class BlueColor implements Color{
+
+    @Override
+    public void applyColor() {
+        System.out.println("Applying Blue Color");
+    }
+    
+}
+
+
+
+
+
+class Circle extends Shape{
+    public Circle(Color color){
+        super(color);
+    }
+
+    @Override
+    void draw() {
+        System.out.println("Drawing circle with");
+        color.applyColor();
+    }
+    
+}
+
+
+class Rectangle extends Shape{
+    public Rectangle(Color color){
+        super(color);
+    }
+
+    @Override
+    void draw() {
+        System.out.println("Drawing Rectangle with ");
+        color.applyColor();
+    }
+    
+    
+}
+
+public class BridgeDemo {
+    
+    public static void main(String[] args) {
+        Shape circle= new Circle(new RedColor());
+        circle.draw();
+    }
+    
+}
+
+JDBC is one of the best real-world examples of the Bridge Pattern.
+
+The Problem
+Suppose Java directly provided separate APIs for every database:
+
+MySqlConnection con = new MySqlConnection();
+OracleConnection con = new OracleConnection();
+PostgresConnection con = new PostgresConnection();
+
+If you switch from MySQL to Oracle, you must change your application code everywhere.
+
+JDBC Solution
+Java provides a common abstraction:
+
+Connection
+Statement
+PreparedStatement
+ResultSet
+
+Your code uses these interfaces:
+Connection con = DriverManager.getConnection(url, user, pass);
+
+PreparedStatement ps =
+        con.prepareStatement("select * from employee");
+
+ResultSet rs = ps.executeQuery();
+
+Notice that your code never knows whether the database is:
+
+MySQL
+Oracle
+PostgreSQL
+SQL Server
+
+
+
+1. Core 										Difference
+
+Feature		Adapter Pattern																Bridge Pattern
+Purpose		Makes incompatible interfaces work together								Separates abstraction from implementation
+Goal		Integration of existing classes											Design flexibility & scalability
+Used when	Two systems cannot communicate due to interface mismatch				Need to avoid class explosion
+Focus		Converting interface													Decoupling abstraction and implementation
+Stage		Mostly used after system design											Used during system design
+
+
+=============================03. Composite Pattern =======================
+Ans - 
+	used when you need to treat individual objects and groups of objects uniformly.
+	It allows you to build tree-like hierarchical structures where a single object and a collection of objects are handled in the same way.
+	
+	Manager
+ ├── Team Lead
+ │    ├── Developer1
+ │    ├── Developer2
+ └── HR
+      ├── Recruiter1
+	  
+	  Example : 
+
+package com.heg.dp.structural.composite;
+
+//Step 1: Component Interface
+
+import java.util.ArrayList;
+import java.util.List;
+
+interface Employee{
+    void showDetails();
+}
+
+
+//Step 2: Leaf Class
+
+class Developer implements Employee{
+    private String name;
+    private String role;
+
+    public Developer(String name, String role) {
+        this.name = name;
+        this.role = role;
+    }
+
+    @Override
+    public void showDetails() {
+        System.out.println(name + " - " +role);
+    }
+    
+    
+}
+
+
+class Manager implements Employee{
+    private String name;   
+    
+
+    public Manager(String name) {
+        this.name = name;
+    }
+    
+    private List<Employee> employees = new ArrayList();
+    
+    public void addEmployee(Employee employee){
+        employees.add(employee);
+    }
+    
+    
+    public void removeEmployee(Employee employee){
+        employees.remove(employee);
+    }
+
+    @Override
+    public void showDetails() {
+        System.out.println("\nManager : " +name);
+        
+        for(Employee emp : employees){
+            emp.showDetails();
+        }
+    }
+    
+    
+}
+
+
+
+public class CompositeDemo {
+    
+    public static void main(String[] args) {
+        Employee dev1 =
+                new Developer("Pradeep", "Java Developer");
+
+        Employee dev2 =
+                new Developer("Rahul", "Frontend Developer");
+
+        Employee dev3 =
+                new Developer("Amit", "Database Developer");
+        
+        Manager manager1 =
+                new Manager("Manager A");
+        
+        manager1.addEmployee(dev1);
+        manager1.addEmployee(dev2);
+        
+        Manager manager2 =
+                new Manager("Manager B");
+
+        manager2.addEmployee(dev3);
+        
+        Manager ceo =
+                new Manager("CEO");
+
+        ceo.addEmployee(manager1);
+        ceo.addEmployee(manager2);
+
+        ceo.showDetails();
+        
+    }
+    
+}
+
+
+------------------------------------------------------------
+===============================================04 - Decorator =====================
+Ans - Structural Design pattern used to add new functionality to an object dynamically 
+without modifying its existing code . 
+
+package com.heg.dp.structural.decorator;
+//component
+
+interface Coffee{
+    String getDescriiption();
+    double getCost();
+}
+
+
+class SimpleCoffee implements Coffee{
+
+    @Override
+    public String getDescriiption() {
+        return "Simple Coffee";
+    }
+
+    @Override
+    public double getCost() {
+        return 100;
+    }
+}
+
+
+abstract class CoffeeDecorator implements Coffee{
+    protected Coffee coffee;
+    
+    public CoffeeDecorator(Coffee coffee){
+        this.coffee=coffee;
+    }
+    
+   
+    
+}
+
+
+class MilkDecorator extends CoffeeDecorator{
+    public MilkDecorator(Coffee coffee){
+        super(coffee);
+    }
+
+    @Override
+    public String getDescriiption() {
+        return coffee.getDescriiption() + " + Milk"; 
+    }
+
+    @Override
+    public double getCost() {
+        return coffee.getCost() +10;
+    }
+    
+}
+
+class SugarDecorator extends CoffeeDecorator{
+    public SugarDecorator(Coffee coffee){
+        super(coffee);
+    }
+
+    @Override
+    public String getDescriiption() {
+        return coffee.getDescriiption()+ " + Sugar";
+    }
+
+    @Override
+    public double getCost() {
+        return coffee.getCost()+5;
+    }
+}
+
+public class DecoratorDemo {
+    public static void main(String[] args) {
+        Coffee coffee = new SimpleCoffee();
+        coffee= new MilkDecorator(coffee);
+        
+        
+        System.out.println(coffee.getDescriiption());
+        System.out.println(coffee.getCost());
+    }
+    
+}
+
+
+---------------------------------------------------------------------------------
+
+===============================05- Facade Design pattern=================
+Ans - Facade Pattern provides a simplified interface to a complex subsystem by hiding 
+the internal implmenetation details from the client.
+
+Facade Pattern provides a single simplified interface to a complex subsystem so the client 
+does not need to interact with multiple classes .
+		
+		
+class Restaurant{
+    
+    public void prepareFood(){
+        System.out.println("Restaurant preparing food .. ");
+    }
+
+}
+
+class PaymentService{
+    
+    public void makePayment(){
+        System.out.println("Payment processed ");
+    }
+
+}
+
+class DeliveryService{
+    
+    public void assignDelivery(){
+        System.out.println("Delivery partner assigned ");
+    }
+
+}
+
+class NotificationService{
+    
+    public void sendNotification(){
+        System.out.println("Order notification sent to user");
+    }
+
+}
+class OrderFacade {
+    private Restaurant restaurant;
+    private PaymentService payment;
+    private DeliveryService delivery;
+    private NotificationService notification;
+    
+    public OrderFacade(){
+        restaurant= new Restaurant();
+        payment= new PaymentService();
+        delivery= new DeliveryService();
+        notification= new NotificationService();
+    }
+    
+    public void placeOrder(){
+        restaurant.prepareFood();
+        payment.makePayment();
+        delivery.assignDelivery();
+        notification.sendNotification();
+        
+    }
+}
+
+public class TestFacade {
+    
+    public static void main(String[] args) {
+        OrderFacade order = new OrderFacade();
+        order.placeOrder();
+    }
+    
+}
+
+======================================06. Flyweight Pattern===================
+ANs - The Flyweight Pattern is often confusing because its goal is different 
+from most patterns.
+👉 Goal:
+Reduce memory usage by sharing common objects instead of creating many duplicate objects.
+
+package com.heg.dp.structural.flyweight;
+
+import java.util.HashMap;
+import java.util.Map;
+
+class Department {
+    
+    private String deptId;
+    private String deptName;
+    private String location;
+    
+    public Department(String deptId, String deptName, String location) {
+        this.deptId = deptId;
+        this.deptName = deptName;
+        this.location = location;
+    }
+    
+    public void showDepartmentDetails(int empId, String empName) {
+        System.out.println("Employee ID " + empId + ", \n"
+                + "         Name : " + empName + ", \n"
+                + "         Dept : " + deptName + ", \n"
+                + "         Location : " + location);
+    }
+    
+}
+
+class DepartmentFactory {
+    
+    private static final Map<String, Department> deptCache = new HashMap();
+    
+    public static Department getDepartment(String deptId) {
+        Department dept = deptCache.get(deptId);
+        
+        if (dept == null) {
+            if ("IT".equalsIgnoreCase(deptId)) {
+                dept = new Department("IT", "Information Technology", "Banglore");
+            } else if ("HR".equals(deptId)) {
+                dept = new Department("HR", "Human Resources", "Delhi");
+            } else {
+                dept = new Department(deptId, "General", "Mumbai");
+            }
+            
+            deptCache.put(deptId, dept);
+            System.out.println("Created new Department Object for :: " + deptId);
+            
+        }
+        return dept;
+    }
+}
+
+class Employee {
+    
+    private int empId;
+    private String name;
+    
+    private Department department;
+    
+    public Employee(int empId, String name, String deptId) {
+        this.empId = empId;
+        this.name = name;
+        this.department = DepartmentFactory.getDepartment(deptId);
+    }
+    
+    public void display() {
+        department.showDepartmentDetails(empId, name);
+    }
+    
+}
+
+public class FlyweightDemo {
+    
+    public static void main(String[] args) {
+        Employee e1 = new Employee(101, "Pradeep", "IT");
+        Employee e2 = new Employee(102, "Rahul", "IT");
+        Employee e3 = new Employee(103, "Anita", "HR");
+        Employee e4 = new Employee(104, "Karan", "IT");
+        
+           // Display employee details
+        e1.display();
+        e2.display();
+        e3.display();
+        e4.display();
+    }
+    
+}
+
+
+
+
+
+=============================07. Proxy DESIGN PATTERN ===================
+Ans - Proxy acts as a middle layer between the client and the real object, controlling how the client accesses it .
+
+Proxy = Substitute object that controls access to the real object
+It can add security, caching, logging, lazy loading, or remote access.
+
+1. Real World Example (Industry level)
+Example : Company Document Access System
+Suppose in a company 
+	- Employees can access documents
+	- Some documents are confidential
+	- Only Managers can access confidential documents 
+	
+Instead of directly accessing the documents service, we use a Proxy to check authorization 
+
+Employee → Proxy → Real Document Service
+
+Proxy checks permission before allowing access.
+
+2. Structure of Proxy PATTERN
+Main components: 
+	1. - Subject (Interface)
+		Common interface for Real Object and Proxy
+	2. Real Subject
+		The actual object that perform the real work.
+	3. Proxy
+		Control access to the real object 
+	
+	Client 
+		|
+	Proxy ----> Real Object
+	
+Example : 
+public interface Document {   
+    void display();    
+}
+
+
+public class RealDocument  implements Document{
+    private String fileName;
+    
+    public RealDocument(String fileName){
+        this.fileName=fileName;
+        loadFromDisk();
+    }
+    
+    private void loadFromDisk(){
+        System.out.println("Loading document from disk : " +fileName);
+    }
+    
+    public void display(){
+        System.out.println("Displaying document : " +fileName);
+    }
+}
+	
+	
+public class DocumentProxy implements Document{
+    private RealDocument realDocument;
+    private String fileName;
+    private String userRole;
+    
+    public DocumentProxy(String fileName,String userRole){
+        this.fileName=fileName;
+        this.userRole=userRole;
+    }
+    
+    
+    public void display(){
+        if(userRole.equals("Manager")){
+            if(realDocument==null){
+                realDocument = new RealDocument(fileName);
+            }
+            realDocument.display();
+            
+        }else{
+            System.out.println("Access Denied : Only managers can view this document.");
+        }
+    }
+    
+}
+
+
+    public static void main(String[] args) {
+        Document doc1 = new DocumentProxy("salary_report.pdf", "Employee");
+        doc1.display();
+        
+        System.out.println();
+        
+         Document doc2 = new DocumentProxy("salary_report.pdf", "Manager");
+        doc2.display();
+    }	
+	
+
+
+
+

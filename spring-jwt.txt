@@ -119,3 +119,327 @@ Encoding:
 	- Anyone can decode
 Encryption:
 	- Only key holder can decrypt
+	
+	
+Client
+   |
+   | Login (username/password)
+   v
+AuthController
+   |
+AuthenticationManager
+   |
+UserDetailsService
+   |
+Database
+   |
+JWT Generated
+   |
+Client receives token
+   |
+Authorization: Bearer <token>
+   |
+JwtFilter
+   |
+Spring Security Context
+   |
+Protected APIs	
+
+
+
+=================================
+SPRING JWT - 100 QUESTIONS
+=================================
+
+JWT BASICS
+
+1. What is JWT?
+2. Why do we need JWT?
+3. What problem does JWT solve?
+4. Difference between Session and JWT?
+5. Is JWT encrypted?
+6. Is JWT secure?
+7. Advantages of JWT?
+8. Disadvantages of JWT?
+9. Stateless Authentication?
+10. When should JWT not be used?
+
+JWT STRUCTURE
+
+11. What are the three parts of JWT?
+12. What is JWT Header?
+13. What is JWT Payload?
+14. What is JWT Signature?
+15. What are Claims?
+16. Difference between Registered and Custom Claims?
+17. What is sub claim?
+18. What is iss claim?
+19. What is aud claim?
+20. What is exp claim?
+
+JWT CREATION
+
+21. How is JWT generated?
+22. How is Signature generated?
+23. What data should be stored in JWT?
+24. Should passwords be stored in JWT?
+25. Should permissions be stored in JWT?
+26. JWT size limitations?
+27. JWT compression?
+28. How do you create JWT in Spring Boot?
+29. What libraries are used?
+30. How do you configure JWT secret?
+
+SIGNING ALGORITHMS
+
+31. What is HS256?
+32. What is HS512?
+33. What is RS256?
+34. Difference between HS256 and RS256?
+35. Symmetric vs Asymmetric Encryption?
+36. Public Key vs Private Key?
+37. Which algorithm is preferred?
+38. Why is RS256 used in enterprise systems?
+39. What is key rotation?
+40. How does key rotation work?
+
+VALIDATION
+
+41. How is JWT validated?
+42. How is signature verified?
+43. What happens if payload changes?
+44. What happens if signature changes?
+45. How does expiration validation work?
+46. How does audience validation work?
+47. How does issuer validation work?
+48. What happens if token is expired?
+49. What happens if secret changes?
+50. How do Resource Servers validate JWT?
+
+SPRING SECURITY
+
+51. How do you implement JWT authentication in Spring Boot?
+52. What filter is used for JWT?
+53. What is OncePerRequestFilter?
+54. Why use OncePerRequestFilter?
+55. How is Authentication object created?
+56. How is SecurityContext populated?
+57. What is SecurityContextHolder?
+58. What is UsernamePasswordAuthenticationToken?
+59. How do you extract JWT from headers?
+60. How do you secure APIs using JWT?
+
+REFRESH TOKENS
+
+61. What is Refresh Token?
+62. Why do we need Refresh Tokens?
+63. Refresh Token flow?
+64. Where should Refresh Tokens be stored?
+65. Access Token expiration strategy?
+66. Refresh Token expiration strategy?
+67. What happens when Refresh Token expires?
+68. How do you revoke Refresh Tokens?
+69. Refresh Token rotation?
+70. Refresh Token security best practices?
+
+MICROSERVICES
+
+71. How is JWT propagated across microservices?
+72. Should each service validate JWT?
+73. API Gateway JWT validation?
+74. Resource Server architecture?
+75. JWT in service-to-service communication?
+76. JWT scope validation?
+77. JWT role validation?
+78. How do microservices share public keys?
+79. JWT with API Gateway?
+80. JWT with OAuth2 Resource Server?
+
+SECURITY
+
+81. What happens if JWT is stolen?
+82. How do you prevent JWT theft?
+83. Should JWT be stored in localStorage?
+84. Should JWT be stored in cookies?
+85. HttpOnly cookies?
+86. Secure cookies?
+87. XSS impact on JWT?
+88. CSRF impact on JWT?
+89. JWT replay attack?
+90. How do you prevent replay attacks?
+
+TROUBLESHOOTING
+
+91. JWT token valid but API returns 401.
+92. JWT token valid but API returns 403.
+93. JWT expired unexpectedly.
+94. JWT signature validation fails.
+95. SecurityContext is empty.
+96. JWT filter not executing.
+97. Roles not extracted correctly.
+98. Authentication object is null.
+99. JWT works locally but fails in Production.
+100. Design JWT authentication for 100 microservices.
+
+
+Most Asked Senior-Level Questions
+
+1. Session vs JWT
+2. JWT Structure
+3. JWT Claims
+4. HS256 vs RS256
+5. JWT Validation Flow
+6. OncePerRequestFilter
+7. SecurityContextHolder
+8. Access Token vs Refresh Token
+9. Refresh Token Rotation
+10. JWT Revocation Strategy
+11. JWT in Microservices
+12. API Gateway Authentication
+13. JWT Key Rotation
+14. JWT Security Risks
+15. JWT Storage Strategy
+16. 401 vs 403
+17. JWT Troubleshooting
+18. OAuth2 + JWT Integration
+19. Resource Server Validation
+20. Enterprise JWT Architecture
+
+JWT Authentication Flow (Must Draw in Interview)
+
+User
+ |
+ | Login
+ |
+ v
+Spring Boot Auth Service
+ |
+ | Validate Username/Password
+ |
+ v
+Generate JWT
+ |
+ v
+Client
+ |
+ | Authorization: Bearer JWT
+ |
+ v
+API
+ |
+ | Validate JWT
+ |
+ v
+SecurityContext
+ |
+ v
+Controller
+
+
+JWT Filter Flow
+
+Incoming Request
+       |
+       v
+OncePerRequestFilter
+       |
+       v
+Extract JWT
+       |
+       v
+Validate Signature
+       |
+       v
+Check Expiry
+       |
+       v
+Create Authentication Object
+       |
+       v
+SecurityContextHolder
+       |
+       v
+Controller
+
+
+Very Common Troubleshooting Questions
+
+1. JWT token is present but SecurityContext is empty.
+2. JWT valid but request returns 403.
+3. JWT works locally but fails after deployment.
+4. JWT validation fails after secret rotation.
+5. JWT expired but user still accesses APIs.
+6. Roles present in JWT but authorization fails.
+7. JWT filter executes twice.
+8. Authentication becomes null intermittently.
+9. Refresh token stopped working.
+10. API Gateway validates JWT but downstream service rejects it.
+
+401 vs 403 (Very Common)
+
+401 Unauthorized
+---------------
+Authentication failed.
+Token missing, invalid, malformed, expired.
+
+Examples:
+- No JWT token
+- Expired JWT
+- Invalid signature
+
+403 Forbidden
+-------------
+Authentication successful.
+Authorization failed.
+
+Examples:
+- User authenticated
+- User lacks required role
+- Scope missing
+
+
+Senior-Level Architecture Question
+How would you secure 50+ microservices?
+
+User
+ |
+ v
+API Gateway
+ |
+ JWT Validation
+ |
+ v
+Microservice A
+Microservice B
+Microservice C
+
+Answer:
+
+1. OAuth2 Authorization Server issues JWT
+2. JWT signed using RS256
+3. Public keys exposed via JWKS endpoint
+4. API Gateway validates token
+5. Microservices act as Resource Servers
+6. Each service validates JWT locally
+7. Roles/scopes checked using Spring Security
+8. Use short-lived Access Tokens
+9. Use Refresh Tokens
+10. Enable key rotation
+
+Topics you must know thoroughly for senior interviews
+
+JWT Structure
+JWT Validation Flow
+OncePerRequestFilter
+SecurityContextHolder
+HS256 vs RS256
+Access Token vs Refresh Token
+Refresh Token Rotation
+JWT Revocation
+JWT in Microservices
+401 vs 403
+JWT Security Risks
+Key Rotation
+OAuth2 + JWT
+API Gateway Authentication
+Resource Server

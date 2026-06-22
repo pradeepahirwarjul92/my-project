@@ -1,0 +1,170 @@
+====================================
+SPRING SECURITY - 100 QUESTIONS
+====================================
+
+BASICS
+
+1. What is Spring Security?
+2. Why do we need Spring Security?
+3. What problems does Spring Security solve?
+4. What are Authentication and Authorization?
+5. Difference between Authentication and Authorization?
+6. What is Principal?
+7. What is GrantedAuthority?
+8. What is SecurityContext?
+9. What is SecurityContextHolder?
+10. How does Spring Security work internally?
+
+SECURITY FLOW
+
+11. Explain Spring Security request flow.
+12. What is Security Filter Chain?
+13. What is DelegatingFilterProxy?
+14. What is FilterChainProxy?
+15. What is OncePerRequestFilter?
+16. What happens when a request enters Spring Security?
+17. How is SecurityContext populated?
+18. How is Authentication stored?
+19. What is AuthenticationManager?
+20. What is AuthenticationProvider?
+
+AUTHENTICATION
+
+21. What is UsernamePasswordAuthenticationToken?
+22. What is DaoAuthenticationProvider?
+23. What is UserDetailsService?
+24. What is UserDetails?
+25. How do you implement custom authentication?
+26. How do you authenticate against a database?
+27. How do you authenticate using LDAP?
+28. How do you authenticate using Active Directory?
+29. What is PasswordEncoder?
+30. Why should passwords never be stored in plain text?
+
+PASSWORDS
+
+31. What is BCrypt?
+32. Why is BCrypt preferred?
+33. Difference between hashing and encryption?
+34. What is salting?
+35. What is peppering?
+36. What is Argon2?
+37. What is PBKDF2?
+38. How does password verification work?
+39. Why can't hashed passwords be decrypted?
+40. Best practices for password storage?
+
+AUTHORIZATION
+
+41. What is role-based access control?
+42. What is authority-based access control?
+43. Difference between ROLE_ADMIN and ADMIN?
+44. What is @PreAuthorize?
+45. What is @PostAuthorize?
+46. What is @Secured?
+47. What is @RolesAllowed?
+48. Method level security?
+49. URL level security?
+50. How do you secure APIs?
+
+JWT
+
+51. What is JWT?
+52. Structure of JWT?
+53. Header, Payload, Signature?
+54. How does JWT authentication work?
+55. Difference between JWT and Session?
+56. JWT advantages?
+57. JWT disadvantages?
+58. What is JWT expiration?
+59. What is Refresh Token?
+60. How do you revoke JWT tokens?
+
+OAUTH2
+
+61. What is OAuth2?
+62. Why OAuth2?
+63. OAuth2 Roles?
+64. Resource Owner?
+65. Resource Server?
+66. Authorization Server?
+67. Client Application?
+68. Access Token?
+69. Refresh Token?
+70. Authorization Code Flow?
+
+OPENID CONNECT
+
+71. What is OpenID Connect?
+72. Difference between OAuth2 and OpenID Connect?
+73. What is ID Token?
+74. What information does ID Token contain?
+75. Why is OpenID Connect needed?
+
+JWT + OAUTH2
+
+76. Spring Security OAuth2 Resource Server?
+77. OAuth2 Client?
+78. JWT Validation Flow?
+79. JWKS Endpoint?
+80. Public vs Private Keys?
+81. RS256 vs HS256?
+82. Token Introspection?
+83. Token Revocation?
+84. Key Rotation?
+85. SSO Implementation?
+
+CSRF / CORS
+
+86. What is CSRF?
+87. How does CSRF attack work?
+88. How does Spring Security prevent CSRF?
+89. When can CSRF be disabled?
+90. What is CORS?
+91. Difference between CORS and CSRF?
+92. How do you configure CORS?
+93. What is Preflight Request?
+94. What is Same-Origin Policy?
+95. How do browsers enforce CORS?
+
+TROUBLESHOOTING
+
+96. Why am I getting 401 Unauthorized?
+97. Why am I getting 403 Forbidden?
+98. JWT token is valid but request fails. Why?
+99. Security filter not executing. Why?
+100. Spring Security application suddenly became slow. How would you troubleshoot?
+
+
+1. Authentication vs Authorization
+2. Security Filter Chain
+3. AuthenticationManager
+4. AuthenticationProvider
+5. UserDetailsService
+6. JWT Authentication Flow
+7. JWT vs Session
+8. OAuth2 Authorization Code Flow
+9. OAuth2 vs OpenID Connect
+10. Resource Server
+11. Refresh Token
+12. RS256 vs HS256
+13. CORS vs CSRF
+14. 401 vs 403
+15. BCrypt
+16. PasswordEncoder
+17. SecurityContextHolder
+18. @PreAuthorize
+19. Method Security
+20. Spring Security Architecture
+
+Scenario-Based Questions (Very Common for 8+ Years)
+1. Users suddenly receive 401 after deployment. How do you investigate?
+2. JWT token is valid but APIs return 403. Why?
+3. OAuth2 login works locally but fails in production. What will you check?
+4. Refresh tokens stop working after server restart. Why?
+5. How would you implement Single Sign-On (SSO)?
+6. How would you secure communication between microservices?
+7. How would you rotate JWT signing keys without downtime?
+8. How would you implement logout with JWT?
+9. How would you secure WebFlux APIs?
+10. How would you secure a Spring Boot microservices architecture using OAuth2 and JWT?

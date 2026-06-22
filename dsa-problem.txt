@@ -1,0 +1,240 @@
+JAVA DSA PROBLEMS LIST (TOP 150 INTERVIEW QUESTIONS)
+
+=================================
+ARRAYS (1-25)
+=================================
+
+1. Two Sum
+2. Best Time to Buy and Sell Stock
+3. Contains Duplicate
+4. Product of Array Except Self
+5. Maximum Subarray Sum (Kadane)
+6. Maximum Product Subarray
+7. Move Zeroes
+8. Remove Duplicates from Sorted Array
+9. Merge Sorted Arrays
+10. Rotate Array
+11. Find Missing Number
+12. Find Duplicate Number
+13. Majority Element
+14. Kth Largest Element
+15. Kth Smallest Element
+16. Longest Consecutive Sequence
+17. Trapping Rain Water
+18. Container With Most Water
+19. Subarray Sum Equals K
+20. Maximum Circular Subarray Sum
+21. Next Permutation
+22. Merge Intervals
+23. Insert Interval
+24. Spiral Matrix
+25. Set Matrix Zeroes
+
+=================================
+STRINGS (26-50)
+=================================
+
+26. Valid Palindrome
+27. Reverse String
+28. Reverse Words in String
+29. Longest Common Prefix
+30. Valid Anagram
+31. Group Anagrams
+32. Longest Palindromic Substring
+33. Longest Substring Without Repeating Characters
+34. String Compression
+35. String Rotation Check
+36. Count Vowels and Consonants
+37. First Unique Character
+38. Roman to Integer
+39. Integer to Roman
+40. Implement strStr()
+41. Minimum Window Substring
+42. Longest Repeating Character Replacement
+43. Decode String
+44. Zigzag Conversion
+45. Word Break
+46. Generate Parentheses
+47. Remove Adjacent Duplicates
+48. Check Isomorphic Strings
+49. Valid Parentheses
+50. Text Justification
+
+=================================
+LINKED LIST (51-65)
+=================================
+
+51. Reverse Linked List
+52. Middle of Linked List
+53. Detect Cycle
+54. Remove Cycle
+55. Merge Two Sorted Lists
+56. Remove Nth Node From End
+57. Palindrome Linked List
+58. Intersection of Linked Lists
+59. Copy List with Random Pointer
+60. Add Two Numbers
+61. Rotate Linked List
+62. Reverse Nodes in K Group
+63. Sort Linked List
+64. Flatten Linked List
+65. LRU Cache
+
+=================================
+STACK & QUEUE (66-80)
+=================================
+
+66. Valid Parentheses
+67. Min Stack
+68. Implement Stack Using Queue
+69. Implement Queue Using Stack
+70. Next Greater Element
+71. Previous Greater Element
+72. Daily Temperatures
+73. Largest Rectangle in Histogram
+74. Sliding Window Maximum
+75. Stock Span Problem
+76. Evaluate Postfix Expression
+77. Evaluate Prefix Expression
+78. Infix to Postfix
+79. Infix to Prefix
+80. Circular Queue Implementation
+
+=================================
+HASHMAP & HASHING (81-90)
+=================================
+
+81. Two Sum Using HashMap
+82. Frequency Count
+83. Top K Frequent Elements
+84. Longest Consecutive Sequence
+85. Happy Number
+86. Find Duplicate Elements
+87. Group Anagrams
+88. Subarray Sum Equals K
+89. Longest Subarray with Zero Sum
+90. Design HashMap
+
+=================================
+BINARY SEARCH (91-100)
+=================================
+
+91. Binary Search
+92. Search Insert Position
+93. First and Last Position
+94. Search Rotated Sorted Array
+95. Find Minimum in Rotated Array
+96. Peak Element
+97. Square Root of Number
+98. Koko Eating Bananas
+99. Capacity To Ship Packages
+100. Median of Two Sorted Arrays
+
+=================================
+TREES (101-120)
+=================================
+
+101. Inorder Traversal
+102. Preorder Traversal
+103. Postorder Traversal
+104. Level Order Traversal
+105. Maximum Depth of Tree
+106. Minimum Depth of Tree
+107. Diameter of Binary Tree
+108. Balanced Binary Tree
+109. Same Tree
+110. Symmetric Tree
+111. Path Sum
+112. Lowest Common Ancestor
+113. Binary Tree Right View
+114. Zigzag Traversal
+115. Vertical Order Traversal
+116. Validate BST
+117. Kth Smallest in BST
+118. Serialize and Deserialize Tree
+119. Construct Tree from Traversals
+120. Boundary Traversal
+
+=================================
+HEAP / PRIORITY QUEUE (121-130)
+=================================
+
+121. Kth Largest Element
+122. Kth Smallest Element
+123. Merge K Sorted Lists
+124. Top K Frequent Elements
+125. Find Median from Data Stream
+126. Connect Ropes with Minimum Cost
+127. K Closest Points
+128. Reorganize String
+129. Task Scheduler
+130. Heap Sort
+
+=================================
+GRAPHS (131-145)
+=================================
+
+131. BFS Traversal
+132. DFS Traversal
+133. Number of Islands
+134. Flood Fill
+135. Detect Cycle in Graph
+136. Detect Cycle in Directed Graph
+137. Topological Sort
+138. Course Schedule
+139. Dijkstra Algorithm
+140. Bellman Ford Algorithm
+141. Floyd Warshall Algorithm
+142. Minimum Spanning Tree (Prim)
+143. Minimum Spanning Tree (Kruskal)
+144. Clone Graph
+145. Word Ladder
+
+=================================
+DYNAMIC PROGRAMMING (146-150)
+=================================
+
+146. Fibonacci DP
+147. Climbing Stairs
+148. House Robber
+149. Longest Increasing Subsequence
+150. Longest Common Subsequence
+
+=================================
+TOP 30 MUST-DO QUESTIONS FOR INTERVIEWS
+=================================
+
+1. Two Sum
+2. Maximum Subarray Sum
+3. Move Zeroes
+4. Product of Array Except Self
+5. Longest Substring Without Repeating Characters
+6. Valid Parentheses
+7. Reverse Linked List
+8. Detect Cycle in Linked List
+9. LRU Cache
+10. Binary Search
+11. Search Rotated Sorted Array
+12. Kth Largest Element
+13. Sliding Window Maximum
+14. Merge Intervals
+15. Trapping Rain Water
+16. Container With Most Water
+17. Diameter of Binary Tree
+18. Validate BST
+19. Lowest Common Ancestor
+20. BFS Traversal
+21. DFS Traversal
+22. Number of Islands
+23. Topological Sort
+24. Dijkstra Algorithm
+25. Climbing Stairs
+26. House Robber
+27. Longest Increasing Subsequence
+28. Longest Common Subsequence
+29. Merge K Sorted Lists
+30. Median of Two Sorted Arrays
+
+For Java Backend (3–8 years), prioritize:
+Arrays → Strings → HashMap → LinkedList → Stack → Queue →
+Binary Search → Trees → Heap → Graph Basics → DP Basics.

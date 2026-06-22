@@ -1,0 +1,483 @@
+Q1 - Difference: save() vs persist()
+Ans 
+| save()                    | persist()    |
+| ------------------------- | ------------ |
+| Returns ID                | No return    |
+| Works outside transaction | No           |
+| Hibernate specific        | JPA standard |
+
+Q2 - get() vs load()
+Ans - 
+	| get()                     | load()           |
+	| ------------------------- | ---------------- |
+	| Returns null if not found | Throws exception |
+	| Hits DB immediately       | Lazy proxy       |
+	| Safe                      | Faster           |
+
+
+Q3 - update() vs merge()
+Ans - 
+	| update()                          | merge()      |
+	| --------------------------------- | ------------ |
+	| Fails if object exists in session | Safe         |
+	| Reattaches object                 | Copies state |
+
+Q4 - Lazy vs Eager Loading
+Ans -
+| Lazy               | Eager             |
+| ------------------ | ----------------- |
+| Loads when needed  | Loads immediately |
+| Better performance | Can slow system   |
+
+Q5 - What is Proxy in Hibernate?
+Ans - Placeholder object used for lazy loading.
+
+Q6 - Types of Associations
+Ans - 
+One-to-One
+One-to-Many
+Many-to-One
+Many-to-Many
+
+Q7 - Bidirectional vs Unidirectional
+Ans -	➡️ Bidirectional: both entities reference each other
+		➡️ Unidirectional: one side only
+	
+Q8 - What is HQL?
+Ans  	➡️ Hibernate Query Language
+		➡️ Works on objects, not tables	
+		
+Q9 - Native SQL Query
+Ans - 	➡️ Direct SQL query inside Hibernate
+	session.createNativeQuery("SELECT * FROM emp");
+	
+Q10 - Criteria API
+Ans - 	➡️ Programmatic way to build queries
+		➡️ Type-safe	
+
+Q11 - 	Types of Cache
+Ans - 	
+🟢 First Level Cache
+	➡️ Session-level
+	➡️ Enabled by default
+	
+🔵 Second Level Cache
+	➡️ SessionFactory-level
+	➡️ Optional
+	➡️ Requires provider
+
+Q12 - Query Cache
+Ans - 	
+	➡️ Caches query results
+	➡️ Works with second-level cache
+	
+Q13 - 	What is Transaction?
+Ans - ➡️ Unit of work executed atomically
+	Transaction tx = session.beginTransaction();
+	tx.commit();
+
+Q14 - Hibernate Object States
+Ans - 	
+	-	Transient — new object
+	-	Persistent — associated with session
+	-	Detached — session closed
+	
+Q15 - 	Dirty Checking
+Ans - 🧠 Key Idea
+			👉 You modify the object
+			👉 Hibernate tracks it
+			👉 No update() needed
+			👉 DB updated automatically
+
+Q16 - What is Cascade in Hibernate?
+Ans - Cascade = Automatic propagation of an operation from parent to child entities.
+When you perform an action on a parent object (save, update, delete, etc.), 
+Hibernate can automatically apply the same action to related child objects.
+👉 Instead of managing each entity separately, Hibernate handles them together.
+
+🧩 Types of Cascade in Hibernate
+⭐ CascadeType.ALL
+
+Applies all operations
+
+PERSIST, MERGE, REMOVE, REFRESH, DETACH
+⭐ CascadeType.PERSIST
+
+Save operation only
+
+⭐ CascadeType.MERGE
+
+Update operation only
+
+⭐ CascadeType.REMOVE
+
+Delete children when parent deleted
+
+⭐ CascadeType.REFRESH
+
+Reload child state from DB
+
+⭐ CascadeType.DETACH
+
+Detach children from session
+
+
+Q17 - N+1 Select Problem
+Ans - 	➡️ Multiple queries executed instead of one join query.
+		➡️ Happens with lazy loading.
+
+Q18 - 	Batch Processing in Hibernate
+Ans - ➡️ Used for inserting/updating large data efficiently.	
+
+
+Q19 - Interceptor vs Event Listener
+Ans - 
+| Interceptor  | Event Listener |
+| ------------ | -------------- |
+| Global       | Fine-grained   |
+| Old approach | Modern         |
+
+HIBERNATE INTERVIEW QUESTIONS & PRODUCTION TROUBLESHOOTING (100)
+
+=================================
+HIBERNATE BASICS (1-20)
+=================================
+
+1. What is Hibernate?
+2. Advantages of Hibernate?
+3. Difference between Hibernate and JDBC?
+4. What is ORM?
+5. What are Hibernate architecture components?
+6. What is SessionFactory?
+7. What is Session?
+8. Difference between Session and SessionFactory?
+9. What is Transaction in Hibernate?
+10. What is Configuration object?
+11. What is Dialect?
+12. What is Hibernate mapping?
+13. Difference between save() and persist()?
+14. Difference between update() and merge()?
+15. Difference between get() and load()?
+16. What is Hibernate cache?
+17. What are Hibernate states?
+18. What is dirty checking?
+19. What is persistence context?
+20. What is entity lifecycle?
+
+=================================
+ENTITY STATES (21-30)
+=================================
+
+21. What is Transient state?
+22. What is Persistent state?
+23. What is Detached state?
+24. What is Removed state?
+25. How entity moves from Transient to Persistent?
+26. How entity becomes Detached?
+27. How to reattach detached entity?
+28. Difference between update() and merge()?
+29. What happens after session close?
+30. How Hibernate tracks entity changes?
+
+=================================
+MAPPING QUESTIONS (31-45)
+=================================
+
+31. What is @Entity?
+32. What is @Table?
+33. What is @Column?
+34. What is @Id?
+35. What is @GeneratedValue?
+36. What is @Transient?
+37. What is @Embedded?
+38. What is @Embeddable?
+39. What is @MappedSuperclass?
+40. Difference between @Entity and DTO?
+41. One-to-One Mapping?
+42. One-to-Many Mapping?
+43. Many-to-One Mapping?
+44. Many-to-Many Mapping?
+45. Bidirectional vs Unidirectional Mapping?
+
+=================================
+FETCHING STRATEGIES (46-55)
+=================================
+
+46. What is FetchType.LAZY?
+47. What is FetchType.EAGER?
+48. Default fetch type for OneToMany?
+49. Default fetch type for ManyToOne?
+50. What is LazyInitializationException?
+51. How to solve LazyInitializationException?
+52. What is Join Fetch?
+53. What is Entity Graph?
+54. N+1 Query Problem?
+55. How to avoid N+1 issue?
+
+=================================
+HIBERNATE CACHE (56-65)
+=================================
+
+56. What is First Level Cache?
+57. What is Second Level Cache?
+58. Difference between L1 and L2 cache?
+59. What is Query Cache?
+60. Cache providers in Hibernate?
+61. How First Level Cache works?
+62. When is First Level Cache cleared?
+63. How to enable Second Level Cache?
+64. Cache concurrency strategies?
+65. When should cache not be used?
+
+=================================
+HIBERNATE QUERYING (66-75)
+=================================
+
+66. What is HQL?
+67. Difference between HQL and SQL?
+68. What is JPQL?
+69. What is Criteria API?
+70. Native SQL Query?
+71. Named Query?
+72. Named Native Query?
+73. Pagination in Hibernate?
+74. How to sort query results?
+75. How to optimize Hibernate queries?
+
+=================================
+TRANSACTION MANAGEMENT (76-85)
+=================================
+
+76. What is Transaction?
+77. ACID Properties?
+78. What is @Transactional?
+79. Propagation Types?
+80. Isolation Levels?
+81. Read-only transactions?
+82. Rollback behavior?
+83. Checked vs Runtime exception rollback?
+84. Nested Transactions?
+85. Transaction timeout?
+
+=================================
+PRODUCTION TROUBLESHOOTING (86-100)
+=================================
+
+86. LazyInitializationException in Production.
+87. N+1 Query Performance Issue.
+88. Slow Hibernate Queries.
+89. Too Many SQL Queries Generated.
+90. Entity Not Updating in Database.
+91. StaleObjectStateException.
+92. Optimistic Locking Failure.
+93. Pessimistic Locking Issue.
+94. Memory Leak Due to Session Mismanagement.
+95. Connection Pool Exhaustion.
+96. High Database Load from Hibernate.
+97. Duplicate Entity Exception.
+98. Detached Entity Passed To Persist.
+99. Transaction Not Rolling Back.
+100. Hibernate Cache Causing Stale Data.
+
+=================================
+MOST ASKED HIBERNATE INTERVIEW QUESTIONS
+=================================
+
+1. Hibernate vs JDBC
+2. Session vs SessionFactory
+3. get() vs load()
+4. save() vs persist()
+5. update() vs merge()
+6. First Level Cache
+7. Second Level Cache
+8. Lazy vs Eager Loading
+9. N+1 Query Problem
+10. LazyInitializationException
+11. HQL vs SQL
+12. JPQL vs Native Query
+13. OneToMany Mapping
+14. ManyToMany Mapping
+15. Cascade Types
+16. Fetch Types
+17. Dirty Checking
+18. Entity Lifecycle
+19. Optimistic Locking
+20. Transaction Management
+
+=================================
+PRODUCTION SCENARIOS
+=================================
+
+Scenario 1:
+Application is slow.
+
+Check:
+- Hibernate generated SQL
+- Missing indexes
+- N+1 queries
+- Eager fetching
+
+Enable:
+
+spring.jpa.show-sql=true
+
+=================================
+
+Scenario 2:
+LazyInitializationException
+
+Reason:
+Session closed before accessing lazy object.
+
+Solution:
+
+@Transactional
+
+or
+
+JOIN FETCH
+
+=================================
+
+Scenario 3:
+N+1 Query Problem
+
+Bad:
+
+SELECT * FROM customer;
+SELECT * FROM orders WHERE customer_id=1;
+SELECT * FROM orders WHERE customer_id=2;
+
+Solution:
+
+JOIN FETCH
+
+@EntityGraph
+
+=================================
+
+Scenario 4:
+Connection Pool Exhausted
+
+Check:
+
+HikariCP metrics
+
+Possible reasons:
+- Long running transactions
+- Unclosed sessions
+- Database slowness
+
+=================================
+
+Scenario 5:
+Entity Not Updated
+
+Reasons:
+
+- Missing transaction
+- Detached entity
+- Flush not executed
+
+Use:
+
+@Transactional
+
+=================================
+
+Scenario 6:
+Duplicate Inserts
+
+Reasons:
+
+persist() called multiple times
+
+Check:
+equals() and hashCode()
+
+=================================
+
+Scenario 7:
+Optimistic Lock Exception
+
+Use:
+
+@Version
+
+Handle retries.
+
+=================================
+
+Scenario 8:
+Memory Usage Increasing
+
+Reasons:
+
+Large persistence context
+
+Fix:
+
+session.clear()
+
+batch processing
+
+=================================
+
+TOP TROUBLESHOOTING COMMANDS
+
+Enable SQL:
+
+spring.jpa.show-sql=true
+
+Format SQL:
+
+spring.jpa.properties.hibernate.format_sql=true
+
+Statistics:
+
+hibernate.generate_statistics=true
+
+Check slow queries:
+
+Database EXPLAIN PLAN
+
+Monitor:
+
+HikariCP
+Prometheus
+Grafana
+
+=================================
+
+TOP 30 QUESTIONS FOR JAVA BACKEND INTERVIEWS
+
+1. Hibernate Architecture
+2. SessionFactory
+3. Session
+4. Entity Lifecycle
+5. get vs load
+6. save vs persist
+7. update vs merge
+8. Lazy vs Eager
+9. N+1 Problem
+10. First Level Cache
+11. Second Level Cache
+12. HQL
+13. JPQL
+14. Native Query
+15. Criteria API
+16. OneToOne
+17. OneToMany
+18. ManyToOne
+19. ManyToMany
+20. Cascade Types
+21. Fetch Types
+22. Dirty Checking
+23. Transaction Management
+24. Optimistic Locking
+25. Pessimistic Locking
+26. Batch Processing
+27. Connection Pooling
+28. Hibernate Performance Tuning
+29. LazyInitializationException
+30. Production Troubleshooting

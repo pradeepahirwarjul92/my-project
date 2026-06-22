@@ -1,0 +1,223 @@
+JAVA DSA STRINGS - 100 INTERVIEW QUESTIONS
+
+=================================
+STRING BASICS (1-20)
+=================================
+
+1. What is a String?
+2. Difference between String and StringBuilder?
+3. Difference between String and StringBuffer?
+4. Why is String immutable in Java?
+5. What is String Pool?
+6. Difference between == and equals()?
+7. How are Strings stored in memory?
+8. What is intern() method?
+9. Time complexity of String operations?
+10. How to reverse a String?
+11. How to convert String to char array?
+12. How to convert char array to String?
+13. How to concatenate Strings?
+14. How to compare two Strings?
+15. How to find length of String?
+16. How to extract substring?
+17. How to split a String?
+18. How to trim spaces?
+19. How to convert String to uppercase/lowercase?
+20. How to replace characters in String?
+
+=================================
+STRING EASY PROBLEMS (21-40)
+=================================
+
+21. Reverse a String.
+22. Check Palindrome String.
+23. Count Vowels in String.
+24. Count Consonants in String.
+25. Count Digits in String.
+26. Count Special Characters.
+27. Remove Spaces from String.
+28. Remove Duplicate Characters.
+29. Find Frequency of Characters.
+30. Find First Non-Repeating Character.
+31. Find First Repeating Character.
+32. Check Anagram.
+33. Check Rotation of String.
+34. Reverse Words in Sentence.
+35. Count Words in Sentence.
+36. Find Largest Word in String.
+37. Find Smallest Word in String.
+38. Sort Characters in String.
+39. Toggle Case of Characters.
+40. Check if String contains only digits.
+
+=================================
+HASHMAP BASED STRING PROBLEMS (41-55)
+=================================
+
+41. Valid Anagram.
+42. Group Anagrams.
+43. Frequency Count of Characters.
+44. Count Duplicate Characters.
+45. Find Most Frequent Character.
+46. Find Least Frequent Character.
+47. Longest Substring Without Repeating Characters.
+48. Longest Substring With K Distinct Characters.
+49. Minimum Window Substring.
+50. Check Isomorphic Strings.
+51. Word Pattern Matching.
+52. Find Common Characters.
+53. Ransom Note Problem.
+54. Jewels and Stones.
+55. Happy String Problems.
+
+=================================
+SLIDING WINDOW STRING PROBLEMS (56-70)
+=================================
+
+56. Longest Substring Without Repeating Characters.
+57. Longest Repeating Character Replacement.
+58. Minimum Window Substring.
+59. Permutation in String.
+60. Find All Anagrams in String.
+61. Maximum Vowels in Substring.
+62. Longest Substring with At Most K Distinct Characters.
+63. Longest Substring with Exactly K Distinct Characters.
+64. Smallest Window Containing Pattern.
+65. Count Occurrences of Anagrams.
+66. Sliding Window Maximum Character Frequency.
+67. Longest Binary Substring.
+68. Maximum Consecutive Ones.
+69. Longest Uniform Substring.
+70. Count Distinct Characters in Window.
+
+=================================
+RECURSION & BACKTRACKING (71-80)
+=================================
+
+71. Print All Subsequences.
+72. Print All Permutations.
+73. Generate All Combinations.
+74. Generate Power Set.
+75. Remove Adjacent Duplicates.
+76. Recursive String Reverse.
+77. Recursive Palindrome Check.
+78. Letter Case Permutation.
+79. Phone Number Letter Combinations.
+80. Palindrome Partitioning.
+
+=================================
+MEDIUM STRING PROBLEMS (81-90)
+=================================
+
+81. Longest Palindromic Substring.
+82. Longest Common Prefix.
+83. String Compression.
+84. Zigzag Conversion.
+85. Decode String.
+86. Encode and Decode Strings.
+87. Multiply Strings.
+88. Add Binary Strings.
+89. Compare Version Numbers.
+90. Simplify Path.
+
+=================================
+HARD STRING PROBLEMS (91-100)
+=================================
+
+91. Regular Expression Matching.
+92. Wildcard Matching.
+93. Text Justification.
+94. Edit Distance.
+95. Longest Common Subsequence.
+96. Shortest Common Supersequence.
+97. Word Break.
+98. Word Ladder.
+99. Minimum Insertions for Palindrome.
+100. Distinct Subsequences.
+
+=================================
+MOST ASKED STRING INTERVIEW QUESTIONS
+=================================
+
+1. Reverse String
+2. Palindrome String
+3. Valid Anagram
+4. Group Anagrams
+5. Longest Common Prefix
+6. Longest Substring Without Repeating Characters
+7. Reverse Words in String
+8. String Compression
+9. Check Rotation of String
+10. First Non-Repeating Character
+11. Count Character Frequency
+12. Remove Duplicates
+13. Isomorphic Strings
+14. Minimum Window Substring
+15. Find All Anagrams
+16. Longest Palindromic Substring
+17. Word Break
+18. Decode String
+19. Edit Distance
+20. Longest Common Subsequence
+
+=================================
+TOP 30 MUST-DO STRING QUESTIONS
+=================================
+
+1. Reverse String
+2. Palindrome Check
+3. Valid Anagram
+4. Group Anagrams
+5. Longest Common Prefix
+6. Reverse Words
+7. String Compression
+8. Count Character Frequency
+9. Remove Duplicates
+10. First Unique Character
+11. Check Rotation
+12. Longest Substring Without Repeating Characters
+13. Longest Palindromic Substring
+14. Minimum Window Substring
+15. Find All Anagrams
+16. Isomorphic Strings
+17. Word Pattern
+18. Add Binary
+19. Multiply Strings
+20. Decode String
+21. Encode Decode Strings
+22. Zigzag Conversion
+23. Word Break
+24. Edit Distance
+25. Longest Common Subsequence
+26. Distinct Subsequences
+27. Wildcard Matching
+28. Regex Matching
+29. Word Ladder
+30. Text Justification
+
+=================================
+STRING PATTERNS FOR INTERVIEWS
+=================================
+
+1. Two Pointers
+2. Sliding Window
+3. HashMap Frequency Count
+4. Prefix/Suffix Matching
+5. Recursion
+6. Backtracking
+7. Dynamic Programming
+8. Trie Based String Problems
+9. Greedy String Problems
+10. Stack Based String Problems
+
+Java Backend Interview Focus:
+- Reverse String
+- Palindrome
+- Anagram
+- Longest Substring Without Repeating Characters
+- Group Anagrams
+- String Compression
+- Minimum Window Substring
+- Word Break
+- LCS
+- Edit Distance

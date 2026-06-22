@@ -1,0 +1,157 @@
+
+===========================
+SPRING WEBFLUX - 100 QUESTIONS
+===========================
+
+BASICS
+
+1. What is Spring WebFlux?
+2. Why was WebFlux introduced?
+3. Difference between Spring MVC and Spring WebFlux?
+4. What is Reactive Programming?
+5. What are the benefits of Reactive Programming?
+6. What is Non-Blocking I/O?
+7. What is Asynchronous Processing?
+8. What is Event-Driven Architecture?
+9. What problem does WebFlux solve?
+10. When should you use WebFlux?
+
+REACTOR CORE
+
+11. What is Project Reactor?
+12. What is Mono?
+13. What is Flux?
+14. Difference between Mono and Flux?
+15. How does Mono.empty() work?
+16. What is Mono.just()?
+17. What is Flux.just()?
+18. What is Flux.fromIterable()?
+19. What is Flux.range()?
+20. What is Flux.interval()?
+
+OPERATORS
+
+21. What is map()?
+22. What is flatMap()?
+23. Difference between map() and flatMap()?
+24. What is filter()?
+25. What is collectList()?
+26. What is zip()?
+27. What is merge()?
+28. What is concat()?
+29. Difference between merge and concat?
+30. What is switchIfEmpty()?
+
+ERROR HANDLING
+
+31. What is onErrorReturn()?
+32. What is onErrorResume()?
+33. Difference between onErrorResume and onErrorReturn?
+34. What is onErrorMap()?
+35. What is doOnError()?
+36. How do you handle exceptions globally?
+37. What is WebExceptionHandler?
+38. How do you return custom error responses?
+39. How do you retry failed requests?
+40. What is retryWhen()?
+
+THREADING
+
+41. Explain WebFlux threading model.
+42. What is Event Loop?
+43. What is Netty?
+44. Why is Netty used in WebFlux?
+45. Difference between Servlet and Netty?
+46. What is Scheduler?
+47. What is subscribeOn()?
+48. What is publishOn()?
+49. Difference between publishOn and subscribeOn?
+50. What is boundedElastic Scheduler?
+
+BACKPRESSURE
+
+51. What is Backpressure?
+52. Why is Backpressure needed?
+53. How does Reactor support Backpressure?
+54. What happens when producer is faster than consumer?
+55. What is onBackpressureBuffer()?
+56. What is onBackpressureDrop()?
+57. What is onBackpressureLatest()?
+58. What is request(n)?
+59. What is Reactive Streams Specification?
+60. Explain demand management.
+
+WEBCLIENT
+
+61. What is WebClient?
+62. Difference between RestTemplate and WebClient?
+63. How to call external API using WebClient?
+64. How to add headers in WebClient?
+65. How to set timeout in WebClient?
+66. How to handle WebClient errors?
+67. How to log requests/responses?
+68. How to configure connection pooling?
+69. How to retry failed requests?
+70. How to configure SSL in WebClient?
+
+DATABASE
+
+71. What is R2DBC?
+72. Difference between JDBC and R2DBC?
+73. Why JDBC is blocking?
+74. Can WebFlux work with JPA?
+75. Problems using JPA with WebFlux?
+76. What is ReactiveCrudRepository?
+77. What databases support R2DBC?
+78. How do transactions work in R2DBC?
+79. Reactive MongoDB support?
+80. How do you handle large result sets?
+
+TESTING
+
+81. What is StepVerifier?
+82. How to test Mono?
+83. How to test Flux?
+84. What is WebTestClient?
+85. Difference between MockMvc and WebTestClient?
+86. How do you test errors?
+87. How do you test time-based Flux?
+88. What is VirtualTimeScheduler?
+89. Integration testing in WebFlux?
+90. Performance testing WebFlux APIs?
+
+PRODUCTION & TROUBLESHOOTING
+
+91. When should WebFlux NOT be used?
+92. What happens if blocking code is used?
+93. How do you identify blocking calls?
+94. What is BlockHound?
+95. Why is block() dangerous?
+96. How do you monitor WebFlux applications?
+97. How do you debug reactive chains?
+98. Common memory leak issues in WebFlux?
+99. How do you optimize WebFlux performance?
+100. Explain a real production use case where WebFlux improved scalability.
+
+
+Most Frequently Asked Senior-Level Questions
+1. Spring MVC vs WebFlux
+2. Mono vs Flux
+3. map() vs flatMap()
+4. subscribeOn() vs publishOn()
+5. Netty Architecture
+6. Event Loop Model
+7. Backpressure
+8. WebClient vs RestTemplate
+9. Why block() is bad
+10. WebFlux with JPA issues
+11. JDBC vs R2DBC
+12. Reactive Streams Specification
+13. Error Handling
+14. Thread Usage in WebFlux
+15. Performance Benefits
+16. Connection Pooling
+17. Retry Mechanisms
+18. Production Troubleshooting
+19. BlockHound
+20. Scaling WebFlux Applications

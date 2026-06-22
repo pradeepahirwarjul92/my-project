@@ -1,0 +1,412 @@
+JAVA COLLECTIONS FRAMEWORK - TOP 100 INTERVIEW QUESTIONS
+
+=================================================
+COLLECTION FRAMEWORK BASICS (1-20)
+=================================================
+
+1. What is Collection Framework?
+2. Why Collection Framework is used?
+3. Difference between Collection and Collections?
+4. Difference between Collection and Map?
+5. What are the main interfaces in Collection Framework?
+6. What is Iterable?
+7. What is Iterator?
+8. What is List?
+9. What is Set?
+10. What is Queue?
+11. What is Deque?
+12. What is Map?
+13. What is Comparable?
+14. What is Comparator?
+15. Difference between Comparable and Comparator?
+16. What is Fail Fast Iterator?
+17. What is Fail Safe Iterator?
+18. What is ConcurrentModificationException?
+19. What is RandomAccess interface?
+20. What are legacy collection classes?
+
+=================================================
+LIST INTERFACE (21-35)
+=================================================
+
+21. What is List?
+22. Characteristics of List?
+23. What is ArrayList?
+24. What is LinkedList?
+25. What is Vector?
+26. Difference between ArrayList and LinkedList?
+27. Difference between ArrayList and Vector?
+28. Internal working of ArrayList?
+29. Default size of ArrayList?
+30. ArrayList growth formula?
+31. Time complexity of add()?
+32. Time complexity of get()?
+33. Time complexity of remove()?
+34. When to use LinkedList?
+35. LinkedList internal structure?
+
+=================================================
+SET INTERFACE (36-50)
+=================================================
+
+36. What is Set?
+37. Characteristics of Set?
+38. What is HashSet?
+39. What is LinkedHashSet?
+40. What is TreeSet?
+41. Difference between HashSet and LinkedHashSet?
+42. Difference between HashSet and TreeSet?
+43. How HashSet works internally?
+44. Can HashSet store null?
+45. Can TreeSet store null?
+46. What is SortedSet?
+47. What is NavigableSet?
+48. How duplicate detection works?
+49. Importance of equals() and hashCode()?
+50. TreeSet complexity?
+
+=================================================
+MAP INTERFACE (51-75)
+=================================================
+
+51. What is Map?
+52. Characteristics of Map?
+53. What is HashMap?
+54. What is LinkedHashMap?
+55. What is TreeMap?
+56. What is Hashtable?
+57. Difference between HashMap and Hashtable?
+58. Difference between HashMap and TreeMap?
+59. Difference between HashMap and LinkedHashMap?
+60. Internal working of HashMap?
+61. Default capacity of HashMap?
+62. Default load factor?
+63. What is hashing?
+64. What is bucket?
+65. What is collision?
+66. Collision handling techniques?
+67. What is rehashing?
+68. What is hashCode()?
+69. Contract between equals() and hashCode()?
+70. Can HashMap have null key?
+71. Can Hashtable have null key?
+72. What is ConcurrentHashMap?
+73. Internal working of ConcurrentHashMap?
+74. HashMap in Java 7 vs Java 8?
+75. Treeification in HashMap?
+
+=================================================
+QUEUE & DEQUE (76-85)
+=================================================
+
+76. What is Queue?
+77. What is PriorityQueue?
+78. Internal working of PriorityQueue?
+79. What is Deque?
+80. What is ArrayDeque?
+81. Difference between Queue and Deque?
+82. PriorityQueue complexity?
+83. Can PriorityQueue store null?
+84. PriorityQueue ordering?
+85. ArrayDeque vs Stack?
+
+=================================================
+JAVA 8 COLLECTION FEATURES (86-95)
+=================================================
+
+86. What is Stream API?
+87. Difference between Collection and Stream?
+88. filter() method?
+89. map() method?
+90. flatMap() method?
+91. reduce() method?
+92. collect() method?
+93. forEach() method?
+94. parallelStream()?
+95. Spliterator?
+
+=================================================
+ADVANCED COLLECTION QUESTIONS (96-100)
+=================================================
+
+96. Immutable Collections?
+97. Synchronized Collections?
+98. CopyOnWriteArrayList?
+99. WeakHashMap?
+100. IdentityHashMap?
+
+=================================================
+HASHMAP MOST ASKED QUESTIONS
+=================================================
+
+1. How HashMap works internally?
+2. What is hashing?
+3. What is bucket?
+4. What is collision?
+5. How collision is resolved?
+6. What is load factor?
+7. What is rehashing?
+8. Why equals() and hashCode()?
+9. Default capacity of HashMap?
+10. Treeification in Java 8?
+
+=================================================
+HASHMAP INTERNAL WORKING
+=================================================
+
+put(key,value)
+
+Step 1:
+Calculate hashCode()
+
+Step 2:
+Find bucket index
+
+index = hash % capacity
+
+Step 3:
+Store Entry
+
+If collision:
+- Linked List (Java 7)
+- Linked List + Red Black Tree (Java 8)
+
+=================================================
+HASHMAP JAVA 8 IMPROVEMENT
+=================================================
+
+Before Java 8:
+
+Bucket
+ |
+ Node
+ |
+ Node
+ |
+ Node
+
+Search:
+O(n)
+
+After Java 8:
+
+Bucket
+ |
+ Red Black Tree
+
+Search:
+O(log n)
+
+Treeification Condition:
+
+Bucket Size >= 8
+
+=================================================
+ARRAYLIST INTERNAL WORKING
+=================================================
+
+ArrayList uses:
+
+Object[]
+
+Default Capacity:
+
+10
+
+Growth:
+
+oldCapacity + oldCapacity/2
+
+Example:
+
+10 → 15 → 22 → 33
+
+Complexities:
+
+add()        O(1)
+get()        O(1)
+remove()     O(n)
+
+=================================================
+LINKEDLIST INTERNAL WORKING
+=================================================
+
+Node
+
+[data|next|prev]
+
+Complexities:
+
+addFirst()      O(1)
+addLast()       O(1)
+get(index)      O(n)
+
+=================================================
+COMPARABLE vs COMPARATOR
+=================================================
+
+Comparable:
+
+Collections.sort(list)
+
+compareTo()
+
+Used for Natural Sorting
+
+---------------------------------
+
+Comparator:
+
+Collections.sort(list,new Comparator())
+
+compare()
+
+Used for Custom Sorting
+
+=================================================
+FAIL FAST vs FAIL SAFE
+=================================================
+
+Fail Fast:
+
+ArrayList
+HashMap
+
+Throws:
+
+ConcurrentModificationException
+
+---------------------------------
+
+Fail Safe:
+
+ConcurrentHashMap
+CopyOnWriteArrayList
+
+No Exception
+
+=================================================
+PRODUCTION TROUBLESHOOTING QUESTIONS
+=================================================
+
+1. HashMap causing performance issue.
+2. High memory consumption due to collections.
+3. ConcurrentModificationException in production.
+4. Wrong equals/hashCode implementation.
+5. Memory leak because of static collections.
+6. ConcurrentHashMap performance issue.
+7. Large ArrayList causing OOM.
+8. TreeMap slow operations.
+9. Duplicate data in HashSet.
+10. Collection synchronization issue.
+
+=================================================
+REAL PRODUCTION SCENARIOS
+=================================================
+
+Scenario 1:
+HashMap Slow
+
+Reason:
+Poor hashCode()
+
+Result:
+All entries in one bucket.
+
+Complexity:
+
+O(n)
+
+Fix:
+Proper hashCode()
+
+-------------------------------------------------
+
+Scenario 2:
+ConcurrentModificationException
+
+Reason:
+
+Modifying collection during iteration.
+
+Fix:
+
+Iterator.remove()
+
+or
+
+Concurrent Collections
+
+-------------------------------------------------
+
+Scenario 3:
+Memory Leak
+
+Reason:
+
+Static Map continuously growing.
+
+Fix:
+Eviction Policy
+Cache Cleanup
+
+-------------------------------------------------
+
+Scenario 4:
+Duplicate Entries in HashSet
+
+Reason:
+
+equals/hashCode not overridden.
+
+Fix:
+
+Override both methods.
+
+=================================================
+TOP 30 COLLECTION QUESTIONS
+=================================================
+
+1. Collection Framework Architecture
+2. List vs Set vs Map
+3. ArrayList vs LinkedList
+4. Vector vs ArrayList
+5. HashSet Internal Working
+6. TreeSet vs HashSet
+7. HashMap Internal Working
+8. HashMap vs Hashtable
+9. ConcurrentHashMap
+10. Load Factor
+11. Rehashing
+12. Collision
+13. equals vs hashCode
+14. Comparable vs Comparator
+15. PriorityQueue
+16. ArrayDeque
+17. Fail Fast Iterator
+18. Fail Safe Iterator
+19. ConcurrentModificationException
+20. Java 8 Streams
+21. filter
+22. map
+23. flatMap
+24. reduce
+25. collect
+26. parallelStream
+27. WeakHashMap
+28. CopyOnWriteArrayList
+29. Immutable Collections
+30. Collection Troubleshooting
+
+INTERVIEW FOCUS (5+ YEARS JAVA BACKEND)
+
+- HashMap Internals
+- ConcurrentHashMap
+- equals() & hashCode()
+- ArrayList vs LinkedList
+- TreeMap vs HashMap
+- Comparable vs Comparator
+- Fail Fast vs Fail Safe
+- Java 8 Streams
+- Collection Performance
+- Collection Memory Issues

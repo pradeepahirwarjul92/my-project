@@ -1,0 +1,447 @@
+
+================CREATIONAL DESIGN PATTERN ==================
+01. Singleton Design pattern
+Ans - Singleton design pattern ensures that a class has only one instance in the application and provides a global access point to that instance. 
+	
+	Instance vs Object 
+	AN object is the actual entity created in memory, while an instance represnts that the object belongs to a particular class 
+	
+		Real life example 	
+			Class -> Student 	
+				Student s1 = new Student();
+				Student s2 = new Student();	
+			Here : 
+					s1 and s2 are objects
+					Both are instances of Student class 
+	
+	Example - 
+
+
+package com.heg.creational;
+
+/**
+ *
+ * @author softwaredeveloper
+ */
+public class Singleton {
+    
+    //static - one shared variable for the entire class
+    //volatile - prevent instrcution reordering and ensures visibility across threads
+    //private -  cannot be accessed directly outside the class
+	// ❌ - final not use because if i use final to i need initilize the instance so its break lazy initilization 
+    private static volatile Singleton instance;
+    
+    //private constructor prevent object creation using new outside the class
+    //ensures only this class can create the object 
+    private Singleton(){
+    if(instance != null){
+        throw  new RuntimeException("Use getIntance method :: ");
+    }
+    }
+    
+    
+    //public method to provide global access to the singleton instance
+    public static Singleton getInstance(){
+        //First check (without locking)
+        //imporves performance because synchronization is avoided 
+        //if instance already created 
+        if(instance == null){
+            
+            //synchronized block ensure only one thread can enter at a time
+            //prevents multiple objects in multithreading 
+            synchronized(Singleton.class){
+                //second check inside synchronized block 
+                //needed beacuse another thread may have created the instance 
+                //while the current thread was waiting for the lock
+                if(instance==null){
+                    //object creation happends only once
+                    instance= new Singleton();
+                }
+            }
+        
+        }
+        
+        //return the single instance of Singleton
+        return instance;
+    
+    }
+    
+    public static void main(String[] args) {
+        
+        Singleton s1 = Singleton.getInstance();
+        Singleton s2 = Singleton.getInstance();
+        System.out.println(s1==s2);
+        
+        
+      
+    }
+    
+}
+
+NOTE :: Why is instance not declared as final in lazy Singleton?
+We cannot make the Singleton instance final in lazy initialization because final requires initialization during class loading, while lazy 
+initialization creates the object only when getInstance() is called. Using final would convert it into eager initialization.
+
+REAL EXAMPLE : 👉 “In Spring, all beans are Singleton by default and managed by the IoC container, 
+			so most services, repositories, controllers, and components in 
+			real production systems are actually Singleton instances.” 🚀
+
+
+02 - Factory Design pattern
+Ans -  The Factory Design Pattern is a Creational Design pattern used to create 
+object without exposing the object creation to the client.
+Instead of using new directly, a factory method decides which object to create . 
+It helps in loose coupling and clean code design .
+
+	key points  :: 
+	✔ Object creation logic is centralized 
+	✔ Client does not use new Keyword directly
+	
+	public interface Payment {
+    
+    void pay (double  amount);
+    
+}
+
+public class CardPayment  implements Payment{
+
+    @Override
+    public void pay(double amount) {
+        System.out.println("Paid " + amount + " using Credit Card");
+    }
+    
+}
+
+public class UpiPayment implements Payment{
+
+    @Override
+    public void pay(double amount) {
+        System.out.println("Paid " +amount + " using UPI" );
+    }
+    
+    
+    
+}
+
+public class NetBankingPayment implements Payment {
+
+    @Override
+    public void pay(double amount){
+        System.out.println("Paid " + amount + " using Net Banking");
+    }
+    
+}
+
+public class PaymentFactory {
+
+    public static Payment getPayment(String type) {
+        if (type.equalsIgnoreCase("UPI")) {
+            return new UpiPayment();
+        } else if (type.equalsIgnoreCase("CARD")) {
+            return new CardPayment();
+        } else if (type.equalsIgnoreCase("NETBANKING")) {
+            return new NetBankingPayment();
+        }
+        throw new IllegalArgumentException("Invalid payment method ");
+    }
+
+}
+
+public class FactoryDemo {
+    public static void main(String[] args) {
+        Payment payment = PaymentFactory.getPayment("CARD");
+        payment.pay(5000);
+    }
+    
+}
+
+Exmaple : - 🌱 Spring / Spring Boot (Industry 🔥)
+BeanFactory 🏭
+ApplicationContext 🧩
+FactoryBean ⚙️
+ObjectFactory 🔁
+RestTemplateBuilder 🌐
+
+03 - Builder Design pattern 
+Ans - The Builder pattern is a Creational Design Pattern used to constrcut complex objects step by step .
+	useful when class have many parameters 
+	
+	public class User {
+    
+    private String name;
+    private int age;
+    private String email;
+    private String phone;
+    private String address;
+    
+    //private constructor so object can only be created through Builder
+    private User(UserBuilder builder){
+        this.name= builder.name;
+        this.age=builder.age;
+        this.email=builder.email;
+        this.phone=builder.phone;
+        this.address=builder.address;
+    }
+    
+    //static Builder class
+    public static class UserBuilder{
+        private String name;
+        private int age;
+        private String email;
+        private String phone;
+        private String address;
+        
+        // constructor for required fields
+        public UserBuilder(String name,int age){
+            this.name=name;
+            this.age=age;
+        }
+        
+        // optional parameter
+        public UserBuilder setEmail(String email){
+            this.email=email;
+            return this;
+        }
+        
+        // optional parameter
+        public UserBuilder setPhone(String phone){
+            this.phone=phone;
+            return this;
+        }
+        
+        // optional parameter
+        public UserBuilder setAddress(String address){
+            this.address=address;
+            return this;
+        }
+        
+         // build method creates final object
+		// build() -> this is method used to create final object
+		// new User(this) - It calls the constructor of Use class, passing the current build object (this) as an argument 	
+		 
+        public User build(){
+            return new User(this);
+        }
+        
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "name=" + name + ", age=" + age + ", email=" + email + ", phone=" + phone + ", address=" + address + '}';
+    }
+    
+    
+    
+}
+
+
+public class BuilderDemo {
+    
+    public static void main(String[] args) {
+        User user = new User.UserBuilder("Pradeep", 30)
+                .setEmail("pradeep@gmail.com")
+                .setPhone("9999999999")
+                .setAddress("Bhopal")
+                .build();
+        
+        System.out.println(user);
+    }
+    
+}
+
+
+04 - =======Prototype========
+Ans - Prototype Pattern is a creational design pattern used to create new objects by 
+cloning an existing object instead of creating a new instance from scratch .
+		
+		When used 
+			- object creation is expensive
+			- Need many similar object 
+			- want to avoid subclass explosion
+	
+	
+/**
+ *
+ * @author softwaredeveloper
+ */
+public class Employee implements Cloneable{
+    private String name;
+    private int id;
+    
+    public Employee(String name,int id){
+        this.name=name;
+        this.id=id;
+    }
+    
+    //clone method 
+    
+    @Override
+	
+    public Employee clone() throws CloneNotSupportedException{
+        return (Employee) super.clone(); //shallow copy create 
+    }
+    
+    public void display (){
+        System.out.println(name + " - " +id);
+    }
+    
+}
+
+   public static void main(String[] args) throws CloneNotSupportedException {
+        
+        Employee emp1 = new Employee("Pradeep", 101);
+        Employee emp2 = emp1.clone();
+        
+        emp1.display();
+        emp2.display();
+        
+        System.out.println(emp1 == emp2);
+        
+        
+    }
+
+	
+05 - Abstract Factory Pattern 
+ANs - Abstract Factory Pattern is used when we need to create families of related objects 
+without specifying their concrete classes. 
+	It ensures that related objects are used together and promotes consistency across the system.
+
+🎯 Final Memory Trick
+
+👉 Factory = One product
+👉 Abstract Factory = Product family	
+	
+👉 You have:
+
+	Loan Type (Family)
+		-	Car Loan
+		-	Housing Loan
+	Workflow (Products)
+		-	Approval
+		-	Validation
+
+👉 Rule:
+✔ Car → CarApproval + CarValidation
+✔ Housing → HousingApproval + HousingValidation
+
+👉 ❌ No mixing allowed	
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.heg.dp.creational.abstractP;
+
+interface Button{
+    void print();
+}
+
+interface Checkbox{
+    void print();
+}
+
+class WindowButton implements Button{
+
+    @Override
+    public void print() {
+        System.out.println("Window Button Created :: ");
+    }
+    
+}
+
+class WindowCheckbox implements Checkbox{
+
+    @Override
+    public void print() {
+        System.out.println("Window Checkbox Created");
+    }
+    
+}
+
+
+class MacButton implements Button{
+
+    @Override
+    public void print() {
+        System.out.println("Mac Button Created :: ");
+    }
+    
+}
+
+class MacCheckbox implements Checkbox{
+
+    @Override
+    public void print() {
+        System.out.println("Mac Checkbox Created");
+    }
+    
+}
+
+
+
+interface GUIFactory{
+    Button createButton();
+    Checkbox createCheckbox();
+}
+
+class WindowFactory implements GUIFactory{
+
+    @Override
+    public Button createButton() {
+        return new WindowButton();
+    }
+
+    @Override
+    public Checkbox createCheckbox() {
+        return new WindowCheckbox();
+    }
+    
+}
+
+class MacFactory implements GUIFactory{
+
+    @Override
+    public Button createButton() {
+        return new MacButton();
+    }
+
+    @Override
+    public Checkbox createCheckbox() {
+        return new MacCheckbox();
+    }
+    
+}
+
+
+class Application{
+    private Button button;
+    private Checkbox checkbox;
+    
+    public Application(GUIFactory factory){
+        button=factory.createButton();
+        checkbox=factory.createCheckbox();
+    }
+    
+    public void render(){
+        button.print();
+        checkbox.print();
+    }
+}
+public class AbstractDemo {
+    
+    public static void main(String[] args) {
+        GUIFactory guiFactory;
+        String os= "WINDOWS";
+        
+        if("WINDOWS".equalsIgnoreCase(os)){
+            guiFactory=new WindowFactory();
+        }else{
+            guiFactory=new MacFactory();
+        }
+        
+        Application app= new Application(guiFactory);
+        app.render();
+    }
+    
+}

@@ -1,0 +1,127 @@
+=================================
+SPRING BOOT ACTUATOR
+=================================
+
+BASICS
+
+1. What is Spring Boot Actuator?
+2. Why do we need Actuator?
+3. Benefits of Actuator?
+4. Production-ready features?
+5. How to enable Actuator?
+6. Default endpoints?
+7. Actuator architecture?
+8. Endpoint types?
+9. Endpoint exposure?
+10. Security considerations?
+
+ENDPOINTS
+
+11. /actuator
+12. /actuator/health
+13. /actuator/info
+14. /actuator/metrics
+15. /actuator/env
+16. /actuator/configprops
+17. /actuator/beans
+18. /actuator/mappings
+19. /actuator/threaddump
+20. /actuator/heapdump
+
+21. /actuator/loggers
+22. /actuator/scheduledtasks
+23. /actuator/caches
+24. /actuator/startup
+25. /actuator/prometheus
+26. /actuator/sessions
+27. /actuator/shutdown
+28. /actuator/auditevents
+29. /actuator/features
+30. /actuator/integrationgraph
+
+HEALTH CHECKS
+
+31. What is Health Endpoint?
+32. Health Indicator?
+33. Built-in health indicators?
+34. Database health?
+35. Disk space health?
+36. Redis health?
+37. Kafka health?
+38. RabbitMQ health?
+39. MongoDB health?
+40. Elasticsearch health?
+
+41. Custom Health Indicator?
+42. Composite Health Indicator?
+43. Health Groups?
+44. Health Status?
+45. DOWN status?
+46. OUT_OF_SERVICE status?
+47. UNKNOWN status?
+48. Liveness Probe?
+49. Readiness Probe?
+50. Kubernetes integration?
+
+METRICS
+
+51. What is Micrometer?
+52. Metrics collection?
+53. JVM Metrics?
+54. Memory Metrics?
+55. GC Metrics?
+56. Thread Metrics?
+57. CPU Metrics?
+58. HTTP Metrics?
+59. Database Metrics?
+60. HikariCP Metrics?
+
+61. Custom Metrics?
+62. Counter?
+63. Gauge?
+64. Timer?
+65. Distribution Summary?
+66. Percentiles?
+67. Histogram?
+68. Tagging Metrics?
+69. Metric Filtering?
+70. Metric Export?
+
+PROMETHEUS & GRAFANA
+
+71. Prometheus integration?
+72. /actuator/prometheus?
+73. Grafana dashboards?
+74. Scraping metrics?
+75. Prometheus architecture?
+76. Alerting?
+77. AlertManager?
+78. Custom dashboards?
+79. Business metrics?
+80. Production monitoring?
+
+LOGGING
+
+81. Dynamic log levels?
+82. Loggers endpoint?
+83. Change log level at runtime?
+84. Debugging production issue?
+85. Logback integration?
+86. Structured logging?
+87. Correlation ID?
+88. Trace ID?
+89. Log aggregation?
+90. ELK integration?
+
+TROUBLESHOOTING
+
+91. Application unhealthy?
+92. High memory issue?
+93. High CPU issue?
+94. Thread deadlock?
+95. Connection pool exhaustion?
+96. Slow API?
+97. JVM memory leak?
+98. Production outage analysis?
+99. Observability strategy?
+100. Explain a production Actuator use case.

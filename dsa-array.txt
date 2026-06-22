@@ -1,0 +1,102 @@
+JAVA DSA ARRAYS - 100 PRACTICE QUESTIONS
+
+1. Find the largest element in an array.
+2. Find the smallest element in an array.
+3. Find the second largest element in an array.
+4. Find the second smallest element in an array.
+5. Reverse an array.
+6. Find the sum of all elements in an array.
+7. Find the average of array elements.
+8. Count even and odd numbers in an array.
+9. Check if an array is sorted.
+10. Find the maximum and minimum element in an array.
+11. Search an element in an array (Linear Search).
+12. Search an element using Binary Search.
+13. Find frequency of an element in an array.
+14. Count occurrences of each element.
+15. Find duplicate elements in an array.
+16. Remove duplicates from a sorted array.
+17. Remove duplicates from an unsorted array.
+18. Move all zeros to the end.
+19. Move all zeros to the beginning.
+20. Move all negative numbers to one side.
+21. Separate even and odd numbers.
+22. Sort an array of 0s, 1s, and 2s.
+23. Rotate an array left by one position.
+24. Rotate an array right by one position.
+25. Rotate an array by K positions.
+26. Merge two sorted arrays.
+27. Merge two unsorted arrays.
+28. Find union of two arrays.
+29. Find intersection of two arrays.
+30. Find difference between two arrays.
+31. Find common elements in three arrays.
+32. Find missing number in an array.
+33. Find multiple missing numbers.
+34. Find repeating elements.
+35. Find first repeating element.
+36. Find first non-repeating element.
+37. Find all non-repeating elements.
+38. Find majority element.
+39. Find element appearing more than N/2 times.
+40. Find element appearing more than N/3 times.
+41. Find pair with given sum.
+42. Find all pairs with given sum.
+43. Find triplet with given sum.
+44. Find quadruplet with given sum.
+45. Find pair with minimum difference.
+46. Find pair with maximum difference.
+47. Find closest pair to target sum.
+48. Find kth largest element.
+49. Find kth smallest element.
+50. Find median of an array.
+51. Find equilibrium index.
+52. Find equilibrium point in array.
+53. Find leaders in an array.
+54. Replace every element with greatest element on right side.
+55. Find stock buy and sell profit.
+56. Find maximum profit from stock prices.
+57. Find maximum subarray sum (Kadane's Algorithm).
+58. Find minimum subarray sum.
+59. Find maximum product subarray.
+60. Find maximum circular subarray sum.
+61. Find longest increasing subarray.
+62. Find longest decreasing subarray.
+63. Find longest consecutive sequence.
+64. Find longest subarray with sum K.
+65. Find longest subarray with zero sum.
+66. Count subarrays with sum K.
+67. Count subarrays with zero sum.
+68. Find subarray with given sum.
+69. Find smallest subarray with given sum.
+70. Find largest subarray with equal 0s and 1s.
+71. Find maximum sum of subarray of size K.
+72. Find minimum sum of subarray of size K.
+73. Find first negative number in every window of size K.
+74. Find maximum element in every window of size K.
+75. Count distinct elements in every window.
+76. Find sliding window maximum.
+77. Find sliding window minimum.
+78. Implement prefix sum array.
+79. Perform range sum queries using prefix sum.
+80. Find pivot index.
+81. Find peak element.
+82. Find local minima.
+83. Search in rotated sorted array.
+84. Find minimum element in rotated sorted array.
+85. Find rotation count in rotated array.
+86. Find floor of an element.
+87. Find ceil of an element.
+88. Find first occurrence of an element.
+89. Find last occurrence of an element.
+90. Count occurrences using binary search.
+91. Find single element in sorted array.
+92. Find square root using binary search.
+93. Find median of two sorted arrays.
+94. Trapping Rain Water problem.
+95. Container With Most Water problem.
+96. Jump Game problem.
+97. Jump Game II problem.
+98. Gas Station problem.
+99. Merge Intervals problem.
+100. Insert Interval problem.

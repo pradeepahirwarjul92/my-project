@@ -1,0 +1,319 @@
+=========================================
+SPRING BOOT EXCEPTION HANDLING
+=========================================
+
+BASICS
+
+1. What is exception handling?
+2. Why is exception handling important?
+3. Checked vs Unchecked Exceptions?
+4. RuntimeException vs Exception?
+5. Error vs Exception?
+6. Exception hierarchy in Java?
+7. Custom Exceptions?
+8. Why create custom exceptions?
+9. Global exception handling?
+10. Best practices for exception handling?
+
+SPRING BOOT
+
+11. What is @ExceptionHandler?
+12. What is @ControllerAdvice?
+13. What is @RestControllerAdvice?
+14. Difference between ControllerAdvice and RestControllerAdvice?
+15. How does Spring resolve exceptions?
+16. What is ResponseEntityExceptionHandler?
+17. How do you create global exception handlers?
+18. How do you handle validation exceptions?
+19. How do you return custom error responses?
+20. How do you standardize API errors?
+
+VALIDATION
+
+21. MethodArgumentNotValidException?
+22. ConstraintViolationException?
+23. @Valid vs @Validated?
+24. Field validation errors?
+25. Bean validation integration?
+26. Custom validation messages?
+27. Validation exception handling?
+28. Aggregating validation errors?
+29. Returning user-friendly validation responses?
+30. Validation troubleshooting?
+
+REST APIs
+
+31. How do you design error responses?
+32. HTTP status codes for exceptions?
+33. 400 vs 422?
+34. 401 vs 403?
+35. 404 handling?
+36. 409 Conflict?
+37. 500 Internal Server Error?
+38. API error contract?
+39. Error codes vs error messages?
+40. RFC 7807 Problem Details?
+
+DATABASE
+
+41. DataIntegrityViolationException?
+42. EntityNotFoundException?
+43. OptimisticLockException?
+44. Transaction exceptions?
+45. Duplicate key exceptions?
+46. Database timeout exceptions?
+47. SQL exceptions?
+48. Connection pool exceptions?
+49. Hibernate exceptions?
+50. JPA exception handling?
+
+MICROSERVICES
+
+51. Exception handling across services?
+52. Error propagation?
+53. Feign exception handling?
+54. WebClient exception handling?
+55. Fallback handling?
+56. Circuit breaker exception handling?
+57. Kafka exception handling?
+58. DLQ handling?
+59. Correlation IDs?
+60. Distributed tracing for errors?
+
+CUSTOM EXCEPTIONS
+
+61. BusinessException?
+62. ResourceNotFoundException?
+63. ValidationException?
+64. UnauthorizedException?
+65. ForbiddenException?
+66. DuplicateResourceException?
+67. ServiceUnavailableException?
+68. Domain-driven exceptions?
+69. Exception inheritance strategy?
+70. Error code design?
+
+LOGGING
+
+71. Should all exceptions be logged?
+72. Error logging best practices?
+73. Stack trace logging?
+74. Sensitive data in logs?
+75. Structured logging?
+76. Correlation IDs in logs?
+77. Log levels?
+78. Centralized logging?
+79. Splunk/ELK integration?
+80. Production monitoring?
+
+TROUBLESHOOTING
+
+81. Exception swallowed silently?
+82. Why global handler not working?
+83. Transaction not rolling back?
+84. Validation errors not captured?
+85. Unexpected 500 errors?
+86. Feign client failures?
+87. Timeout exceptions?
+88. Memory issues due to exceptions?
+89. High exception rate?
+90. Production debugging?
+
+DESIGN QUESTIONS
+
+91. Design enterprise error response.
+92. Error handling strategy for microservices.
+93. API error standardization.
+94. Global exception architecture.
+95. Logging strategy.
+96. Retry vs Exception.
+97. Recoverable vs Non-recoverable errors.
+98. Security considerations.
+99. Production incident caused by exception.
+100. Explain a real exception handling issue.
+
+
+Most Asked Senior-Level Questions
+1. @ExceptionHandler
+2. @RestControllerAdvice
+3. Global Exception Handling
+4. Custom Exceptions
+5. Validation Exception Handling
+6. Feign/WebClient Exception Handling
+7. Transaction Rollback Rules
+8. Business vs Technical Exceptions
+9. Standard Error Response Design
+10. Production Troubleshooting
+
+
+Global Exception Handler
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleException(
+            Exception ex) {
+
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(ex.getMessage());
+    }
+}
+
+
+Custom Exception
+
+public class EmployeeNotFoundException
+        extends RuntimeException {
+
+    public EmployeeNotFoundException(
+            String message) {
+
+        super(message);
+    }
+}
+
+
+Throw:
+
+Employee employee =
+        repository.findById(id)
+        .orElseThrow(() ->
+          new EmployeeNotFoundException(
+          "Employee not found"));
+		  
+
+
+Handle Custom Exception
+
+@RestControllerAdvice
+public class GlobalHandler {
+
+    @ExceptionHandler(
+        EmployeeNotFoundException.class)
+    public ResponseEntity<String> handle(
+        EmployeeNotFoundException ex) {
+
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(ex.getMessage());
+    }
+}
+
+
+Standard Enterprise Error Response
+
+public class ErrorResponse {
+
+    private String errorCode;
+
+    private String message;
+
+    private LocalDateTime timestamp;
+
+    private String path;
+}
+
+Response:
+
+{
+  "errorCode":"EMP_404",
+  "message":"Employee not found",
+  "timestamp":"2026-06-22T10:00:00",
+  "path":"/employees/1"
+}
+
+Most enterprise projects follow something similar.
+
+Validation Exception Handling
+
+DTO:
+
+public class EmployeeRequest {
+
+    @NotBlank
+    private String name;
+
+    @Email
+    private String email;
+}
+
+Controller:
+
+@PostMapping
+public Employee save(
+        @Valid
+        @RequestBody EmployeeRequest request) {
+
+    return service.save(request);
+}
+
+Global Handler:
+
+@ExceptionHandler(
+ MethodArgumentNotValidException.class)
+public ResponseEntity<?> handleValidation(
+ MethodArgumentNotValidException ex) {
+
+    Map<String,String> errors =
+            new HashMap<>();
+
+    ex.getBindingResult()
+      .getFieldErrors()
+      .forEach(error ->
+          errors.put(
+             error.getField(),
+             error.getDefaultMessage()));
+
+    return ResponseEntity.badRequest()
+            .body(errors);
+}
+
+
+
+Exception Handling Best Practices
+1. Use Global Exception Handler
+2. Use Custom Exceptions
+3. Standardize Error Response
+4. Never expose stack traces to clients
+5. Log exceptions properly
+6. Use meaningful error codes
+7. Handle validation separately
+8. Use correlation IDs
+9. Separate business and technical exceptions
+10. Monitor exception rates
+
+
+Common HTTP Status Codes
+200 OK
+
+201 Created
+
+400 Bad Request
+
+401 Unauthorized
+
+403 Forbidden
+
+404 Not Found
+
+409 Conflict
+
+422 Unprocessable Entity
+
+500 Internal Server Error
+
+503 Service Unavailable
+
+
+Senior-Level Topics to Master
+@RestControllerAdvice
+@ExceptionHandler
+Custom Exceptions
+Validation Handling
+Feign/WebClient Errors
+Transaction Rollback Rules
+Standard Error Responses
+Correlation IDs
+Microservice Error Propagation
+Production Troubleshooting

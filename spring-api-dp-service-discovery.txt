@@ -1,0 +1,153 @@
+What is Service Discovery?
+
+Service Discovery is a mechanism that allows microservices to dynamically find and communicate 
+with each other without hardcoding IP addresses or hostnames.
+
+Problem Without Service Discovery
+
+Order Service
+     |
+     v
+http://192.168.1.10:8081
+
+Issues:
+
+1. IP may change
+2. Container restart changes IP
+3. Auto-scaling creates new instances
+4. Difficult maintenance
+
+Solution
+Order Service
+      |
+      v
+PAYMENT-SERVICE
+      |
+      v
+Service Registry
+      |
+      v
+10.0.0.12:8081
+10.0.0.13:8081
+10.0.0.14:8081
+
+Services discover each other dynamically.
+
+How Service Discovery Works
+
+Payment Service Starts
+         |
+         v
+Registers with Registry
+         |
+         v
+Registry Stores Details
+         |
+         v
+Order Service Queries Registry
+         |
+         v
+Gets Available Instances
+
+
+ - ---------- Service Discovery Components ---------
+ 1. Service Provider
+ 
+Payment Service
+Inventory Service
+Customer Service
+
+--- Registers itself.
+
+2. Service Registry
+
+Examples:
+
+Netflix Eureka
+Consul
+Apache ZooKeeper
+
+Stores:
+
+Service Name
+IP Address
+Port
+Health Status
+Metadata
+
+
+3. Service Consumer
+Order Service
+
+Discovers other services.
+
+
+
+1. What is Service Discovery?
+2. Why is Service Discovery needed?
+3. Client-side vs Server-side Discovery?
+4. How does Eureka work?
+5. What is Service Registry?
+6. What information is stored in Registry?
+7. How does service registration happen?
+8. What are heartbeats?
+9. How does load balancing work with discovery?
+10. Eureka vs Consul?
+11. Eureka vs Kubernetes Discovery?
+12. Why not use hardcoded URLs?
+13. What happens if a service crashes?
+14. How do health checks work?
+15. Explain service discovery architecture.
+
+Service Discovery vs Load Balancing
+| Service Discovery | Load Balancing       |
+| ----------------- | -------------------- |
+| Finds Service     | Selects Instance     |
+| Registry Based    | Traffic Distribution |
+| Eureka/Consul     | LoadBalancer/NGINX   |
+
+
+
+Service Discovery vs API Gateway
+
+| Service Discovery       | API Gateway          |
+| ----------------------- | -------------------- |
+| Internal Service Lookup | External Entry Point |
+| Service-to-Service      | Client-to-Service    |
+| Registry                | Routing Layer        |
+
+
+Common Production Problems
+
+Service Not Found
+
+Check:
+		1. Service Registration
+		2. Eureka URL
+		3. Network Connectivity
+		4. Service Name
+		5. Registry Status
+
+Stale Instances
+	Cause:
+		Heartbeat Failure
+		Improper Shutdown	
+	Solution:
+		Lease Expiration
+		Health Checks
+
+
+Service Discovery in Modern Architecture
+
+Client
+   |
+API Gateway
+   |
+---------------------
+|         |         |
+v         v         v
+Order   Payment  Inventory
+  \        |        /
+   \       |       /
+    \      |      /
+     Service Discovery

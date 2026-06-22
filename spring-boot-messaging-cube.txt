@@ -1,0 +1,133 @@
+=================================
+MESSAGING - 50 INTERVIEW QUESTIONS
+=================================
+
+BASICS
+
+1. What is a messaging system?
+2. Why do we need messaging?
+3. Synchronous vs Asynchronous communication?
+4. What is a Message Queue?
+5. What are the benefits of messaging?
+6. What is decoupling?
+7. What is eventual consistency?
+8. What is producer?
+9. What is consumer?
+10. What is a message broker?
+
+QUEUE CONCEPTS
+
+11. What is a queue?
+12. What is a topic?
+13. Queue vs Topic?
+14. Point-to-point messaging?
+15. Publish-subscribe messaging?
+16. What is message ordering?
+17. What is message durability?
+18. What is message persistence?
+19. What is message acknowledgment?
+20. What happens if consumer crashes?
+
+KAFKA
+
+21. What is Kafka?
+22. Kafka architecture?
+23. What is a topic?
+24. What is a partition?
+25. What is an offset?
+26. What is consumer group?
+27. What is replication factor?
+28. What is ISR?
+29. Kafka leader election?
+30. How does Kafka guarantee ordering?
+
+RABBITMQ
+
+31. What is RabbitMQ?
+32. Exchange types in RabbitMQ?
+33. Direct Exchange?
+34. Topic Exchange?
+35. Fanout Exchange?
+36. Headers Exchange?
+37. Queue Binding?
+38. Dead Letter Queue?
+39. Message TTL?
+40. RabbitMQ vs Kafka?
+
+RELIABILITY
+
+41. At-most-once delivery?
+42. At-least-once delivery?
+43. Exactly-once delivery?
+44. Duplicate message handling?
+45. Idempotency?
+46. Retry mechanism?
+47. Dead Letter Queue usage?
+48. Poison message?
+49. Message loss prevention?
+50. Production troubleshooting?
+
+
+Most Asked Senior-Level Questions
+
+1. Kafka vs RabbitMQ
+2. Consumer Group
+3. Partitioning Strategy
+4. Message Ordering
+5. Idempotency
+6. Exactly Once Processing
+7. Dead Letter Queue
+8. Retry Strategy
+9. Event-Driven Architecture
+10. Saga Pattern
+11. Outbox Pattern
+12. Kafka Rebalancing
+13. High Consumer Lag
+14. Message Duplication
+15. Production Troubleshooting
+
+
+Kafka vs RabbitMQ
+| Feature    | Kafka                | RabbitMQ        |
+| ---------- | -------------------- | --------------- |
+| Use Case   | Event Streaming      | Messaging       |
+| Throughput | Very High            | Medium          |
+| Ordering   | Per Partition        | Per Queue       |
+| Retention  | Days/Months          | Until Consumed  |
+| Replay     | Supported            | Limited         |
+| Best For   | Microservices Events | Task Processing |
+
+
+Common Production Scenario
+
+
+Consumer Lag Increasing
+
+Investigation:
+
+1. Check consumer CPU
+2. Check consumer memory
+3. Check processing time
+4. Check partition count
+5. Check broker health
+6. Check network latency
+7. Scale consumer instances
+
+
+Spring Boot Kafka Example
+
+@KafkaListener(
+    topics = "employee-topic",
+    groupId = "employee-group"
+)
+public void consume(String message) {
+    System.out.println(message);
+}
+
+
+Spring Boot RabbitMQ Example
+
+@RabbitListener(queues = "employee.queue")
+public void consume(String message) {
+    System.out.println(message);
+}

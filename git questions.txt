@@ -1,3 +1,385 @@
-Q19 - Explain the difference between Git Merge and Git Rebase .. and when should I use which ?			
+GIT TROUBLESHOOTING & PRODUCTION INTERVIEW QUESTIONS (100)
 
-	
+=================================
+GIT BASICS (1-20)
+=================================
+
+1. What is Git?
+2. Difference between Git and GitHub?
+3. What is a repository?
+4. What is a commit?
+5. What is a branch?
+6. What is HEAD in Git?
+7. What is the staging area?
+8. Difference between git add and git commit?
+9. Difference between git fetch and git pull?
+10. Difference between merge and rebase?
+11. What is git clone?
+12. What is git push?
+13. What is git pull?
+14. What is git fetch?
+15. What is git stash?
+16. What is cherry-pick?
+17. What is tag?
+18. What is detached HEAD?
+19. What is origin?
+20. What is upstream branch?
+
+=================================
+GIT COMMANDS (21-40)
+=================================
+
+21. How to check repository status?
+
+git status
+
+22. How to see commit history?
+
+git log
+
+23. How to see one line history?
+
+git log --oneline
+
+24. How to create branch?
+
+git branch feature
+
+25. How to switch branch?
+
+git checkout feature
+
+26. How to create and switch?
+
+git checkout -b feature
+
+27. How to delete branch?
+
+git branch -d feature
+
+28. How to force delete branch?
+
+git branch -D feature
+
+29. How to merge branch?
+
+git merge feature
+
+30. How to rebase?
+
+git rebase main
+
+31. How to stash changes?
+
+git stash
+
+32. How to apply stash?
+
+git stash apply
+
+33. How to list stashes?
+
+git stash list
+
+34. How to delete stash?
+
+git stash drop
+
+35. How to view remote repositories?
+
+git remote -v
+
+36. How to add remote?
+
+git remote add origin url
+
+37. How to fetch changes?
+
+git fetch
+
+38. How to pull changes?
+
+git pull
+
+39. How to push changes?
+
+git push
+
+40. How to remove remote?
+
+git remote remove origin
+
+=================================
+MERGE CONFLICTS (41-55)
+=================================
+
+41. What is merge conflict?
+42. Why does merge conflict occur?
+43. How to identify merge conflict?
+44. How to resolve merge conflict?
+45. What files are conflicting?
+46. How to abort merge?
+
+git merge --abort
+
+47. How to continue merge?
+
+git add .
+git commit
+
+48. Conflict markers?
+
+<<<<<<< HEAD
+=======
+>>>>>>> feature
+
+49. Merge conflict in pom.xml?
+50. Merge conflict in application.yml?
+51. Merge conflict in Java file?
+52. Best practices to avoid conflicts?
+53. How to resolve binary file conflict?
+54. What is three-way merge?
+55. What is fast-forward merge?
+
+=================================
+REBASE TROUBLESHOOTING (56-65)
+=================================
+
+56. What is rebase?
+57. Difference between merge and rebase?
+58. Rebase conflict handling?
+59. Continue rebase?
+
+git rebase --continue
+
+60. Abort rebase?
+
+git rebase --abort
+
+61. Skip commit during rebase?
+
+git rebase --skip
+
+62. Interactive rebase?
+
+git rebase -i HEAD~5
+
+63. Squash commits?
+64. Edit commit during rebase?
+65. Rebase vs Merge interview answer?
+
+=================================
+COMMON PRODUCTION ISSUES (66-85)
+=================================
+
+66. Accidentally committed to main branch.
+
+Solution:
+git reset HEAD~1
+
+67. Wrong commit message.
+
+git commit --amend
+
+68. Pushed sensitive data.
+
+git filter-branch
+or BFG Repo Cleaner
+
+69. Accidentally deleted branch.
+
+git reflog
+
+70. Lost commit after reset.
+
+git reflog
+
+71. Deleted local changes.
+
+git checkout -- file
+
+72. Detached HEAD state.
+
+git checkout main
+
+73. Force push issue.
+
+git push --force
+
+74. Safer force push.
+
+git push --force-with-lease
+
+75. Pull failed due to conflict.
+
+Resolve conflicts and commit.
+
+76. Push rejected.
+
+git pull
+git push
+
+77. Branch behind remote.
+
+git pull origin main
+
+78. Branch ahead of remote.
+
+git push origin branch
+
+79. Accidentally merged wrong branch.
+
+git revert merge_commit
+
+80. Large file push rejected.
+
+Use Git LFS.
+
+81. Repository size too large.
+82. Corrupted repository.
+83. Missing remote branch.
+84. Untracked files issue.
+85. Permission denied while pushing.
+
+=================================
+REAL PRODUCTION SCENARIOS (86-100)
+=================================
+
+86. Developer force pushed to main. What will you do?
+
+Check:
+
+git reflog
+
+Restore commit.
+
+87. Merge conflict during release deployment.
+
+Resolve conflicts manually and test.
+
+88. Production bug introduced in latest commit.
+
+Rollback:
+
+git revert commit_id
+
+89. Need hotfix from another branch.
+
+git cherry-pick commit_id
+
+90. Need to remove last commit.
+
+git reset --hard HEAD~1
+
+91. Need to undo pushed commit.
+
+git revert commit_id
+
+92. Accidentally deleted local branch.
+
+git reflog
+
+git checkout -b branch commit_id
+
+93. Need to compare branches.
+
+git diff main feature
+
+94. Find who changed a line.
+
+git blame file.java
+
+95. Find which commit introduced bug.
+
+git bisect
+
+96. Recover deleted commit.
+
+git reflog
+
+97. Stash lost changes.
+
+git stash list
+
+98. Branch contains unnecessary commits.
+
+Interactive Rebase
+
+99. Resolve deployment merge conflicts.
+
+Rebase + Testing
+
+100. How do you troubleshoot Git issues in production?
+
+Step 1:
+git status
+
+Step 2:
+git log --oneline
+
+Step 3:
+git diff
+
+Step 4:
+git reflog
+
+Step 5:
+git branch -a
+
+Step 6:
+git remote -v
+
+Step 7:
+git fetch
+
+Step 8:
+git pull
+
+Step 9:
+Resolve conflicts
+
+Step 10:
+Push verified code
+
+=================================
+MOST ASKED GIT INTERVIEW QUESTIONS
+=================================
+
+1. Merge vs Rebase
+2. Git Fetch vs Pull
+3. Revert vs Reset
+4. Soft vs Mixed vs Hard Reset
+5. Cherry Pick
+6. Git Stash
+7. Merge Conflict Resolution
+8. Detached HEAD
+9. Git Reflog
+10. Git Bisect
+11. Interactive Rebase
+12. Squash Commits
+13. Force Push vs Force-With-Lease
+14. Recover Deleted Branch
+15. Recover Lost Commit
+16. Git Blame
+17. Git Tag
+18. Git Hooks
+19. Git LFS
+20. Production Rollback Strategy
+
+TOP PRODUCTION COMMANDS
+
+git status
+git log --oneline
+git diff
+git stash
+git reflog
+git blame
+git cherry-pick
+git reset
+git revert
+git bisect
+git rebase
+git merge
+git fetch
+git pull
+git push

@@ -1,0 +1,201 @@
+JAVA DSA RECURSION - 100 INTERVIEW QUESTIONS
+
+=================================
+RECURSION BASICS (1-20)
+=================================
+
+1. What is recursion?
+2. What is a base condition?
+3. What is a recursive call?
+4. Difference between recursion and iteration?
+5. Advantages of recursion?
+6. Disadvantages of recursion?
+7. What is stack overflow?
+8. What is tail recursion?
+9. What is head recursion?
+10. What is indirect recursion?
+11. What is direct recursion?
+12. What is tree recursion?
+13. What is nested recursion?
+14. How recursion uses stack memory?
+15. What is recursion depth?
+16. How to trace recursive calls?
+17. Time complexity of recursion?
+18. Space complexity of recursion?
+19. When should recursion be avoided?
+20. Convert recursive solution to iterative.
+
+=================================
+BASIC RECURSION PROBLEMS (21-40)
+=================================
+
+21. Print numbers from 1 to N.
+22. Print numbers from N to 1.
+23. Print even numbers from 1 to N.
+24. Print odd numbers from 1 to N.
+25. Find sum of first N numbers.
+26. Find product of first N numbers.
+27. Find factorial of a number.
+28. Find power of a number.
+29. Calculate x^n recursively.
+30. Find square of a number recursively.
+31. Find cube of a number recursively.
+32. Count digits in a number.
+33. Sum of digits of a number.
+34. Product of digits of a number.
+35. Reverse a number.
+36. Check palindrome number.
+37. Find GCD recursively.
+38. Find LCM recursively.
+39. Convert decimal to binary.
+40. Convert binary to decimal.
+
+=================================
+STRING RECURSION (41-55)
+=================================
+
+41. Reverse a string.
+42. Check palindrome string.
+43. Remove spaces from string.
+44. Remove duplicate characters.
+45. Count vowels in string.
+46. Count consonants in string.
+47. Find length of string recursively.
+48. Replace character recursively.
+49. Check anagram recursively.
+50. Print all substrings.
+51. Print all subsequences.
+52. Generate all permutations.
+53. Generate all combinations.
+54. Remove adjacent duplicates.
+55. String compression recursively.
+
+=================================
+ARRAY RECURSION (56-70)
+=================================
+
+56. Find maximum element in array.
+57. Find minimum element in array.
+58. Find sum of array elements.
+59. Find average of array elements.
+60. Search element in array.
+61. Find first occurrence.
+62. Find last occurrence.
+63. Count occurrences of element.
+64. Check if array is sorted.
+65. Reverse array recursively.
+66. Find largest and smallest.
+67. Print array recursively.
+68. Find second largest element.
+69. Find duplicate elements.
+70. Rotate array recursively.
+
+=================================
+FAMOUS RECURSION PROBLEMS (71-85)
+=================================
+
+71. Fibonacci Series.
+72. Nth Fibonacci Number.
+73. Fibonacci using memoization.
+74. Fibonacci using tabulation.
+75. Tower of Hanoi.
+76. Josephus Problem.
+77. Rope Cutting Problem.
+78. Friend Pairing Problem.
+79. Tiling Problem.
+80. Rat in a Maze.
+81. N-Queens Problem.
+82. Sudoku Solver.
+83. Knight Tour Problem.
+84. Maze Path Counting.
+85. Power Set Generation.
+
+=================================
+BACKTRACKING PROBLEMS (86-95)
+=================================
+
+86. Generate subsets.
+87. Generate permutations.
+88. Combination Sum.
+89. Combination Sum II.
+90. Letter Combinations of Phone Number.
+91. Word Search.
+92. Restore IP Addresses.
+93. Partition String.
+94. Palindrome Partitioning.
+95. Crossword Puzzle Solver.
+
+=================================
+ADVANCED RECURSION (96-100)
+=================================
+
+96. Merge Sort.
+97. Quick Sort.
+98. Binary Search using Recursion.
+99. Recursive Tree Traversals.
+100. Recursive Graph DFS.
+
+=================================
+MOST ASKED RECURSION INTERVIEW QUESTIONS
+=================================
+
+1. Factorial of Number
+2. Fibonacci Series
+3. Sum of N Numbers
+4. Power Function (x^n)
+5. Reverse String
+6. Palindrome Check
+7. Sum of Digits
+8. GCD using Recursion
+9. Binary Search Recursively
+10. Tower of Hanoi
+11. Josephus Problem
+12. Print Subsequences
+13. Print Permutations
+14. Generate Subsets
+15. N-Queens
+16. Rat in a Maze
+17. Sudoku Solver
+18. Merge Sort
+19. Quick Sort
+20. Tree Traversals
+
+=================================
+TOP RECURSION QUESTIONS FOR JAVA INTERVIEWS
+=================================
+
+Easy:
+- Factorial
+- Fibonacci
+- Sum of N Numbers
+- Power Function
+- Reverse String
+- Palindrome
+
+Medium:
+- Subsequences
+- Permutations
+- Tower of Hanoi
+- Josephus Problem
+- Combination Sum
+- Generate Subsets
+
+Hard:
+- N Queens
+- Rat in Maze
+- Sudoku Solver
+- Merge Sort
+- Quick Sort
+- Backtracking Problems
+
+Master Order:
+1. Basic Recursion
+2. Factorial
+3. Fibonacci
+4. String Recursion
+5. Array Recursion
+6. Subsequences
+7. Permutations
+8. Backtracking
+9. Divide & Conquer
+10. Advanced Recursion Problems

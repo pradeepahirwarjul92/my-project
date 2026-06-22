@@ -1,0 +1,273 @@
+01- What is Java 17?
+Ans - Java 17 is a Long-Term Support (LTS) release of Java, released in September 2021.
+ It includes performance improvements, language enhancements, security updates,
+ and finalized features introduced in previous releases.
+ 
+02. What are the major features introduced in Java 17?
+Ans 
+Key features:
+	-	Sealed Classes (finalized)
+	-	Pattern Matching for switch (preview)
+	-	Enhanced Pseudo-Random Number Generators
+	-	Strong encapsulation of JDK internals
+	-	Foreign Function & Memory API (incubator)
+	-	New macOS rendering pipeline
+	-	Removal of deprecated APIs and features
+	
+03. Why is Java 17 preferred over Java 8?	
+Ans - 
+| Java 8                    | Java 17                                   |
+| ------------------------- | ----------------------------------------- |
+| Older LTS                 | Latest LTS                                |
+| Limited language features | Records, Sealed Classes, Pattern Matching |
+| Older GC options          | Improved G1, ZGC, Shenandoah              |
+| Less secure               | Better security and performance           |
+| No JPMS                   | Full Module System support                |
+
+
+04. What are Records in Java?
+Ans- Records are immutable data carrier classes that reduce boilerplate code.
+public record Employee(int id, String name) {}
+
+Compiler automatically generates:
+
+Constructor
+Getters
+equals()
+hashCode()
+toString()
+
+05. Can records have methods?
+Ans - Yes.
+
+public record Employee(int id, String name) {
+
+    public String display() {
+        return id + " - " + name;
+    }
+}
+	
+	
+06. Are records immutable?	
+Ans - 
+	Yes.
+	Employee emp = new Employee(1, "John");
+	
+	Fields are implicitly:
+	private final
+	
+No setters are generated.
+
+07. What are Sealed Classes?
+Ans Sealed classes restrict which classes can extend or implement them.
+
+public sealed class Vehicle permits Car,Bike {
+}
+
+
+Only Car and Bike can extend Vehicle.
+
+08. Why use Sealed Classes?
+Ans -  
+Benefits:
+
+Better domain modeling
+Controlled inheritance
+Improved pattern matching support
+More secure APIs
+
+09. What modifiers can subclasses of a sealed class use?
+Ans - A permitted subclass must be one of:
+	final
+sealed
+non-sealed
+
+Example:
+public final class Car extends Vehicle {}
+
+
+---------------Pattern Matching-------------
+
+10. What is Pattern Matching for instanceof?
+Ans -
+
+Before Java 16:
+if(obj instanceof String) {
+    String s = (String) obj;
+}
+Java 17:
+if(obj instanceof String s) {
+    System.out.println(s.length());
+}
+
+No explicit cast required.
+
+
+11. What are the advantages of Pattern Matching?
+Ans 
+Less boilerplate
+Safer casting
+Improved readability
+Reduced errors
+
+
+------------Switch Enhancements--------------
+12. What is Pattern Matching for switch?
+Ans- 
+switch(obj) {
+    case Integer i -> System.out.println(i);
+    case String s -> System.out.println(s);
+    default -> System.out.println("Unknown");
+}
+
+Allows type-based matching.
+
+(Preview feature in Java 17)
+
+13. Difference Type of switch 
+Ans - 	1. Traditional switch (old style)
+
+int day = 2;
+String result;
+
+switch (day) {
+    case 1:
+        result = "Monday";
+        break;
+    case 2:
+        result = "Tuesday";
+        break;
+    case 3:
+        result = "Wednesday";
+        break;
+    default:
+        result = "Invalid day";
+}
+System.out.println(result);
+⚠️ Problems:
+
+Repetitive break
+Easy to forget break → fall-through bugs
+Not expression-based (cannot directly return value)
+
+
+
+🚀 2. Modern Switch (Java 17) – Switch Expression
+
+Now switch can return a value directly:
+
+int day = 2;
+
+String result = switch (day) {
+    case 1 -> "Monday";
+    case 2 -> "Tuesday";
+    case 3 -> "Wednesday";
+    default -> "Invalid day";
+};
+
+System.out.println(result);
+
+🔥 Benefits:
+No break needed
+Cleaner syntax
+Less boilerplate
+Safer (no accidental fall-through)
+
+🎯 3. Multiple values in one case
+int day = 6;
+
+String type = switch (day) {
+    case 1, 2, 3, 4, 5 -> "Weekday";
+    case 6, 7 -> "Weekend";
+    default -> "Invalid";
+};
+
+System.out.println(type);
+
+🧠 4. Using yield (when logic is complex)
+If you need multiple lines in a case:
+int num = 10;
+
+String result = switch (num) {
+    case 10 -> {
+        int x = num * 2;
+        yield "Value is " + x;
+    }
+    default -> "Unknown";
+};
+
+System.out.println(result);
+
+👉 yield = return value from a block
+
+| Feature      | Old switch   | Java 17 switch |
+| ------------ | ------------ | -------------- |
+| Syntax       | case + break | arrow `->`     |
+| Fall-through | Yes          | No             |
+| Return value | No           | Yes            |
+| Readability  | Low          | High           |
+
+
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package com.heg;
+
+/**
+ *
+ * @author softwaredeveloper
+ */
+public class Test01 {
+     public static void main(String[] args) {
+        int day= 2;
+        String result;
+        
+        switch (day) {
+            case 1:
+                result="Monday";
+                break;
+                 case 2:
+                result="Tuesday";
+                break;
+                 case 3:
+                result="Wednesday";
+                break;
+                 case 4:
+                result="Tuesday";
+                break;
+            default:
+                 result = "Invalid day";
+        }
+        //System.out.println(result);
+        
+        
+      result=    switch(day){
+            case 1 -> "Monday";
+            case 2 -> "Tuesday";
+            case 3 -> "Wednesday";
+            default -> "Invalid Day";
+        };
+      
+      System.out.println(result);
+      
+      int day1= 6;
+     String type = switch(day1){
+         case 1,2,3,4,5 -> "Weekday";
+         case 6,7 -> "Weekend";
+         default -> "Invalid";
+     
+     } ;
+     
+         System.out.println(type);
+      
+      
+        
+    }
+}
+
+
+
+
+
+----------------JVM & Performance-----------------

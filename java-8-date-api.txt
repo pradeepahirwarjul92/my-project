@@ -1,0 +1,419 @@
+JAVA 8 DATE & TIME API - TOP 100 INTERVIEW QUESTIONS
+
+=================================================
+JAVA DATE API BASICS (1-20)
+=================================================
+
+1. Why was new Date API introduced in Java 8?
+2. Problems with java.util.Date?
+3. Problems with Calendar API?
+4. What package contains Java 8 Date API?
+5. What is LocalDate?
+6. What is LocalTime?
+7. What is LocalDateTime?
+8. What is ZonedDateTime?
+9. What is OffsetDateTime?
+10. What is Instant?
+11. What is Duration?
+12. What is Period?
+13. What is ZoneId?
+14. What is ZoneOffset?
+15. What is DateTimeFormatter?
+16. What is ChronoUnit?
+17. What is TemporalAdjuster?
+18. What is TemporalAccessor?
+19. What are immutable date objects?
+20. Why Java 8 Date API is thread-safe?
+
+=================================================
+LOCALDATE (21-35)
+=================================================
+
+21. How to create LocalDate?
+22. How to get current date?
+23. How to create custom date?
+24. How to get year?
+25. How to get month?
+26. How to get day?
+27. How to add days?
+28. How to subtract days?
+29. How to add months?
+30. How to add years?
+31. How to compare dates?
+32. How to check leap year?
+33. How to get day of week?
+34. How to get day of year?
+35. How to calculate age?
+
+Example:
+
+LocalDate today = LocalDate.now();
+
+LocalDate dob =
+    LocalDate.of(1995, 5, 20);
+
+=================================================
+LOCALTIME (36-45)
+=================================================
+
+36. How to create LocalTime?
+37. How to get current time?
+38. How to get hour?
+39. How to get minute?
+40. How to get second?
+41. How to add hours?
+42. How to subtract minutes?
+43. How to compare times?
+44. How to format time?
+45. Use cases of LocalTime?
+
+Example:
+
+LocalTime time =
+    LocalTime.now();
+
+=================================================
+LOCALDATETIME (46-55)
+=================================================
+
+46. What is LocalDateTime?
+47. How to create LocalDateTime?
+48. How to get current LocalDateTime?
+49. How to add days?
+50. How to add hours?
+51. How to subtract months?
+52. How to compare LocalDateTime?
+53. Difference between Date and LocalDateTime?
+54. How to convert LocalDateTime to String?
+55. How to parse LocalDateTime?
+
+Example:
+
+LocalDateTime now =
+    LocalDateTime.now();
+
+=================================================
+INSTANT & TIMESTAMP (56-65)
+=================================================
+
+56. What is Instant?
+57. Why use Instant?
+58. Difference between Instant and LocalDateTime?
+59. How to get current timestamp?
+60. How to convert Instant to Date?
+61. How to convert Date to Instant?
+62. How to store UTC time?
+63. How to calculate elapsed time?
+64. Why Instant preferred in microservices?
+65. Production use cases of Instant?
+
+Example:
+
+Instant now = Instant.now();
+
+=================================================
+ZONED DATETIME (66-75)
+=================================================
+
+66. What is ZoneId?
+67. What is ZonedDateTime?
+68. Why use ZonedDateTime?
+69. How to get timezone?
+70. How to convert timezone?
+71. UTC vs IST?
+72. GMT vs UTC?
+73. How to get available zones?
+74. How to convert IST to UTC?
+75. Microservice timezone handling?
+
+Example:
+
+ZonedDateTime zdt =
+    ZonedDateTime.now(
+       ZoneId.of("Asia/Kolkata"));
+
+=================================================
+DURATION & PERIOD (76-85)
+=================================================
+
+76. What is Duration?
+77. What is Period?
+78. Difference between Duration and Period?
+79. Calculate days between dates?
+80. Calculate months between dates?
+81. Calculate years between dates?
+82. Calculate hours between times?
+83. Calculate minutes between times?
+84. Calculate seconds between timestamps?
+85. Production use cases?
+
+Example:
+
+Duration duration =
+    Duration.between(start, end);
+
+Period period =
+    Period.between(startDate, endDate);
+
+=================================================
+FORMATTING & PARSING (86-95)
+=================================================
+
+86. What is DateTimeFormatter?
+87. How to format date?
+88. How to parse date string?
+89. Common formatter patterns?
+90. yyyy vs YYYY?
+91. MM vs mm?
+92. dd vs DD?
+93. How to convert String to LocalDate?
+94. How to convert String to LocalDateTime?
+95. Custom formatter example?
+
+Example:
+
+DateTimeFormatter formatter =
+    DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+=================================================
+ADVANCED QUESTIONS (96-100)
+=================================================
+
+96. How to convert Date to LocalDate?
+97. How to convert LocalDate to Date?
+98. How to handle timezone in microservices?
+99. Why Date API is immutable?
+100. Best practices for Java 8 Date API?
+
+=================================================
+MOST ASKED INTERVIEW QUESTIONS
+=================================================
+
+1. Date vs LocalDate
+2. Date vs LocalDateTime
+3. LocalDate vs LocalDateTime
+4. Instant vs LocalDateTime
+5. ZonedDateTime vs OffsetDateTime
+6. Duration vs Period
+7. UTC vs IST
+8. DateTimeFormatter
+9. Why Java 8 Date API?
+10. Thread Safety of Date API
+
+=================================================
+IMPORTANT DIFFERENCES
+=================================================
+
+Date vs LocalDate
+
+Date:
+- Mutable
+- Old API
+- Not Thread Safe
+
+LocalDate:
+- Immutable
+- Thread Safe
+- Java 8 API
+
+-------------------------------------------------
+
+Period vs Duration
+
+Period:
+Years, Months, Days
+
+Duration:
+Hours, Minutes, Seconds
+
+-------------------------------------------------
+
+Instant vs LocalDateTime
+
+Instant:
+UTC Timestamp
+
+LocalDateTime:
+Date + Time without timezone
+
+=================================================
+MOST IMPORTANT CODE EXAMPLES
+=================================================
+
+Current Date
+
+LocalDate.now();
+
+-------------------------------------------------
+
+Current Time
+
+LocalTime.now();
+
+-------------------------------------------------
+
+Current DateTime
+
+LocalDateTime.now();
+
+-------------------------------------------------
+
+Current UTC Timestamp
+
+Instant.now();
+
+-------------------------------------------------
+
+Date Formatting
+
+DateTimeFormatter formatter =
+DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+-------------------------------------------------
+
+Date Parsing
+
+LocalDate date =
+LocalDate.parse("22-06-2026",
+formatter);
+
+-------------------------------------------------
+
+Days Between Dates
+
+long days =
+ChronoUnit.DAYS.between(
+startDate,
+endDate);
+
+=================================================
+PRODUCTION TROUBLESHOOTING QUESTIONS
+=================================================
+
+1. Wrong timezone in production.
+2. UTC vs local timezone issue.
+3. Date mismatch between servers.
+4. Date parsing exception.
+5. Invalid date format issue.
+6. Daylight Saving Time issue.
+7. Timestamp inconsistency.
+8. Database storing wrong time.
+9. API returning wrong timezone.
+10. Scheduled job running at wrong time.
+
+=================================================
+PRODUCTION SCENARIOS
+=================================================
+
+Scenario 1:
+Different timezone on servers.
+
+Fix:
+
+Store everything in UTC
+
+Instant.now()
+
+-------------------------------------------------
+
+Scenario 2:
+API returns wrong date.
+
+Reason:
+Server timezone mismatch.
+
+Fix:
+
+Use ZonedDateTime
+
+-------------------------------------------------
+
+Scenario 3:
+Scheduler runs at wrong time.
+
+Reason:
+Timezone not specified.
+
+Fix:
+
+@Scheduled(cron="0 0 10 * * *",
+zone="Asia/Kolkata")
+
+-------------------------------------------------
+
+Scenario 4:
+Date Parsing Error
+
+Exception:
+
+DateTimeParseException
+
+Fix:
+
+Correct formatter pattern.
+
+=================================================
+DATABASE INTERVIEW QUESTIONS
+=================================================
+
+How to store date in database?
+
+DATE
+→ LocalDate
+
+TIMESTAMP
+→ LocalDateTime
+
+TIMESTAMP WITH TIMEZONE
+→ OffsetDateTime/ZonedDateTime
+
+=================================================
+MICROSERVICE BEST PRACTICES
+=================================================
+
+1. Store timestamps in UTC.
+2. Use Instant for event timestamps.
+3. Convert timezone at UI layer.
+4. Avoid java.util.Date.
+5. Use ISO-8601 format.
+6. Use ZonedDateTime only when timezone matters.
+7. Use LocalDate for DOB.
+8. Use LocalTime for business hours.
+
+=================================================
+TOP 20 QUESTIONS FOR JAVA BACKEND INTERVIEWS
+=================================================
+
+1. Java 8 Date API Architecture
+2. LocalDate
+3. LocalTime
+4. LocalDateTime
+5. Instant
+6. ZonedDateTime
+7. OffsetDateTime
+8. ZoneId
+9. Duration
+10. Period
+11. DateTimeFormatter
+12. Date Parsing
+13. Date Formatting
+14. UTC Handling
+15. Timezone Conversion
+16. Date vs LocalDate
+17. Instant vs LocalDateTime
+18. Scheduler Timezone Issues
+19. Database Date Mapping
+20. Production Troubleshooting
+
+INTERVIEW FOCUS (5+ YEARS JAVA BACKEND)
+
+- LocalDate
+- LocalDateTime
+- Instant
+- ZonedDateTime
+- Duration
+- Period
+- DateTimeFormatter
+- UTC Storage Strategy
+- Timezone Handling
+- Microservice Date Best Practices

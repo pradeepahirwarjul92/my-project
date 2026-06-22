@@ -1,0 +1,453 @@
+=================================
+SPRING BATCH - 100 QUESTIONS
+=================================
+
+BASICS
+
+1. What is Spring Batch?
+2. Why do we need Spring Batch?
+3. Batch Processing vs Real-Time Processing?
+4. Features of Spring Batch?
+5. Spring Batch Architecture?
+6. What is a Job?
+7. What is a Step?
+8. What is JobInstance?
+9. What is JobExecution?
+10. What is StepExecution?
+
+CORE COMPONENTS
+
+11. What is JobLauncher?
+12. What is JobRepository?
+13. What is JobExplorer?
+14. What is JobOperator?
+15. Why is JobRepository important?
+16. Metadata tables?
+17. How does Spring Batch maintain state?
+18. What is ExecutionContext?
+19. What is JobParameters?
+20. JobParameters vs ExecutionContext?
+
+CHUNK PROCESSING
+
+21. What is Chunk Processing?
+22. ItemReader?
+23. ItemProcessor?
+24. ItemWriter?
+25. Chunk Size?
+26. How does chunk processing work?
+27. Advantages of chunk processing?
+28. Commit Interval?
+29. Transaction boundaries in chunks?
+30. Chunk processing troubleshooting?
+
+READERS
+
+31. FlatFileItemReader?
+32. JdbcCursorItemReader?
+33. JdbcPagingItemReader?
+34. JpaPagingItemReader?
+35. StaxEventItemReader?
+36. JsonItemReader?
+37. MultiResourceItemReader?
+38. Custom ItemReader?
+39. Reader performance tuning?
+40. Large file reading?
+
+PROCESSORS
+
+41. ItemProcessor?
+42. Validation in Processor?
+43. Filtering records?
+44. Data transformation?
+45. Processor chaining?
+46. CompositeItemProcessor?
+47. Custom Processor?
+48. Processor exceptions?
+49. Processor performance?
+50. Business rules implementation?
+
+WRITERS
+
+51. JdbcBatchItemWriter?
+52. JpaItemWriter?
+53. FlatFileItemWriter?
+54. JsonFileItemWriter?
+55. CompositeItemWriter?
+56. Batch inserts?
+57. Batch updates?
+58. Writer performance tuning?
+59. Writer transactions?
+60. Error handling in writers?
+
+FAULT TOLERANCE
+
+61. Skip Policy?
+62. Retry Policy?
+63. Skip Limit?
+64. Retry Limit?
+65. Recoverable exceptions?
+66. Non-recoverable exceptions?
+67. Exception classification?
+68. Restartability?
+69. Job recovery?
+70. Production fault tolerance?
+
+PARALLEL PROCESSING
+
+71. Multi-threaded Step?
+72. Partitioning?
+73. Remote Chunking?
+74. Parallel Steps?
+75. TaskExecutor?
+76. Scaling batch jobs?
+77. Large volume processing?
+78. Thread safety concerns?
+79. Performance tuning?
+80. Distributed batch processing?
+
+SCHEDULING
+
+81. Spring Scheduler with Batch?
+82. Quartz integration?
+83. Job triggering?
+84. Cron scheduling?
+85. Dynamic scheduling?
+86. Manual job execution?
+87. Job monitoring?
+88. Job restart?
+89. Job stop?
+90. Job restart after failure?
+
+TROUBLESHOOTING
+
+91. Batch job slow performance?
+92. Memory issues?
+93. Duplicate processing?
+94. Job stuck in STARTED state?
+95. Large file failures?
+96. Database bottlenecks?
+97. Restart failures?
+98. Deadlocks during batch?
+99. Metadata table issues?
+100. Explain a production batch issue.
+
+
+Spring Batch Architecture
+
+JobLauncher
+    |
+    v
+   Job
+    |
+    v
+  Step
+    |
+ ------------------
+ |       |        |
+Reader Processor Writer
+
+Basic Flow
+Read Data
+    |
+Process Data
+    |
+Write Data
+
+Example:
+
+Read Employee CSV
+      |
+Validate Records
+      |
+Store in Oracle
+
+
+Chunk Processing (Most Asked)
+
+Example:
+
+@Bean
+public Step employeeStep() {
+
+    return stepBuilderFactory
+            .get("employeeStep")
+            .<Employee, Employee>chunk(100)
+            .reader(reader())
+            .processor(processor())
+            .writer(writer())
+            .build();
+}
+
+
+
+How Chunk Works
+Read 100 records
+      |
+Process 100 records
+      |
+Write 100 records
+      |
+Commit Transaction
+
+Then:
+
+Next 100 records
+
+Why Chunk Processing?
+
+Without chunk:
+
+Read 1 Million Records
+
+Commit at End
+
+Risk:
+
+Huge Memory
+Long Transaction
+Rollback Cost
+
+Chunk processing solves this.
+
+
+ItemReader
+@Bean
+public FlatFileItemReader<Employee> reader() {
+
+    FlatFileItemReader<Employee> reader =
+            new FlatFileItemReader<>();
+
+    reader.setResource(
+        new FileSystemResource(
+        "employees.csv"));
+
+    return reader;
+}
+
+Reads data.
+
+
+ItemProcessor
+@Component
+public class EmployeeProcessor
+        implements ItemProcessor<Employee,Employee>{
+
+    @Override
+    public Employee process(
+            Employee employee) {
+
+        employee.setName(
+            employee.getName().toUpperCase());
+
+        return employee;
+    }
+}
+
+Transforms data.
+
+
+ItemWriter
+@Bean
+public JdbcBatchItemWriter<Employee> writer(
+        DataSource dataSource) {
+
+    JdbcBatchItemWriter<Employee> writer =
+            new JdbcBatchItemWriter<>();
+
+    writer.setDataSource(dataSource);
+
+    return writer;
+}
+
+Writes data.
+
+
+Job Repository
+
+
+Interview Favorite:
+
+What is JobRepository?
+
+Answer:
+Central storage for batch metadata.
+Stores:
+
+JobExecution
+StepExecution
+Status
+ExecutionContext
+Failures
+Restart Information
+
+Tables:
+
+BATCH_JOB_INSTANCE
+
+BATCH_JOB_EXECUTION
+
+BATCH_STEP_EXECUTION
+
+BATCH_JOB_EXECUTION_PARAMS
+
+Restartability
+
+Suppose:
+
+1 Million Records
+
+Processed:
+
+800,000
+
+Application crashes.
+
+Without Spring Batch:
+
+Start from beginning
+
+With Spring Batch:
+
+Resume from last checkpoint
+
+Huge interview topic.
+
+
+
+Skip Example
+
+.faultTolerant()
+.skip(NumberFormatException.class)
+.skipLimit(100)
+
+Meaning:
+
+Bad records skipped
+Continue processing
+
+
+Retry Example
+
+.faultTolerant()
+.retry(SQLException.class)
+.retryLimit(3)
+
+Meaning:
+
+Retry 3 times
+Then fail
+
+Parallel Processing
+Multi-threaded Step
+.taskExecutor(
+    new SimpleAsyncTaskExecutor())
+
+Multiple threads process chunks.
+
+Partitioning
+File A -> Thread1
+
+File B -> Thread2
+
+File C -> Thread3
+
+Improves throughput.
+
+
+Common Production Issues
+
+Issue 1
+Batch Job Extremely Slow
+
+
+Check:
+
+Chunk Size
+Indexes
+Batch Inserts
+Network
+Commit Frequency
+
+
+Issue 2
+OutOfMemoryError
+
+Cause:
+
+Large chunk size
+Large result set
+
+Fix:
+
+Paging Reader
+Smaller Chunk
+Clear Persistence Context
+Issue 3
+Duplicate Records
+
+Cause:
+
+Improper restart handling
+
+Fix:
+
+Idempotent processing
+Unique keys
+Issue 4
+Job stuck in STARTED
+
+Cause:
+
+Server crash
+Metadata not updated
+
+Fix:
+
+UPDATE BATCH_JOB_EXECUTION
+SET STATUS='FAILED'
+
+(After investigation)
+
+
+Spring Batch vs Scheduler
+| Scheduler    | Batch                   |
+| ------------ | ----------------------- |
+| Triggers Job | Processes Data          |
+| Timing       | Business Logic          |
+| Cron         | Chunk Processing        |
+| Lightweight  | Large Volume Processing |
+
+Often used together:
+
+Spring Scheduler
+       |
+Triggers
+       |
+Spring Batch Job
+
+Senior-Level Questions
+Chunk Processing
+JobRepository
+ExecutionContext
+Restartability
+Skip vs Retry
+Partitioning
+Remote Chunking
+Metadata Tables
+Batch Performance Tuning
+Production Troubleshooting
+
+
+Oracle-Specific Points (Very Important for You)
+1. JdbcBatchItemWriter
+2. Oracle Sequences
+3. Commit Interval Tuning
+4. Bulk Inserts
+5. Partitioning
+6. Cursor vs Paging Readers
+7. Fetch Size Optimization
+8. Oracle Index Usage
+9. Redo/Undo Log Impact
+10. Restartable ETL Jobs
+

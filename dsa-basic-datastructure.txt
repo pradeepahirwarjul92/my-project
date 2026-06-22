@@ -1,0 +1,173 @@
+JAVA DSA BASIC DATA STRUCTURE - 100 INTERVIEW QUESTIONS
+
+========================
+ARRAYS (1-20)
+========================
+
+1. What is an array?
+2. Advantages and disadvantages of arrays?
+3. How is an array stored in memory?
+4. Difference between array and ArrayList?
+5. How do you find the length of an array?
+6. How do you insert an element into an array?
+7. How do you delete an element from an array?
+8. What is random access in arrays?
+9. Time complexity of accessing an array element?
+10. Time complexity of insertion at beginning?
+11. Time complexity of insertion at end?
+12. Time complexity of deletion in array?
+13. What is a multidimensional array?
+14. Difference between 1D and 2D arrays?
+15. What is jagged array in Java?
+16. How to copy one array into another?
+17. How to reverse an array?
+18. How to find duplicates in an array?
+19. How to rotate an array?
+20. How to merge two arrays?
+
+========================
+LINKED LIST (21-40)
+========================
+
+21. What is a Linked List?
+22. Difference between Array and Linked List?
+23. Types of Linked Lists?
+24. What is a Singly Linked List?
+25. What is a Doubly Linked List?
+26. What is a Circular Linked List?
+27. What is a node in Linked List?
+28. How do you insert at beginning?
+29. How do you insert at end?
+30. How do you insert at a specific position?
+31. How do you delete from beginning?
+32. How do you delete from end?
+33. How do you delete a node by value?
+34. Time complexity of insertion in Linked List?
+35. Time complexity of deletion?
+36. How do you reverse a Linked List?
+37. How do you detect a loop?
+38. What is Floyd Cycle Detection Algorithm?
+39. Find middle node of Linked List.
+40. Merge two sorted Linked Lists.
+
+========================
+STACK (41-55)
+========================
+
+41. What is a Stack?
+42. Explain LIFO.
+43. Operations of Stack?
+44. What is Push operation?
+45. What is Pop operation?
+46. What is Peek operation?
+47. What is Stack Overflow?
+48. What is Stack Underflow?
+49. Implement Stack using Array.
+50. Implement Stack using Linked List.
+51. Time complexity of Push?
+52. Time complexity of Pop?
+53. Applications of Stack?
+54. How is recursion related to Stack?
+55. How do you check balanced parentheses?
+
+========================
+QUEUE (56-70)
+========================
+
+56. What is a Queue?
+57. Explain FIFO.
+58. Operations of Queue?
+59. What is Enqueue?
+60. What is Dequeue?
+61. What is Front operation?
+62. What is Rear operation?
+63. What is Circular Queue?
+64. What is Priority Queue?
+65. What is Deque?
+66. Implement Queue using Array.
+67. Implement Queue using Linked List.
+68. Time complexity of Enqueue?
+69. Time complexity of Dequeue?
+70. Applications of Queue?
+
+========================
+HASHING (71-80)
+========================
+
+71. What is Hashing?
+72. What is Hash Function?
+73. What is HashMap?
+74. How does HashMap work internally?
+75. What is Collision in Hashing?
+76. How are collisions resolved?
+77. What is Load Factor?
+78. Difference between HashMap and Hashtable?
+79. Difference between HashMap and ConcurrentHashMap?
+80. Time complexity of HashMap operations?
+
+========================
+TREE (81-90)
+========================
+
+81. What is a Tree?
+82. What is a Binary Tree?
+83. What is a Binary Search Tree (BST)?
+84. What is a Root Node?
+85. What is a Leaf Node?
+86. What is Height of Tree?
+87. What is Depth of Tree?
+88. Explain Inorder Traversal.
+89. Explain Preorder Traversal.
+90. Explain Postorder Traversal.
+
+========================
+GRAPH (91-100)
+========================
+
+91. What is a Graph?
+92. Difference between Tree and Graph?
+93. What is Vertex?
+94. What is Edge?
+95. What is Directed Graph?
+96. What is Undirected Graph?
+97. What is Weighted Graph?
+98. What is BFS?
+99. What is DFS?
+100. Difference between BFS and DFS?
+
+========================
+MOST ASKED DSA INTERVIEW QUESTIONS
+========================
+
+1. Reverse an Array
+2. Find Duplicate Elements
+3. Two Sum Problem
+4. Move Zeroes to End
+5. Reverse Linked List
+6. Detect Loop in Linked List
+7. Find Middle of Linked List
+8. Implement Stack using Queue
+9. Implement Queue using Stack
+10. Balanced Parentheses
+11. Next Greater Element
+12. LRU Cache
+13. Binary Tree Traversals
+14. BST Search and Insert
+15. BFS Traversal
+16. DFS Traversal
+17. Cycle Detection in Graph
+18. Topological Sort
+19. Dijkstra Algorithm
+20. Heap/PriorityQueue Operations
+
+Expected for Java Backend Developers:
+- Arrays
+- String
+- HashMap
+- LinkedList
+- Stack
+- Queue
+- Tree Basics
+- Graph Basics
+- Heap/PriorityQueue
+- Searching & Sorting

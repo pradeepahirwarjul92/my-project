@@ -1,0 +1,574 @@
+JAVA DSA PATTERN QUESTIONS - 100 PRACTICE QUESTIONS
+
+=================================
+STAR PATTERNS (1-20)
+=================================
+
+1.
+*
+**
+***
+****
+*****
+
+2.
+*****
+****
+***
+**
+*
+
+3.
+    *
+   **
+  ***
+ ****
+*****
+
+4.
+*****
+ ****
+  ***
+   **
+    *
+
+5.
+    *
+   ***
+  *****
+ *******
+*********
+
+6.
+*********
+ *******
+  *****
+   ***
+    *
+
+7.
+    *
+   ***
+  *****
+ *******
+*********
+ *******
+  *****
+   ***
+    *
+
+8.
+*
+* *
+* * *
+* * * *
+* * * * *
+
+9.
+* * * * *
+* * * *
+* * *
+* *
+*
+
+10.
+*
+**
+***
+****
+*****
+****
+***
+**
+*
+
+11.
+*****
+*****
+*****
+*****
+*****
+
+12.
+*   *
+** **
+*****
+** **
+*   *
+
+13.
+*
+**
+* *
+*  *
+*****
+
+14.
+*****
+*   *
+*   *
+*   *
+*****
+
+15.
+*****
+*    
+*****
+    *
+*****
+
+16.
+*****
+*
+*****
+*
+*****
+
+17.
+*****
+*
+*****
+*
+*
+
+18.
+*****
+*
+* ***
+*   *
+*****
+
+19.
+*****
+  *
+  *
+  *
+*****
+
+20.
+*****
+*   *
+*****
+*   *
+*****
+
+=================================
+NUMBER PATTERNS (21-40)
+=================================
+
+21.
+1
+12
+123
+1234
+12345
+
+22.
+12345
+1234
+123
+12
+1
+
+23.
+1
+22
+333
+4444
+55555
+
+24.
+55555
+4444
+333
+22
+1
+
+25.
+1
+23
+456
+78910
+
+26.
+1
+2 3
+4 5 6
+7 8 9 10
+
+27.
+1
+21
+321
+4321
+54321
+
+28.
+12345
+2345
+345
+45
+5
+
+29.
+5
+54
+543
+5432
+54321
+
+30.
+1
+121
+12321
+1234321
+123454321
+
+31.
+    1
+   121
+  12321
+ 1234321
+123454321
+
+32.
+123454321
+1234321
+12321
+121
+1
+
+33.
+1
+232
+34543
+4567654
+
+34.
+1
+22
+333
+4444
+55555
+
+35.
+11111
+2222
+333
+44
+5
+
+36.
+1
+12
+123
+1234
+12345
+1234
+123
+12
+1
+
+37.
+5
+45
+345
+2345
+12345
+
+38.
+1
+10
+101
+1010
+10101
+
+39.
+0
+01
+010
+1010
+01010
+
+40.
+1
+01
+101
+0101
+10101
+
+=================================
+ALPHABET PATTERNS (41-60)
+=================================
+
+41.
+A
+AB
+ABC
+ABCD
+ABCDE
+
+42.
+ABCDE
+ABCD
+ABC
+AB
+A
+
+43.
+A
+BB
+CCC
+DDDD
+EEEEE
+
+44.
+E
+DE
+CDE
+BCDE
+ABCDE
+
+45.
+A
+BA
+CBA
+DCBA
+EDCBA
+
+46.
+ABCDE
+BCDE
+CDE
+DE
+E
+
+47.
+A
+ABA
+ABCBA
+ABCDCBA
+
+48.
+    A
+   ABA
+  ABCBA
+ ABCDCBA
+
+49.
+ABCDCBA
+ ABCBA
+  ABA
+   A
+
+50.
+A
+BC
+DEF
+GHIJ
+KLMNO
+
+51.
+AAAAA
+BBBB
+CCC
+DD
+E
+
+52.
+ABCDE
+FGHIJ
+KLMNO
+PQRST
+
+53.
+Z
+YZ
+XYZ
+WXYZ
+
+54.
+A
+AB
+ABC
+ABCD
+ABCDE
+ABCD
+ABC
+AB
+A
+
+55.
+ABCDE
+ BCDE
+  CDE
+   DE
+    E
+
+56.
+E
+DE
+CDE
+BCDE
+ABCDE
+
+57.
+A
+CB
+FED
+JIHG
+
+58.
+A
+AA
+AAA
+AAAA
+AAAAA
+
+59.
+ABCDE
+EDCBA
+ABCDE
+EDCBA
+
+60.
+A
+AB
+ABC
+ABCD
+ABCDE
+
+=================================
+LOGICAL PATTERNS (61-80)
+=================================
+
+61. Floyd Triangle
+
+1
+2 3
+4 5 6
+7 8 9 10
+
+62. Pascal Triangle
+
+63. Binary Triangle
+
+1
+01
+101
+0101
+
+64. Alternating Binary Triangle
+
+65. Hollow Pyramid
+
+66. Hollow Diamond
+
+67. Hollow Square
+
+68. Hollow Rectangle
+
+69. Hollow Butterfly
+
+70. Full Butterfly
+
+71. Zig-Zag Pattern
+
+72. X Pattern
+
+73. Cross Pattern
+
+74. Hourglass Pattern
+
+75. Sandglass Pattern
+
+76. Spiral Matrix Pattern
+
+77. Snake Pattern
+
+78. Wave Pattern
+
+79. Boundary Matrix Pattern
+
+80. Diagonal Matrix Pattern
+
+=================================
+MATRIX PATTERNS (81-100)
+=================================
+
+81. Print Matrix Row Wise
+
+82. Print Matrix Column Wise
+
+83. Print Primary Diagonal
+
+84. Print Secondary Diagonal
+
+85. Print Boundary Elements
+
+86. Print Matrix in Spiral Order
+
+87. Print Matrix in Zig-Zag Order
+
+88. Print Matrix in Wave Form
+
+89. Rotate Matrix 90 Degrees
+
+90. Rotate Matrix 180 Degrees
+
+91. Rotate Matrix 270 Degrees
+
+92. Transpose Matrix
+
+93. Print Upper Triangle
+
+94. Print Lower Triangle
+
+95. Print X Shape Matrix
+
+96. Print Plus Shape Matrix
+
+97. Print Diamond Shape Matrix
+
+98. Generate Spiral Matrix
+
+99. Pascal Triangle Matrix
+
+100. Generate Identity Matrix
+
+=================================
+MOST ASKED PATTERN QUESTIONS
+=================================
+
+1. Pyramid Pattern
+2. Inverted Pyramid
+3. Diamond Pattern
+4. Hollow Diamond
+5. Butterfly Pattern
+6. Floyd Triangle
+7. Pascal Triangle
+8. Number Pyramid
+9. Alphabet Pyramid
+10. Hollow Square
+11. Hollow Rectangle
+12. X Pattern
+13. Hourglass Pattern
+14. Spiral Matrix
+15. Zig-Zag Pattern
+16. Binary Triangle
+17. Sandglass Pattern
+18. Wave Matrix
+19. Boundary Traversal
+20. Matrix Rotation
+
+Interview Focus:
+- Pyramid
+- Diamond
+- Butterfly
+- Pascal Triangle
+- Floyd Triangle
+- Hollow Square
+- Hollow Rectangle
+- Spiral Matrix
+- Matrix Rotation
+- Binary Pattern

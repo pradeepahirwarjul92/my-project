@@ -1,0 +1,1094 @@
+cciimmosst
+
+====================BEHAVIORAL PATTERN==================================================
+
+=====================01 - Command Pattern====================
+Ans - Command = Wrap request into object 
+Defination - Command pattern encapsulates a request as an object, allowing flexible execution, queuing , 
+and decoupling between sender and receiver 
+package com.heg.dp.behavioral.command;
+
+interface LoanCommand {
+
+    void execute();
+}
+
+class LoanService {
+
+    public void approveLoan() {
+        System.out.println("Loan Approved");
+    }
+
+    public void rejectLoan() {
+        System.out.println("Loan Rejected");
+    }
+
+}
+
+class ApproveLoanCommand implements LoanCommand {
+
+    private LoanService service;
+
+    public ApproveLoanCommand(LoanService service) {
+        this.service = service;
+    }
+
+    @Override
+    public void execute() {
+        service.approveLoan();
+    }
+}
+
+class RejectLoanComman implements LoanCommand {
+
+    private LoanService service;
+
+    public RejectLoanComman(LoanService service) {
+        this.service = service;
+    }
+
+    @Override
+    public void execute() {
+        service.rejectLoan();
+    }
+
+}
+
+class LoanInvoker{
+    private LoanCommand command;
+
+    public void setCommand(LoanCommand command) {
+        this.command = command;
+    }
+    
+    public void executeCommand(){
+        command.execute();
+    }
+}
+
+public class CommandDemo {
+    public static void main(String[] args) {
+        LoanService service= new LoanService();
+        
+        //Command 
+        LoanCommand approve= new ApproveLoanCommand(service);
+        LoanCommand reject = new RejectLoanComman(service);
+        
+        //Involer
+        LoanInvoker invoker = new LoanInvoker();
+        
+        //execute approve 
+        invoker.setCommand(approve);
+        invoker.executeCommand();
+    }
+
+}
+
+
+
+02 - Chain of Responsibility Pattern
+Ans - 🧠 One-Line Killer Definition
+👉 “Handle or forward”
+
+🔥 Real Usage in Industry
+Spring Security filters
+Servlet filters
+Logging frameworks
+Approval workflows (like yours 🔥)
+
+package com.heg.behavioral.chainOfResponsibility;
+
+// 👉 ABSTRACT HANDLER
+// WHY: Defines common structure for all approvers (Manager, Director, CEO)
+abstract class Approver {
+
+    // 👉 Reference to next handler in chain
+    // WHY: This creates the "CHAIN" (linked list style)
+    protected Approver next;
+
+    // 👉 Set next approver
+    // WHY: Allows dynamic chain building at runtime
+    public void setNext(Approver next) {
+        this.next = next;
+    }
+
+    // 👉 Core method every approver must implement
+    // WHY: Each role has its own approval logic
+    public abstract void approve(int amount);
+}
+
+
+
+package com.heg.behavioral.chainOfResponsibility;
+
+abstract class Approver{
+    protected Approver next;
+
+    public void setNext(Approver next) {
+        this.next = next;
+    }
+    
+    public abstract void approve(int amount);
+}
+
+
+class Manager extends Approver{
+
+    @Override
+    public void approve(int amount) {
+        if(amount <= 10000)
+            System.out.println("Manager Approved");
+        else if (next !=null)
+            next.approve(amount);
+    }
+}
+
+
+class Director extends Approver{
+
+    @Override
+    public void approve(int amount) {
+        if(amount <=50000)
+            System.out.println("Director approved");
+        else if(next != null)
+            next.approve(amount);
+    }
+    
+}
+
+
+class CEO extends Approver{
+
+    @Override
+    public void approve(int amount) {
+        System.out.println("CEO approved");
+    }
+    
+}
+
+
+public class ChainOfResponsibility {
+    
+    public static void main(String[] args) {
+        Manager m = new Manager();
+        Director d = new Director();
+        CEO c = new CEO();
+        
+        m.setNext(d);
+        d.setNext(c);
+        m.approve(10000);
+    }
+    
+}
+
+
+
+-----------------------------------
+03 -  Interpreter Pattern
+Ans - Interpreter Pattern is used to evaluate expressions by breaking them 
+		into small parts, where each part know how to execute itself.
+	
+	Another line - In e-commerce product search, Interpreter Pattern is used to build dynamic filters like price,
+	categogy, and brand by representing each condition as an object and combining them using AND/OR expressions.
+	
+Example : package Inter;
+
+import java.util.Arrays;
+import java.util.List;
+
+class Product {
+    String name;
+    String category;
+    String brand;
+    int price;
+    
+    public Product(String name, String category, String brand, int price) {
+        this.name = name;
+        this.category = category;
+        this.brand = brand;
+        this.price = price;
+    }    
+}
+
+// 2 Expression Interface
+interface Expression {
+    boolean interpret(Product product);
+}
+
+// 3 Terminal Expressions (Conditions) 
+// Each condition = one class
+
+class PriceExpression implements Expression{
+    private int minPrice;
+
+    public PriceExpression(int minPrice) {
+        this.minPrice = minPrice;
+    }
+    
+    
+    @Override
+    public boolean interpret(Product product) {
+        return product.price > minPrice;
+    }
+}
+
+
+class CategoryExpression implements Expression{
+    private String category;
+
+    public CategoryExpression(String category) {
+        this.category = category;
+    }
+
+    @Override
+    public boolean interpret(Product product) {
+        return product.category.equalsIgnoreCase(category);
+    }
+}
+
+class BrandExpression implements Expression{
+    private String brand;
+
+    public BrandExpression(String brand) {
+        this.brand = brand;
+    }
+    
+
+    @Override
+    public boolean interpret(Product product) {
+       return product.brand.equalsIgnoreCase(brand);
+    }
+    
+}
+
+
+
+// 4 - Non Terminal Expression (AND / OR)
+class AndExpression implements Expression{
+    private Expression exp1;
+    private Expression exp2;
+
+    public AndExpression(Expression exp1, Expression exp2) {
+        this.exp1 = exp1;
+        this.exp2 = exp2;
+    }
+    
+    
+
+    @Override
+    public boolean interpret(Product product) {
+        
+        return exp1.interpret(product) && exp2.interpret(product);
+    }
+}
+
+
+class OrExpression implements Expression{
+    private Expression exp1;
+    private Expression exp2;
+
+    public OrExpression(Expression exp1, Expression exp2) {
+        this.exp1 = exp1;
+        this.exp2 = exp2;
+    }
+
+    @Override
+    public boolean interpret(Product product) {
+        return exp1.interpret(product)|| exp2.interpret(product);
+    }
+    
+    
+    
+}
+public class InterpreterDemo {
+    
+    public static void main(String[] args) {
+        List<Product> products = Arrays.asList(
+                // Mobiles
+                new Product("iPhone", "Mobile", "Apple", 80000),
+                new Product("Galaxy", "Mobile", "Samsung", 50000),
+                new Product("Redmi Note", "Mobile", "Xiaomi", 15000),
+                new Product("OnePlus", "Mobile", "OnePlus", 40000),
+                // Electronics
+                new Product("Samsung TV", "Electronics", "Samsung", 30000),
+                new Product("LG TV", "Electronics", "LG", 28000),
+                new Product("Sony Headphones", "Electronics", "Sony", 10000),
+                // Fashion
+                new Product("Nike Shoes", "Fashion", "Nike", 5000),
+                new Product("Adidas T-Shirt", "Fashion", "Adidas", 2000),
+                // Mixed Cases (important for testing)
+                new Product("Samsung Budget Phone", "Mobile", "Samsung", 900), // price < 1000 ❌
+                new Product("Samsung Premium TV", "Electronics", "Samsung", 90000) // wrong category ❌
+
+        );
+        
+        //xpressions Created
+        Expression price = new PriceExpression(100000);
+        Expression category = new CategoryExpression("Mobile");
+        Expression brand = new BrandExpression("Samsung");
+        
+        Expression finalRule= new AndExpression(
+                new AndExpression(price, category), 
+                brand);
+        
+        for(Product p :products){
+            if(finalRule.interpret(p)){
+                System.out.println("Matched Product :: " +p.name);
+            }
+        }
+        
+    }
+    
+}
+
+
+----------------------------------
+04 - Iterator Pattern
+Ans - The Iterator Pattern is a behavioral design pattern that provides a way to 
+access elements of a collection sequentially without exposing its internal structure.
+Deffination02  -  Iterator Pattern allows you to traverse a collection (like List, Set, etc.) 
+without knowing how it is stored internally.
+
+Iterator (interface)
+   ↑
+ConcreteIterator
+
+Aggregate (interface)
+   ↑
+ConcreteAggregate
+
+package com.heg.behavioral.iteratorPattern;
+
+// 1. Iterator Interface
+interface Iterator{
+    boolean hasNext();
+    Object next();
+}
+
+//2. Collection Interface
+interface Container{
+    Iterator getIterator();
+}
+
+//3. Concreate Collection
+class NameRepository implements Container{
+
+   public String names [] = {"Ram", "Shyam", "Mohan"};
+
+    @Override
+    public Iterator getIterator() {
+        return new NameIterator();
+    }
+   
+    private class NameIterator implements Iterator{
+        
+        int index;
+
+        @Override
+        public boolean hasNext() {
+            return index < names.length;
+        }
+
+        @Override
+        public Object next() {
+            if(this.hasNext()){
+                return names[index++];
+            }
+            return null;
+        }
+        
+    }
+    
+}
+
+public class IteratorPatternDemo {
+    public static void main(String[] args) {
+        NameRepository repo = new NameRepository();
+        
+        Iterator it = repo.getIterator();
+        
+        while(it.hasNext()){
+            System.out.println(it.next());
+        }
+    }
+}
+
+
+
+------------------------------------------
+
+
+05 - Mediator Pattern
+Ans - Mediator centralize communication between objects to reduce 
+direct dependencies and simplify collaboration
+
+ - Mediator Interface - communication contract
+ - Concreate Mediator - center coordinator
+ - Colleague classes - components that interact via mediator
+ 
+ package com.heg.dp.behavioral.mediator;
+
+//mediator 
+
+import java.util.ArrayList;
+import java.util.List;
+
+// Mediator
+interface WhatsAppGroup{
+    
+    void sendMessage(String message, GroupMember sender);
+
+}
+
+
+// Concrete Mediator
+class FamilyGroup implements WhatsAppGroup{
+    
+    private List<GroupMember> members = new ArrayList();
+    
+    public void addMember(GroupMember member){
+        members.add(member);
+    }
+
+    @Override
+    public void sendMessage(String message, GroupMember sender) {
+        System.out.println("\n[WhatsApp Group Brodcast]");
+        
+        for(GroupMember member : members){
+            if(member != sender){
+                member.receive(sender.name + " : " +message);
+            }
+        }
+    }    
+    
+}
+
+abstract class GroupMember{
+    protected WhatsAppGroup group;
+    protected String name;
+
+    public GroupMember(WhatsAppGroup group, String name) {
+        this.group = group;
+        this.name = name;
+    }
+    
+    
+    abstract void send(String message);
+    
+    abstract void receive(String message); 
+    
+}
+
+
+class WhatAppUser extends GroupMember{
+    
+    public WhatAppUser(WhatsAppGroup group, String name){
+        super(group, name);
+    }
+
+    @Override
+    void send(String message) {
+        System.out.println(name + " sent : " +message);
+        group.sendMessage(message, this);
+    }
+
+    @Override
+    void receive(String message) {
+        System.out.println(name + " received -> " +message);
+    }
+    
+    
+    
+}
+public class MediatorDemo {
+    public static void main(String[] args) {
+        FamilyGroup familyGroup = new FamilyGroup();
+        
+        GroupMember pradeep = new WhatAppUser(familyGroup, "Pradeep");
+        GroupMember rohit = new WhatAppUser(familyGroup, "Rohit");
+        GroupMember amit = new WhatAppUser(familyGroup, "Amit");
+        GroupMember sonu = new WhatAppUser(familyGroup, "Sonu");
+        
+        familyGroup.addMember(pradeep);
+        familyGroup.addMember(rohit);
+        familyGroup.addMember(amit);
+        familyGroup.addMember(sonu);
+        
+        pradeep.send("Good Morning Everyone ! ");
+    }
+    
+}
+
+
+
+	-----------------------------------
+06 - Memento Pattern
+ans - Memento = Save before change
+
+Definition
+
+The Memento Pattern is a behavioral design pattern that allows you to save and restore an object's previous state without exposing its internal details.
+
+
+package com.heg.dp.behavioral.memento;
+
+import java.util.Stack;
+
+class LeaveRequestMemento {
+
+    private final String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public LeaveRequestMemento(String status) {
+        this.status = status;
+    }
+}
+
+
+class LeaveRequest{
+    private String employeeName;
+    private String status;
+
+    public LeaveRequest(String employeeName) {
+        this.employeeName = employeeName;
+        this.status = "PENDING";
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    
+    
+    // Save Current state    
+    public LeaveRequestMemento save(){
+        return new LeaveRequestMemento(status);
+    }
+    
+    public void restore(LeaveRequestMemento memento){
+        this.status=memento.getStatus();
+    }
+    
+    public void display(){
+        System.out.println("Employee : " +employeeName + " | Status : " +status);
+    }
+    
+    
+}
+
+
+class LeaveHistory{
+    
+    private Stack<LeaveRequestMemento> history = new Stack();
+    
+    public void save(LeaveRequestMemento memento){
+        history.push(memento);
+    }
+    
+    public LeaveRequestMemento undo(){
+        return history.pop();
+    }
+
+}
+public class MementoDemo {
+    
+    public static void main(String[] args) {
+        LeaveRequest request = new LeaveRequest("Pradeep");
+        
+        LeaveHistory history = new LeaveHistory();
+        
+        request.display();
+        
+        
+        //Save PENDING state 
+        history.save(request.save());
+        request.setStatus("APPROVED");
+        request.display();
+        
+        
+        // Save APPROVED state 
+        history.save(request.save());
+        request.setStatus("REJECTED");
+        request.display();
+        
+        System.out.println("\nUndo Operation");
+        request.restore(history.undo());
+        request.display();
+    }
+    
+}
+
+
+	-----------------------------------
+07 - Observer Pattern
+Ans - Observer Pattern = One-to-many dependency where change in one object triggers updates in others automatically.
+	- When one object changes state, all its subscribers are notified automatically.
+
+Used in event systems like:
+		Apache Kafka
+		RabbitMQ	
+
+Example : 
+package com.heg.dp.behavioral.observer;
+
+import java.util.ArrayList;
+import java.util.List;
+
+interface Subscriber{
+    void update(String videoTitle);
+}
+
+
+class User implements Subscriber{
+    
+    private String name;
+
+    public User(String name) {
+        this.name = name;
+    }
+    
+    
+    
+
+    @Override
+    public void update(String videoTitle) {
+        System.out.println(name + " received notification: New Video uploaded - " +videoTitle);
+    }
+    
+}
+
+
+class YoutubeChannel{
+    
+    private List<Subscriber> subscribers= new ArrayList();
+    
+    public void subscribe(Subscriber subscriber){
+        subscribers.add(subscriber);
+    }
+    
+    public void unsubscribe(Subscriber subscriber){
+        subscribers.remove(subscriber);
+    }
+    
+    public void uploadVideo(String title){
+        System.out.println("\nChannel Uploaded : " +title);
+        
+        for(Subscriber subscriber : subscribers){
+            subscriber.update(title);
+        }
+    }
+    
+}
+public class ObserverDemo {
+    
+    public static void main(String[] args) {
+        YoutubeChannel channel= new YoutubeChannel();
+        
+        Subscriber user1 = new User("Pradeep");
+        Subscriber user2 = new User("Amit");
+        Subscriber user3 = new User("Pramod");
+        Subscriber user4 = new User("Ravi");
+        
+        channel.subscribe(user1);
+        channel.subscribe(user2);
+        channel.subscribe(user3);
+        channel.subscribe(user4);
+        
+        channel.uploadVideo("Observer Pattern in java");
+        
+        channel.unsubscribe(user2);
+        channel.uploadVideo("Mediator Patten in java");
+    }
+    
+}
+
+
+ ------------------------------------------
+ 
+
+
+08 - State Pattern
+Ans - State Pattern = Behavior changes based on current state.
+State Pattern is a behavioral design pattern that allows an object to change its behavior when its internal state changes, as if the object changed its class
+package com.heg.dp.behavioral.state;
+
+"Same object, different behavior depending on its current state."
+
+interface OrderState{
+    void next(Order order);
+}
+
+class CreateState implements OrderState{
+
+    @Override
+    public void next(Order order) {
+        System.out.println("Payment Successful");
+        order.setState(new PaidState());
+    }
+    
+}
+
+
+class PaidState implements OrderState{
+
+    @Override
+    public void next(Order order) {
+        System.out.println("Order Shipped");
+        order.setState(new ShippedState());
+    }
+    
+}
+
+class ShippedState implements OrderState{
+
+    @Override
+    public void next(Order order) {
+        System.out.println("Order Delivered");
+        order.setState(new DeliveredState());
+    }
+
+}
+
+
+class DeliveredState implements OrderState{
+
+    @Override
+    public void next(Order order) {
+        System.out.println("Order already delivered");
+    }
+    
+}
+
+
+
+class Order {
+    private OrderState state;
+
+    public Order() {
+        state= new CreateState();
+    }
+    
+    public void setState(OrderState state){
+        this.state=state;
+    }
+    
+    public void nextState(){
+        state.next(this);
+    }
+    
+}
+
+
+
+
+public class StateDemo {
+    
+    public static void main(String[] args) {
+        Order order = new Order();
+        order.nextState();
+        order.nextState();
+        order.nextState();
+        order.nextState();
+    }
+    
+}
+
+
+
+
+ -------------------------
+ 
+09 - Strategy Pattern
+Ans - The Strategy Pattern defines a family of algorithms, encapsulates each one, and makes them interchangeable 
+at runtime.
+
+
+The easiest way to remember the Strategy Pattern is to focus on one idea:
+
+"Same task, different ways to do it."
+
+
+Strategy Pattern — Payment System 💳
+👉 Choose algorithm at runtime
+		Used in apps like:
+			Google Pay
+			PhonePe
+			Paytm
+	
+Example : // Strategy Interface
+interface PaymentStrategy {
+    void pay(int amount);
+}
+
+// Concrete Strategies
+class UpiPayment implements PaymentStrategy {
+    public void pay(int amount) {
+        System.out.println("Paid " + amount + " using UPI");
+    }
+}
+
+class CardPayment implements PaymentStrategy {
+    public void pay(int amount) {
+        System.out.println("Paid " + amount + " using Card");
+    }
+}
+
+// Context
+class PaymentService {
+    private PaymentStrategy strategy;
+
+    public void setStrategy(PaymentStrategy strategy) {
+        this.strategy = strategy;
+    }
+
+    public void makePayment(int amount) {
+        strategy.pay(amount);
+    }
+}
+
+// Client
+public class Main {
+    public static void main(String[] args) {
+        PaymentService service = new PaymentService();
+
+        service.setStrategy(new UpiPayment());
+        service.makePayment(500);
+
+        service.setStrategy(new CardPayment());
+        service.makePayment(1200);
+    }
+}
+
+
+-----------------------------------
+10 - Template Method Pattern
+Ans - The Template Method Pattern is used when you want to define a fixed process (template) but allow some steps to be customized by subclasses.
+
+👉 In simple words:
+“Same steps, but different implementations of some steps.”
+
+🔥 Real-World Example: Online Order Processing 🛒
+
+	Think of apps like:
+		Amazon
+		Flipkart
+
+	Every order follows the same flow:
+		Select Product
+		Make Payment
+		Pack Item
+		Deliver Item
+	But payment & delivery methods vary:
+			COD (Cash on Delivery)
+			UPI / Card Payment
+			Express Delivery / Standard Delivery
+🎯 Key Points (Interview Ready)
+
+✔ Template method is final → cannot be changed
+✔ Common logic stays in abstract class
+✔ Variable steps are defined as abstract methods
+✔ Promotes code reuse + consistency
+
+🧠 Real-Life Use Cases
+Payment processing systems
+Spring Boot → JdbcTemplate, RestTemplate
+Game development (same flow, different characters)
+Report generation (PDF, Excel, CSV)
+package com.heg.dp.behavioral.templte;
+
+abstract class ReportGenerator{
+    
+    public final void generateReport(){
+        connect();
+        fetchData();
+        formatData();
+        exportReport();
+        close();
+    }
+    
+    private void connect(){
+        System.out.println("Db connected ..");
+    }
+    
+    private void fetchData(){
+        System.out.println("Fetching Data");
+    }
+    
+    private void close(){
+        System.out.println("DB Closed");
+    }
+    
+    protected abstract void formatData();
+    protected abstract void exportReport();
+}
+
+class PdfReport extends ReportGenerator{
+
+    @Override
+    protected void formatData() {
+        System.out.println("Formatting PDF");
+    }
+
+    @Override
+    protected void exportReport() {
+        System.out.println("Exporting PDF");
+    }
+    
+}
+
+
+class ExcelReport extends ReportGenerator{
+
+    @Override
+    protected void formatData() {
+        System.out.println("Formating Excel");
+    }
+
+    @Override
+    protected void exportReport() {
+        System.out.println("Exporting Excel");
+    }
+    
+}
+
+public class TenplateDesignPatternDemo {
+    public static void main(String[] args) {
+        
+        ReportGenerator generate = new ExcelReport();
+        generate.generateReport();
+    }
+}
+
+
+	
+-----------------------------------
+11 - Visitor Pattern
+Ans - The Visitor Pattern is a behavioral design pattern that lets you 
+add new operation to existing object structures without modifyig those 
+structures.
+	Defination 2 - Visitor Pattern allows you to seprate algorithm 
+	(operations) from the objects on which they operate
+	
+	Real-Life Example 
+		Think of a Tax calculator : 
+			-	You have difference items : Food, Electronics , Clothes 
+			-	Tax rules vary for each items
+			-	Instead of modifying item classes again and again - create a Visitor (TaxCalculator)
+			
+	👉 Items = Elements
+	👉 TaxCalculator = Visitor
+	
+	👉 “Visitor Pattern moves business logic out of objects and into a separate visitor class.”
+	
+🔹 When to Use
+	Use Visitor Pattern when:
+	-	You need to perform operations on many different object types
+	-	Object structure is stable, but operations change frequently
+	-	You want to avoid modifying existing classes
+	
+Visitor (interface)
+   ↑
+ConcreteVisitor
+
+Element (interface)
+   ↑
+ConcreteElement
+
+ObjectStructure
+
+Example : - 
+package com.heg.dp.behavioral.visitor;
+
+
+interface Product {
+    void accept(Visitor visitor);
+
+}
+
+class Book implements Product{
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+    
+}
+
+class Laptop implements Product{
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+    
+}
+
+
+interface Visitor {
+
+    void visit(Book book);
+
+    void visit(Laptop  laptop);
+}
+
+
+
+
+class TaxVisitor implements Visitor{
+
+    @Override
+    public void visit(Book book) {
+        System.out.println("Book Tax = 5%");
+    }
+
+    @Override
+    public void visit(Laptop laptop) {
+        System.out.println("Laptop Tax = 18%");
+    }
+
+}
+
+
+class DiscountVisitor implements Visitor{
+
+    @Override
+    public void visit(Book book) {
+        System.out.println("Book Discount = 10%");
+    }
+
+    @Override
+    public void visit(Laptop laptop) {
+        System.out.println("Laptop Discount = 15%");
+    }
+    
+    
+
+}
+public class VisitorDemo {
+    
+    public static void main(String[] args) {
+        
+        Product book = new Book();
+        Product laptop = new Laptop();
+        
+        Visitor taxVisitor= new TaxVisitor();
+        Visitor discountVisitor= new DiscountVisitor();
+        
+        book.accept(taxVisitor);
+        laptop.accept(taxVisitor);
+       
+    }
+    
+}
+
+
+| Aspect                    | Visitor Pattern                                           | Decorator Pattern                                           |
+| ------------------------- | --------------------------------------------------------- | ----------------------------------------------------------- |
+| Pattern Type              | Behavioral                                                | Structural                                                  |
+| Purpose                   | Add **new operations** to existing object structures      | Add **new responsibilities/features** to individual objects |
+| Modifies Object Behavior? | No, adds external operations                              | Yes, enhances object behavior                               |
+| Object Structure          | Remains unchanged                                         | Wrapped by decorators                                       |
+| Focus                     | "What operation to perform?"                              | "How to extend functionality?"                              |
+| Uses                      | Reporting, Exporting, Calculations, Traversing structures | Logging, Security, Compression, UI components               |

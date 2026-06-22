@@ -5,1219 +5,1378 @@
 
 // ===== 1. Core Java Basics =====
 
-1. Reverse a string without using built-in reverse.
+01.  Reverse a string without using built-in reverse.
+Ans- 
+
+Solution 1: Using Character Array (Most Expected)
+
+public class ReverseString {
+    public static void main(String[] args) {
+        String str = "Pradeep";
+
+        char[] arr = str.toCharArray();
+
+        int left = 0;
+        int right = arr.length - 1;
+
+        while (left < right) {
+            char temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+
+            left++;
+            right--;
+        }
+
+        System.out.println(new String(arr));
+    }
+}
+	
+	Complexity
+Time: O(n)
+Space: O(n) (char array)
+
+
+Solution 2: Using Loop (Frequently Asked)
+
+public class ReverseString {
+    public static void main(String[] args) {
+        String str = "Pradeep";
+        String reversed = "";
+
+        for (int i = str.length() - 1; i >= 0; i--) {
+            reversed += str.charAt(i);
+        }
+
+        System.out.println(reversed);
+    }
+}
+
+Follow-up
+
+Interviewer may ask:
+
+What's wrong with this approach?
+Ans - String is immutable.
+Every concatenation creates a new object.
+Time complexity becomes O(n²).
+
+
+Solution 3: Using StringBuilder (If reverse() Not Allowed)
+public class ReverseString {
+    public static void main(String[] args) {
+        String str = "Pradeep";
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = str.length() - 1; i >= 0; i--) {
+            sb.append(str.charAt(i));
+        }
+
+        System.out.println(sb.toString());
+    }
+}
+
+Complexity
+Time: O(n)
+Space: O(n)
+
+
+Solution 4: Recursive Solution (Senior-Level Follow-up)
+public class ReverseString {
+
+    public static String reverse(String str) {
+
+        if (str.isEmpty()) {
+            return str;
+        }
+
+        return reverse(str.substring(1)) + str.charAt(0);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(reverse("Pradeep"));
+    }
+}
+
+
+Complexity
+Time: O(n²)
+Space: O(n)
+
 
 2. Check whether a string is palindrome.
-3. Find duplicate characters in a string.
-4. Count frequency of each character.
-5. Swap two numbers without third variable.
-6. Find largest and smallest number in array.
-7. Remove duplicates from array.
-8. Find second largest number.
-9. Sort array without using Arrays.sort().
-10. Check whether two strings are anagrams.
-11. Find factorial using recursion.
-12. Generate Fibonacci series.
-13. Check prime number.
-14. Armstrong number program.
-15. Reverse words in sentence.
-
-// ===== 2. Arrays & String Logic =====
-
-16. Move all zeros to end of array.
-17. Rotate array by K positions.
-18. Find missing number in array.
-19. Find common elements in two arrays.
-20. Merge two sorted arrays.
-21. Find pair with given sum.
-22. Find maximum subarray sum (Kadane’s Algorithm).
-23. Longest substring without repeating characters.
-24. First non-repeated character.
-25. String compression (aaabb → a3b2).
-26. Remove spaces from string.
-27. Find all permutations of string.
-28. Check balanced parentheses.
-29. Find longest palindrome substring.
-30. Implement custom split() method.
-
-// ===== 3. Collections Framework =====
-
-31. Remove duplicates using HashSet.
-32. Sort HashMap by keys.
-33. Sort HashMap by values.
-34. Difference between ArrayList and LinkedList practically.
-35. Implement custom Comparator.
-36. Implement custom Comparable.
-37. Convert List to Map using Streams.
-38. Group employees by department.
-39. Find duplicate elements using Streams.
-40. Count occurrences using Map.
-41. Iterate HashMap in different ways.
-42. Find highest salary employee.
-43. Difference between fail-fast and fail-safe iterator.
-44. Implement LRU Cache.
-45. Create immutable class.
-
-// ===== 4. Java 8 Stream API =====
-
-46. Find even numbers using Streams.
-47. Convert list to uppercase.
-48. Sort employees by salary.
-49. Find second highest salary.
-50. Group employees by age.
-51. Find duplicate numbers using Streams.
-52. Remove duplicates using Streams.
-53. Find frequency of characters using Streams.
-54. Partition numbers into even/odd.
-55. Join strings using Collectors.joining().
-56. Find max and min using Streams.
-57. Convert list into comma-separated string.
-58. Find first non-repeated character using Streams.
-59. Find longest string in list.
-60. Parallel Stream example with performance comparison.
-
-// ===== 5. Exception Handling =====
-
-61. Create custom checked exception.
-62. Create custom unchecked exception.
-63. Difference between throw and throws.
-64. Demonstrate finally block execution.
-65. Try-with-resources example.
-66. Handle multiple exceptions.
-67. Exception propagation example.
-68. Build global exception handler simulation.
-
-// ===== 6. Multithreading & Concurrency =====
-
-69. Create thread using Thread class.
-70. Create thread using Runnable.
-71. Synchronization example.
-72. Producer-consumer problem.
-73. Deadlock example.
-74. Prevent deadlock.
-75. Difference between sleep() and wait().
-76. Thread communication using wait/notify.
-77. Create thread pool using ExecutorService.
-78. Callable and Future example.
-79. AtomicInteger example.
-80. ConcurrentHashMap example.
-81. Race condition demo.
-82. Print odd/even numbers using two threads.
-
-// ===== 7. OOPs & Design Patterns =====
-
-83. Singleton class implementation.
-84. Thread-safe Singleton.
-85. Factory Design Pattern.
-86. Builder Pattern.
-87. Strategy Pattern.
-88. Observer Pattern.
-89. Dependency Injection example.
-90. Interface vs Abstract class practical example.
-
-// ===== 8. JVM & Internal Working =====
-
-91. Demonstrate memory leak example.
-92. Explain String Constant Pool with code.
-93. Heap vs Stack practical example.
-94. ClassLoader example.
-95. Demonstrate Garbage Collection behavior.
-
-// ===== 9. Advanced Coding =====
-
-96. Build mini employee management system using Java + Collections.
-97. Implement custom HashMap.
-98. Design parking lot system.
-99. Design URL shortener logic.
-100. Build rate limiter using multithreading.
-
-// ==========================================
-// NEXT 100 JAVA PRACTICE QUESTIONS (101-200)
-// Advanced Java + Spring Boot + System Design
-// ==========================================
-
-// ===== 10. Advanced String Problems =====
-
-101. Find longest common prefix.
-102. Check rotation of string.
-103. Remove duplicate characters from string.
-104. Find all substrings of string.
-105. Count vowels and consonants.
-106. Check whether string contains only digits.
-107. Find repeated words in sentence.
-108. Sort strings alphabetically.
-109. Convert lowercase to uppercase without built-in method.
-110. Find smallest window containing all characters.
-111. Check isomorphic strings.
-112. Find longest repeating character sequence.
-113. Validate email format.
-114. Convert Roman number to integer.
-115. Convert integer to Roman number.
-
-// ===== 11. Advanced Array Problems =====
-
-116. Find intersection of arrays.
-117. Find union of arrays.
-118. Find leaders in array.
-119. Find equilibrium index.
-120. Find majority element.
-121. Find subarray with given sum.
-122. Find product of array except self.
-123. Find duplicate number in array.
-124. Find triplets with zero sum.
-125. Rearrange positive and negative numbers.
-126. Find rain water trapped problem.
-127. Stock buy and sell problem.
-128. Find kth largest element.
-129. Spiral matrix traversal.
-130. Rotate matrix by 90 degree.
-
-// ===== 12. Linked List Problems =====
-
-131. Reverse linked list.
-132. Find middle element of linked list.
-133. Detect loop in linked list.
-134. Remove loop in linked list.
-135. Merge two linked lists.
-136. Remove duplicates from linked list.
-137. Find nth node from end.
-138. Check palindrome linked list.
-139. Sort linked list.
-140. Implement doubly linked list.
-
-// ===== 13. Stack & Queue =====
-
-141. Implement stack using array.
-142. Implement queue using array.
-143. Implement queue using stacks.
-144. Implement stack using queues.
-145. Min stack implementation.
-146. Next greater element problem.
-147. Valid parentheses problem.
-148. Reverse stack recursively.
-149. Circular queue implementation.
-150. Sliding window maximum.
-
-// ===== 14. Tree Data Structure =====
-
-151. Binary tree traversal.
-152. Level order traversal.
-153. Height of binary tree.
-154. Check balanced tree.
-155. Find diameter of tree.
-156. Lowest common ancestor.
-157. Mirror binary tree.
-158. Convert sorted array to BST.
-159. Validate BST.
-160. Serialize and deserialize tree.
-
-// ===== 15. Searching & Sorting =====
-
-161. Binary search implementation.
-162. Bubble sort implementation.
-163. Selection sort implementation.
-164. Insertion sort implementation.
-165. Merge sort implementation.
-166. Quick sort implementation.
-167. Heap sort implementation.
-168. Count sort implementation.
-169. Search in rotated sorted array.
-170. Find square root using binary search.
-
-// ===== 16. Recursion & Backtracking =====
-
-171. Tower of Hanoi.
-172. Generate all subsets.
-173. Generate all permutations.
-174. N-Queens problem.
-175. Sudoku solver.
-176. Rat in maze problem.
-177. Word search problem.
-178. Generate parentheses combinations.
-179. Combination sum problem.
-180. Power calculation using recursion.
-
-// ===== 17. Java 8 Advanced =====
-
-181. Difference between map() and flatMap().
-182. Custom functional interface example.
-183. Predicate chaining example.
-184. Consumer example.
-185. Supplier example.
-186. Method reference examples.
-187. Optional class example.
-188. CompletableFuture example.
-189. Stream lazy loading demo.
-190. Custom collector implementation.
-
-// ===== 18. Multithreading Advanced =====
-
-191. ReentrantLock example.
-192. ReadWriteLock example.
-193. Semaphore example.
-194. CountDownLatch example.
-195. CyclicBarrier example.
-196. ForkJoinPool example.
-197. CompletableFuture async chaining.
-198. Volatile keyword example.
-199. ThreadLocal example.
-200. Build custom thread-safe cache.
-
-
-// ==========================================
-// NEXT 100 JAVA PRACTICE QUESTIONS (201-300)
-// Spring Boot + Microservices + JVM + SQL
-// ==========================================
-
-// ===== 19. Spring Boot Basics =====
-
-201. Create Spring Boot REST API.
-202. Create CRUD API using Spring Boot.
-203. Connect MySQL with Spring Boot.
-204. Create layered architecture example.
-205. Use @RestController example.
-206. Use @Service annotation example.
-207. Use @Repository annotation example.
-208. Create DTO pattern example.
-209. Global exception handling using @ControllerAdvice.
-210. Create custom response wrapper.
-
-// ===== 20. Spring Boot Advanced =====
-
-211. Pagination and sorting example.
-212. File upload API.
-213. File download API.
-214. Logging using SLF4J.
-215. Validation using @Valid.
-216. Custom validation annotation.
-217. API versioning example.
-218. CORS configuration example.
-219. Profiles configuration example.
-220. Read properties using @Value.
-
-// ===== 21. Spring Data JPA =====
-
-221. OneToOne mapping example.
-222. OneToMany mapping example.
-223. ManyToMany mapping example.
-224. Lazy vs Eager loading example.
-225. JPQL query example.
-226. Native query example.
-227. Criteria API example.
-228. Transaction management example.
-229. Auditing example.
-230. Soft delete implementation.
-
-// ===== 22. Spring Security =====
-
-231. Basic authentication example.
-232. JWT authentication implementation.
-233. Role-based authorization.
-234. Password encryption using BCrypt.
-235. Custom UserDetailsService implementation.
-236. Security filter example.
-237. OAuth2 login example.
-238. CSRF protection example.
-239. Stateless authentication example.
-240. Secure REST API project.
-
-// ===== 23. Microservices =====
-
-241. Create microservice using Spring Boot.
-242. API Gateway example.
-243. Service discovery using Eureka.
-244. Config Server setup.
-245. Circuit breaker example.
-246. Feign Client example.
-247. Inter-service communication.
-248. Distributed logging basics.
-249. Centralized configuration example.
-250. Microservice deployment flow.
-
-// ===== 24. Docker & DevOps =====
-
-251. Write Dockerfile for Spring Boot app.
-252. Dockerize MySQL database.
-253. Create docker-compose example.
-254. Jenkins pipeline for Java project.
-255. Maven build lifecycle explanation.
-256. Create CI/CD pipeline.
-257. Deploy Spring Boot WAR in Tomcat.
-258. Build executable JAR.
-259. Environment variable configuration.
-260. Health check endpoint implementation.
-
-// ===== 25. JVM Internals =====
-
-261. Explain JVM architecture with code.
-262. Heap memory analysis example.
-263. StackOverflowError example.
-264. OutOfMemoryError example.
-265. Class loading process demo.
-266. Metaspace example.
-267. Strong vs Weak reference.
-268. Garbage collector types explanation.
-269. JVM tuning parameters.
-270. Memory leak debugging example.
-
-// ===== 26. SQL + Java Integration =====
-
-271. JDBC connection example.
-272. PreparedStatement example.
-273. Batch processing example.
-274. Transaction rollback example.
-275. Connection pooling example.
-276. Optimize SQL query example.
-277. Find duplicate records in SQL.
-278. Second highest salary SQL query.
-279. Inner join vs left join practical example.
-280. Stored procedure calling from Java.
-
-// ===== 27. Design Patterns =====
-
-281. Adapter pattern example.
-282. Decorator pattern example.
-283. Prototype pattern example.
-284. Proxy pattern example.
-285. Template method pattern.
-286. Command pattern example.
-287. Chain of responsibility example.
-288. State pattern example.
-289. Facade pattern example.
-290. MVC pattern implementation.
-
-// ===== 28. System Design Coding =====
-
-291. Design online shopping cart.
-292. Design movie ticket booking system.
-293. Design ATM machine.
-294. Design elevator system.
-295. Design library management system.
-296. Design notification service.
-297. Design chat application.
-298. Design payment gateway flow.
-299. Design hotel booking system.
-300. Design food delivery backend.
-
-// ======================================================
-// NEXT 500 JAVA PRACTICE QUESTIONS (301-800)
-// Senior Java Developer / 6-10 Years Experience
-// ======================================================
-
-// ===== 29. Advanced Collections =====
-
-301. Implement custom ArrayList.
-302. Implement custom LinkedList.
-303. Implement custom HashSet.
-304. Internal working of HashMap.
-305. Handle HashMap collisions.
-306. Difference between HashMap and Hashtable.
-307. Difference between ConcurrentHashMap and HashMap.
-308. WeakHashMap example.
-309. IdentityHashMap example.
-310. TreeMap custom sorting.
-311. PriorityQueue implementation.
-312. BlockingQueue example.
-313. CopyOnWriteArrayList example.
-314. ConcurrentSkipListMap example.
-315. EnumMap example.
-316. NavigableMap example.
-317. Synchronized collection example.
-318. Immutable collection example.
-319. Convert Map to List.
-320. Sort list of objects by multiple fields.
-
-// ===== 30. Java Memory & JVM =====
-
-321. Explain JVM memory areas.
-322. Eden vs Survivor space.
-323. Young GC vs Full GC.
-324. GC logging analysis.
-325. JVM startup process.
-326. Bytecode analysis example.
-327. JIT compiler example.
-328. Escape analysis example.
-329. String intern() example.
-330. Permanent generation vs Metaspace.
-331. SoftReference example.
-332. PhantomReference example.
-333. WeakReference example.
-334. ClassLoader hierarchy.
-335. Bootstrap ClassLoader example.
-336. Custom ClassLoader implementation.
-337. Runtime memory monitoring.
-338. Analyze heap dump basics.
-339. Java agent example.
-340. JVM performance tuning example.
-
-// ===== 31. Functional Programming =====
-
-341. Lambda expression basics.
-342. Lambda with comparator.
-343. Lambda with Runnable.
-344. Method reference constructor example.
-345. Stream filter example.
-346. Stream map example.
-347. Stream reduce example.
-348. Stream flatMap example.
-349. Stream distinct example.
-350. Stream sorted example.
-351. Stream peek example.
-352. Collectors.groupingBy example.
-353. Collectors.partitioningBy example.
-354. Collectors.mapping example.
-355. Collectors.toMap example.
-356. Infinite streams example.
-357. Primitive streams example.
-358. Parallel stream pitfalls.
-359. Functional composition example.
-360. Higher-order function example.
-
-// ===== 32. Advanced Multithreading =====
-
-361. Synchronized block example.
-362. Synchronized method example.
-363. Intrinsic lock example.
-364. ReentrantLock fairness example.
-365. Producer-consumer using BlockingQueue.
-366. Deadlock detection program.
-367. Starvation example.
-368. Livelock example.
-369. Daemon thread example.
-370. ScheduledExecutorService example.
-371. FutureTask example.
-372. CompletableFuture allOf().
-373. CompletableFuture anyOf().
-374. CompletableFuture exception handling.
-375. Phaser example.
-376. Exchanger example.
-377. Thread interruption example.
-378. Thread dump analysis.
-379. Lock-free programming basics.
-380. Compare synchronized vs Lock.
-
-// ===== 33. Spring Boot Real Scenarios =====
-
-381. User registration API.
-382. Login API using JWT.
-383. Forgot password API.
-384. Email sending service.
-385. SMS notification service.
-386. OTP verification system.
-387. Payment API integration.
-388. Exception logging interceptor.
-389. Request-response logging filter.
-390. Swagger/OpenAPI integration.
-391. API rate limiting.
-392. Retry mechanism example.
-393. Distributed tracing basics.
-394. Correlation ID implementation.
-395. Pagination optimization.
-396. Batch insert optimization.
-397. Redis caching example.
-398. Session management example.
-399. Multipart file handling.
-400. Async API processing.
-
-// ===== 34. REST API Design =====
-
-401. RESTful naming conventions.
-402. Idempotent API example.
-403. PUT vs PATCH example.
-404. HTTP status code handling.
-405. API versioning strategy.
-406. HATEOAS example.
-407. Request validation example.
-408. ResponseEntity usage.
-409. API documentation example.
-410. REST exception structure.
-411. Secure API headers.
-412. API throttling implementation.
-413. API gateway routing.
-414. Circuit breaker fallback.
-415. Retryable annotation example.
-416. API timeout handling.
-417. Request interceptor example.
-418. Response compression example.
-419. Multipart API design.
-420. Streaming API response.
-
-// ===== 35. Database Design =====
-
-421. Design employee database schema.
-422. Normalize database tables.
-423. Denormalization example.
-424. Composite primary key example.
-425. Foreign key constraints.
-426. Index optimization example.
-427. Clustered vs non-clustered index.
-428. SQL pagination query.
-429. Recursive query example.
-430. Window functions example.
-431. Partition table example.
-432. SQL query optimization.
-433. Avoid N+1 query issue.
-434. Database connection pool tuning.
-435. ACID properties explanation.
-436. Isolation levels example.
-437. Optimistic locking example.
-438. Pessimistic locking example.
-439. Deadlock in database.
-440. Audit table design.
-
-// ===== 36. Microservices Advanced =====
-
-441. API Gateway authentication.
-442. Distributed transaction basics.
-443. Saga pattern example.
-444. CQRS pattern example.
-445. Event-driven architecture basics.
-446. Kafka producer example.
-447. Kafka consumer example.
-448. Kafka retry mechanism.
-449. Kafka dead letter queue.
-450. RabbitMQ integration example.
-451. Idempotent consumer design.
-452. Service registry pattern.
-453. Sidecar pattern basics.
-454. Blue-green deployment.
-455. Canary deployment.
-456. Config refresh example.
-457. Resilience4j retry example.
-458. Bulkhead pattern example.
-459. Service mesh basics.
-460. API aggregation pattern.
-
-// ===== 37. Security =====
-
-461. SQL injection prevention.
-462. XSS prevention example.
-463. CSRF protection basics.
-464. JWT token generation.
-465. JWT refresh token flow.
-466. OAuth2 authorization flow.
-467. Secure password storage.
-468. HTTPS enforcement example.
-469. Role-based access control.
-470. Method-level security example.
-471. Secure API logging.
-472. API key authentication.
-473. Encryption-decryption example.
-474. AES encryption example.
-475. RSA encryption basics.
-476. Digital signature example.
-477. Secure file upload.
-478. Prevent brute force attack.
-479. Secure session handling.
-480. Security headers configuration.
-
-// ===== 38. Design Patterns Deep Dive =====
-
-481. Singleton eager initialization.
-482. Singleton lazy initialization.
-483. Double-checked locking singleton.
-484. Builder pattern real example.
-485. Factory method pattern.
-486. Abstract factory pattern.
-487. Prototype cloning example.
-488. Flyweight pattern example.
-489. Bridge pattern example.
-490. Composite pattern example.
-491. Visitor pattern example.
-492. Mediator pattern example.
-493. Interpreter pattern basics.
-494. Iterator pattern example.
-495. Memento pattern example.
-496. Observer event handling.
-497. Publish-subscribe pattern.
-498. Null object pattern.
-499. Dependency inversion example.
-500. SOLID principles implementation.
-
-// ===== 39. Problem Solving =====
-
-501. Two sum problem.
-502. Three sum problem.
-503. Sliding window maximum.
-504. Longest increasing subsequence.
-505. Longest common subsequence.
-506. Dynamic programming knapsack.
-507. Coin change problem.
-508. Climbing stairs problem.
-509. House robber problem.
-510. Merge intervals problem.
-511. Meeting rooms problem.
-512. Top K frequent elements.
-513. Median of two arrays.
-514. Search autocomplete system.
-515. Word ladder problem.
-516. Graph BFS implementation.
-517. Graph DFS implementation.
-518. Dijkstra algorithm.
-519. Detect cycle in graph.
-520. Topological sorting.
-
-// ===== 40. Machine Coding =====
-
-521. Design cab booking system.
-522. Design inventory management system.
-523. Design URL shortener.
-524. Design parking lot.
-525. Design splitwise application.
-526. Design social media feed.
-527. Design cache system.
-528. Design task scheduler.
-529. Design stock trading system.
-530. Design cron job scheduler.
-531. Design banking system.
-532. Design expense tracker.
-533. Design online exam system.
-534. Design voting system.
-535. Design ecommerce order flow.
-536. Design recommendation engine basics.
-537. Design ticket reservation system.
-538. Design notification queue.
-539. Design image upload service.
-540. Design distributed cache.
-
-// ===== 41. Testing =====
-
-541. JUnit lifecycle example.
-542. Mockito mock example.
-543. Spy vs Mock example.
-544. Integration test example.
-545. Unit testing service layer.
-546. MockMvc example.
-547. Parameterized test example.
-548. AssertThrows example.
-549. Testcontainers basics.
-550. API testing example.
-551. Database testing example.
-552. Performance testing basics.
-553. Load testing basics.
-554. Contract testing basics.
-555. WireMock example.
-556. Test coverage analysis.
-557. Mutation testing basics.
-558. Parallel test execution.
-559. CI test pipeline example.
-560. Selenium basics for backend dev.
-
-// ===== 42. DevOps =====
-
-561. Maven multi-module project.
-562. Gradle build example.
-563. Jenkins freestyle job.
-564. Jenkins pipeline stages.
-565. Git branching strategy.
-566. Docker volume example.
-567. Docker networking basics.
-568. Kubernetes deployment basics.
-569. Kubernetes service example.
-570. ConfigMap example.
-571. Secret management example.
-572. Rolling update deployment.
-573. Horizontal scaling basics.
-574. Health probes example.
-575. CI/CD rollback strategy.
-576. Linux command basics.
-577. Shell scripting basics.
-578. Nginx reverse proxy basics.
-579. Monitoring using Prometheus.
-580. Grafana dashboard basics.
-
-// ===== 43. Logging & Monitoring =====
-
-581. Logback configuration.
-582. Structured logging example.
-583. MDC logging example.
-584. Centralized logging basics.
-585. ELK stack basics.
-586. Correlation tracing example.
-587. Distributed tracing example.
-588. Prometheus metrics example.
-589. Application health metrics.
-590. Alert configuration basics.
-591. Slow query logging.
-592. JVM monitoring example.
-593. Thread dump analysis.
-594. CPU profiling basics.
-595. Memory profiling basics.
-596. Exception tracking example.
-597. Log rotation strategy.
-598. Async logging example.
-599. API monitoring basics.
-600. SLA/SLO basics.
-
-// ===== 44. Advanced SQL =====
-
-601. Rank function example.
-602. Dense rank example.
-603. Row number example.
-604. Recursive CTE example.
-605. Pivot query example.
-606. Dynamic SQL example.
-607. Find nth highest salary.
-608. Duplicate row removal query.
-609. Running total query.
-610. Gap and island problem.
-611. Employee hierarchy query.
-612. Self join example.
-613. Query execution plan basics.
-614. Composite index tuning.
-615. Materialized view basics.
-616. Transaction deadlock example.
-617. Bulk update optimization.
-618. Query partition optimization.
-619. Trigger example.
-620. Stored function example.
-
-// ===== 45. Cloud & Deployment =====
-
-621. AWS EC2 basics.
-622. AWS S3 upload example.
-623. AWS RDS connection.
-624. Load balancer basics.
-625. Auto scaling basics.
-626. CloudWatch basics.
-627. IAM role basics.
-628. Docker image optimization.
-629. Kubernetes ingress basics.
-630. Helm chart basics.
-631. Terraform basics.
-632. Infrastructure as code basics.
-633. Cloud deployment pipeline.
-634. Multi-region deployment basics.
-635. CDN basics.
-636. Stateless application design.
-637. Sticky session problem.
-638. Disaster recovery basics.
-639. Backup strategy basics.
-640. Blue-green deployment example.
-
-// ===== 46. Java 17+ Features =====
-
-641. Record class example.
-642. Sealed classes example.
-643. Pattern matching example.
-644. Text blocks example.
-645. Switch expression example.
-646. Var keyword example.
-647. Stream.toList() example.
-648. Optional improvements.
-649. HttpClient example.
-650. Virtual threads basics.
-651. Structured concurrency basics.
-652. Pattern matching switch.
-653. Local variable type inference.
-654. Helpful NullPointerException.
-655. Compact number formatting.
-656. New String methods.
-657. Java module system basics.
-658. JShell basics.
-659. Enhanced instanceof example.
-660. Foreign function API basics.
-
-// ===== 47. Real Interview Coding =====
-
-661. Reverse words without extra space.
-662. Find missing positive integer.
-663. Merge overlapping intervals.
-664. Implement LFU cache.
-665. Design autocomplete engine.
-666. Find median from data stream.
-667. Kth smallest in BST.
-668. Serialize linked list.
-669. Clone graph problem.
-670. Design leaderboard system.
-671. Detect fraud transactions basics.
-672. Design order matching engine.
-673. Implement undo-redo feature.
-674. Implement retry queue.
-675. Design distributed lock basics.
-676. Design API quota manager.
-677. Design custom scheduler.
-678. Design notification retry system.
-679. Implement custom serializer.
-680. Implement distributed ID generator.
-
-// ===== 48. Coding Best Practices =====
-
-681. Refactor legacy code.
-682. Remove code duplication.
-683. Improve cyclomatic complexity.
-684. Implement clean architecture.
-685. Write reusable utility classes.
-686. Exception handling strategy.
-687. Logging best practices.
-688. API response standardization.
-689. Avoid memory leaks.
-690. Immutable object design.
-691. Defensive programming example.
-692. SOLID refactoring example.
-693. Builder vs constructor usage.
-694. Null handling strategy.
-695. Thread-safe singleton design.
-696. Naming convention improvements.
-697. Configuration externalization.
-698. Avoid hardcoding values.
-699. Write production-ready code.
-700. Code review checklist implementation.
-
-// ===== 49. HR + Scenario Based =====
-
-701. Explain difficult bug solved.
-702. Explain production issue handling.
-703. Explain memory leak fixed.
-704. Explain deadlock issue fixed.
-705. Explain API optimization.
-706. Explain database optimization.
-707. Explain CI/CD implementation.
-708. Explain microservice migration.
-709. Explain scaling challenge.
-710. Explain team conflict handling.
-711. Explain mentoring junior developers.
-712. Explain sprint planning involvement.
-713. Explain architecture decision.
-714. Explain logging strategy.
-715. Explain monitoring strategy.
-716. Explain deployment rollback.
-717. Explain high availability design.
-718. Explain incident management.
-719. Explain technical debt handling.
-720. Explain ownership experience.
-
-// ===== 50. Advanced System Design =====
-
-721. Design Netflix backend basics.
-722. Design YouTube upload service.
-723. Design WhatsApp messaging flow.
-724. Design Uber backend basics.
-725. Design Swiggy backend basics.
-726. Design Amazon order flow.
-727. Design payment wallet system.
-728. Design distributed cache system.
-729. Design real-time chat system.
-730. Design notification delivery system.
-731. Design search engine basics.
-732. Design recommendation system basics.
-733. Design file storage service.
-734. Design video streaming service.
-735. Design multiplayer game backend.
-736. Design ride allocation algorithm.
-737. Design live score system.
-738. Design online IDE backend.
-739. Design event booking system.
-740. Design fraud detection system.
-
-// ===== 51. Advanced Java APIs =====
-
-741. Reflection API example.
-742. Dynamic proxy example.
-743. Annotation processing basics.
-744. Custom annotation example.
-745. Java NIO file example.
-746. Path API example.
-747. Memory-mapped file example.
-748. Serialization example.
-749. Externalization example.
-750. XML parsing using SAX.
-751. XML parsing using DOM.
-752. JSON parsing using Jackson.
-753. CSV parsing example.
-754. ZIP file handling.
-755. Regex validation examples.
-756. Date-Time API example.
-757. Locale handling example.
-758. Currency formatting example.
-759. ResourceBundle example.
-760. ProcessBuilder example.
-
-// ===== 52. Backend Engineering =====
-
-761. Build audit logging service.
-762. Build centralized config service.
-763. Build feature toggle system.
-764. Build distributed scheduler.
-765. Build async event processor.
-766. Build retry framework.
-767. Build notification aggregator.
-768. Build API analytics service.
-769. Build token blacklist system.
-770. Build user session tracker.
-771. Build caching abstraction layer.
-772. Build generic CRUD framework.
-773. Build multi-tenant backend.
-774. Build dynamic rule engine.
-775. Build distributed queue basics.
-776. Build inventory reservation system.
-777. Build transactional email service.
-778. Build webhook processing system.
-779. Build file processing pipeline.
-780. Build bulk import system.
-
-// ===== 53. Senior-Level Scenarios =====
-
-781. Handle 1 million requests/day.
-782. Reduce API latency.
-783. Improve DB performance.
-784. Optimize JVM memory.
-785. Reduce thread contention.
-786. Scale microservices horizontally.
-787. Prevent duplicate payments.
-788. Handle distributed transactions.
-789. Design zero-downtime deployment.
-790. Handle cache stampede issue.
-791. Handle Kafka consumer lag.
-792. Design retry with backoff.
-793. Design idempotent APIs.
-794. Handle race conditions.
-795. Implement distributed locking.
-796. Handle partial failures.
-797. Handle network retries.
-798. Design fault-tolerant systems.
-799. Handle sudden traffic spikes.
-800. Design resilient backend architecture.
-
-// ==========================================
-// 100 PURE JAVA PRACTICE CODING QUESTIONS
-// ONLY CODING - NO THEORY
-// ==========================================
-
-// ===== String Programs =====
-
-1. Reverse a string
-2. Check palindrome string
-3. Find duplicate characters
-4. Count character frequency
-5. Remove duplicate characters
-6. Find first non-repeating character
-7. Find first repeating character
-8. Check anagram
-9. Reverse words in sentence
-10. Count vowels and consonants
-11. Remove whitespaces
-12. Find all substrings
-13. Find all permutations
-14. Compress string
-15. Toggle case characters
-16. Convert lowercase to uppercase
-17. Find longest word
-18. Find shortest word
-19. Check rotation of string
-20. Longest palindrome substring
-21. Longest common prefix
-22. Validate email format
-23. Remove special characters
-24. Count words in sentence
-25. Sort strings alphabetically
-
-// ===== Array Programs =====
-
-26. Find largest number
-27. Find smallest number
-28. Find second largest number
-29. Find second smallest number
-30. Reverse array
-31. Sort array using bubble sort
-32. Sort array using selection sort
-33. Sort array using insertion sort
-34. Merge two arrays
-35. Find duplicate elements
-36. Remove duplicate elements
-37. Find missing number
-38. Find common elements
-39. Move zeros to end
-40. Rotate array left
-41. Rotate array right
-42. Find pair with given sum
-43. Find triplet with given sum
-44. Find maximum subarray sum
-45. Find minimum subarray sum
-46. Find equilibrium index
-47. Find majority element
-48. Find kth largest element
-49. Find kth smallest element
-50. Rearrange positive and negative numbers
-
-// ===== Number Programs =====
-
-51. Check prime number
-52. Generate prime numbers
-53. Fibonacci series
-54. Factorial using recursion
-55. Factorial using loop
-56. Armstrong number
-57. Perfect number
-58. Strong number
-59. Neon number
-60. Palindrome number
-61. Reverse number
-62. Sum of digits
-63. Product of digits
-64. Count digits
-65. Swap two numbers
-66. Find GCD
-67. Find LCM
-68. Power of number
-69. Decimal to binary
-70. Binary to decimal
-71. Decimal to octal
-72. Decimal to hexadecimal
-73. Check even or odd
-74. Generate random number
-75. Print multiplication table
-
-// ===== Collections Programs =====
-
-76. Remove duplicates using HashSet
-77. Sort ArrayList
-78. Reverse ArrayList
-79. Convert List to Set
-80. Convert Set to List
-81. Count frequency using HashMap
-82. Sort HashMap by key
-83. Sort HashMap by value
-84. Find duplicate elements in List
-85. Iterate HashMap
-86. Find highest salary employee
-87. Group employees by department
-88. Convert List to Map
-89. Find max value in Map
-90. Find min value in Map
-
-// ===== Java 8 Stream Programs =====
-
-91. Find even numbers using streams
-92. Find odd numbers using streams
-93. Remove duplicates using streams
-94. Find second highest number
-95. Sort employees by salary
-96. Find duplicate numbers
-97. Convert list to uppercase
-98. Count frequency using streams
-99. Find longest string in list
-100. Group strings by length
-
-// ==========================================
-// NEXT 100 PURE JAVA PRACTICE QUESTIONS
-// ONLY CODING QUESTIONS (101-200)
-// ==========================================
-
-// ===== LinkedList Programs =====
-
-101. Create singly linked list
-102. Insert node at beginning
-103. Insert node at end
-104. Insert node at specific position
-105. Delete node from beginning
-106. Delete node from end
-107. Delete node by value
-108. Search node in linked list
-109. Reverse linked list
-110. Find middle node
-111. Find nth node from end
-112. Detect loop in linked list
-113. Remove loop from linked list
-114. Merge two linked lists
-115. Sort linked list
-116. Remove duplicates from linked list
-117. Check palindrome linked list
-118. Find length of linked list
-119. Circular linked list implementation
-120. Doubly linked list implementation
-
-// ===== Stack Programs =====
-
-121. Implement stack using array
-122. Implement stack using linked list
-123. Push operation in stack
-124. Pop operation in stack
-125. Peek operation in stack
-126. Reverse stack
-127. Sort stack
-128. Find minimum element in stack
-129. Valid parentheses problem
-130. Next greater element
-131. Stock span problem
-132. Largest rectangle in histogram
-133. Infix to postfix conversion
-134. Postfix evaluation
-135. Prefix evaluation
-136. Reverse string using stack
-137. Implement two stacks in array
-138. Design min stack
-139. Balanced brackets checker
-140. Remove adjacent duplicates
-
-// ===== Queue Programs =====
-
-141. Implement queue using array
-142. Implement queue using linked list
-143. Circular queue implementation
-144. Queue using two stacks
-145. Stack using two queues
-146. Priority queue example
-147. Deque implementation
-148. Sliding window maximum
-149. Generate binary numbers using queue
-150. Hot potato problem
-
-// ===== Tree Programs =====
-
-151. Create binary tree
-152. Preorder traversal
-153. Inorder traversal
-154. Postorder traversal
-155. Level order traversal
-156. Find height of tree
-157. Find size of tree
-158. Count leaf nodes
-159. Find maximum node
-160. Find minimum node
-161. Check identical trees
-162. Check mirror trees
-163. Check balanced tree
-164. Find diameter of tree
-165. Lowest common ancestor
-166. Convert tree to mirror
-167. Validate binary search tree
-168. Insert node in BST
-169. Delete node in BST
-170. Search node in BST
-
-// ===== Recursion Programs =====
-
-171. Fibonacci using recursion
-172. Reverse string recursively
-173. Palindrome check recursively
-174. Sum of array recursively
-175. Find power recursively
-176. Binary search recursively
-177. Tower of Hanoi
-178. Generate subsets recursively
-179. Generate permutations recursively
-180. Print numbers recursively
-181. Factorial recursively
-182. GCD recursively
-183. Decimal to binary recursively
-184. Reverse linked list recursively
-185. Recursive bubble sort
-186. Recursive insertion sort
-187. Recursive selection sort
-188. Generate parentheses recursively
-189. N-Queens problem
-190. Sudoku solver
-
-// ===== Searching Programs =====
-
-191. Linear search
-192. Binary search
-193. Jump search
-194. Interpolation search
-195. Exponential search
-196. Ternary search
-197. Search in rotated array
-198. Find peak element
-199. Find occurrence count
-200. Search element in matrix
+Ans - 
+Solution 1: Two Pointer Approach (Most Expected)
+
+This is usually the preferred interview solution.
+
+public class PalindromeCheck {
+
+    public static boolean isPalindrome(String str) {
+
+        int left = 0;
+        int right = str.length() - 1;
+
+        while (left < right) {
+
+            if (str.charAt(left) != str.charAt(right)) {
+                return false;
+            }
+
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+
+    public static void main(String[] args) {
+
+        String str = "MADAM";
+
+        if (isPalindrome(str)) {
+            System.out.println("Palindrome");
+        } else {
+            System.out.println("Not Palindrome");
+        }
+    }
+}
+Complexity
+Time  : O(n)
+Space : O(1)
+
+Use two pointers:
+- One starts from the beginning.
+- One starts from the end.
+- Compare characters.
+- If any mismatch occurs, return false.
+- If all characters match, return true.
+
+Time Complexity: O(n)
+Space Complexity: O(1)
+
+
+### Strings
+
+3. Check Anagram Strings
+Ans - 
+package com.heg.super500;
+public class Q03_AnagramCheck {
+    
+   package com.heg.super500;
+
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+public class Q03_AnagramCheck {
+    
+    public static boolean isAnangram(String s1,String s2){
+        s1=s1.toLowerCase();
+        s2=s2.toLowerCase();
+		
+		//Remove spaces before checking.
+		s1 = s1.replaceAll("\\s", "");
+		s2 = s2.replaceAll("\\s", "");
+        
+        if(s1.length() !=s2.length()){
+            return false;
+        }
+        
+        int[] count =new int[26]; //It is commonly used to count the frequency of lowercase English letters (a to z).
+        
+        for(int i=0; i<s1.length();i++){
+          count[s1.charAt(i) - 'a']++;          
+          count[s2.charAt(i) - 'a']--;
+              
+        }
+        
+        for(int c : count){
+            if(c!=0){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+	
+	Character Count Array
+Time: O(n)
+Space: O(1)
+
+
+    
+    public static boolean isAnagramV1(String s1,String s2){
+        return s1.chars()
+                .mapToObj(c -> (char) c)
+                .collect(Collectors.groupingBy(
+                        Function.identity(),
+                        Collectors.counting()))
+                .equals(s2.chars()
+                .mapToObj(c -> (char) c)
+                        .collect(
+                                Collectors.groupingBy(
+                                        Function.identity(),
+                                        Collectors.counting()
+                                )
+                        )
+                );
+        
+    }
+    
+    
+    public static void main(String[] args) {
+        System.out.println(isAnangram("listen", "silent"));
+        System.out.println(isAnagramV1("listen", "silent"));
+    }
+}
+
+
+Interview Discussion
+
+Time Complexity: O(n log n) (sorting)
+
+Space Complexity: O(n)
+
+
+
+
+
+
+4. Count Vowels and Consonants
+Ans - package com.heg.super500;
+public class Q04_CountVowelsConsonants {
+
+    public static void main(String[] args) {
+        String str="Hello World";
+        
+        int vowels =0;
+        int consonants= 0 ;
+        
+        str=str.toLowerCase();
+        
+        for(char ch : str.toCharArray()){
+            if(ch >='a' && ch <='z'){
+                if("aeiou".indexOf(ch) != -1){
+                    vowels++;
+                }else{
+                    consonants++;
+                }
+            }
+        }
+        
+        
+       long v1= str.chars().filter(ch -> "aeiou".indexOf(ch) != -1)
+                .count();
+       
+       long c1 =str.chars().filter(ch -> ch >= 'a' && ch <='z')
+               .filter(ch -> "aeiou".indexOf(ch) == -1)
+               .count();
+        
+        
+        System.out.println("Vowels :: " +vowels);
+        System.out.println("Consonants :: " +consonants);
+        
+        
+         System.out.println("V1 :: " +v1);
+        System.out.println("C1 :: " +c1);
+    }
+}
+
+
+
+
+
+5. Count Occurrence of Each Character
+Ans -import java.util.HashMap;
+import java.util.Map;
+
+public class CharacterCount {
+
+    public static void main(String[] args) {
+
+        String str = "programming";
+
+        Map<Character, Integer> map = new HashMap<>();
+
+        for (char ch : str.toCharArray()) {
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
+        }
+
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + " = " + entry.getValue());
+        }
+    }
+	
+	
+	  Map<Character, Long> map =
+                str.chars()
+                   .mapToObj(c -> (char) c)
+                   .collect(Collectors.groupingBy(
+                           Function.identity(),
+                           Collectors.counting()));
+
+        System.out.println(map);
+		
+		
+}
+
+
+6. Find Duplicate Characters in String
+Ans - import java.util.HashMap;
+import java.util.Map;
+
+public class DuplicateCharacters {
+
+    public static void main(String[] args) {
+
+        String str = "programming";
+
+        Map<Character, Integer> map = new HashMap<>();
+
+        for (char ch : str.toCharArray()) {
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
+        }
+
+        System.out.println("Duplicate Characters:");
+
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            if (entry.getValue() > 1) {
+                System.out.println(entry.getKey());
+            }
+        }
+    }
+}
+
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+public class DuplicateCharacters {
+
+    public static void main(String[] args) {
+
+        String str = "programming";
+
+        str.chars()
+           .mapToObj(c -> (char) c)
+           .collect(Collectors.groupingBy(
+                   Function.identity(),
+                   Collectors.counting()))
+           .entrySet()
+           .stream()
+           .filter(e -> e.getValue() > 1)
+           .forEach(e -> System.out.println(e.getKey()));
+    }
+}
+
+
+
+
+7. Remove Duplicate Characters from String
+Ans - package com.heg.super500;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
+public class Q05_RemoveDuplicateFromString {
+    
+    public static void main(String[] args) {
+        String str="programming";
+        Set<Character> set = new LinkedHashSet();
+        
+        for(char ch : str.toCharArray()){
+            set.add(ch);
+        }        
+        System.out.println(set);
+        StringBuilder result = new StringBuilder();
+        for(char ch : set){
+            result.append(ch);
+        }        
+        System.out.println(result);        
+     }   
+}
+
+
+
+
+8. Find First Non-Repeated Character
+Ans - import java.util.LinkedHashMap;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+public class FirstNonRepeatedCharacter {
+
+    public static void main(String[] args) {
+
+        String str = "swiss";
+
+        Character result = str.chars()
+                .mapToObj(c -> (char) c)
+                .collect(Collectors.groupingBy(
+                        Function.identity(),
+                        LinkedHashMap::new,
+                        Collectors.counting()))
+                .entrySet()
+                .stream()
+                .filter(entry -> entry.getValue() == 1)
+                .map(entry -> entry.getKey())
+                .findFirst()
+                .orElse(null);
+
+        System.out.println(result);
+    }
+}
+
+9. Find First Repeated Character
+import java.util.LinkedHashMap;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+public class FirstNonRepeatedCharacter {
+
+    public static void main(String[] args) {
+
+        String str = "swiss";
+
+        Character result = str.chars()
+                .mapToObj(c -> (char) c)
+                .collect(Collectors.groupingBy(
+                        Function.identity(),
+                        LinkedHashMap::new,
+                        Collectors.counting()))
+                .entrySet()
+                .stream()
+                .filter(entry -> entry.getValue() > 1)
+                .map(entry -> entry.getKey())
+                .findFirst()
+                .orElse(null);
+
+        System.out.println(result);
+    }
+}
+
+11. Find Longest Word in a String
+Ans - 
+package com.heg.super500;
+import java.util.Arrays;
+public class Q06_LomgestWord {    
+    public static void main(String[] args) {
+        String str= "Java Spring Boot Microservices";
+        String[] words= str.split("\\s+");        
+        String longestWord="";        
+        for(String word : words){
+            if(word.length() > longestWord.length()){
+                longestWord=word;
+            }
+        }
+        System.out.println("Longest word : " +longestWord);
+        System.out.println("\n-------------Version02-------------");
+        String longest=
+                Arrays.stream(str.split("\\s+"))
+                .max((a,b) -> Integer.compare(a.length(), b.length()))
+                .orElse("");        
+        System.out.println("longest :: " +longest);
+    }    
+}
+
+
+
+
+12. Find Shortest Word in a String
+package com.heg.super500;
+import java.util.Arrays;
+public class Q07_ShortestWord {    
+    public static void main(String[] args) {
+        String str= "Java Spring Boot Microservices";
+        String[] words= str.split("\\s+");        
+        String shortesttWord=words[0];        
+        for(String word : words){
+            if(word.length() < shortesttWord.length()){
+                shortesttWord=word;
+            }
+        }
+        System.out.println("shortestt word : " +shortesttWord);
+        System.out.println("\n-------------Version02-------------");
+        String sortest=
+                Arrays.stream(str.split("\\s+"))
+                .min((a,b) -> Integer.compare(a.length(), b.length()))
+                .orElse("");        
+        System.out.println("longest :: " +sortest);
+    }    
+}
+
+
+
+13. Check String Contains Only Digits
+Ans 
+package com.heg.super500;
+public class Q08_OnlyDigits {    
+    public static boolean containsOnlyDigits(String str){
+        if(str==null || str.isEmpty()){
+            return false;
+        }        
+        for(char ch : str.toCharArray()){
+            if(!Character.isDigit(ch)){
+                return false;
+            }
+        }
+        return true;
+    }    
+    public static void main(String[] args) {
+         System.out.println(containsOnlyDigits("12345"));
+        System.out.println(containsOnlyDigits("12a45"));
+    }
+}
+
+
+
+
+14. Check String Contains Only Alphabets
+Ans 
+package com.heg.super500;
+public class Q09_OnlyCharacter {    
+    public static boolean containsOnlyDigits(String str){
+        if(str==null || str.isEmpty()){
+            return false;
+        }        
+        for(char ch : str.toCharArray()){
+            if(!Character.isAlphabetic(ch)){
+                return false;
+            }
+        }
+        return true;
+    }    
+    public static void main(String[] args) {
+         System.out.println(containsOnlyDigits("pradeep"));
+        System.out.println(containsOnlyDigits("12a45"));
+    }
+}
+
+
+15. Count Words in a Sentence
+public class CountWords {
+    public static void main(String[] args) {
+
+        String str = "Java Spring Boot Microservices";
+
+        String[] words = str.trim().split("\\s+");
+
+        System.out.println("Word Count: " + words.length);
+    }
+}
+
+16. Convert String to Title Case
+Ans 
+package com.heg.super500;
+public class Q10_CountWordInSentance {
+    public static void main(String[] args) {
+        String str="hello welcome to heg limited";
+        String[] word=str.split("\\s+");
+        int cnt= word.length;        
+        System.out.println("Lenght :: " +cnt);        
+        StringBuilder result = new StringBuilder();        
+        for(String s : word){           
+             result.append(Character.toUpperCase(s.charAt(0)))
+                     .append(s.substring(1).toLowerCase())
+                     .append(" ");
+        }        
+        System.out.println(result.toString().trim());        
+    }    
+}
+
+17. Check Rotation of String
+
+package com.heg.super500;
+public class Q11_StringRotation {    
+    public static boolean isRotation(String str1,String str2 ){
+        if(str1 ==null || str2 ==null){
+            return false;
+        }        
+        if(str1.length() != str2.length()){
+            return false;
+        }        
+        return (str1+str1).contains(str2);
+    }    
+    public static void main(String[] args) {
+         String str1 = "ABCD";
+        String str2 = "CDAB";        
+        System.out.println(isRotation(str1, str2));
+    }  
+}
+
+
+
+18. Find All Substrings
+Ans - 
+package com.heg.super500;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class Q11_AllPossibleSubstring {    
+    public static void main(String[] args) {
+        String str="ABCABC";
+        
+        for(int i =0; i< str.length(); i++){
+            for(int j= i+1 ; j<=str.length();j++){
+                System.out.println(str.substring(i, j));
+            }
+        } 
+        Set<String> set = new HashSet();
+        for(int i =0 ;i<str.length();i++){
+            for(int j= i+1;j<str.length();j++){
+                set.add(str.substring(i,j));
+            }
+        }        
+        System.out.println("----------UNIQUE---------------");
+        System.out.println(set);
+    }    
+}
+
+
+
+19. Find Longest Palindromic Substring
+
+package com.heg.super500;
+public class Q19_LongestPalindromiceSubstring {
+    public static String longestPalindrome(String s){
+        if(s == null || s.length()<2){
+            return s;
+        }        
+        int start=0;
+        int end=0;        
+        for(int i =0 ; i< s.length(); i++){
+            int len1=expand(s,i, i); //odd length           
+            int len2=expand(s, i,i+1); //even length  
+            int len= Math.max(len1, len2);           
+             System.out.println("len1 - "+ len1 +  ", len2 -" +len2 + " =  Len  ::  " +len + ", Start - " +start + " end " +end);            
+            if(len > end - start){
+                start= i - (len -1)/2;
+                end = i +len/2;
+            }  
+            System.out.println("len1 - "+ len1 +  ", len2 -" +len2 + " =  Len  ::  " +len + ", Start - " +start + " end " +end);
+            System.out.println("");            
+        }        
+        return s.substring(start, end+1);  
+    }
+
+    private static int expand(String s, int left, int right) {
+        while(left >= 0 && 
+                right < s.length() &&
+                s.charAt(left)==s.charAt(right)){
+            right++;
+            left --;            
+        }
+        return right - left -1 ;
+    }
+    
+    public static void main(String[] args) {
+        String str= "babad";
+        System.out.println(longestPalindrome(str));
+    }    
+}
+
+
+
+20. Compress a String
+Ans 
+package com.heg.super500;
+public class Q20_StringCompress {    
+    public static void main(String[] args) {
+        String str="aaabbccccd";        
+        StringBuilder result = new StringBuilder();
+        int count =1;        
+        for(int i = 1; i<=str.length() ;i++){
+            if(i < str.length() && str.charAt(i) == str.charAt(i-1)){
+                count++;
+            }else{
+                result.append(str.charAt(i-1))
+                        .append(count);
+                count=1;
+            }
+        }
+        System.out.println(result);
+    }
+}
+
+
+
+21. Check Balanced Parentheses
+package com.heg.super500;
+import java.util.Stack;
+
+public class Q21_BalancedParentheses {
+    public static boolean isBalanced(String str) {
+        Stack<Character> stack = new Stack();
+        for (char ch : str.toCharArray()) {
+            if (ch == '(' || ch == '{' || ch == '[') {
+                stack.push(ch);
+            } else {
+                if (stack.isEmpty()) {
+                    return false;
+                }
+                char top = stack.pop();
+                if ((ch == ')' && top != '(')
+                        || (ch == '}' && top != '{')
+                        || (ch == ']' && top != '[')) {
+                    return false;
+                }
+            }
+        }
+        return stack.isEmpty();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(isBalanced("{[()]}"));
+
+    }
+}
+
+
+
+
+22. Remove White Spaces from String
+package com.heg.super500;
+public class Q22_RemoveWhiteSpaces {
+    public static void main(String[] args) {
+        String str="Java Spring Boot";        
+        StringBuilder result = new StringBuilder();        
+        for(char c : str.toCharArray()){
+            if(!Character.isWhitespace(c)){
+            result.append(c);
+            }
+        }
+        System.out.println(result);        
+    }    
+}
+
+
+23. Replace Duplicate Characters
+Ans 
+package com.heg.super500;
+
+import java.util.HashSet;
+import java.util.Set;
+public class Q23_ReplaceDuplicateCharacter {
+    public static void main(String[] args) {
+        String str= "programming";
+        Set<Character> seen = new HashSet();
+        StringBuilder result= new StringBuilder();
+        
+        for(char ch : str.toCharArray()){
+            if(seen.contains(ch)){
+                result.append('*');
+            }else{
+                seen.add(ch);
+                result.append(ch);
+            }
+        }        
+        System.out.println(result);
+    }   
+}
+
+
+24. Count Special Characters
+package com.heg.super500;
+public class Q24_CountSPecialCharacter {
+    public static void main(String[] args) {
+        String str="Java@123#%";
+        int count=0;        
+        for(char ch : str.toCharArray()){
+            if(!Character.isLetterOrDigit(ch)){
+                count++;
+            }
+        }        
+        System.out.println("Special Characters: " + count);
+    }    
+}
+
+
+25. Count Uppercase and Lowercase Characters
+package com.heg.super500;
+
+public class Q25_CountUpperCaseLowerCase {
+    public static void main(String[] args) {
+        String str = "JavaSPRING123";
+        int countUpper = 0;
+        int countLower = 0;
+        int digitCount = 0;
+        for (char c : str.toCharArray()) {
+            if (Character.isUpperCase(c)) {
+                countUpper++;
+            } else if (Character.isLowerCase(c)) {
+                countLower++;
+            } else {
+                digitCount++;
+            }
+        }
+        
+        System.out.println("Upper " +countUpper);
+        System.out.println("Upper " +countLower);
+
+    }
+
+}
+
+
+
+26. Sort Characters in String
+package com.heg.super500;
+public class Q26_SortUsingBubbleSort {
+    public static String bubbleSort(String str){
+        if(str.length()<1){
+            return str;
+        }        
+        char[] arr= str.toCharArray();        
+        for(int i=0; i< arr.length-1; i++){
+            for(int j=0 ; j< arr.length-i-1 ;j++){
+                if(arr[j]> arr[j+1]){
+                    char temp = arr[j];
+                    arr[j]=arr[j+1];
+                    arr[j+1]=temp;
+                }
+            }
+        }
+        return new String(arr);    
+    }    
+    public static void main(String[] args) {
+        String str="dcba";
+        String sortStr= bubbleSort(str);
+        System.out.println(sortStr);
+    }    
+}
+
+
+27. Find Common Characters Between Two Strings
+package com.heg.super500;
+import java.util.HashSet;
+import java.util.Set;
+public class Q27_CommonCharacters {    
+    public static void main(String[] args) {
+        String str1="hello";
+        String str2="world";        
+        Set<Character> set = new HashSet();        
+        for(char ch : str1.toCharArray()){
+            set.add(ch);
+        }        
+        Set<Character> common = new HashSet();
+        for(char ch : str2.toCharArray()){
+            if(set.contains(ch)){
+                common.add(ch);
+            }
+        }        
+        System.out.println(common);        
+    }    
+}
+
+
+28. Find Missing Characters from Alphabet
+29. Check Isomorphic Strings
+30. Check Pangram String
+31. Find Largest Repeating Character
+32. Remove Consecutive Duplicate Characters
+33. Generate All Permutations of String
+34. Find Longest Common Prefix
+35. Find Longest Common Subsequence
+36. Find Longest Common Substring
+37. Check Interleaving Strings
+38. Convert Roman to Integer
+39. Convert Integer to Roman
+40. String Pattern Matching
+
+### Arrays
+
+41. Find Largest Element
+42. Find Smallest Element
+43. Find Second Largest Element
+44. Find Second Smallest Element
+45. Reverse an Array
+46. Rotate Array Left
+47. Rotate Array Right
+48. Find Missing Number
+49. Find Duplicate Number
+50. Find All Duplicate Numbers
+51. Move Zeros to End
+52. Move Zeros to Beginning
+53. Sort Array Ascending
+54. Sort Array Descending
+55. Merge Two Sorted Arrays
+56. Find Union of Arrays
+57. Find Intersection of Arrays
+58. Find Difference of Arrays
+59. Find Pair with Given Sum
+60. Find Triplet with Given Sum
+61. Find Maximum Subarray Sum
+62. Find Minimum Subarray Sum
+63. Kadane’s Algorithm
+64. Find Majority Element
+65. Find Equilibrium Index
+66. Find Leaders in Array
+67. Find Peak Element
+68. Find Frequency of Elements
+69. Remove Duplicates from Array
+70. Check Array is Sorted
+71. Find Kth Largest Element
+72. Find Kth Smallest Element
+73. Binary Search
+74. Linear Search
+75. Find Closest Element
+76. Product of Array Except Self
+77. Rearrange Positive and Negative Numbers
+78. Find Maximum Product Pair
+79. Find Minimum Product Pair
+80. Find Maximum Difference
+81. Find Minimum Difference
+82. Sort 0s 1s 2s
+83. Chocolate Distribution Problem
+84. Stock Buy and Sell
+85. Trapping Rain Water
+86. Container With Most Water
+87. Spiral Matrix Traversal
+88. Matrix Rotation
+89. Matrix Transpose
+90. Search Element in Matrix
+
+### Numbers
+
+91. Check Prime Number
+92. Print Prime Numbers in Range
+93. Check Armstrong Number
+94. Check Perfect Number
+95. Check Strong Number
+96. Check Neon Number
+97. Check Palindrome Number
+98. Reverse Number
+99. Find Factorial
+100. Find Fibonacci Series
+101. Find GCD
+102. Find LCM
+103. Check Even or Odd
+104. Count Digits
+105. Sum of Digits
+106. Product of Digits
+107. Find Largest Digit
+108. Find Smallest Digit
+109. Convert Decimal to Binary
+110. Convert Binary to Decimal
+111. Convert Decimal to Octal
+112. Convert Decimal to Hexadecimal
+113. Power of Number
+114. Check Power of Two
+115. Generate Pascal Triangle
+116. Happy Number
+117. Automorphic Number
+118. Harshad Number
+119. Catalan Number
+120. Tribonacci Series
+
+### Linked List
+
+121. Reverse Linked List
+122. Detect Loop in Linked List
+123. Remove Loop in Linked List
+124. Find Middle Node
+125. Find Nth Node from End
+126. Delete Middle Node
+127. Merge Two Sorted Linked Lists
+128. Remove Duplicates from Linked List
+129. Check Palindrome Linked List
+130. Find Intersection Point of Linked Lists
+131. Reverse Linked List in Groups
+132. Sort Linked List
+133. Clone Linked List
+134. Flatten Linked List
+135. Circular Linked List Operations
+
+### Stack
+
+136. Implement Stack Using Array
+137. Implement Stack Using Linked List
+138. Implement Stack Using Queue
+139. Reverse Stack
+140. Sort Stack
+141. Valid Parentheses
+142. Next Greater Element
+143. Previous Greater Element
+144. Largest Rectangle in Histogram
+145. Min Stack
+146. Evaluate Postfix Expression
+147. Convert Infix to Postfix
+148. Convert Infix to Prefix
+149. Convert Prefix to Infix
+150. Stock Span Problem
+
+### Queue
+
+151. Implement Queue Using Array
+152. Implement Queue Using Linked List
+153. Implement Queue Using Stack
+154. Circular Queue
+155. Priority Queue
+156. Deque Implementation
+157. Generate Binary Numbers
+158. Sliding Window Maximum
+159. First Non-Repeating Character in Stream
+160. Rotten Oranges Problem
+
+### HashMap / HashSet
+
+161. Count Frequency of Elements
+162. Find Duplicate Elements
+163. Find Unique Elements
+164. Two Sum Problem
+165. Longest Consecutive Sequence
+166. Group Anagrams
+167. Find Common Elements
+168. Find Missing Elements
+169. Employee Count by Department
+170. Word Frequency Counter
+
+### Trees
+
+171. Inorder Traversal
+172. Preorder Traversal
+173. Postorder Traversal
+174. Level Order Traversal
+175. Height of Binary Tree
+176. Diameter of Binary Tree
+177. Check Balanced Tree
+178. Mirror Binary Tree
+179. Lowest Common Ancestor
+180. Validate BST
+181. Insert in BST
+182. Delete in BST
+183. Search in BST
+184. Kth Smallest in BST
+185. Kth Largest in BST
+186. Boundary Traversal
+187. Zigzag Traversal
+188. Vertical Order Traversal
+189. Top View of Tree
+190. Bottom View of Tree
+
+### Recursion
+
+191. Factorial Using Recursion
+192. Fibonacci Using Recursion
+193. Reverse String Using Recursion
+194. Sum of Digits Using Recursion
+195. Tower of Hanoi
+196. Generate Subsets
+197. Generate Permutations
+198. N Queens Problem
+199. Rat in Maze
+200. Sudoku Solver
+
+### Java 8 Streams
+
+201. Find Duplicate Elements Using Stream
+202. Find Unique Elements Using Stream
+203. Find Even Numbers Using Stream
+204. Find Odd Numbers Using Stream
+205. Find Max Number Using Stream
+206. Find Min Number Using Stream
+207. Count Elements Using Stream
+208. Sort List Using Stream
+209. Reverse Sort Using Stream
+210. Find First Element Using Stream
+211. Find Any Element Using Stream
+212. Skip Elements Using Stream
+213. Limit Elements Using Stream
+214. Convert List to Map
+215. Convert List to Set
+216. Group By Department
+217. Count Employees by Department
+218. Find Highest Salary Employee
+219. Find Second Highest Salary Employee
+220. Find Average Salary by Department
+221. Partition Even and Odd Numbers
+222. Join Strings Using Collectors
+223. Find Duplicate Characters
+224. Count Character Frequency
+225. Find First Non-Repeated Character
+226. Find Longest String
+227. Find Shortest String
+228. Sort Employees by Salary
+229. Sort Employees by Name
+230. Find Employees Older Than 30
+
+### Multithreading
+
+231. Producer Consumer Problem
+232. Deadlock Example
+233. Thread Synchronization
+234. Thread Communication
+235. Volatile Keyword Example
+236. Callable and Future
+237. ExecutorService Example
+238. Thread Pool Implementation
+239. CountDownLatch Example
+240. CyclicBarrier Example
+
+
+
+### Collections
+
+261. Remove Duplicates from List
+262. Sort List of Employees
+263. Sort Map by Key
+264. Sort Map by Value
+265. Find Duplicate Elements in List
+266. Find Frequency of Elements
+267. Convert List to Map
+268. Merge Two Lists
+269. Find Common Elements Between Lists
+270. Find Difference Between Lists
+
+### Advanced DSA
+
+271. BFS Traversal
+272. DFS Traversal
+273. Dijkstra Algorithm
+274. Bellman Ford Algorithm
+275. Floyd Warshall Algorithm
+276. Kruskal Algorithm
+277. Prim Algorithm
+278. Topological Sort
+279. Detect Cycle in Graph
+280. Shortest Path in Graph
+
+
+### Frequently Asked Company Questions
+
+291. LRU Cache
+292. LFU Cache
+293. Word Break Problem
+294. Longest Increasing Subsequence
+295. Longest Palindromic Subsequence
+296. Coin Change Problem
+297. Knapsack Problem
+298. Subset Sum Problem
+299. Edit Distance Problem
+300. Minimum Window Substring
+
+### Sliding Window
+
+301. Maximum Sum Subarray of Size K
+302. First Negative Number in Every Window
+303. Count Distinct Elements in Every Window
+304. Longest Substring Without Repeating Characters
+305. Longest Substring with K Unique Characters
+306. Minimum Window Substring
+307. Maximum Consecutive Ones
+308. Fruit Into Baskets
+309. Longest Repeating Character Replacement
+310. Permutation in String
+
+### Two Pointers
+
+311. Two Sum Sorted Array
+312. Three Sum Problem
+313. Four Sum Problem
+314. Remove Duplicates from Sorted Array
+315. Container With Most Water
+316. Trapping Rain Water
+317. Merge Sorted Arrays In Place
+318. Move Negative Numbers to One Side
+319. Sort Colors (Dutch National Flag)
+320. Pair Difference Equals K
+
+### Binary Search
+
+321. Binary Search Implementation
+322. First Occurrence of Element
+323. Last Occurrence of Element
+324. Count Occurrences of Element
+325. Search in Rotated Sorted Array
+326. Find Minimum in Rotated Sorted Array
+327. Square Root Using Binary Search
+328. Peak Element
+329. Search Insert Position
+330. Median of Two Sorted Arrays
+
+### Heap / Priority Queue
+
+331. K Largest Elements
+332. K Smallest Elements
+333. Kth Largest Element in Array
+334. Kth Smallest Element in Matrix
+335. Merge K Sorted Lists
+336. Top K Frequent Elements
+337. Connect Ropes with Minimum Cost
+338. Median from Data Stream
+339. Sort Nearly Sorted Array
+340. Frequency Sort
+
+### Dynamic Programming
+
+341. Climbing Stairs
+342. House Robber
+343. House Robber II
+344. Coin Change
+345. Coin Change II
+346. 0/1 Knapsack
+347. Unbounded Knapsack
+348. Rod Cutting Problem
+349. Longest Common Subsequence
+350. Longest Common Substring
+351. Edit Distance
+352. Minimum Path Sum
+353. Unique Paths
+354. Unique Paths II
+355. Decode Ways
+356. Jump Game
+357. Jump Game II
+358. Partition Equal Subset Sum
+359. Maximum Product Subarray
+360. Longest Increasing Subsequence
+
+### Backtracking
+
+361. N Queens
+362. Sudoku Solver
+363. Rat in a Maze
+364. Word Search
+365. Generate Parentheses
+366. Letter Combinations of Phone Number
+367. Combination Sum
+368. Combination Sum II
+369. Permutations
+370. Subsets
+
+### Graphs
+
+371. BFS Traversal
+372. DFS Traversal
+373. Detect Cycle in Undirected Graph
+374. Detect Cycle in Directed Graph
+375. Number of Islands
+376. Flood Fill Algorithm
+377. Rotten Oranges
+378. Clone Graph
+379. Course Schedule
+380. Topological Sorting
+381. Dijkstra Algorithm
+382. Bellman Ford Algorithm
+383. Floyd Warshall Algorithm
+384. Kruskal Algorithm
+385. Prim Algorithm
+386. Connected Components
+387. Bipartite Graph Check
+388. Shortest Path in DAG
+389. Alien Dictionary
+390. Word Ladder
+
+### Bit Manipulation
+
+391. Check Odd or Even Using Bitwise
+392. Swap Two Numbers Using XOR
+393. Count Set Bits
+394. Check Power of Two
+395. Find Single Number
+396. Find Two Unique Numbers
+397. Missing Number Using XOR
+398. Reverse Bits
+399. Binary Addition
+400. Divide Two Integers Without Operators
+
+### Trie
+
+401. Implement Trie
+402. Search Word in Trie
+403. Prefix Search
+404. Word Dictionary
+405. Replace Words Using Trie
+406. Longest Word in Dictionary
+407. Word Search II
+408. Auto Complete System
+409. Count Distinct Substrings
+410. Maximum XOR Pair
+
+### Java Collections
+
+411. Custom Comparator Example
+412. Comparable vs Comparator
+413. Sort Employee by Multiple Fields
+414. Find Duplicate Objects
+415. Convert List to Set
+416. Convert Set to List
+417. Convert List to Map
+418. Group Objects by Property
+419. Partition List Based on Condition
+420. Remove Null Values from List
+
+### Java 8 Streams Advanced
+
+421. Find Duplicate Integers
+422. Find Duplicate Strings
+423. Count Occurrence of Each Word
+424. Count Occurrence of Each Character
+425. Group Employees by Department
+426. Find Highest Paid Employee per Department
+427. Find Average Salary by Department
+428. Partition Employees by Age
+429. Sort Employees by Salary Descending
+430. Find Top 3 Highest Salaries
+431. Find Second Highest Salary
+432. Find Second Lowest Salary
+433. Convert List to Map Using Streams
+434. Join Employee Names
+435. Find Employees Joined After Date
+436. Find Employee with Longest Name
+437. Find Duplicate Employees
+438. Remove Duplicate Employees
+439. Find Max Length String
+440. Find Min Length String
+
+### Concurrency / Multithreading
+
+441. Producer Consumer Using wait/notify
+442. Producer Consumer Using BlockingQueue
+443. Deadlock Example
+444. Deadlock Prevention
+445. ReentrantLock Example
+446. Semaphore Example
+447. CountDownLatch Example
+448. CyclicBarrier Example
+449. ExecutorService Example
+450. CompletableFuture Example
+
+
+### System Design Coding
+
+471. Design URL Shortener
+472. Design Rate Limiter
+473. Design Cache System
+474. Design Parking Lot
+475. Design ATM Machine
+476. Design Library Management System
+477. Design Hotel Booking System
+478. Design Food Delivery App
+479. Design Movie Ticket Booking System
+480. Design Elevator System
+
+### Real Interview Problems
+
+481. LRU Cache Implementation
+482. LFU Cache Implementation
+483. Design HashMap
+484. Design HashSet
+485. Randomized Set
+486. Min Stack
+487. Max Stack
+488. Browser History Design
+489. Task Scheduler
+490. Logger Rate Limiter
+
+### Company Favorites
+
+491. Merge Intervals
+492. Insert Interval
+493. Meeting Rooms I
+494. Meeting Rooms II
+495. Employee Free Time
+496. Skyline Problem
+497. Car Pooling
+498. Gas Station Problem
+499. Reorganize String
+500. Serialize and Deserialize Binary Tree

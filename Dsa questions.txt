@@ -1,0 +1,981 @@
+====================================================
+DSA PATTERN-WISE QUESTIONS (JAVA INTERVIEW PREP)
+====================================================
+
+1. HASHMAP / HASHSET PATTERN
+----------------------------------------------------
+1. Two Sum
+package com.dsa.hashset;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class TwoSum {
+    
+    public static int[] twoSum(int[] nums, int target){
+        
+        Map<Integer,Integer> map = new HashMap();
+        
+        for(int i=0; i< nums.length;i++){
+            
+            int complement = target- nums[i];
+            
+            if(map.containsKey(complement)){
+                return new int[]{map.get(complement),i};
+            }
+            
+            map.put(nums[i], i);
+        }
+       return new int[]{-1, -1};
+    }
+    
+    public static void main(String[] args) {
+        int[] nums = {7,11,2,1,5,3};
+        
+        int target=10;
+        
+        int[] result = twoSum(nums,target);
+        
+        System.out.println(result[0] + " " +result[1]);
+    }
+    
+}
+
+
+2. Contains Duplicate
+package com.dsa.hashset;
+import java.util.HashSet;
+import java.util.Set;
+public class ContainsDuplicate {
+    
+    public static boolean containsDuplicate(int[] nums){
+        Set<Integer> set = new HashSet();
+        
+        for(int num : nums ){
+            if(set.contains(num)){
+                return true;
+            }
+            set.add(num);
+        }
+        return false;
+    }
+    
+    public static void main(String[] args) {
+        int[] nums = {1,2,3,4,1,2};
+        System.out.println(containsDuplicate(nums));
+    }
+    
+}
+
+
+
+3. Valid Anagram
+package com.heg.super500;
+
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+public class Q03_AnagramCheck {
+    
+    public static boolean isAnangram(String s1,String s2){
+        s1=s1.toLowerCase();
+        s2=s2.toLowerCase();
+		
+		//Remove spaces before checking.
+		s1 = s1.replaceAll("\\s", "");
+		s2 = s2.replaceAll("\\s", "");
+        
+        if(s1.length() !=s2.length()){
+            return false;
+        }
+        
+        int[] count =new int[26]; //It is commonly used to count the frequency of lowercase English letters (a to z).
+        
+        for(int i=0; i<s1.length();i++){
+          count[s1.charAt(i) - 'a']++;          
+          count[s2.charAt(i) - 'a']--;
+              
+        }
+        
+        for(int c : count){
+            if(c!=0){
+                return false;
+            }
+        }
+        return true;
+    }
+    
+	
+	
+4. Group Anagrams
+package com.dsa.hashset;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class GroupAnagrams {
+    
+    public static List<List<String>> groupAnagrams(String[] strs){
+        Map<String,List<String>> map= new HashMap();
+        
+        for(String str : strs ){
+            System.out.println("str :: " +str);
+            char[] chars = str.toCharArray();
+            System.out.println("str :: " + Arrays.toString(chars));
+            
+            Arrays.sort(chars);
+            System.out.println("chars " +new String(chars));
+            
+            String key = new String(chars);
+            
+            System.out.println("Key :: " +key);
+            map.computeIfAbsent(key, k -> new ArrayList())
+                    .add(str);
+            System.out.println("");
+        }
+        return new ArrayList(map.values());
+        
+    }
+    public static void main(String[] args) {
+        String[] strs= {
+            "eat", "tea", "tan",
+                "ate", "nat", "bat"
+        };
+        
+        System.out.println(groupAnagrams(strs));
+    }
+    
+}
+
+
+
+5. First Non-Repeated Character
+package com.dsa.hashset;
+import java.util.HashMap;
+import java.util.Map;
+public class NonRepeatingCharacter {
+    public static Character firstNonRepeated(String str){
+        Map<Character,Integer> map = new HashMap();        
+        for(char ch : str.toCharArray()){
+            map.put(ch, map.getOrDefault(ch, 0) +1);
+        }        
+        for(char ch : str.toCharArray()){
+            if(map.get(ch) ==1){
+                return ch;
+            }
+        }
+        return null;        
+    }    
+    public static void main(String[] args) {
+        String str= "swiss";        
+        Character result = firstNonRepeated(str);        
+        if(result != null){
+            System.out.println(result);
+        }else{
+            System.out.println("No unique character");
+        }
+    }    
+}
+
+
+
+
+8. Longest Consecutive Sequence
+package com.dsa.hashset;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class LongestConsecutiveSequence {
+    public static int longestConsecutive(int[] nums ){
+       
+        Set<Integer> set = new HashSet();
+        
+        for(int num : nums){
+            set.add(num);
+        }
+        
+        int longest=0;
+        
+        for(int num : set){
+            // start of a sequence
+            if(!set.contains(num-1)){
+                int currentNum=num;
+                int currentLength=1;
+                
+                while(set.contains(currentNum+1)){
+                    currentNum++;
+                    currentLength++;
+                }
+                longest=Math.max(longest, currentLength);
+            }
+        }
+        return longest;
+        
+        
+    }
+    
+    public static void main(String[] args) {
+        int[] nums = {100,4,200,1,3,2};
+        
+        System.out.println(longestConsecutive(nums));
+    }
+}
+
+
+
+9. Majority Element
+Ans 
+package com.dsa.hashset;
+public class MajorityElement {
+    //Boyer-Moore Voting Algorithm
+    public static int majorityElement(int[] nums){
+        int candidate =0;
+        int count=0;        
+        for(int num : nums ){            
+            if(count == 0){
+                candidate=num;
+            }            
+            count +=(num == candidate) ? 1 : -1;
+        }
+        return candidate;
+    }    
+    public static void main(String[] args) {
+        int[] nums = {2,2,1,1,1,2,2,3,4,3,4,3,4,3,4,3,3};
+        System.out.println(majorityElement(nums));
+    }    
+}
+
+
+10. Subarray Sum Equals K
+package com.dsa.hashset;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class SubarraySumEqualsK {
+    
+    public static int subarraySum(int[] nums, int k){
+        Map<Integer,Integer> map = new HashMap();
+        
+        map.put(0, 1);
+        int prefixSum=0;
+        int count =0;
+        
+        for(int num : nums){
+            prefixSum +=num;
+            
+            if(map.containsKey(prefixSum-k)){
+                count += map.get(prefixSum-k);
+            }
+            map.put(prefixSum, map.getOrDefault(prefixSum, 0)+1);
+            
+        }
+        return count;
+    }
+    
+    public static void main(String[] args) {
+        int[] nums ={1,1,1};
+        int k =2;
+        
+        System.out.println(subarraySum(nums, k));
+    }
+    
+}
+
+
+
+
+
+13. Union of Two Arrays
+
+package com.dsa.hashset;
+import java.util.HashSet;
+import java.util.Set;
+public class IntersectionOfArray {    
+    public static Set<Integer> intersection(int[] nums1, int[] nums2){
+        Set<Integer> set1 = new HashSet();
+        Set<Integer> result = new HashSet();
+        
+        for(int num : nums1){
+            set1.add(num);
+        }   
+        for(int num : nums2){
+            if(set1.contains(num)){
+                result.add(num);
+            }
+        }        
+        return result;        
+    }
+    
+    public static void main(String[] args) {
+        int[] nums1 = {1,2,2,1,3};
+        int[] nums2 = {2,2,3};        
+        Set<Integer> set= intersection(nums1, nums2);
+        System.out.println(set);
+    }    
+}
+
+
+
+15. Happy Number
+package com.dsa.hashset;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class HappyNumber {
+    public static boolean isHappy(int n){
+        Set<Integer> seen = new HashSet();
+        while( n != 1 && !seen.contains(n)){
+            seen.add(n);
+            
+            int sum =0;
+            
+            while(n > 0){
+                int digit = n %10;
+                
+                sum += digit* digit;
+                n /=10;
+            }
+            n= sum;
+        }
+        return n ==1;
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(isHappy(19));
+    }
+
+}
+
+
+16. Isomorphic Strings
+Ans 
+package com.dsa.hashset;
+
+import java.util.HashMap;
+
+public class IsomorphicString {
+    
+    public static boolean isIsomorphic(String s, String t){
+        HashMap<Character,Integer> map1 = new HashMap();
+        HashMap<Character,Integer> map2 = new HashMap();
+        
+        for(int i =0 ; i<s.length() ; i++){
+            char c1= s.charAt(i);
+            char c2 = t.charAt(i);
+            
+            if(!map1.getOrDefault(c1, -1)
+                    .equals(map2.getOrDefault(c2, -1))){
+                return false;
+            }
+            map1.put(c1, i);
+            map2.put(c2, i);
+        }
+        return true;
+    }
+    
+    
+    public static void main(String[] args) {
+        System.out.println(isIsomorphic("agg", "add"));
+    }
+}
+
+
+17. Word Pattern
+package com.dsa.hashset;
+
+import java.util.HashMap;
+
+public class IsomorphicString {
+    
+    public static boolean isIsomorphic(String s, String t){
+        HashMap<Character,Integer> map1 = new HashMap();
+        HashMap<Character,Integer> map2 = new HashMap();
+        
+        for(int i =0 ; i<s.length() ; i++){
+            char c1= s.charAt(i);
+            char c2 = t.charAt(i);
+            
+            if(!map1.getOrDefault(c1, -1)
+                    .equals(map2.getOrDefault(c2, -1))){
+                return false;
+            }
+            map1.put(c1, i);
+            map2.put(c2, i);
+        }
+        return true;
+    }
+    
+    
+    public static void main(String[] args) {
+        System.out.println(isIsomorphic("agg", "add"));
+    }
+}
+
+
+18. Longest Subarray With Sum K
+package com.dsa.hashset;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class LongestSubarrayWithSumK {
+    
+    public static int longestSubarray(int[] nums, int k ){
+        Map<Integer,Integer> map = new HashMap();
+        int prefixSum=0;
+        int maxLength=0;
+        
+        for(int i = 0 ; i< nums.length ; i++){
+            prefixSum +=nums[i];
+            
+            if(prefixSum == k){
+                maxLength= i + 1;
+            }
+            
+            if(map.containsKey(prefixSum - k )){
+                maxLength = Math.max(maxLength, i - map.get(prefixSum - k));
+            }
+            map.putIfAbsent(prefixSum, i);            
+        }
+        return maxLength;
+        
+     }
+    
+    public static void main(String[] args) {
+        int[] nums = {1,-1,5,-2,3};
+        
+        System.out.println(longestSubarray(nums, 3));
+    }
+    
+}
+
+
+19. Find Pair With Given Difference
+package com.dsa.hashset;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class PairWithGivenDifference {
+    
+    public static boolean findPair(int[] arr, int diff){
+        Set<Integer> set = new HashSet();
+        for(int num : arr){
+            if(set.contains(num-diff) || 
+               set.contains(num+diff)){
+                return true;
+            }
+            set.add(num);
+        }
+        return false;
+        
+    }
+    
+    public static void main(String[] args) {
+        int arr[]= {5,20,3,2,50,80};
+        System.out.println(findPair(arr, 78));
+    }
+    
+}
+
+
+20. Find Common Elements in Arrays
+Ans - 
+package com.dsa.hashset;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class CommonElimentArray {
+    
+    public static List<Integer> findCommon(int[] arr1, int[] arr2){
+        Set<Integer> set = new HashSet();
+        
+        for(int num : arr1){
+            set.add(num);
+        }
+        
+        List<Integer> result = new ArrayList();
+        for(int num : arr2){
+            if(set.contains(num)){
+                result.add(num);                
+                //avoid duplicates in result                
+                set.remove(num);
+            }
+        }
+        return result;        
+    }
+    
+    public static void main(String[] args) {
+        int[] arr1 = {1,2,3,4,5};
+        int[] arr2= {3,4,5,6,7};        
+        System.out.println(findCommon(arr1, arr2));
+    }    
+}
+
+
+2. TWO POINTERS PATTERN
+----------------------------------------------------
+21. Reverse String
+Ans - 
+package com.dsa.twopointers;
+public class ReverseString {
+    
+    public static String reverseString(String str){
+        char[] arr= str.toCharArray();
+        
+        int left=0;
+        int right=arr.length-1;
+        
+        while(left<right){
+            char temp = arr[left];
+            arr[left]=arr[right];
+            arr[right]=temp;
+            left++;
+            right--;
+        }
+        return new String(arr);
+    }
+    
+    
+    public static void main(String[] args) {
+        String str= "pradeep";
+        System.out.println(reverseString(str));
+    }
+}
+
+
+
+
+22. Valid Palindrome
+package com.dsa.twopointers;
+public class PalindromCheck {
+    
+    public static boolean palindromCheck(String str){
+        char[] arr = str.toCharArray();
+        int left=0;
+        int right=str.length()-1;
+        
+        while(left < right){
+            if(arr[left] !=arr[right]){
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+        
+    }
+    
+    public static void main(String[] args) {
+        String str="madama";
+        System.out.println(palindromCheck(str));
+    }
+    
+}
+
+23. Remove Duplicates From Sorted Array
+package com.dsa.twopointers;
+public class RemoveDuplicateFromSortedArray {
+    
+    public static int removeDuplicate(int[] nums){
+        if(nums.length ==0){
+            return 0;
+        }
+        
+        int i =0;
+        for(int j = 1; j < nums.length ;j++){
+            if(nums[j] != nums[i]){
+                i++;
+                nums[i]=nums[j];
+            }
+        }
+        return i+1;
+    }
+    
+    public static void main(String[] args) {
+        int[] nums = {0,0,1,1,1,2,2,3,3,4};
+        int k =removeDuplicate(nums);
+        System.out.println("Unique Count = " +k);
+        
+        for(int i =0 ; i<k ; i++){
+            System.out.println(nums[i]);
+        }
+    }
+}
+
+
+24. Move Zeroes
+25. Pair With Given Sum
+26. 3 Sum
+27. 4 Sum
+28. Container With Most Water
+29. Trapping Rain Water
+30. Merge Sorted Arrays
+31. Sort Colors (Dutch National Flag)
+32. Squares Of Sorted Array
+33. Backspace String Compare
+34. Reverse Vowels Of String
+35. Remove Element
+36. Two Sum II
+37. Partition Array
+38. Closest Pair Sum
+39. Max Consecutive Ones
+40. Rearrange Positive And Negative Numbers
+
+3. SLIDING WINDOW PATTERN
+----------------------------------------------------
+41. Longest Substring Without Repeating Characters
+42. Maximum Sum Subarray Of Size K
+43. Minimum Window Substring
+44. Longest Repeating Character Replacement
+45. Permutation In String
+46. Find All Anagrams In String
+47. Fruit Into Baskets
+48. Maximum Consecutive Ones III
+49. Longest Subarray With Sum K
+50. Sliding Window Maximum
+51. Minimum Size Subarray Sum
+52. Count Occurrences Of Anagrams
+53. Maximum Average Subarray
+54. Distinct Elements In Every Window
+55. Substring With K Distinct Characters
+
+4. PREFIX SUM PATTERN
+----------------------------------------------------
+56. Subarray Sum Equals K
+57. Product Of Array Except Self
+58. Equilibrium Index
+59. Running Sum Of Array
+60. Range Sum Query
+61. Count Subarrays With Given Sum
+62. Continuous Subarray Sum
+63. Pivot Index
+64. Maximum Subarray Sum
+65. Count Binary Subarrays With Sum
+
+5. BINARY SEARCH PATTERN
+----------------------------------------------------
+66. Binary Search
+67. First Occurrence
+68. Last Occurrence
+69. Count Occurrences
+70. Search Insert Position
+71. Search In Rotated Sorted Array
+72. Find Minimum In Rotated Array
+73. Find Peak Element
+74. Square Root Of Number
+75. Koko Eating Bananas
+76. Capacity To Ship Packages
+77. Aggressive Cows
+78. Allocate Minimum Pages
+79. Median Of Two Sorted Arrays
+80. Single Element In Sorted Array
+
+6. FAST & SLOW POINTER PATTERN
+----------------------------------------------------
+81. Find Middle Of Linked List
+82. Detect Cycle In Linked List
+83. Find Start Of Cycle
+84. Remove Cycle
+85. Happy Number
+86. Circular Array Loop
+87. Palindrome Linked List
+88. Reorder List
+89. Find Duplicate Number
+
+7. LINKED LIST PATTERN
+----------------------------------------------------
+90. Reverse Linked List
+91. Reverse Linked List Recursively
+92. Merge Two Sorted Lists
+93. Remove Nth Node From End
+94. Delete Node In Linked List
+95. Intersection Of Two Linked Lists
+96. Reverse Linked List In K Groups
+97. Rotate Linked List
+98. Sort Linked List
+99. Flatten Linked List
+100. Clone Linked List With Random Pointer
+101. Add Two Numbers
+102. Odd Even Linked List
+103. Segregate Even And Odd Nodes
+104. Remove Duplicates From Linked List
+105. Swap Nodes In Pairs
+
+8. STACK PATTERN
+----------------------------------------------------
+106. Valid Parentheses
+107. Balanced Brackets
+108. Next Greater Element
+109. Previous Greater Element
+110. Next Smaller Element
+111. Previous Smaller Element
+112. Min Stack
+113. Implement Stack Using Queue
+114. Sort Stack
+115. Largest Rectangle In Histogram
+116. Stock Span Problem
+117. Daily Temperatures
+118. Remove Adjacent Duplicates
+119. Infix To Postfix
+120. Prefix To Infix
+121. Postfix Evaluation
+122. Celebrity Problem
+123. Decode String
+124. Asteroid Collision
+125. Simplify Path
+
+9. QUEUE / DEQUE PATTERN
+----------------------------------------------------
+126. Implement Queue Using Stack
+127. Circular Queue
+128. Sliding Window Maximum
+129. Rotten Oranges
+130. First Non-Repeating Character In Stream
+131. Task Scheduler
+132. Reverse Queue
+133. Interleave Queue
+134. Generate Binary Numbers
+135. Implement Deque
+
+10. RECURSION PATTERN
+----------------------------------------------------
+136. Factorial
+137. Fibonacci
+138. Power Function
+139. Sum Of Digits
+140. Reverse String
+141. Reverse Number
+142. Check Palindrome
+143. Print 1 To N
+144. Print N To 1
+145. Tower Of Hanoi
+146. Josephus Problem
+147. Binary Search Recursive
+148. Generate Subsequences
+149. Recursive Bubble Sort
+150. Recursive Selection Sort
+
+11. BACKTRACKING PATTERN
+----------------------------------------------------
+151. Generate Subsets
+152. Generate Permutations
+153. Combination Sum
+154. Combination Sum II
+155. N Queens
+156. Sudoku Solver
+157. Rat In A Maze
+158. Word Search
+159. Palindrome Partitioning
+160. Restore IP Addresses
+161. Letter Combinations Of Phone Number
+162. Subset Sum
+163. M Coloring Problem
+164. Knight Tour Problem
+165. Tug Of War Problem
+
+12. TREE DFS PATTERN
+----------------------------------------------------
+166. Inorder Traversal
+167. Preorder Traversal
+168. Postorder Traversal
+169. Height Of Binary Tree
+170. Diameter Of Binary Tree
+171. Maximum Path Sum
+172. Check Balanced Tree
+173. Lowest Common Ancestor
+174. Same Tree
+175. Symmetric Tree
+176. Path Sum
+177. Root To Leaf Paths
+178. Count Leaf Nodes
+179. Check Identical Trees
+180. Invert Binary Tree
+
+13. TREE BFS PATTERN
+----------------------------------------------------
+181. Level Order Traversal
+182. Reverse Level Order Traversal
+183. Zigzag Traversal
+184. Left View
+185. Right View
+186. Top View
+187. Bottom View
+188. Vertical Order Traversal
+189. Boundary Traversal
+190. Average Of Levels
+191. Maximum Width Of Tree
+192. Minimum Depth Of Tree
+
+14. BST PATTERN
+----------------------------------------------------
+193. Search Node In BST
+194. Insert Node In BST
+195. Delete Node In BST
+196. Validate BST
+197. Kth Smallest Element
+198. Kth Largest Element
+199. Floor And Ceil In BST
+200. Lowest Common Ancestor In BST
+201. BST Iterator
+202. Convert Sorted Array To BST
+203. Recover BST
+204. Range Sum BST
+
+15. HEAP / PRIORITY QUEUE PATTERN
+----------------------------------------------------
+205. Kth Largest Element
+206. Kth Smallest Element
+207. Top K Frequent Elements
+208. Merge K Sorted Arrays
+209. Merge K Sorted Lists
+210. Median From Data Stream
+211. Connect Ropes With Minimum Cost
+212. Sort Nearly Sorted Array
+213. K Closest Elements
+214. K Closest Points To Origin
+215. Reorganize String
+216. Frequency Sort
+217. Task Scheduler
+218. Last Stone Weight
+
+16. GRAPH BFS PATTERN
+----------------------------------------------------
+219. BFS Traversal
+220. Number Of Islands
+221. Rotten Oranges
+222. Word Ladder
+223. Clone Graph
+224. Shortest Path In Unweighted Graph
+225. Open The Lock
+226. Minimum Knight Moves
+227. Flood Fill
+228. Connected Components
+
+17. GRAPH DFS PATTERN
+----------------------------------------------------
+229. DFS Traversal
+230. Number Of Islands
+231. Connected Components
+232. Detect Cycle In Undirected Graph
+233. Flood Fill
+234. Surrounded Regions
+235. Count Provinces
+236. Clone Graph
+237. Path Exists In Graph
+238. All Paths Source To Target
+
+18. TOPOLOGICAL SORT PATTERN
+----------------------------------------------------
+239. Topological Sort
+240. Course Schedule
+241. Course Schedule II
+242. Alien Dictionary
+243. Eventual Safe States
+244. Task Scheduling
+245. Build Order Problem
+
+19. SHORTEST PATH PATTERN
+----------------------------------------------------
+246. Dijkstra Algorithm
+247. Bellman Ford Algorithm
+248. Floyd Warshall Algorithm
+249. Network Delay Time
+250. Cheapest Flights Within K Stops
+251. Path With Minimum Effort
+252. Minimum Cost Path
+
+20. DYNAMIC PROGRAMMING PATTERN
+----------------------------------------------------
+253. Climbing Stairs
+254. House Robber
+255. House Robber II
+256. Coin Change
+257. Coin Change II
+258. Longest Common Subsequence
+259. Longest Increasing Subsequence
+260. 0/1 Knapsack
+261. Unbounded Knapsack
+262. Edit Distance
+263. Word Break
+264. Partition Equal Subset Sum
+265. Target Sum
+266. Rod Cutting
+267. Matrix Chain Multiplication
+268. Egg Dropping Problem
+269. Decode Ways
+270. Jump Game
+271. Jump Game II
+272. Maximum Product Subarray
+273. Maximum Sum Increasing Subsequence
+274. Palindrome Partitioning
+275. Minimum Path Sum
+276. Unique Paths
+277. Unique Paths II
+278. Cherry Pickup
+279. Burst Balloons
+280. Longest Palindromic Subsequence
+
+====================================================
+TOP 50 MUST DO FOR INTERVIEWS
+====================================================
+
+Two Sum
+Valid Anagram
+Longest Substring Without Repeating Characters
+Maximum Subarray Sum
+Move Zeroes
+Merge Sorted Arrays
+3 Sum
+Valid Parentheses
+Next Greater Element
+Stock Span Problem
+Binary Search
+Search In Rotated Sorted Array
+Find Peak Element
+Reverse Linked List
+Detect Cycle In Linked List
+Merge Two Sorted Lists
+LRU Cache
+Level Order Traversal
+Height Of Binary Tree
+Diameter Of Binary Tree
+Lowest Common Ancestor
+Validate BST
+Kth Smallest In BST
+Top K Frequent Elements
+Kth Largest Element
+Number Of Islands
+DFS Traversal
+BFS Traversal
+Dijkstra Algorithm
+Course Schedule
+Climbing Stairs
+House Robber
+Coin Change
+Longest Common Subsequence
+Longest Increasing Subsequence
+0/1 Knapsack
+Word Break
+Target Sum
+N Queens
+Sudoku Solver
+Combination Sum
+Permutations
+Subsets
+Producer Consumer
+Custom HashMap
+Singleton Pattern
+Thread Safe Singleton
+Parking Lot Design
+Rate Limiter Design
+Logger Design

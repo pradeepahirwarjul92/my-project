@@ -1,0 +1,399 @@
+JAVA 8 ADVANCED CONCURRENCY - TOP 100 INTERVIEW QUESTIONS
+
+=================================================
+THREAD BASICS (1-20)
+=================================================
+
+1. What is a Thread?
+2. Difference between Process and Thread?
+3. What is Multithreading?
+4. Advantages of Multithreading?
+5. How to create a Thread in Java?
+6. Extending Thread vs Implementing Runnable?
+7. What is Callable Interface?
+8. Difference between Runnable and Callable?
+9. What is Future?
+10. What is FutureTask?
+11. Thread Lifecycle?
+12. New State?
+13. Runnable State?
+14. Running State?
+15. Blocked State?
+16. Waiting State?
+17. Timed Waiting State?
+18. Terminated State?
+19. What is Thread Scheduler?
+20. What is Context Switching?
+
+=================================================
+SYNCHRONIZATION (21-35)
+=================================================
+
+21. What is Synchronization?
+22. Why Synchronization is needed?
+23. What is Race Condition?
+24. What is Critical Section?
+25. What is Mutual Exclusion?
+26. synchronized Method?
+27. synchronized Block?
+28. Class Level Lock?
+29. Object Level Lock?
+30. Difference between synchronized method and block?
+31. What is Intrinsic Lock?
+32. What is Monitor Lock?
+33. Can static methods be synchronized?
+34. Can constructors be synchronized?
+35. What are synchronization drawbacks?
+
+=================================================
+VOLATILE & MEMORY MODEL (36-45)
+=================================================
+
+36. What is volatile keyword?
+37. Why use volatile?
+38. volatile vs synchronized?
+39. What is Java Memory Model (JMM)?
+40. What is Visibility Problem?
+41. What is Atomicity?
+42. What is Happens-Before Relationship?
+43. What is Reordering?
+44. What is Memory Barrier?
+45. When should volatile not be used?
+
+=================================================
+LOCKS API (46-60)
+=================================================
+
+46. What is Lock Interface?
+47. Why use ReentrantLock?
+48. synchronized vs ReentrantLock?
+49. What is Fair Lock?
+50. What is Non-Fair Lock?
+51. What is tryLock()?
+52. What is lockInterruptibly()?
+53. What is ReadWriteLock?
+54. What is ReentrantReadWriteLock?
+55. What is StampedLock?
+56. What is Optimistic Locking?
+57. What is Pessimistic Locking?
+58. What is Condition Interface?
+59. await() vs wait()?
+60. signal() vs notify()?
+
+=================================================
+THREAD COMMUNICATION (61-70)
+=================================================
+
+61. What is wait()?
+62. What is notify()?
+63. What is notifyAll()?
+64. Difference between wait and sleep?
+65. Producer Consumer Problem?
+66. How to implement Producer Consumer?
+67. What is BlockingQueue?
+68. Types of BlockingQueue?
+69. ArrayBlockingQueue?
+70. LinkedBlockingQueue?
+
+=================================================
+EXECUTOR FRAMEWORK (71-85)
+=================================================
+
+71. What is Executor Framework?
+72. Why ExecutorService?
+73. FixedThreadPool?
+74. CachedThreadPool?
+75. SingleThreadExecutor?
+76. ScheduledExecutorService?
+77. ForkJoinPool?
+78. Work Stealing Algorithm?
+79. What is CompletionService?
+80. What is Future?
+81. What is CompletableFuture?
+82. supplyAsync()?
+83. runAsync()?
+84. thenApply()?
+85. thenCombine()?
+
+=================================================
+CONCURRENT COLLECTIONS (86-95)
+=================================================
+
+86. What is ConcurrentHashMap?
+87. HashMap vs ConcurrentHashMap?
+88. Hashtable vs ConcurrentHashMap?
+89. CopyOnWriteArrayList?
+90. CopyOnWriteArraySet?
+91. ConcurrentLinkedQueue?
+92. ConcurrentSkipListMap?
+93. ConcurrentSkipListSet?
+94. BlockingDeque?
+95. Concurrent Collection Use Cases?
+
+=================================================
+ADVANCED CONCURRENCY (96-100)
+=================================================
+
+96. What is Deadlock?
+97. What is Livelock?
+98. What is Starvation?
+99. What is Thread Pool Tuning?
+100. How do you troubleshoot concurrency issues?
+
+=================================================
+COMPLETABLE FUTURE QUESTIONS
+=================================================
+
+1. What is CompletableFuture?
+2. Why CompletableFuture over Future?
+3. supplyAsync() vs runAsync()?
+4. thenApply() vs thenCompose()?
+5. thenAccept()?
+6. thenRun()?
+7. exceptionally()?
+8. handle()?
+9. whenComplete()?
+10. allOf()?
+11. anyOf()?
+12. join() vs get()?
+13. Async vs Non Async methods?
+14. Chaining CompletableFuture?
+15. Combining multiple futures?
+
+=================================================
+MOST ASKED PRODUCTION TROUBLESHOOTING QUESTIONS
+=================================================
+
+1. Application CPU reached 100%.
+2. Thread count continuously increasing.
+3. Deadlock detected in production.
+4. Thread pool exhausted.
+5. CompletableFuture tasks hanging.
+6. Application freezing intermittently.
+7. Request timeout issue.
+8. BlockingQueue full.
+9. High context switching.
+10. Memory leak due to ThreadLocal.
+11. Thread starvation.
+12. Race condition issue.
+13. ConcurrentModificationException.
+14. Lock contention.
+15. High GC due to thread creation.
+
+=================================================
+PRODUCTION SCENARIOS
+=================================================
+
+Scenario 1:
+Deadlock
+
+Thread Dump:
+
+jstack PID
+
+Output:
+
+Found one Java-level deadlock
+
+Cause:
+
+Thread1 holds LockA waiting LockB
+Thread2 holds LockB waiting LockA
+
+Fix:
+- Consistent lock ordering
+- Use tryLock()
+
+-------------------------------------------------
+
+Scenario 2:
+CPU 100%
+
+Check:
+
+top -H -p PID
+
+jstack PID
+
+Possible Causes:
+- Infinite Loop
+- Busy Waiting
+- Excessive Locking
+
+-------------------------------------------------
+
+Scenario 3:
+Thread Pool Exhausted
+
+Symptoms:
+- Requests hanging
+- High response time
+
+Check:
+
+ThreadPoolExecutor metrics
+
+Fix:
+- Increase pool size
+- Queue tuning
+- Async processing
+
+-------------------------------------------------
+
+Scenario 4:
+CompletableFuture Hanging
+
+Reason:
+join() waiting forever
+
+Fix:
+orTimeout()
+
+Example:
+
+future.orTimeout(5, TimeUnit.SECONDS)
+
+-------------------------------------------------
+
+Scenario 5:
+ConcurrentModificationException
+
+Reason:
+
+Iterating and modifying collection simultaneously.
+
+Bad:
+
+for(String s:list){
+   list.remove(s);
+}
+
+Fix:
+
+Iterator.remove()
+
+or Concurrent Collections
+
+-------------------------------------------------
+
+Scenario 6:
+ThreadLocal Memory Leak
+
+Reason:
+
+Thread reused by pool.
+
+Fix:
+
+threadLocal.remove();
+
+-------------------------------------------------
+
+Scenario 7:
+High Lock Contention
+
+Check:
+
+jstack PID
+
+Fix:
+- Reduce synchronized blocks
+- Use ReadWriteLock
+- Use ConcurrentHashMap
+
+=================================================
+IMPORTANT CONCURRENT CLASSES
+=================================================
+
+Thread
+Runnable
+Callable
+Future
+FutureTask
+ExecutorService
+ThreadPoolExecutor
+ScheduledExecutorService
+ForkJoinPool
+CompletableFuture
+CountDownLatch
+CyclicBarrier
+Semaphore
+Phaser
+ReentrantLock
+ReadWriteLock
+StampedLock
+BlockingQueue
+ConcurrentHashMap
+CopyOnWriteArrayList
+
+=================================================
+COUNTDOWNLATCH / CYCLICBARRIER
+=================================================
+
+CountDownLatch
+- One-time synchronization
+- Wait for tasks completion
+
+CyclicBarrier
+- Reusable synchronization point
+- All threads wait for each other
+
+Semaphore
+- Limits concurrent access
+
+Example:
+Database connection pool
+API rate limiting
+
+=================================================
+TOP 30 JAVA CONCURRENCY QUESTIONS
+=================================================
+
+1. Thread Lifecycle
+2. Runnable vs Callable
+3. synchronized
+4. volatile
+5. Java Memory Model
+6. Happens-Before
+7. ReentrantLock
+8. ReadWriteLock
+9. StampedLock
+10. wait notify
+11. Producer Consumer
+12. BlockingQueue
+13. ExecutorService
+14. ThreadPoolExecutor
+15. CompletableFuture
+16. supplyAsync
+17. thenCompose
+18. thenCombine
+19. ConcurrentHashMap
+20. CopyOnWriteArrayList
+21. CountDownLatch
+22. CyclicBarrier
+23. Semaphore
+24. Deadlock
+25. Livelock
+26. Starvation
+27. ThreadLocal
+28. ForkJoinPool
+29. Work Stealing
+30. Concurrency Troubleshooting
+
+INTERVIEW FOCUS FOR 5-10 YEARS JAVA BACKEND:
+
+- Java Memory Model
+- volatile
+- synchronized
+- ReentrantLock
+- CompletableFuture
+- ExecutorService
+- ThreadPoolExecutor
+- ConcurrentHashMap
+- Deadlock Analysis
+- Thread Dumps
+- Thread Pool Tuning
+- Producer Consumer
+- CountDownLatch
+- Semaphore
+- ForkJoinPool

@@ -1,0 +1,293 @@
+===================================
+SPRING @REFRESHSCOPE - 50 QUESTIONS
+===================================
+
+1. What is @RefreshScope?
+2. Why do we need @RefreshScope?
+3. Which Spring module provides @RefreshScope?
+4. How does @RefreshScope work internally?
+5. What problem does @RefreshScope solve?
+6. What is Spring Cloud Config?
+7. How does Config Server work?
+8. What is Config Client?
+9. What happens when configuration changes?
+10. Why is application restart not required?
+
+BASICS
+
+11. What beans should use @RefreshScope?
+12. Can @RestController use @RefreshScope?
+13. Can @Service use @RefreshScope?
+14. Can singleton beans use @RefreshScope?
+15. What happens without @RefreshScope?
+16. How are properties reloaded?
+17. What is Environment abstraction?
+18. What is PropertySource?
+19. What is bootstrap configuration?
+20. How are refreshed values injected?
+
+ACTUATOR
+
+21. What is /actuator/refresh?
+22. What happens when refresh endpoint is called?
+23. Which beans are recreated?
+24. Which beans are not recreated?
+25. How do you enable refresh endpoint?
+26. How do you secure refresh endpoint?
+27. Difference between refresh and restart?
+28. What is /actuator/env?
+29. What is /actuator/configprops?
+30. How do you verify refreshed properties?
+
+SPRING CLOUD BUS
+
+31. What is Spring Cloud Bus?
+32. Why is Spring Cloud Bus needed?
+33. How does Cloud Bus propagate refresh?
+34. RabbitMQ integration?
+35. Kafka integration?
+36. Refresh across multiple instances?
+37. Refresh across Kubernetes pods?
+38. Distributed refresh?
+39. Cloud Bus architecture?
+40. Cloud Bus troubleshooting?
+
+INTERNALS
+
+41. How does Spring recreate beans?
+42. Is @RefreshScope implemented using proxy?
+43. Singleton vs RefreshScope?
+44. Bean lifecycle during refresh?
+45. What happens to existing references?
+46. Thread safety concerns?
+47. Performance impact?
+48. Memory impact?
+49. Limitations of @RefreshScope?
+50. Explain a production use case.
+
+
+Most Asked Senior-Level Questions
+
+1. What is @RefreshScope?
+2. How does @RefreshScope work internally?
+3. Difference between Singleton and RefreshScope?
+4. Why use Config Server?
+5. /actuator/refresh flow
+6. Spring Cloud Bus
+7. Dynamic Configuration Updates
+8. Refresh across multiple pods
+9. RefreshScope proxy mechanism
+10. Production troubleshooting
+
+Basic Example
+
+Without RefreshScope
+
+@Service
+public class EmployeeService {
+
+    @Value("${app.message}")
+    private String message;
+
+}
+
+
+Property changes in Config Server:
+app.message=Hello New Value
+
+Result:
+
+Application restart required.
+
+Using @RefreshScope
+
+@Service
+@RefreshScope
+public class EmployeeService {
+
+    @Value("${app.message}")
+    private String message;
+
+}
+
+After:
+POST /actuator/refresh
+
+Bean gets refreshed.
+
+New value available immediately.
+
+
+Internal Working
+
+Interview Question:
+
+How does @RefreshScope work internally?
+
+Answer:
+
+1. Spring creates proxy bean
+2. Proxy wraps actual bean
+3. Bean values cached
+4. Refresh event occurs
+5. Cache cleared
+6. New bean instance created
+7. New properties injected
+8. Proxy points to new bean
+
+Architecture:
+
+Client
+   |
+   v
+RefreshScope Proxy
+   |
+   v
+Actual Bean
+
+Very commonly asked.
+
+
+Actuator Refresh Flow
+
+Enable:
+
+management.endpoints.web.exposure.include=refresh
+
+Call:
+
+POST /actuator/refresh
+
+Flow:
+
+Refresh Endpoint
+      |
+      v
+Environment Updated
+      |
+      v
+RefreshScope Cache Cleared
+      |
+      v
+Beans Recreated
+      |
+      v
+New Configuration Loaded
+
+
+Spring Cloud Config Example
+
+Config Server:
+
+employee.timeout=30
+
+Client:
+
+@RefreshScope
+@Component
+public class ConfigBean {
+
+    @Value("${employee.timeout}")
+    private int timeout;
+
+}
+
+Change:
+employee.timeout=60
+
+Call:
+POST /actuator/refresh
+
+New value:
+
+60
+No restart.
+
+
+Multiple Microservices Question
+Service Running on 10 Pods
+
+Pod1
+Pod2
+Pod3
+...
+Pod10
+
+Question:
+
+Will /refresh update all pods?
+
+Answer:
+
+NO
+
+Only current instance refreshes.
+
+Need:
+
+Spring Cloud Bus
+RabbitMQ/Kafka
+
+
+Spring Cloud Bus Flow
+
+Config Change
+      |
+      v
+Git Repository
+      |
+      v
+Config Server
+      |
+      v
+Bus Event
+      |
+      v
+RabbitMQ / Kafka
+      |
+      v
+All Services Refresh
+
+Very common microservice interview question.
+
+Common Production Scenario
+Problem
+Property updated in Git.
+Config not changing.
+
+Checks:
+
+1. Config Server updated?
+2. Git pull successful?
+3. /refresh called?
+4. Bean has @RefreshScope?
+5. Property name correct?
+6. Cloud Bus running?
+7. Refresh endpoint enabled?
+Limitations of @RefreshScope
+
+Interview Favorite
+
+1. Bean recreation overhead
+2. Existing object references remain old
+3. Not suitable for every bean
+4. Large refresh may impact performance
+5. Stateful beans need care
+Real Production Use Cases
+1. Database timeout changes
+2. API endpoint changes
+3. Circuit Breaker thresholds
+4. Feature flags
+5. Cache settings
+6. Retry configuration
+7. Rate limiter configuration
+8. Scheduler intervals
+9. Kafka consumer settings
+10. Dynamic business rules
+Senior-Level Answer to Remember
+
+What is @RefreshScope?
+
+@RefreshScope allows Spring-managed beans to reload configuration properties dynamically without restarting the application.
+
+Internally it uses a proxy. When a refresh event occurs, Spring destroys the existing bean instance and recreates it with updated configuration values.

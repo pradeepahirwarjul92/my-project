@@ -1,0 +1,163 @@
+=================================
+SPRING EUREKA - 75 QUESTIONS
+=================================
+
+BASICS
+
+1. What is Eureka?
+2. Why do we need Eureka?
+3. What problem does Eureka solve?
+4. What is Service Discovery?
+5. Service Registry vs Service Discovery?
+6. What is Eureka Server?
+7. What is Eureka Client?
+8. How does Eureka work?
+9. Why is Eureka used in microservices?
+10. Benefits of Eureka?
+
+REGISTRATION
+
+11. How does a service register with Eureka?
+12. What information is registered?
+13. What is Instance ID?
+14. What is Service ID?
+15. What happens during startup?
+16. What is heartbeat?
+17. Why are heartbeats required?
+18. What is lease renewal?
+19. What is lease expiration?
+20. What happens if a service crashes?
+
+DISCOVERY
+
+21. How does service discovery work?
+22. Client-side discovery?
+23. Server-side discovery?
+24. How does a service find another service?
+25. What is service lookup?
+26. How does Eureka cache registry data?
+27. How often is registry refreshed?
+28. What is registry fetch?
+29. How does discovery improve scalability?
+30. Discovery troubleshooting?
+
+LOAD BALANCING
+
+31. How does Eureka support load balancing?
+32. What is Spring Cloud LoadBalancer?
+33. Ribbon vs LoadBalancer?
+34. Round Robin load balancing?
+35. Random load balancing?
+36. Custom load balancing?
+37. Service instance selection?
+38. Load balancing troubleshooting?
+39. Failover handling?
+40. Production considerations?
+
+HIGH AVAILABILITY
+
+41. How do you make Eureka highly available?
+42. Eureka clustering?
+43. Peer replication?
+44. Multi-node Eureka?
+45. What happens if one Eureka node fails?
+46. Self-preservation mode?
+47. Why is self-preservation important?
+48. Split-brain issues?
+49. Eureka failover?
+50. Disaster recovery?
+
+CONFIGURATION
+
+51. Important Eureka properties?
+52. register-with-eureka?
+53. fetch-registry?
+54. lease-renewal-interval?
+55. lease-expiration-duration?
+56. prefer-ip-address?
+57. hostname configuration?
+58. Instance metadata?
+59. Secure registration?
+60. Eureka in Kubernetes?
+
+TROUBLESHOOTING
+
+61. Service not registering?
+62. Service missing from registry?
+63. Heartbeat failures?
+64. Eureka dashboard not showing services?
+65. High network traffic?
+66. Stale service instances?
+67. Discovery failures?
+68. Slow startup?
+69. Production outage?
+70. Common mistakes?
+
+DESIGN QUESTIONS
+
+71. Design service discovery for 100 microservices.
+72. Eureka vs Consul?
+73. Eureka vs Kubernetes Service Discovery?
+74. Service discovery best practices?
+75. Explain a production Eureka issue.
+
+
+Most Asked Senior-Level Questions
+
+1. What is Eureka?
+2. How does Eureka work internally?
+3. Service Registration Flow
+4. Heartbeat Mechanism
+5. Self-Preservation Mode
+6. Eureka Clustering
+7. Client-side Discovery
+8. Ribbon vs Spring Cloud LoadBalancer
+9. Eureka vs Kubernetes Discovery
+10. Production Troubleshooting
+
+Architecture
+
+               Eureka Server
+                     |
+      --------------------------------
+      |              |              |
+      v              v              v
+
+ Order Service   Payment Service  Inventory Service
+ 
+ Each service:
+ 
+ 1. Registers itself
+2. Sends heartbeats
+3. Fetches registry
+4. Discovers other services
+
+ureka Server Setup
+
+Dependency:
+
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+</dependency>
+
+Main Class:
+
+@SpringBootApplication
+@EnableEurekaServer
+public class EurekaServerApplication {
+}
+
+application.yml
+
+server:
+  port: 8761
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+
+Dashboard:
+
+http://localhost:8761

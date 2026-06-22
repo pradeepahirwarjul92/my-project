@@ -1,0 +1,341 @@
+=========================================
+SPRING TRANSACTION MANAGEMENT - 100 QUESTIONS
+=========================================
+
+BASICS
+
+1. What is a transaction?
+2. What are ACID properties?
+3. Why do we need transactions?
+4. What is transaction management in Spring?
+5. What is @Transactional?
+6. How does @Transactional work internally?
+7. What is PlatformTransactionManager?
+8. Types of Transaction Managers in Spring?
+9. Difference between JDBC and JPA transaction managers?
+10. What is auto-commit?
+
+SPRING INTERNALS
+
+11. How does Spring implement @Transactional?
+12. What is AOP in transaction management?
+13. What is a proxy?
+14. JDK Proxy vs CGLIB Proxy?
+15. Why does @Transactional use proxies?
+16. What happens when a transactional method is called?
+17. How is transaction started?
+18. How is transaction committed?
+19. How is transaction rolled back?
+20. How does Spring bind transactions to threads?
+
+PROPAGATION
+
+21. What is transaction propagation?
+22. Explain Propagation.REQUIRED.
+23. Explain Propagation.REQUIRES_NEW.
+24. Explain Propagation.SUPPORTS.
+25. Explain Propagation.NOT_SUPPORTED.
+26. Explain Propagation.MANDATORY.
+27. Explain Propagation.NEVER.
+28. Explain Propagation.NESTED.
+29. Difference between REQUIRED and REQUIRES_NEW?
+30. Difference between NESTED and REQUIRES_NEW?
+
+ISOLATION LEVELS
+
+31. What is transaction isolation?
+32. What is dirty read?
+33. What is non-repeatable read?
+34. What is phantom read?
+35. Explain READ_UNCOMMITTED.
+36. Explain READ_COMMITTED.
+37. Explain REPEATABLE_READ.
+38. Explain SERIALIZABLE.
+39. Default isolation level in Oracle?
+40. How do you choose isolation levels?
+
+ROLLBACK
+
+41. When does Spring rollback a transaction?
+42. Does Spring rollback checked exceptions?
+43. Does Spring rollback runtime exceptions?
+44. rollbackFor example?
+45. noRollbackFor example?
+46. What happens if exception is caught?
+47. Why transaction may not rollback?
+48. Programmatic rollback?
+49. TransactionAspectSupport usage?
+50. Manual rollback example?
+
+NESTED TRANSACTIONS
+
+51. What is nested transaction?
+52. Savepoint concept?
+53. How does NESTED propagation work?
+54. Oracle support for nested transactions?
+55. Difference between savepoint and rollback?
+56. Partial rollback example?
+57. Parent-child transaction behavior?
+58. Nested transaction failure handling?
+59. REQUIRES_NEW vs Savepoint?
+60. Real use case of nested transactions?
+
+JPA/HIBERNATE
+
+61. What happens at transaction commit?
+62. What is flush()?
+63. Difference between flush and commit?
+64. What is dirty checking?
+65. What is persistence context?
+66. First-level cache?
+67. How does Hibernate manage transactions?
+68. Lazy loading and transactions?
+69. Open Session In View?
+70. Transaction boundaries with JPA?
+
+DATABASE
+
+71. What happens in Oracle during commit?
+72. What happens during rollback?
+73. Row-level locking?
+74. Table-level locking?
+75. Deadlocks?
+76. How do transactions affect performance?
+77. Long-running transactions?
+78. Lock contention?
+79. Blocking sessions?
+80. Oracle transaction troubleshooting?
+
+MICROSERVICES
+
+81. Can transactions span microservices?
+82. What is distributed transaction?
+83. What is 2PC?
+84. Problems with 2PC?
+85. What is Saga Pattern?
+86. Choreography Saga?
+87. Orchestration Saga?
+88. Compensation transaction?
+89. Eventual consistency?
+90. Transaction management in microservices?
+
+TROUBLESHOOTING
+
+91. @Transactional not working. Why?
+92. Transaction not rolling back. Why?
+93. Self-invocation issue?
+94. Transaction timeout issue?
+95. Deadlock in production?
+96. Database lock issue?
+97. Long-running transaction issue?
+98. Connection pool exhaustion?
+99. How to debug transaction issues?
+100. Explain a production transaction issue you solved.
+
+
+Most Asked Senior-Level Questions
+
+1. How does @Transactional work internally?
+2. Why does @Transactional fail in self-invocation?
+3. REQUIRED vs REQUIRES_NEW
+4. REQUIRES_NEW vs NESTED
+5. Checked vs Runtime Exception rollback
+6. Flush vs Commit
+7. Dirty Checking
+8. Isolation Levels
+9. Oracle READ_COMMITTED
+10. Deadlock Troubleshooting
+11. Long Running Transactions
+12. LazyInitializationException
+13. Transaction Boundaries
+14. Saga Pattern
+15. Distributed Transactions
+16. Connection Pool Exhaustion
+17. Lock Contention
+18. Self Invocation Problem
+19. Proxy Mechanism
+20. Production Transaction Issues
+
+Question 1: How does @Transactional work internally?
+Client
+  |
+  v
+Spring Proxy
+  |
+  v
+Start Transaction
+  |
+  v
+Business Method
+  |
+  +---- Success --> Commit
+  |
+  +---- Exception --> Rollback
+  
+  Flow:
+  @Transactional
+public void saveEmployee() {
+    repository.save(emp);
+}
+
+Internally:
+
+1. Spring AOP creates proxy
+2. Proxy intercepts method call
+3. TransactionManager.begin()
+4. Method executes
+5. Commit if success
+6. Rollback if exception
+
+Question 2: Self Invocation Problem
+@Service
+public class EmployeeService {
+
+    public void process() {
+        saveData(); // Transaction ignored
+    }
+
+    @Transactional
+    public void saveData() {
+        ...
+    }
+}
+
+Why?
+
+process() -> saveData()
+
+Direct call bypasses Spring Proxy.
+@Transactional will NOT work.
+
+Very common senior interview question.
+
+Question 3: REQUIRED vs REQUIRES_NEW
+REQUIRED (Default)
+@Transactional(propagation = Propagation.REQUIRED)
+
+Existing Transaction?
+YES -> Join it
+NO  -> Create new
+
+REQUIRES_NEW
+@Transactional(propagation = Propagation.REQUIRES_NEW)
+
+Existing Transaction?
+Suspend it
+
+Create completely new transaction
+
+Use Case:
+Audit logging
+Notification logging
+Error logging
+
+Even if parent transaction fails,
+audit record still commits.
+
+Question 4: Rollback Rules
+
+Rolls Back
+throw new RuntimeException();
+
+Rollback occurs.
+
+Does NOT Roll Back
+
+throw new Exception();
+
+Checked Exception.
+
+Force Rollback
+@Transactional(
+    rollbackFor = Exception.class
+)
+
+
+Question 5: Flush vs Commit
+
+Flush
+entityManager.flush();
+
+SQL sent to database
+Transaction NOT committed
+Can still rollback
+
+Commit
+
+Changes permanently stored
+Locks released
+Transaction ends
+
+
+Question 6: Isolation Levels
+
+READ_UNCOMMITTED
+   |
+READ_COMMITTED
+   |
+REPEATABLE_READ
+   |
+SERIALIZABLE
+
+Oracle Default:
+READ_COMMITTED
+
+Question 7: Production Scenario
+
+Problem
+Order Created
+Payment Failed
+
+But order record exists
+
+
+Root Cause:
+
+Exception swallowed
+
+try {
+   saveOrder();
+} catch(Exception e) {
+}
+
+Transaction never rolled back.
+
+
+Question 8: Microservices Transaction
+
+Interview Question:
+
+Order Service
+ |
+Payment Service
+ |
+Inventory Service
+
+Can @Transactional handle this?
+
+NO
+
+@Transactional works only within one service/database.
+
+Use:
+
+1. Saga Pattern
+2. Event-driven architecture
+3. Compensation transactions
+
+
+Top 10 Real Production Issues
+
+1. @Transactional not working
+2. Self Invocation
+3. Checked Exception rollback issue
+4. Deadlock
+5. Connection Pool Exhaustion
+6. Long Running Transactions
+7. Lock Contention
+8. LazyInitializationException
+9. Flush vs Commit confusion
+10. Distributed Transaction failures
+

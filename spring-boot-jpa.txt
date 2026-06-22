@@ -1,0 +1,156 @@
+=================================
+SPRING BOOT JPA - 100 QUESTIONS
+=================================
+
+JPA BASICS
+
+1. What is JPA?
+2. What is Hibernate?
+3. Difference between JPA and Hibernate?
+4. What is ORM?
+5. Advantages of ORM?
+6. What is Entity?
+7. What is @Entity?
+8. What is @Table?
+9. What is @Id?
+10. What is @GeneratedValue?
+
+ENTITY LIFECYCLE
+
+11. What are JPA Entity States?
+12. Transient State?
+13. Persistent State?
+14. Detached State?
+15. Removed State?
+16. How does entity move between states?
+17. What is Persistence Context?
+18. What is EntityManager?
+19. What is Session in Hibernate?
+20. EntityManager vs Session?
+
+PRIMARY KEY
+
+21. GenerationType.AUTO
+22. GenerationType.IDENTITY
+23. GenerationType.SEQUENCE
+24. GenerationType.TABLE
+25. Which strategy is best for Oracle?
+26. What is Oracle Sequence?
+27. Hi-Lo Algorithm?
+28. Sequence optimization?
+29. UUID primary key?
+30. Composite primary key?
+
+RELATIONSHIPS
+
+31. OneToOne Mapping?
+32. OneToMany Mapping?
+33. ManyToOne Mapping?
+34. ManyToMany Mapping?
+35. Bidirectional Mapping?
+36. Unidirectional Mapping?
+37. mappedBy usage?
+38. JoinColumn?
+39. JoinTable?
+40. Cascade Types?
+
+FETCHING
+
+41. Eager Fetching?
+42. Lazy Fetching?
+43. Default fetch type for OneToMany?
+44. Default fetch type for ManyToOne?
+45. N+1 Query Problem?
+46. How to identify N+1?
+47. How to solve N+1?
+48. Fetch Join?
+49. Entity Graph?
+50. Batch Fetching?
+
+QUERIES
+
+51. What is JPQL?
+52. Native Query?
+53. JPQL vs SQL?
+54. @Query annotation?
+55. Named Query?
+56. Criteria API?
+57. Dynamic Query?
+58. Pageable?
+59. Sorting?
+60. Projection?
+
+HIBERNATE INTERNALS
+
+61. What is Dirty Checking?
+62. What is First Level Cache?
+63. What is Second Level Cache?
+64. Query Cache?
+65. Flush?
+66. Flush Modes?
+67. Flush vs Commit?
+68. Write Behind Strategy?
+69. Hibernate Session Lifecycle?
+70. Persistence Context Internals?
+
+TRANSACTIONS
+
+71. @Transactional?
+72. Transaction Boundaries?
+73. LazyInitializationException?
+74. Open Session In View?
+75. Rollback Rules?
+76. Propagation?
+77. Isolation Levels?
+78. Locking?
+79. Optimistic Locking?
+80. Pessimistic Locking?
+
+PERFORMANCE
+
+81. JDBC Batch Updates?
+82. Bulk Insert Optimization?
+83. Bulk Update Optimization?
+84. Pagination Performance?
+85. Index Usage?
+86. Explain Plan?
+87. Slow Query Analysis?
+88. Connection Pool Tuning?
+89. HikariCP?
+90. Memory Issues in JPA?
+
+TROUBLESHOOTING
+
+91. N+1 Query Issue
+92. LazyInitializationException
+93. Transaction Not Working
+94. Duplicate SQL Execution
+95. Memory Leak
+96. High Response Time
+97. Lock Contention
+98. Deadlock
+99. Connection Pool Exhaustion
+100. Production JPA Optimization
+
+Most Asked Senior-Level Questions
+
+1. JPA vs Hibernate
+2. Entity Lifecycle
+3. Persistence Context
+4. Dirty Checking
+5. First-Level Cache
+6. Second-Level Cache
+7. Flush vs Commit
+8. Lazy vs Eager Loading
+9. N+1 Query Problem
+10. Optimistic vs Pessimistic Locking
+11. Cascade Types
+12. Fetch Join
+13. JPQL vs Native Query
+14. Transaction Management
+15. Bulk Operations
+16. Oracle Sequence
+17. JDBC Batch Processing
+18. LazyInitializationException
+19. Connection Pool Issues
+20. Production Performance Tuning

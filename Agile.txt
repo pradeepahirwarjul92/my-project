@@ -1,0 +1,276 @@
+1. What Agile methodologies have you worked with?
+
+Answer:
+"I have primarily worked in Scrum-based Agile teams and have also been involved in Kanban for production support activities. In Scrum, 
+we followed sprint planning, daily stand-ups, backlog refinement, 
+sprint reviews, and retrospectives. Typically, our sprint duration was two weeks."
+
+
+2. What is the role of a Scrum Master?
+
+Answer:
+
+Facilitates Scrum ceremonies.
+Removes impediments.
+Protects the team from external distractions.
+Ensures Agile principles are followed.
+Helps improve team productivity.
+
+
+3. What is the difference between Scrum and Kanban?
+| Scrum                 | Kanban              |
+| --------------------- | ------------------- |
+| Fixed sprint duration | Continuous flow     |
+| Sprint backlog        | No sprint backlog   |
+| Velocity tracking     | Lead time tracking  |
+| Defined ceremonies    | Fewer ceremonies    |
+| Time-boxed delivery   | Continuous delivery |
+
+
+4. How do you estimate stories?
+
+Answer:
+"We use Planning Poker and Story Points. Estimation considers complexity, 
+effort, dependencies, risks, and uncertainty rather than actual hours."
+
+Example:
+
+1 Point → Simple API change
+3 Points → CRUD module
+5 Points → Complex business logic
+8+ Points → Multiple integrations
+
+5. What are Story Points?
+
+Answer:
+Story Points measure relative effort considering:
+
+Complexity
+Risk
+Effort
+Unknowns
+
+They are not equal to hours.
+
+
+6. What is Velocity?
+
+Answer:
+Velocity is the number of Story Points completed in a sprint.
+
+Example:
+
+Sprint 1 = 40 SP
+Sprint 2 = 42 SP
+Sprint 3 = 38 SP
+
+Average Velocity = 40 SP
+
+Used for release planning.
+
+
+7. What happens during Sprint Planning?
+
+Answer:
+
+Product Owner presents prioritized stories.
+Team discusses requirements.
+Team estimates effort.
+Sprint goal is defined.
+Stories are committed based on capacity.
+
+
+8. What do you discuss in Daily Stand-up?
+
+Three questions:
+
+What did I complete yesterday?
+What will I do today?
+Are there any blockers?
+
+Keep it within 15 minutes.
+
+
+9. What is Backlog Refinement?
+
+Answer:
+Process of:
+
+Clarifying requirements.
+Breaking large stories into smaller ones.
+Estimating stories.
+Prioritizing work.
+
+Ensures stories are ready for the next sprint.
+
+
+10. What is Definition of Done (DoD)?
+
+Answer:
+A story is done only when:
+
+Development completed.
+Code review completed.
+Unit tests passed.
+Integration tests passed.
+Sonar issues resolved.
+Documentation updated.
+Deployed to QA/UAT.
+
+
+11. What is Definition of Ready (DoR)?
+
+Answer:
+A story is ready when:
+
+Requirements are clear.
+Acceptance criteria exist.
+Dependencies identified.
+Estimation completed.
+
+
+
+12. How do you handle changing requirements during a sprint?
+
+Answer (10-year level):
+"Normally we avoid scope changes during an active sprint. If the change is critical, Product Owner discusses impact with the team and 
+may replace a lower-priority story or move the change to the next sprint."
+
+
+
+13. What do you do when a story cannot be completed within the sprint?
+
+Answer:
+
+Inform Scrum Master and Product Owner early.
+Explain blockers.
+Re-estimate remaining work.
+Move incomplete work back to the backlog.
+
+
+14. What is a Sprint Retrospective?
+
+Answer:
+Meeting to discuss:
+
+What went well.
+What didn't go well.
+Action items for improvement.
+
+Example:
+
+Improve code review turnaround time.
+Reduce deployment failures.
+Increase automation coverage.
+
+
+
+15. What Agile metrics have you used?
+
+Answer:
+
+Velocity
+Burndown Chart
+Burnup Chart
+Lead Time
+Cycle Time
+Defect Leakage
+Sprint Predictability
+
+
+16. How do you handle production issues in Agile?
+
+Answer:
+"We maintain a separate support lane. Critical P1/P2 issues are handled immediately, while normal 
+defects are prioritized in the product backlog. We also perform RCA and create preventive action items."
+
+17. Explain a conflict between Product Owner and Development Team.
+
+Answer:
+"PO wanted additional features in the current sprint, but the team had already committed to sprint goals. I explained the impact on delivery commitments and proposed 
+prioritizing the changes for the next sprint. This maintained transparency and trust.
+
+
+18. How do you manage dependencies across teams?
+
+Answer:
+
+Early identification.
+Cross-team refinement meetings.
+Dependency tracking in Jira.
+Regular communication.
+Escalation when blockers impact delivery.
+
+
+19. What is your role as a senior developer in Agile?
+
+Answer:
+
+Technical design discussions.
+Story estimation.
+Mentoring junior developers.
+Code reviews.
+Production support.
+Risk identification.
+Collaboration with PO, QA, DevOps.
+
+
+20. Have you participated in release planning?
+
+Answer:
+"Yes. Based on team velocity, backlog size, dependencies, and resource availability, we forecast release timelines and identify risks early."
+
+
+21. Sprint is ending but only 60% work is completed. What will you do?
+
+Answer:
+
+Discuss status transparently.
+Identify blockers.
+Deliver completed stories only.
+Move remaining work back to backlog.
+Analyze root cause during retrospective.
+
+
+22. Team velocity suddenly drops. How do you investigate?
+
+Answer:
+
+Check production support load.
+Resource availability.
+Dependency delays.
+Requirement changes.
+Technical challenges.
+
+
+23. Product Owner wants an urgent feature in the middle of the sprint.
+
+Answer:
+
+Assess impact.
+Discuss trade-offs.
+Replace lower-priority story if necessary.
+Otherwise schedule for next sprint.
+
+
+24. How do you improve Agile maturity?
+
+Answer:
+
+Better backlog grooming.
+Strong Definition of Done.
+CI/CD automation.
+Automated testing.
+Regular retrospectives.
+Knowledge sharing sessions.
+
+
+25. Why Agile instead of Waterfall?"
+
+| Agile                | Waterfall           |
+| -------------------- | ------------------- |
+| Iterative delivery   | Sequential delivery |
+| Faster feedback      | Late feedback       |
+| Flexible changes     | Difficult changes   |
+| Continuous testing   | Testing at end      |
+| Customer involvement | Limited involvement |

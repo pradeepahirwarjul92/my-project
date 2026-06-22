@@ -1,0 +1,49 @@
+=================================
+SPRING CONTENT NEGOTIATION
+=================================
+
+1. What is Content Negotiation?
+2. Why do we need Content Negotiation?
+3. How does Spring Boot support Content Negotiation?
+4. What is the Accept header?
+5. What is Content-Type header?
+6. Difference between Accept and Content-Type?
+7. How does Spring choose response format?
+8. What is HttpMessageConverter?
+9. What are built-in message converters?
+10. JSON vs XML content negotiation?
+
+11. What is produces attribute?
+12. What is consumes attribute?
+13. How do you support multiple formats?
+14. How do you return XML response?
+15. How do you return JSON response?
+16. What happens if requested format is unsupported?
+17. What is HTTP 406?
+18. What is HTTP 415?
+19. How do custom converters work?
+20. Content negotiation troubleshooting?
+
+Frequently Asked Senior Questions
+How does Spring determine response format?
+
+Answer:
+
+1. Reads Accept header
+2. Checks produces attribute
+3. Finds matching HttpMessageConverter
+4. Converts object to requested format
+5. Sends response
+
+
+Topics to Master
+Accept Header
+Content-Type Header
+produces
+consumes
+406 Not Acceptable
+415 Unsupported Media Type
+HttpMessageConverter
+JSON/XML Conversion
+Jackson
+ContentNegotiationManager

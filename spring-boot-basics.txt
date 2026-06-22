@@ -1,0 +1,596 @@
+=================================
+SPRING BOOT - 100 QUESTIONS
+=================================
+
+SPRING BOOT BASICS
+
+1. What is Spring Boot?
+2. Advantages of Spring Boot?
+3. Spring vs Spring Boot?
+4. Why Spring Boot was introduced?
+5. Spring Boot Architecture?
+6. What is Starter Dependency?
+7. What is Auto Configuration?
+8. What is Embedded Server?
+9. What is SpringApplication?
+10. How does Spring Boot start?
+
+AUTO CONFIGURATION
+
+11. What is @SpringBootApplication?
+12. Components of @SpringBootApplication?
+13. What is @EnableAutoConfiguration?
+14. How does auto configuration work?
+15. What is spring.factories?
+16. What is AutoConfiguration.imports?
+17. @ConditionalOnClass?
+18. @ConditionalOnBean?
+19. @ConditionalOnMissingBean?
+20. How to disable auto configuration?
+
+BEANS & IOC
+
+21. Bean Lifecycle?
+22. @Component vs @Bean?
+23. @Service vs @Component?
+24. @Repository?
+25. @Controller?
+26. Singleton Scope?
+27. Prototype Scope?
+28. Bean Initialization?
+29. Bean Destruction?
+30. Circular Dependency?
+
+CONFIGURATION
+
+31. application.properties vs YAML?
+32. @Value?
+33. @ConfigurationProperties?
+34. @PropertySource?
+35. Externalized Configuration?
+36. Command Line Arguments?
+37. Environment Variables?
+38. Property Precedence?
+39. Secrets Management?
+40. Configuration Best Practices?
+
+PROFILES
+
+41. What is @Profile?
+42. Why use Profiles?
+43. Dev Profile?
+44. Test Profile?
+45. Prod Profile?
+46. Active Profile?
+47. Multiple Profiles?
+48. Profile-Specific Configurations?
+49. Profile Troubleshooting?
+50. Production Configuration Strategy?
+
+WEB LAYER
+
+51. @RestController?
+52. @RequestMapping?
+53. @GetMapping?
+54. @PostMapping?
+55. @PathVariable?
+56. @RequestParam?
+57. @RequestBody?
+58. ResponseEntity?
+59. Exception Handling?
+60. Content Negotiation?
+
+ACTUATOR
+
+61. What is Spring Boot Actuator?
+62. Why use Actuator?
+63. Health Endpoint?
+64. Metrics Endpoint?
+65. Info Endpoint?
+66. Custom Health Indicator?
+67. Liveness Probe?
+68. Readiness Probe?
+69. Prometheus Integration?
+70. Production Monitoring?
+
+STARTUP PROCESS
+
+71. Spring Boot Startup Flow?
+72. ApplicationContext?
+73. BeanFactory?
+74. DispatcherServlet?
+75. Embedded Tomcat Startup?
+76. Context Refresh?
+77. Bean Creation Order?
+78. ApplicationRunner?
+79. CommandLineRunner?
+80. Startup Troubleshooting?
+
+PERFORMANCE
+
+81. Slow Startup Issue?
+82. Memory Optimization?
+83. Thread Pool Tuning?
+84. Connection Pool Tuning?
+85. Tomcat Tuning?
+86. JVM Tuning?
+87. High CPU Usage?
+88. Memory Leak?
+89. Performance Monitoring?
+90. Production Optimization?
+
+MICROSERVICES
+
+91. Eureka Integration?
+92. Config Server?
+93. Gateway?
+94. OpenFeign?
+95. Circuit Breaker?
+96. Distributed Tracing?
+97. OAuth2 Integration?
+98. Docker Deployment?
+99. Kubernetes Deployment?
+100. Production Troubleshooting?
+
+=================================================
+SPRING BOOT ADVANCED - 150 INTERVIEW QUESTIONS
+=================================================
+
+AUTO CONFIGURATION
+
+1. How does @EnableAutoConfiguration work internally?
+2. What is SpringFactoriesLoader?
+3. What is AutoConfigurationImportSelector?
+4. How are auto-configurations loaded?
+5. What is Conditional Evaluation Report?
+6. What is @Conditional?
+7. @ConditionalOnProperty?
+8. @ConditionalOnExpression?
+9. @ConditionalOnResource?
+10. @ConditionalOnWebApplication?
+11. @ConditionalOnMissingClass?
+12. @ConditionalOnSingleCandidate?
+13. Auto configuration ordering?
+14. How to create custom auto configuration?
+15. How to debug auto configuration?
+
+IOC & BEAN MANAGEMENT
+
+16. Bean creation lifecycle?
+17. Bean post processors?
+18. BeanFactoryPostProcessor?
+19. BeanPostProcessor?
+20. SmartInitializingSingleton?
+21. InitializingBean?
+22. DisposableBean?
+23. FactoryBean?
+24. Lookup Method Injection?
+25. Method Injection?
+26. Bean Scopes?
+27. Request Scope?
+28. Session Scope?
+29. Application Scope?
+30. Custom Scope?
+31. Lazy Initialization?
+32. Bean Definition?
+33. Bean Aliasing?
+34. Circular Dependency?
+35. Constructor Circular Dependency?
+36. Setter Circular Dependency?
+37. Bean Override Issue?
+38. Primary Bean?
+39. Qualifier?
+40. Custom Qualifier?
+
+SPRING MVC
+
+41. DispatcherServlet Flow?
+42. Handler Mapping?
+43. Handler Adapter?
+44. View Resolver?
+45. Request Lifecycle?
+46. Response Lifecycle?
+47. @ModelAttribute?
+48. @InitBinder?
+49. WebDataBinder?
+50. HttpMessageConverter?
+51. Interceptor?
+52. Filter?
+53. Filter vs Interceptor?
+54. OncePerRequestFilter?
+55. Custom Argument Resolver?
+56. RequestContextHolder?
+57. Locale Resolver?
+58. Multipart Resolver?
+59. Async Request Processing?
+60. DeferredResult?
+
+REST APIs
+
+61. REST Best Practices?
+62. Idempotent APIs?
+63. PUT vs PATCH?
+64. API Versioning?
+65. URI Design?
+66. HATEOAS?
+67. Pagination?
+68. Cursor Pagination?
+69. Offset Pagination?
+70. Sorting APIs?
+71. Filtering APIs?
+72. API Documentation?
+73. OpenAPI?
+74. Swagger Integration?
+75. Global Exception Handling?
+76. Problem Details RFC7807?
+77. ETag?
+78. Cache Control?
+79. API Security?
+80. Rate Limiting?
+
+DATA ACCESS
+
+81. JdbcTemplate?
+82. NamedParameterJdbcTemplate?
+83. SimpleJdbcInsert?
+84. RowMapper?
+85. ResultSetExtractor?
+86. JPA Integration?
+87. Hibernate Integration?
+88. Transaction Manager?
+89. EntityManager?
+90. Open Session in View?
+91. Connection Pooling?
+92. HikariCP Internals?
+93. Batch Updates?
+94. Database Migration?
+95. Flyway?
+96. Liquibase?
+97. Read Replica Configuration?
+98. Multiple Data Sources?
+99. Routing Data Source?
+100. Transaction Synchronization?
+
+TRANSACTION MANAGEMENT
+
+101. How does @Transactional work?
+102. AOP Proxy and Transactions?
+103. Self Invocation Problem?
+104. Propagation Types?
+105. REQUIRED?
+106. REQUIRES_NEW?
+107. SUPPORTS?
+108. NOT_SUPPORTED?
+109. NEVER?
+110. MANDATORY?
+111. NESTED?
+112. Isolation Levels?
+113. Dirty Read?
+114. Non Repeatable Read?
+115. Phantom Read?
+116. Transaction Timeout?
+117. ReadOnly Transaction?
+118. Rollback Rules?
+119. Checked vs Runtime Exceptions?
+120. Distributed Transactions?
+
+SPRING AOP
+
+121. What is AOP?
+122. Why use AOP?
+123. Aspect?
+124. Advice?
+125. Join Point?
+126. Pointcut?
+127. Around Advice?
+128. Before Advice?
+129. After Advice?
+130. After Returning?
+131. After Throwing?
+132. Proxy Based AOP?
+133. JDK Proxy?
+134. CGLIB Proxy?
+135. AOP Limitations?
+136. Custom Annotation AOP?
+137. Logging Aspect?
+138. Performance Monitoring Aspect?
+139. Security Aspect?
+140. Transaction Aspect?
+
+ACTUATOR & MONITORING
+
+141. Health Endpoint?
+142. Metrics Endpoint?
+143. Info Endpoint?
+144. Custom Endpoint?
+145. Micrometer?
+146. Prometheus Integration?
+147. Grafana Dashboard?
+148. Distributed Tracing?
+149. OpenTelemetry?
+150. Production Monitoring Strategy?
+
+
+=================================================
+SPRING BOOT PRODUCTION TROUBLESHOOTING
+=================================================
+
+1. Application startup taking 5 minutes.
+2. Application not starting.
+3. BeanCreationException.
+4. NoSuchBeanDefinitionException.
+5. Circular dependency issue.
+6. OutOfMemoryError.
+7. High CPU usage.
+8. Memory leak.
+9. Thread leak.
+10. Connection pool exhausted.
+
+11. Hikari pool timeout.
+12. Slow REST APIs.
+13. Slow database queries.
+14. N+1 query issue.
+15. Deadlock in database.
+16. Transaction not rolling back.
+17. High GC pauses.
+18. Tomcat thread exhaustion.
+19. Kafka consumer lag.
+20. Redis timeout.
+
+21. Eureka registration failure.
+22. Config server unavailable.
+23. Gateway routing issue.
+24. Circuit breaker always open.
+25. Retry storm issue.
+26. File upload timeout.
+27. Multipart exception.
+28. SSL handshake failure.
+29. JWT validation failure.
+30. OAuth token expiry issue.
+
+31. Microservice latency increase.
+32. API returns 500 intermittently.
+33. Cache stampede.
+34. Cache penetration.
+35. Stale cache issue.
+36. Unexpected transaction commit.
+37. Memory spike after deployment.
+38. Excessive logging issue.
+39. Disk full issue.
+40. Container restart loop.
+
+41. Kubernetes readiness failure.
+42. Liveness probe failure.
+43. Pod OOMKilled.
+44. High network latency.
+45. Service discovery failure.
+46. Database connection leak.
+47. Batch job stuck.
+48. Scheduler not executing.
+49. Message duplication.
+50. Production outage root cause analysis.
+
+
+1. Explain complete Spring Boot startup process.
+2. How does SpringApplication.run() work?
+3. What happens before Tomcat starts?
+4. How are beans discovered?
+5. How does component scanning work?
+6. How are configurations loaded?
+7. How are properties resolved?
+8. How does Environment work?
+9. How are profiles activated?
+10. How is ApplicationContext created?
+
+11. How does DispatcherServlet initialize?
+12. How does Embedded Tomcat start?
+13. How does Spring Boot register endpoints?
+14. How are filters loaded?
+15. How are interceptors loaded?
+16. How does Actuator initialize?
+17. How does Auto Configuration decide what to create?
+18. How does @Conditional work?
+19. How does @Transactional create proxies?
+20. How does Spring Security integrate?
+
+21. How are REST APIs exposed?
+22. How does Jackson serialize objects?
+23. How does exception handling work internally?
+24. How does dependency injection work internally?
+25. Explain complete request flow from browser to database.
+
+
+1. Spring Boot startup flow.
+2. Auto Configuration internals.
+3. Bean lifecycle.
+4. BeanFactory vs ApplicationContext.
+5. Constructor vs Setter Injection.
+6. Circular Dependency.
+7. @Transactional internals.
+8. Propagation levels.
+9. Isolation levels.
+10. AOP Proxy mechanism.
+
+11. JDK Proxy vs CGLIB.
+12. DispatcherServlet flow.
+13. Filter vs Interceptor.
+14. Exception handling architecture.
+15. Content Negotiation.
+16. HikariCP tuning.
+17. Connection leak troubleshooting.
+18. Memory leak troubleshooting.
+19. High CPU troubleshooting.
+20. Thread dump analysis.
+
+21. Spring Security architecture.
+22. OAuth2 flow.
+23. JWT validation.
+24. Eureka architecture.
+25. API Gateway architecture.
+26. Circuit Breaker.
+27. Distributed Transactions.
+28. Spring Batch architecture.
+29. Microservice communication patterns.
+30. Production outage troubleshooting.
+
+
+Most Asked Spring Boot Interview Questions
+
+1. What is @SpringBootApplication?
+
+@SpringBootApplication
+public class Application {
+}
+
+
+Equivalent to:
+@Configuration
+@EnableAutoConfiguration
+@ComponentScan
+
+Explanation
+@Configuration
+    -> Configuration Class
+
+@EnableAutoConfiguration
+    -> Auto Configuration
+
+@ComponentScan
+    -> Scans Components
+	
+	
+	
+2. How Auto Configuration Works
+Example:
+
+Dependency added:
+spring-boot-starter-web
+
+
+Spring Boot automatically creates:
+
+DispatcherServlet
+
+Tomcat
+
+Jackson
+
+Message Converters
+
+Error Controller
+
+Without manual configuration.
+
+Interview favorite.
+
+
+3. Spring Boot Startup Flow
+
+main()
+   |
+SpringApplication.run()
+   |
+Create ApplicationContext
+   |
+Load Auto Configurations
+   |
+Component Scan
+   |
+Create Beans
+   |
+Embedded Tomcat Starts
+   |
+Application Ready
+
+
+4. Bean Lifecycle
+Instantiate Bean
+      |
+Dependency Injection
+      |
+@PostConstruct
+      |
+Bean Ready
+      |
+Business Use
+      |
+@PreDestroy
+      |
+Destroy Bean
+
+Example:
+@PostConstruct
+public void init() {
+    System.out.println("Initialized");
+}
+
+@PreDestroy
+public void cleanup() {
+    System.out.println("Destroyed");
+}
+
+
+
+5. @Component vs @Bean
+
+@Component
+
+@Component
+public class EmployeeService {
+}
+
+Auto-detected by component scanning.
+
+
+@Bean
+
+@Configuration
+public class AppConfig {
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        return new ObjectMapper();
+    }
+}
+
+Used when creating third-party objects.
+
+
+6. @Value vs @ConfigurationProperties
+@Value
+@Value("${server.port}")
+private int port;
+
+Single property.
+
+@ConfigurationProperties
+@ConfigurationProperties(prefix="db")
+public class DbProperties {
+
+    private String url;
+    private String username;
+}
+
+Preferred for multiple properties.
+
+
+
+7. Profiles
+spring:
+  profiles:
+    active: dev
+
+Files:
+
+application-dev.yml
+
+application-test.yml
+
+application-prod.yml
+
+Interview question:
+
+Why Profiles?
+
+Different configurations
+for different environments.

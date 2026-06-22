@@ -1,0 +1,20 @@
+1. What is Service Mesh?
+2. Why Service Mesh?
+3. Service Mesh vs API Gateway?
+4. Service Mesh vs Spring Cloud?
+5. What is Istio?
+6. What is Envoy?
+7. What is Sidecar Pattern?
+8. What is mTLS?
+9. How does traffic routing work?
+10. How does canary deployment work?
+11. How does service discovery work?
+12. Why use Istio in Kubernetes?
+13. How does distributed tracing work?
+14. How does retry work?
+15. How does circuit breaker work?
+16. What are the drawbacks?
+17. What is data plane?
+18. What is control plane?
+19. What is east-west traffic?
+20. Explain a production use case.

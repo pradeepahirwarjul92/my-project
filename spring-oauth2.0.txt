@@ -1,0 +1,256 @@
+=========================================
+SPRING SECURITY OAUTH2 - 100 QUESTIONS
+=========================================
+
+OAUTH2 BASICS
+
+1. What is OAuth2?
+2. Why was OAuth2 introduced?
+3. What problem does OAuth2 solve?
+4. Difference between Authentication and Authorization?
+5. Is OAuth2 Authentication or Authorization?
+6. What are OAuth2 roles?
+7. What is Resource Owner?
+8. What is Client Application?
+9. What is Authorization Server?
+10. What is Resource Server?
+
+TOKENS
+
+11. What is Access Token?
+12. What is Refresh Token?
+13. Why do we need Refresh Tokens?
+14. What is Token Expiration?
+15. What is Token Revocation?
+16. What is JWT Token?
+17. Difference between Opaque Token and JWT?
+18. Advantages of JWT?
+19. Disadvantages of JWT?
+20. How do you validate a JWT?
+
+OAUTH2 FLOWS
+
+21. What is Authorization Code Flow?
+22. What is Authorization Code + PKCE?
+23. What is Client Credentials Flow?
+24. What is Password Grant Flow?
+25. Why is Password Grant deprecated?
+26. What is Implicit Flow?
+27. Why is Implicit Flow deprecated?
+28. Which OAuth2 flow is used for microservices?
+29. Which flow is used for UI applications?
+30. Which flow is used for machine-to-machine communication?
+
+AUTHORIZATION CODE FLOW
+
+31. Explain Authorization Code Flow step-by-step.
+32. What happens after login?
+33. What is Authorization Code?
+34. Why exchange Authorization Code for Token?
+35. Why not send Access Token directly?
+36. What is Redirect URI?
+37. What is State Parameter?
+38. What attacks does State prevent?
+39. What is PKCE?
+40. Why is PKCE important?
+
+CLIENT CREDENTIALS FLOW
+
+41. What is Client Credentials Flow?
+42. When should it be used?
+43. How does Client Authentication work?
+44. What is Client ID?
+45. What is Client Secret?
+46. Can refresh token be used in Client Credentials?
+47. Service-to-Service Authentication?
+48. Internal API Authentication?
+49. Microservice Communication Security?
+50. Best practices for Client Credentials?
+
+JWT
+
+51. Structure of JWT?
+52. JWT Header?
+53. JWT Payload?
+54. JWT Signature?
+55. What claims exist in JWT?
+56. What is exp claim?
+57. What is iat claim?
+58. What is iss claim?
+59. What is aud claim?
+60. How is JWT signed?
+
+JWT SECURITY
+
+61. HS256 vs RS256?
+62. Symmetric vs Asymmetric Keys?
+63. Public Key vs Private Key?
+64. What is JWKS endpoint?
+65. How does Resource Server validate JWT?
+66. How does key rotation work?
+67. How do you revoke JWT?
+68. What are JWT security risks?
+69. What happens if JWT is stolen?
+70. JWT expiration strategy?
+
+SPRING SECURITY OAUTH2
+
+71. What is OAuth2 Resource Server?
+72. What is OAuth2 Client?
+73. How do you configure Resource Server?
+74. How do you validate JWT in Spring Security?
+75. What is JwtDecoder?
+76. What is JwtAuthenticationConverter?
+77. How do you map roles from JWT?
+78. How do you secure REST APIs?
+79. How do you secure WebFlux APIs?
+80. How do you implement SSO?
+
+OPENID CONNECT
+
+81. What is OpenID Connect?
+82. Difference between OAuth2 and OpenID Connect?
+83. What is ID Token?
+84. Difference between ID Token and Access Token?
+85. UserInfo Endpoint?
+86. OIDC Login Flow?
+87. Why do we need OpenID Connect?
+88. SSO using OIDC?
+89. OIDC Claims?
+90. OIDC Discovery Endpoint?
+
+PRODUCTION TROUBLESHOOTING
+
+91. Why am I getting 401 Unauthorized?
+92. Why am I getting 403 Forbidden?
+93. JWT token is valid but access denied. Why?
+94. OAuth2 login works locally but not in Production.
+95. JWKS endpoint unavailable. What happens?
+96. Token validation suddenly fails.
+97. Role mapping issue from JWT.
+98. Resource Server unable to validate token.
+99. OAuth2 service latency increased.
+100. Design OAuth2 security for 50 microservices.
+
+
+Most Important Senior-Level Questions
+
+1. OAuth2 vs OpenID Connect
+2. Authorization Code Flow
+3. PKCE
+4. Client Credentials Flow
+5. Access Token vs Refresh Token
+6. JWT vs Opaque Token
+7. HS256 vs RS256
+8. Resource Server
+9. Authorization Server
+10. JWT Validation Flow
+11. JWKS Endpoint
+12. OAuth2 in Microservices
+13. Service-to-Service Authentication
+14. SSO Architecture
+15. Keycloak Integration
+16. Okta Integration
+17. Azure AD Integration
+18. Token Revocation Strategy
+19. Role Mapping
+20. OAuth2 Troubleshooting
+
+
+OAuth2 Flows You Must Be Able to Draw
+
+1. Authorization Code Flow (UI Applications)
+Browser
+   |
+   | Login
+   v
+Authorization Server
+   |
+   | Authorization Code
+   v
+Client Application
+   |
+   | Exchange Code
+   v
+Authorization Server
+   |
+   | Access Token
+   v
+Client Application
+   |
+   | JWT
+   v
+Resource Server
+
+Used for:
+
+React
+Angular
+Web Applications
+Mobile Apps (with PKCE)
+
+2. Client Credentials Flow (Microservices)
+
+Service A
+   |
+   | Client ID + Secret
+   v
+Authorization Server
+   |
+   | Access Token
+   v
+Service A
+   |
+   | Bearer Token
+   v
+Service B
+
+Used for:
+
+Service-to-Service communication
+Internal APIs
+Scheduled Jobs
+
+
+Common Architecture Question
+
+Secure 50 Microservices
+
+User
+ |
+ v
+API Gateway
+ |
+ v
+OAuth2 Authorization Server
+ |
+ JWT
+ |
+ v
+Microservice A
+Microservice B
+Microservice C
+
+Approach:
+
+1. User authenticates via OAuth2/OIDC
+2. Authorization Server issues JWT
+3. API Gateway validates token
+4. JWT propagated downstream
+5. Each microservice acts as Resource Server
+6. Roles/Scopes validated locally
+
+
+Frequently Asked Troubleshooting Scenarios
+
+
+1. Token is valid but API returns 403.
+2. OAuth2 login redirects infinitely.
+3. JWT validation fails after key rotation.
+4. Resource Server cannot fetch JWKS.
+5. Microservice-to-microservice authentication fails.
+6. Refresh token stopped working.
+7. Role present in JWT but authorization fails.
+8. OAuth2 login works locally but not behind load balancer.
+9. JWT expired frequently causing user complaints.
+10. Authorization Server is down. How do you design resilience?

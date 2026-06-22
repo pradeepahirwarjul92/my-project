@@ -1,0 +1,130 @@
+Mockito is required in unit testing when you want to test a class in isolation without using its real dependencies.
+
+
+Example Without Mockito
+
+Suppose you have a service:
+
+@Service
+public class StudentService {
+
+    private final StudentRepository repository;
+
+    public StudentService(StudentRepository repository) {
+        this.repository = repository;
+    }
+
+    public StudentResponseDto getStudentById(Long id) {
+        Student student = repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Student not found"));
+
+        return new StudentResponseDto(
+                student.getId(),
+                student.getName(),
+                student.getEmail(),
+                student.getAge()
+        );
+    }
+}
+
+StudentService depends on StudentRepository.
+If you test without Mockito:
+
+StudentRepository repository = new StudentRepository(); // Not possible
+StudentService service = new StudentService(repository);
+
+
+Problems:
+
+Repository is an interface.
+Requires database connection.
+Test becomes slow.
+Test may fail because of DB issues, not service logic.
+
+With Mockito
+
+Mockito creates a fake repository.
+
+@Mock
+private StudentRepository repository;
+
+@InjectMocks
+private StudentService service;
+
+When service calls:
+repository.findById(1L);
+
+you control the response:
+
+when(repository.findById(1L))
+        .thenReturn(Optional.of(student));
+		
+
+
+-----------------------------------------		
+Common Mockito Annotations		
+
+@Mock
+
+Creates a fake object.
+
+@Mock
+private StudentRepository repository;
+Equivalent to:
+
+StudentRepository repository = mock(StudentRepository.class);
+
+@InjectMocks
+
+Creates the actual class and injects mocks into it.
+@InjectMocks
+private StudentService service;
+
+Equivalent to:
+
+StudentService service = new StudentService(repository);
+
+@ExtendWith(MockitoExtension.class)
+
+Enables Mockito in JUnit 5.
+
+@ExtendWith(MockitoExtension.class)
+class StudentServiceTest {
+}
+
+Without it:
+
+@Mock
+StudentRepository repository;
+
+will remain null.
+
+
+---------------------------
+Common Mockito Methods
+
+when().thenReturn()
+Mock a method result.
+
+when(repository.findById(1L))
+        .thenReturn(Optional.of(student));
+		
+		
+verify()
+
+Check if a method was called.		
+
+verify(repository).findById(1L);
+
+
+any()
+
+Matches any value.
+
+when(repository.save(any(Student.class)))
+        .thenReturn(student);
+		
+		Instead of:
+		
+when(repository.save(student))
+        .thenReturn(student);		
