@@ -1,0 +1,164 @@
+1. What is abstraction in Java?
+2. Why is abstraction important?
+3. What are the benefits of abstraction?
+4. What are the disadvantages of abstraction?
+5. How does abstraction support OOP?
+6. What is data abstraction?
+7. What is process abstraction?
+8. What is real-world abstraction?
+9. Difference between abstraction and encapsulation?
+10. Difference between abstraction and inheritance?
+
+11. What are the ways to achieve abstraction in Java?
+12. What is an abstract class?
+13. What is an interface?
+14. How much abstraction can an abstract class provide?
+15. How much abstraction can an interface provide?
+16. Can abstraction be achieved without abstract classes?
+17. Can abstraction be achieved without interfaces?
+18. Why are abstract classes used?
+19. Why are interfaces used?
+20. Which is better: abstract class or interface?
+
+21. What is an abstract class?
+22. How do you declare an abstract class?
+23. Can abstract classes have constructors?
+24. Can abstract classes have instance variables?
+25. Can abstract classes have static variables?
+26. Can abstract classes have concrete methods?
+27. Can abstract classes have abstract methods?
+28. Can abstract classes be instantiated?
+29. Why can't abstract classes be instantiated?
+30. What happens if an abstract class has no abstract methods?
+
+31. What is an abstract method?
+32. How do you declare an abstract method?
+33. Can abstract methods have a body?
+34. Why can't abstract methods have a body?
+35. Can abstract methods be private?
+36. Can abstract methods be static?
+37. Can abstract methods be final?
+38. Can abstract methods throw exceptions?
+39. Must child classes implement abstract methods?
+40. What happens if a subclass does not implement abstract methods?
+
+41. What is partial abstraction?
+42. How does an abstract class provide partial abstraction?
+43. What is complete abstraction?
+44. How do interfaces provide complete abstraction?
+45. Does Java 8 interface still provide complete abstraction?
+46. How do default methods affect abstraction?
+47. Can abstraction coexist with implementation?
+48. Explain abstraction levels.
+49. What are abstraction layers in software design?
+50. Give examples of abstraction in enterprise applications.
+
+51. Difference between abstract class and interface?
+52. When should abstract class be preferred?
+53. When should interface be preferred?
+54. Can abstract classes implement interfaces?
+55. Can interfaces extend abstract classes?
+56. Can interfaces extend multiple interfaces?
+57. Can abstract classes extend abstract classes?
+58. Can abstract classes extend concrete classes?
+59. Can concrete classes extend abstract classes?
+60. Explain abstract class vs interface with examples.
+
+61. How does abstraction support polymorphism?
+62. What is runtime polymorphism?
+63. How does abstraction hide implementation details?
+64. What is loose coupling?
+65. How does abstraction promote loose coupling?
+66. What is dependency inversion?
+67. How does abstraction support dependency injection?
+68. Explain abstraction in Spring Framework.
+69. Explain abstraction in Hibernate.
+70. Explain abstraction in microservices.
+
+71. Can abstract classes have constructors?
+72. Why are constructors allowed in abstract classes?
+73. How are constructors called in abstract classes?
+74. Can abstract classes have final methods?
+75. Can abstract classes have static methods?
+76. Can abstract classes have private methods?
+77. Can abstract classes have nested classes?
+78. Can abstract classes have main methods?
+79. Can abstract classes implement all interface methods?
+80. Explain constructor behavior in abstract classes.
+
+81. What is interface-based abstraction?
+82. How do interfaces improve flexibility?
+83. How do interfaces support multiple inheritance?
+84. What is a functional interface?
+85. How does Java 8 enhance interfaces?
+86. What are default methods?
+87. What are static methods in interfaces?
+88. What are private methods in interfaces?
+89. Explain abstraction using functional interfaces.
+90. Explain abstraction using lambda expressions.
+
+91. What are abstraction best practices?
+92. What are common abstraction mistakes?
+93. What is over-abstraction?
+94. What is under-abstraction?
+95. How does abstraction affect maintainability?
+96. How does abstraction affect testing?
+97. How does abstraction improve code reuse?
+98. How does abstraction improve extensibility?
+99. What are abstraction design patterns?
+100. Explain abstraction in clean architecture.
+
+101. What is abstraction in Collections Framework?
+102. Explain abstraction in List interface.
+103. Explain abstraction in Map interface.
+104. Explain abstraction in Queue interface.
+105. Explain abstraction in Stream API.
+106. Explain abstraction in JDBC.
+107. Explain abstraction in Servlet API.
+108. Explain abstraction in Spring Data JPA.
+109. Explain abstraction in REST APIs.
+110. Explain abstraction in cloud-native applications.
+
+111. What is the Template Method Design Pattern?
+112. How does Template Method use abstraction?
+113. What is the Strategy Design Pattern?
+114. How does Strategy use abstraction?
+115. What is the Factory Pattern?
+116. How does Factory Pattern use abstraction?
+117. What is the Adapter Pattern?
+118. How does Adapter Pattern use abstraction?
+119. What is Dependency Injection?
+120. How does Dependency Injection use abstraction?
+
+121. Explain abstraction in banking applications.
+122. Explain abstraction in payment gateway systems.
+123. Explain abstraction in e-commerce systems.
+124. Explain abstraction in employee management systems.
+125. Explain abstraction in notification systems.
+126. Explain abstraction in authentication systems.
+127. Explain abstraction in file storage systems.
+128. Explain abstraction in reporting systems.
+129. Explain abstraction in microservice communication.
+130. Explain abstraction in cloud platforms.
+
+131. Can abstract classes be final?
+132. Why can't abstract classes be final?
+133. Can abstract methods be synchronized?
+134. Can abstract methods be native?
+135. Can abstract methods be strictfp?
+136. What happens if abstract and final are used together?
+137. What happens if abstract and static are used together?
+138. Can enums be abstract?
+139. Can records be abstract?
+140. How do sealed classes relate to abstraction?
+
+141. Describe a project where you used abstraction.
+142. Describe abstraction in a Spring Boot application.
+143. Describe abstraction in a microservices architecture.
+144. Describe abstraction in payment processing.
+145. Describe abstraction in cloud integrations.
+146. Describe abstraction in API development.
+147. Describe abstraction used for testability.
+148. Describe abstraction used for maintainability.
+149. Describe abstraction used for extensibility.
+150. Explain Java abstraction from beginner to advanced level with real-world examples.

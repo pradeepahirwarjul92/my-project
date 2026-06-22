@@ -1,0 +1,164 @@
+1. What is encapsulation in Java?
+2. Why is encapsulation important in OOP?
+3. What are the benefits of encapsulation?
+4. What are the disadvantages of encapsulation?
+5. How does encapsulation improve security?
+6. How does encapsulation improve maintainability?
+7. How does encapsulation support data hiding?
+8. What is data hiding?
+9. Difference between encapsulation and data hiding?
+10. Difference between encapsulation and abstraction?
+
+11. How is encapsulation achieved in Java?
+12. What role do access modifiers play in encapsulation?
+13. Why are fields usually declared private?
+14. What are getter methods?
+15. What are setter methods?
+16. Why use getters and setters?
+17. Can encapsulation exist without getters and setters?
+18. How do immutable classes relate to encapsulation?
+19. What is a JavaBean?
+20. Explain encapsulation with a simple example.
+
+21. What are Java access modifiers?
+22. What is private access modifier?
+23. What is default (package-private) access?
+24. What is protected access modifier?
+25. What is public access modifier?
+26. Difference between private and protected?
+27. Difference between protected and public?
+28. Which access modifier provides maximum security?
+29. Which access modifier provides maximum visibility?
+30. How do access modifiers support encapsulation?
+
+31. Why should instance variables be private?
+32. What problems occur with public fields?
+33. How do getters control access?
+34. How do setters validate data?
+35. How can setters enforce business rules?
+36. What is defensive programming?
+37. How do getters and setters improve flexibility?
+38. Can setters be omitted?
+39. Can getters be omitted?
+40. What is read-only encapsulation?
+
+41. What is write-only encapsulation?
+42. How do you create an immutable class?
+43. Why are immutable classes important?
+44. How does String demonstrate encapsulation?
+45. How does LocalDate demonstrate encapsulation?
+46. What are characteristics of immutable classes?
+47. Can immutable classes have setters?
+48. How do immutable classes improve thread safety?
+49. Explain encapsulation using immutable objects.
+50. What are best practices for immutable classes?
+
+51. Difference between encapsulation and abstraction?
+52. Difference between encapsulation and inheritance?
+53. Difference between encapsulation and polymorphism?
+54. Which OOP pillar focuses on data hiding?
+55. Which OOP pillar focuses on behavior hiding?
+56. How do encapsulation and abstraction work together?
+57. How does encapsulation support loose coupling?
+58. How does encapsulation improve modularity?
+59. Explain all four OOP principles together.
+60. Which OOP principle is most important?
+
+61. What is loose coupling?
+62. How does encapsulation reduce coupling?
+63. How does encapsulation improve code reuse?
+64. How does encapsulation improve testability?
+65. How does encapsulation help API design?
+66. How does encapsulation support SOLID principles?
+67. What is Single Responsibility Principle?
+68. How does encapsulation support SRP?
+69. What is Dependency Inversion Principle?
+70. How does encapsulation support DIP?
+
+71. Explain encapsulation in Collections Framework.
+72. Explain encapsulation in JDBC.
+73. Explain encapsulation in Hibernate.
+74. Explain encapsulation in Spring Framework.
+75. Explain encapsulation in JPA entities.
+76. Explain encapsulation in REST APIs.
+77. Explain encapsulation in microservices.
+78. Explain encapsulation in cloud-native applications.
+79. Explain encapsulation in enterprise applications.
+80. Explain encapsulation in layered architecture.
+
+81. How do DTOs use encapsulation?
+82. How do entities use encapsulation?
+83. How do service classes use encapsulation?
+84. How do repositories use encapsulation?
+85. How do controllers use encapsulation?
+86. What is information hiding?
+87. Why should implementation details be hidden?
+88. How does encapsulation support API evolution?
+89. How does encapsulation prevent misuse?
+90. Explain encapsulation in domain-driven design.
+
+91. What is defensive copying?
+92. Why is defensive copying needed?
+93. How do mutable objects affect encapsulation?
+94. How do collections break encapsulation?
+95. How do you protect internal collections?
+96. What is an unmodifiable collection?
+97. How do you return collections safely?
+98. What are common encapsulation vulnerabilities?
+99. How do you secure object state?
+100. Explain defensive coding with encapsulation.
+
+101. What are common encapsulation mistakes?
+102. Why are public fields considered bad practice?
+103. What is over-encapsulation?
+104. What is under-encapsulation?
+105. Can excessive getters/setters be harmful?
+106. What is an anemic domain model?
+107. How does poor encapsulation affect maintenance?
+108. How does poor encapsulation affect testing?
+109. How does poor encapsulation affect scalability?
+110. What are encapsulation anti-patterns?
+
+111. How does encapsulation affect JVM optimization?
+112. How does encapsulation affect memory management?
+113. How does encapsulation impact concurrency?
+114. How does encapsulation support thread safety?
+115. How do synchronized methods relate to encapsulation?
+116. How do atomic classes support encapsulation?
+117. How does encapsulation improve reliability?
+118. How does encapsulation support secure coding?
+119. How does encapsulation help performance tuning?
+120. Explain encapsulation in concurrent applications.
+
+121. Explain encapsulation in a banking application.
+122. Explain encapsulation in an e-commerce system.
+123. Explain encapsulation in a payment gateway.
+124. Explain encapsulation in a user management system.
+125. Explain encapsulation in an inventory management system.
+126. Explain encapsulation in a healthcare application.
+127. Explain encapsulation in a logistics application.
+128. Explain encapsulation in a notification system.
+129. Explain encapsulation in a microservice architecture.
+130. Explain encapsulation in a cloud platform.
+
+131. Can constructors be private?
+132. Why would you use a private constructor?
+133. How does Singleton use encapsulation?
+134. Can static fields be encapsulated?
+135. Can final fields be encapsulated?
+136. Can enums demonstrate encapsulation?
+137. How do records affect encapsulation?
+138. How do sealed classes affect encapsulation?
+139. What is package-level encapsulation?
+140. How does Java Module System improve encapsulation?
+
+141. Describe a project where encapsulation improved maintainability.
+142. Describe a bug caused by poor encapsulation.
+143. Describe a security issue prevented by encapsulation.
+144. Describe encapsulation in a Spring Boot application.
+145. Describe encapsulation in a microservice project.
+146. Describe encapsulation in JPA entity design.
+147. Describe encapsulation in API development.
+148. Describe encapsulation in cloud integrations.
+149. Describe encapsulation used for thread safety.
+150. Explain Java encapsulation from beginner to advanced level with real-world examples.

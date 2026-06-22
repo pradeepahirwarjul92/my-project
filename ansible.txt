@@ -1,0 +1,200 @@
+1. What is Ansible?
+2. What are the advantages of Ansible?
+3. How does Ansible work?
+4. What is agentless architecture in Ansible?
+5. What are the components of Ansible?
+6. What is a control node?
+7. What are managed nodes?
+8. What is an inventory file?
+9. What are playbooks in Ansible?
+10. What is YAML?
+11. What is a task in Ansible?
+12. What is a module in Ansible?
+13. What is idempotency in Ansible?
+14. Why is idempotency important?
+15. What are ad-hoc commands?
+16. How do you check Ansible version?
+17. What are collections in Ansible?
+18. What is Ansible Galaxy?
+19. What are roles in Ansible?
+20. Difference between playbook and role?
+21. What is static inventory?
+22. What is dynamic inventory?
+23. How do you define groups in inventory?
+24. What are host variables?
+25. What are group variables?
+26. How do you organize inventory for multiple environments?
+27. What is inventory hierarchy?
+28. How do you verify inventory?
+29. What is inventory_hostname?
+30. Difference between ansible_host and inventory_hostname?
+31. What is a play in Ansible?
+32. What is a task in a playbook?
+33. What is a handler?
+34. When are handlers executed?
+35. What is notify in Ansible?
+36. How do you execute a playbook?
+37. What is --check mode?
+38. What is --diff option?
+39. How do you limit playbook execution to specific hosts?
+40. What are tags in Ansible?
+41. How do you run specific tags?
+42. How do you skip tags?
+43. What is serial execution?
+44. What is strategy in Ansible?
+45. Difference between linear and free strategy?
+46. What is become?
+47. What is become_user?
+48. How do you run a playbook with elevated privileges?
+49. What is gather_facts?
+50. How do you disable fact gathering?
+51. How do you define variables?
+52. What are variable precedence rules?
+53. What are registered variables?
+54. What is set_fact?
+55. What are magic variables?
+56. What are facts in Ansible?
+57. How do you access facts?
+58. What are extra variables?
+59. What is vars_prompt?
+60. What is vars_files?
+61. How do you use conditions in Ansible?
+62. What is the when statement?
+63. How do you execute a task based on OS type?
+64. How do you loop through a list?
+65. Difference between loop and with_items?
+66. How do you loop through dictionaries?
+67. What is loop_control?
+68. How do you retry failed tasks?
+69. What is until?
+70. What is failed_when?
+71. What is changed_when?
+72. How do you ignore task failures?
+73. What are Ansible modules?
+74. Difference between command and shell module?
+75. Difference between copy and template module?
+76. What is the file module?
+77. What is the service module?
+78. What is the package module?
+79. What is the yum module?
+80. What is the apt module?
+81. What is the user module?
+82. What is the group module?
+83. What is the cron module?
+84. What is the lineinfile module?
+85. What is the blockinfile module?
+86. What is the replace module?
+87. What is the fetch module?
+88. What is the synchronize module?
+89. What is the uri module?
+90. What is the debug module?
+91. What is Jinja2?
+92. How do templates work in Ansible?
+93. Difference between copy and template?
+94. How do you use variables in templates?
+95. What are Jinja2 filters?
+96. What is default filter?
+97. What is join filter?
+98. What is map filter?
+99. What is selectattr filter?
+100. What are Jinja2 tests?
+101. What is an Ansible role?
+102. Why use roles?
+103. Standard role directory structure?
+104. What is defaults directory?
+105. What is vars directory?
+106. What is handlers directory?
+107. What is tasks directory?
+108. What is templates directory?
+109. What is files directory?
+110. What is meta directory?
+111. How do roles improve reusability?
+112. How do you include roles?
+113. What is Ansible Vault?
+114. Why use Ansible Vault?
+115. How do you create an encrypted file?
+116. How do you edit a vault file?
+117. How do you decrypt a vault file?
+118. How do you run playbooks with vault passwords?
+119. What is vault-id?
+120. How do you rotate vault passwords?
+121. How do you debug a failed playbook?
+122. What does -vvv do?
+123. How do you troubleshoot SSH connectivity issues?
+124. Why does a task show changed every run?
+125. How do you troubleshoot variable precedence issues?
+126. How do you identify slow tasks?
+127. How do you troubleshoot inventory issues?
+128. What causes UNREACHABLE errors?
+129. What causes permission denied errors?
+130. How do you troubleshoot handlers not executing?
+131. Why are facts missing?
+132. How do you debug template rendering errors?
+133. How do you validate YAML syntax?
+134. How do you use ansible-lint?
+135. How do you troubleshoot dynamic inventory?
+136. How do you deploy an application using Ansible?
+137. How do you perform rolling deployments?
+138. How do you avoid downtime during deployments?
+139. How do you manage configuration drift?
+140. How do you manage secrets in production?
+141. How do you update hundreds of servers safely?
+142. How do you rollback failed deployments?
+143. How do you deploy Docker containers using Ansible?
+144. How do you deploy Kubernetes resources using Ansible?
+145. How do you manage multiple environments?
+146. How do you automate database backups?
+147. How do you automate SSL certificate renewal?
+148. How do you automate patch management?
+149. How do you automate user provisioning?
+150. How do you automate server hardening?
+151. What is dynamic inventory script?
+152. What is inventory plugin?
+153. What is callback plugin?
+154. What is filter plugin?
+155. What is lookup plugin?
+156. What is action plugin?
+157. What is custom module development?
+158. How do you create custom modules?
+159. What is ansible-pull?
+160. What is ansible-push?
+161. What is asynchronous execution?
+162. What is poll parameter?
+163. What is delegate_to?
+164. What is local_action?
+165. What is run_once?
+166. What is include_tasks?
+167. What is import_tasks?
+168. Difference between include_tasks and import_tasks?
+169. What is include_role?
+170. What is import_role?
+171. What is block, rescue, always?
+172. How do you handle exceptions in playbooks?
+173. What is fact caching?
+174. What is smart gathering?
+175. How do you optimize Ansible performance?
+176. What is forks configuration?
+177. What is pipelining?
+178. How do you secure Ansible control nodes?
+179. How do you integrate Ansible with Jenkins?
+180. How do you integrate Ansible with GitLab CI/CD?
+181. A playbook succeeds manually but fails in Jenkins. How do you troubleshoot?
+182. Servers are unreachable after inventory changes. What do you check?
+183. A deployment updated only half the servers. How do you investigate?
+184. SSH authentication suddenly fails. What steps would you take?
+185. Vault password changed and deployment fails. How do you recover?
+186. Playbook execution takes 30 minutes. How do you optimize?
+187. Handler not restarting service after config change. Why?
+188. Dynamic inventory not returning hosts. How do you debug?
+189. Configuration drift detected. How do you fix it?
+190. Playbook reports changed every run. How do you make it idempotent?
+191. How would you perform blue-green deployment using Ansible?
+192. How would you automate Kubernetes deployment using Ansible?
+193. How would you patch 1000 Linux servers safely?
+194. How would you automate SSL certificate renewal?
+195. How would you manage secrets across environments?
+196. How would you deploy a Spring Boot microservice using Ansible?
+197. How would you rollback a failed deployment?
+198. How would you update application configuration without downtime?
+199. How would you migrate servers from manual management to Ansible?
+200. Describe an Ansible production issue you resolved.

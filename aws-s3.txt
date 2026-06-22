@@ -1,0 +1,164 @@
+1. What is Amazon S3?
+2. What does S3 stand for?
+3. What are the key features of Amazon S3?
+4. What are the benefits of using S3?
+5. What is an S3 bucket?
+6. What is an object in S3?
+7. What is object metadata?
+8. What is object key in S3?
+9. What is bucket naming convention?
+10. What is the maximum size of an object in S3?
+
+11. What are different S3 storage classes?
+12. What is S3 Standard?
+13. What is S3 Intelligent-Tiering?
+14. What is S3 Standard-IA?
+15. What is S3 One Zone-IA?
+16. What is S3 Glacier Instant Retrieval?
+17. What is S3 Glacier Flexible Retrieval?
+18. What is S3 Glacier Deep Archive?
+19. When should you use each storage class?
+20. How do you optimize storage costs using storage classes?
+
+21. What is S3 durability?
+22. What is S3 availability?
+23. What does 11 9's durability mean?
+24. How does S3 achieve high durability?
+25. What is the difference between durability and availability?
+26. Is S3 a regional service?
+27. How is data replicated within a region?
+28. What happens if an Availability Zone fails?
+29. Can S3 store unlimited data?
+30. What are S3 data consistency models?
+
+31. What is S3 Versioning?
+32. Why use Versioning?
+33. How do you enable Versioning?
+34. What happens when a file is overwritten?
+35. What is a delete marker?
+36. Can Versioning be disabled?
+37. How do you recover deleted files using Versioning?
+38. What is MFA Delete?
+39. How does MFA Delete work?
+40. What are Versioning best practices?
+
+41. What is S3 Lifecycle Management?
+42. Why use Lifecycle Policies?
+43. How do Lifecycle Rules work?
+44. How do you transition objects to Glacier?
+45. How do you automatically delete old objects?
+46. What is object expiration?
+47. What is noncurrent version expiration?
+48. How do Lifecycle Policies reduce costs?
+49. What are common Lifecycle configurations?
+50. How do you manage log retention in S3?
+
+51. How do you secure an S3 bucket?
+52. What is Bucket Policy?
+53. What is IAM Policy in S3?
+54. Difference between Bucket Policy and IAM Policy?
+55. What is ACL in S3?
+56. Difference between ACL and Bucket Policy?
+57. What is Block Public Access?
+58. How do you prevent accidental public access?
+59. What is S3 Access Point?
+60. How do you implement least privilege for S3?
+
+61. What is S3 encryption?
+62. What types of encryption are available?
+63. What is SSE-S3?
+64. What is SSE-KMS?
+65. What is SSE-C?
+66. What is client-side encryption?
+67. How does KMS integrate with S3?
+68. How do you enforce encryption on uploads?
+69. How do you audit encrypted objects?
+70. What are encryption best practices?
+
+71. What is S3 Replication?
+72. What is Cross-Region Replication (CRR)?
+73. What is Same-Region Replication (SRR)?
+74. Why use CRR?
+75. What are replication requirements?
+76. Does replication work for existing objects?
+77. What is Replication Time Control (RTC)?
+78. How do you monitor replication?
+79. How do you troubleshoot replication failures?
+80. What are common replication use cases?
+
+81. What is Multipart Upload?
+82. Why use Multipart Upload?
+83. How does Multipart Upload improve performance?
+84. What is Transfer Acceleration?
+85. How does Transfer Acceleration work?
+86. What is S3 Select?
+87. What is Glacier Select?
+88. What is byte-range fetch?
+89. How do you improve upload performance?
+90. How do you optimize large file transfers?
+
+91. How do you host a static website on S3?
+92. What is S3 website hosting?
+93. How do you make a website publicly accessible?
+94. Why use CloudFront with S3?
+95. What is an Origin Access Control (OAC)?
+96. Difference between CloudFront and S3 Website Hosting?
+97. How do you secure static websites?
+98. How do you enable HTTPS with S3?
+99. What are common static website architectures?
+100. How do you troubleshoot website access issues?
+
+101. What is an S3 Event Notification?
+102. What events can trigger notifications?
+103. How does S3 integrate with Lambda?
+104. How does S3 integrate with SNS?
+105. How does S3 integrate with SQS?
+106. What are event-driven architectures using S3?
+107. How do you process uploaded files automatically?
+108. How do you trigger image resizing using S3?
+109. How do you build data pipelines using S3?
+110. How does S3 integrate with EventBridge?
+
+111. How do you monitor S3?
+112. What CloudWatch metrics are available?
+113. What is S3 Storage Lens?
+114. What is S3 Inventory?
+115. What is CloudTrail logging for S3?
+116. How do you audit bucket access?
+117. How do you identify unused buckets?
+118. How do you monitor storage growth?
+119. How do you troubleshoot S3 access issues?
+120. How do you investigate unauthorized access?
+
+121. Application receives AccessDenied from S3. How do you troubleshoot?
+122. Users cannot upload files to S3. What do you check?
+123. Bucket is publicly accessible. How do you secure it?
+124. S3 replication is not working. What do you verify?
+125. Multipart upload is failing. How do you troubleshoot?
+126. S3 lifecycle rule is not deleting files. Why?
+127. Versioned bucket storage costs are increasing. Why?
+128. CloudFront cannot access S3 bucket. What do you check?
+129. Objects are not encrypted. How do you enforce encryption?
+130. S3 upload performance is slow. How do you optimize it?
+
+131. Explain S3 architecture.
+132. Explain S3 + CloudFront architecture.
+133. Explain S3 + Lambda architecture.
+134. Explain Data Lake architecture using S3.
+135. Explain Backup and Archive architecture using S3.
+136. Explain Static Website architecture using S3.
+137. Explain Cross-Region Disaster Recovery using S3.
+138. Explain Media Storage architecture using S3.
+139. Explain Log Aggregation architecture using S3.
+140. Explain Event-Driven architecture using S3.
+
+141. What is S3 Object Lock?
+142. What is Governance Mode?
+143. What is Compliance Mode?
+144. What is WORM storage?
+145. What is S3 Batch Operations?
+146. What is S3 Access Analyzer?
+147. What is S3 Object Ownership?
+148. What is Requester Pays?
+149. What is S3 Express One Zone?
+150. Describe a production S3 issue you resolved and the troubleshooting steps you followed.

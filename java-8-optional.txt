@@ -1,0 +1,164 @@
+1. What is Optional in Java 8?
+2. Why was Optional introduced?
+3. What problem does Optional solve?
+4. How does Optional help avoid NullPointerException?
+5. Which package contains Optional?
+6. Is Optional a class or interface?
+7. What are the benefits of Optional?
+8. What are the limitations of Optional?
+9. When should Optional be used?
+10. When should Optional be avoided?
+
+11. How do you create an Optional object?
+12. What is Optional.empty()?
+13. What is Optional.of()?
+14. What is Optional.ofNullable()?
+15. Difference between of() and ofNullable()?
+16. What happens if null is passed to Optional.of()?
+17. Can Optional contain null values?
+18. How do you check if a value is present?
+19. What is isPresent()?
+20. What is isEmpty()?
+
+21. What is get() method in Optional?
+22. Why is get() considered unsafe?
+23. What exception does get() throw?
+24. How do you safely retrieve values from Optional?
+25. What is orElse()?
+26. What is orElseGet()?
+27. Difference between orElse() and orElseGet()?
+28. What is orElseThrow()?
+29. How do you provide default values using Optional?
+30. What are best practices for retrieving Optional values?
+
+31. What is ifPresent()?
+32. How does ifPresent() work?
+33. What is ifPresentOrElse()?
+34. How do you execute logic only when a value exists?
+35. How do you avoid explicit null checks with Optional?
+36. What is Consumer in ifPresent()?
+37. Can Optional replace all null checks?
+38. What are common mistakes with ifPresent()?
+39. How does Optional improve readability?
+40. Give examples of Optional usage.
+
+41. What is map() in Optional?
+42. How does map() work?
+43. What happens if map() returns null?
+44. What is flatMap()?
+45. Difference between map() and flatMap()?
+46. Why use flatMap()?
+47. What is filter() in Optional?
+48. How does filter() work?
+49. Can map() transform values?
+50. Explain Optional chaining.
+
+51. What is Optional chaining?
+52. How does Optional reduce nested null checks?
+53. How do map() and flatMap() help chaining?
+54. Explain fluent API style using Optional.
+55. How do you avoid deeply nested if statements?
+56. How do you access nested objects safely?
+57. What is functional programming style with Optional?
+58. How does Optional improve code maintainability?
+59. What are real-world examples of chaining?
+60. How do you debug Optional chains?
+
+61. Can Optional be used with Streams?
+62. How does Optional integrate with Stream API?
+63. What is Optional.stream()?
+64. Difference between Stream and Optional?
+65. How do you convert Optional to Stream?
+66. How do you find the first element using Optional?
+67. What does findFirst() return?
+68. What does findAny() return?
+69. How does Optional work with reduce()?
+70. Explain Optional in Stream operations.
+
+71. What is OptionalInt?
+72. What is OptionalLong?
+73. What is OptionalDouble?
+74. Why were primitive Optional classes introduced?
+75. Difference between Optional<Integer> and OptionalInt?
+76. How do primitive Optional classes improve performance?
+77. What methods are available in OptionalInt?
+78. What methods are available in OptionalDouble?
+79. What methods are available in OptionalLong?
+80. When should primitive Optionals be used?
+
+81. Can Optional be serialized?
+82. Why is Optional not recommended as a field?
+83. Can Optional be used in JPA entities?
+84. Why is Optional discouraged in DTOs?
+85. Should Optional be used in method parameters?
+86. Why avoid Optional parameters?
+87. Should Optional be used in return types?
+88. What are Java Optional best practices?
+89. What are common Optional anti-patterns?
+90. What is Optional abuse?
+
+91. Difference between null and Optional?
+92. Difference between Optional and exceptions?
+93. Difference between Optional and empty collections?
+94. Difference between Optional and Guava Optional?
+95. Difference between Optional and Apache Commons utilities?
+96. Why prefer Optional over returning null?
+97. When should exceptions be used instead of Optional?
+98. When should Optional not replace exceptions?
+99. How does Optional improve API design?
+100. Explain Optional in enterprise applications.
+
+101. How is Optional used in Spring Boot?
+102. How is Optional used in Spring Data JPA?
+103. What does JpaRepository.findById() return?
+104. How do you handle Optional in service layers?
+105. How do you return Optional from repositories?
+106. Should controllers return Optional?
+107. How do you convert Optional to ResponseEntity?
+108. How is Optional used in REST APIs?
+109. How do you handle Optional in microservices?
+110. What are Optional best practices in Spring Boot?
+
+111. What are performance implications of Optional?
+112. Does Optional create additional objects?
+113. Is Optional suitable for high-performance code?
+114. Can Optional impact memory usage?
+115. How does JVM optimize Optional?
+116. Is Optional faster than null checks?
+117. What are Optional performance trade-offs?
+118. When should Optional be avoided for performance reasons?
+119. How does Optional affect garbage collection?
+120. Explain Optional overhead.
+
+121. Explain a real-world use case of Optional.
+122. How would you refactor null checks using Optional?
+123. How would you handle missing database records?
+124. How would you use Optional in user lookup services?
+125. How would you avoid NullPointerException in nested objects?
+126. How would you design APIs using Optional?
+127. How would you handle Optional in REST services?
+128. How would you use Optional with Streams?
+129. How would you test Optional-based code?
+130. How would you migrate legacy code to Optional?
+
+131. What happens if Optional.get() is called on empty Optional?
+132. What exception is thrown?
+133. How do you avoid NoSuchElementException?
+134. Can Optional contain another Optional?
+135. What is Optional<Optional<T>>?
+136. Why should nested Optionals be avoided?
+137. How does flatMap solve nested Optional issues?
+138. What is Optional.empty() singleton behavior?
+139. Is Optional immutable?
+140. Is Optional thread-safe?
+
+141. Explain Optional design philosophy.
+142. Explain Optional as a value-based class.
+143. What is a value-based class?
+144. Why shouldn't Optional be compared using ==?
+145. How do equals() and hashCode() work in Optional?
+146. How does Optional support functional programming?
+147. How does Optional improve readability?
+148. How does Optional improve API contracts?
+149. Explain Optional with complete code examples.
+150. Explain Java 8 Optional from beginner to advanced level with real-world scenarios.

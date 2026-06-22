@@ -1,0 +1,164 @@
+1. What is an interface in Java?
+2. Why are interfaces used?
+3. What are the features of interfaces?
+4. Difference between interface and class?
+5. Difference between interface and abstract class?
+6. Can an interface have methods?
+7. Can an interface have variables?
+8. What type of variables can an interface contain?
+9. Are interface variables public by default?
+10. Are interface variables static and final by default?
+
+11. Can an interface have constructors?
+12. Can an interface have static methods?
+13. Can an interface have default methods?
+14. What new features were introduced in Java 8 interfaces?
+15. Why were default methods introduced in Java 8?
+16. What problem do default methods solve?
+17. What is backward compatibility in Java 8 interfaces?
+18. What is interface evolution?
+19. How do default methods help existing applications?
+20. Explain Java 8 interface enhancements.
+
+21. What is a default method?
+22. How do you declare a default method?
+23. Can a default method be overridden?
+24. What is the syntax of a default method?
+25. When should default methods be used?
+26. Can default methods access interface constants?
+27. Can default methods call other methods?
+28. Can default methods be inherited?
+29. Are default methods public?
+30. Can default methods be final?
+
+31. What is a static method in an interface?
+32. How do you declare a static method in an interface?
+33. Why use static methods in interfaces?
+34. Can static methods be overridden?
+35. How do you call interface static methods?
+36. Are static methods inherited?
+37. Can static methods access default methods?
+38. Can static methods access interface variables?
+39. Difference between static and default methods?
+40. Give examples of static methods in interfaces.
+
+41. What happens if two interfaces have the same default method?
+42. What is the diamond problem?
+43. How does Java 8 resolve the diamond problem?
+44. How do you override conflicting default methods?
+45. What happens if a class and interface have the same method?
+46. Which method gets priority: class or interface?
+47. Explain "Class Wins" rule.
+48. Explain "Most Specific Interface Wins" rule.
+49. Explain default method conflict resolution.
+50. Give an example of default method conflict.
+
+51. Can an interface extend another interface?
+52. Can an interface extend multiple interfaces?
+53. Can an interface inherit default methods?
+54. Can an interface inherit static methods?
+55. Can an interface override default methods?
+56. Can interfaces have abstract methods along with default methods?
+57. What happens when child interfaces redefine methods?
+58. Can interfaces contain nested interfaces?
+59. Can interfaces contain nested classes?
+60. Explain interface inheritance.
+
+61. What is a functional interface?
+62. What are the characteristics of a functional interface?
+63. What is @FunctionalInterface annotation?
+64. Is @FunctionalInterface mandatory?
+65. Can a functional interface have default methods?
+66. Can a functional interface have static methods?
+67. How many abstract methods can a functional interface have?
+68. Give examples of functional interfaces.
+69. What is SAM (Single Abstract Method)?
+70. Why are functional interfaces important in Java 8?
+
+71. What is a lambda expression?
+72. How do lambda expressions relate to interfaces?
+73. Why do lambdas require functional interfaces?
+74. Can lambda expressions work with normal interfaces?
+75. How do lambdas improve code readability?
+76. What is the syntax of lambda expressions?
+77. What are method references?
+78. How do method references use interfaces?
+79. Difference between lambda and anonymous class?
+80. When should lambda expressions be preferred?
+
+81. What are built-in functional interfaces in Java 8?
+82. What is Predicate interface?
+83. What is Function interface?
+84. What is Consumer interface?
+85. What is Supplier interface?
+86. What is BiPredicate?
+87. What is BiFunction?
+88. What is UnaryOperator?
+89. What is BinaryOperator?
+90. How are these interfaces used in Streams?
+
+91. What is Comparator interface?
+92. How was Comparator enhanced in Java 8?
+93. What default methods were added to Comparator?
+94. What static methods were added to Comparator?
+95. Explain Comparator.comparing().
+96. Explain Comparator.reverseOrder().
+97. Explain Comparator.thenComparing().
+98. Explain Comparator.naturalOrder().
+99. How do Java 8 interfaces improve Comparator?
+100. Give real-world examples of Comparator enhancements.
+
+101. What is Iterable interface?
+102. What default method was added to Iterable in Java 8?
+103. What is forEach() method?
+104. How does Collection interface use default methods?
+105. What default methods were added to Collection?
+106. What is removeIf()?
+107. What is stream() method?
+108. What is parallelStream()?
+109. What default methods were added to Map?
+110. Explain computeIfAbsent().
+
+111. Explain computeIfPresent().
+112. Explain merge().
+113. Explain replaceAll().
+114. Explain getOrDefault().
+115. Why were these methods added?
+116. How do these methods simplify coding?
+117. What are the performance benefits?
+118. How do default methods affect Collections Framework?
+119. Explain enhancements to List interface.
+120. Explain enhancements to Set interface.
+
+121. What are best practices for default methods?
+122. When should default methods be avoided?
+123. What are risks of overusing default methods?
+124. How do default methods impact API design?
+125. Can default methods break encapsulation?
+126. What are real-world use cases for default methods?
+127. What are real-world use cases for static methods?
+128. How do interfaces support loose coupling?
+129. How do interfaces support dependency injection?
+130. How do interfaces support SOLID principles?
+
+131. Explain interface usage in Spring Framework.
+132. Explain interface usage in Hibernate.
+133. Explain interface usage in Microservices.
+134. Explain interface usage in Collections Framework.
+135. Explain interface usage in Stream API.
+136. Explain interface usage in CompletableFuture.
+137. Explain interface usage in ExecutorService.
+138. Explain interface usage in JDBC.
+139. Explain interface usage in REST APIs.
+140. Explain interface usage in enterprise applications.
+
+141. Can default methods access instance variables?
+142. Can interfaces have private methods in Java 8?
+143. What changed in Java 9 interfaces?
+144. Difference between Java 7 and Java 8 interfaces?
+145. How does JVM handle default methods?
+146. How are default methods stored in bytecode?
+147. How does method resolution work?
+148. Explain multiple inheritance through interfaces.
+149. Explain Java 8 interface enhancements with code examples.
+150. Explain Java 8 interfaces from beginner to advanced level.

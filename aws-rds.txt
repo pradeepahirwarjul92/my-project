@@ -1,0 +1,164 @@
+1. What is Amazon RDS?
+2. What are the benefits of Amazon RDS?
+3. What databases are supported by RDS?
+4. Difference between RDS and self-managed databases?
+5. What are the key features of Amazon RDS?
+6. What is a DB Instance in RDS?
+7. What is a DB Cluster?
+8. What is a DB Parameter Group?
+9. What is a DB Option Group?
+10. What is a DB Subnet Group?
+
+11. Which database engines are supported by RDS?
+12. What is Amazon Aurora?
+13. Difference between RDS MySQL and Aurora MySQL?
+14. Difference between Aurora and PostgreSQL?
+15. What is Aurora Serverless?
+16. What are Aurora Replicas?
+17. What is Aurora Global Database?
+18. What is Aurora Multi-Master?
+19. When would you choose Aurora over RDS?
+20. What are Aurora endpoints?
+
+21. What is Multi-AZ deployment?
+22. Why use Multi-AZ?
+23. How does failover work in Multi-AZ?
+24. Difference between Multi-AZ and Read Replica?
+25. What is RDS high availability?
+26. How long does failover usually take?
+27. What happens during an RDS failover?
+28. How do applications reconnect after failover?
+29. What is standby instance in Multi-AZ?
+30. Can standby instances serve read traffic?
+
+31. What is an RDS Read Replica?
+32. Why use Read Replicas?
+33. How many Read Replicas can RDS support?
+34. Can Read Replicas be promoted?
+35. Difference between synchronous and asynchronous replication?
+36. What is replication lag?
+37. How do you monitor replication lag?
+38. How do you troubleshoot replication lag?
+39. Can Read Replicas exist across regions?
+40. What is cross-region replication?
+
+41. How do you secure an RDS instance?
+42. Can RDS be deployed in a private subnet?
+43. What are RDS security groups?
+44. How do you control access to RDS?
+45. What is IAM database authentication?
+46. How does IAM authentication work?
+47. What is SSL/TLS encryption in RDS?
+48. What is encryption at rest?
+49. How does KMS integrate with RDS?
+50. How do you rotate database credentials securely?
+
+51. What are RDS backups?
+52. Difference between automated backups and snapshots?
+53. What is backup retention period?
+54. What is Point-in-Time Recovery (PITR)?
+55. How does PITR work?
+56. What is an RDS snapshot?
+57. Are snapshots incremental?
+58. How do you restore from a snapshot?
+59. Can snapshots be copied across regions?
+60. How do you backup RDS manually?
+
+61. How do you monitor RDS?
+62. What CloudWatch metrics are important for RDS?
+63. What is Enhanced Monitoring?
+64. What is Performance Insights?
+65. Difference between Enhanced Monitoring and Performance Insights?
+66. How do you monitor slow queries?
+67. How do you enable database logs?
+68. What logs are available in RDS?
+69. How do you analyze database performance?
+70. How do you troubleshoot high CPU utilization?
+
+71. How do you scale RDS vertically?
+72. How do you scale RDS horizontally?
+73. What is storage auto scaling?
+74. How do you increase storage?
+75. Can RDS storage be decreased?
+76. What is Provisioned IOPS?
+77. What is General Purpose SSD?
+78. How do you optimize RDS performance?
+79. What causes database bottlenecks?
+80. How do you tune RDS workloads?
+
+81. What is RDS Proxy?
+82. Why use RDS Proxy?
+83. How does RDS Proxy help Lambda?
+84. What connection problems does RDS Proxy solve?
+85. How does connection pooling work?
+86. What are common RDS connection issues?
+87. How do you troubleshoot connection exhaustion?
+88. What is max_connections?
+89. How do you tune connection settings?
+90. How do you monitor active connections?
+
+91. How do you connect EC2 to RDS?
+92. How do you connect Lambda to RDS?
+93. How do you connect ECS to RDS?
+94. How do you connect EKS to RDS?
+95. How do you connect on-premises systems to RDS?
+96. How do you connect applications securely to RDS?
+97. What networking components are required?
+98. What ports are commonly used by RDS databases?
+99. How do you troubleshoot connection failures?
+100. What happens if security groups are misconfigured?
+
+101. RDS database is slow. How do you investigate?
+102. CPU utilization is consistently high. What do you check?
+103. Storage is almost full. How do you resolve it?
+104. Read replica lag is increasing. What actions do you take?
+105. Application cannot connect to RDS. How do you troubleshoot?
+106. Database connections are exhausted. What do you do?
+107. Failover occurred unexpectedly. How do you investigate?
+108. Queries are timing out. What could be the cause?
+109. Database memory usage is very high. What will you check?
+110. Disk IOPS are saturated. How do you resolve it?
+
+111. How does RDS pricing work?
+112. What factors affect RDS cost?
+113. How do you optimize RDS costs?
+114. Difference between On-Demand and Reserved Instances?
+115. What are RDS Reserved Instances?
+116. How do backups impact costs?
+117. How do snapshots impact costs?
+118. How do Multi-AZ deployments affect cost?
+119. How do Read Replicas affect cost?
+120. How do you reduce storage costs?
+
+121. Explain RDS architecture.
+122. Explain Multi-AZ architecture.
+123. Explain Read Replica architecture.
+124. Explain Aurora architecture.
+125. Explain Aurora Global Database architecture.
+126. Explain RDS Proxy architecture.
+127. Explain EC2 + RDS architecture.
+128. Explain Lambda + RDS architecture.
+129. Explain Microservices with RDS architecture.
+130. Explain Disaster Recovery architecture using RDS.
+
+131. What is Blue/Green Deployment in RDS?
+132. How does Blue/Green Deployment reduce downtime?
+133. How do you perform database upgrades in RDS?
+134. How do you patch RDS databases?
+135. What maintenance options are available?
+136. What is a maintenance window?
+137. How do you minimize downtime during upgrades?
+138. How do you perform schema migrations?
+139. How do you rollback database changes?
+140. What are best practices for production upgrades?
+
+141. Describe an RDS performance issue you resolved.
+142. Describe a database outage you handled.
+143. Describe a failover scenario you experienced.
+144. Describe a replication lag issue.
+145. Describe a connection pool exhaustion problem.
+146. Describe a storage full incident.
+147. Describe a slow query optimization activity.
+148. Describe an RDS cost optimization project.
+149. Describe an RDS security hardening initiative.
+150. Describe a production RDS troubleshooting incident and its resolution.

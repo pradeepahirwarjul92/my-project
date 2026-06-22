@@ -1,0 +1,195 @@
+JAVA COLLECTION FRAMEWORK - 100 INTERVIEW QUESTIONS
+
+BASICS
+
+1. What is Collection Framework?
+2. What are the advantages of Collection Framework?
+3. Difference between Collection and Collections?
+4. Difference between Collection and Map?
+5. What are the main interfaces in Collection Framework?
+6. What is Iterable?
+7. What is Iterator?
+8. Difference between Iterator and ListIterator?
+9. What is Enumeration?
+10. Difference between Enumeration and Iterator?
+
+LIST
+
+11. What is List?
+12. Difference between ArrayList and LinkedList?
+13. Difference between ArrayList and Vector?
+14. What is Stack?
+15. How does ArrayList work internally?
+16. What is default size of ArrayList?
+17. How does ArrayList grow internally?
+18. What is random access?
+19. Why is ArrayList faster for retrieval?
+20. Why is LinkedList faster for insertion/deletion?
+
+21. Internal structure of LinkedList?
+22. Difference between singly and doubly linked list?
+23. How does LinkedList maintain elements?
+24. When should ArrayList be used?
+25. When should LinkedList be used?
+
+SET
+
+26. What is Set?
+27. How does HashSet work internally?
+28. Difference between HashSet and LinkedHashSet?
+29. Difference between HashSet and TreeSet?
+30. How does TreeSet work internally?
+31. What is SortedSet?
+32. What is NavigableSet?
+33. How are duplicates prevented in HashSet?
+34. Can HashSet store null values?
+35. Can TreeSet store null values?
+
+36. How does LinkedHashSet maintain insertion order?
+37. What is Red-Black Tree?
+38. How does TreeSet achieve sorting?
+39. Time complexity of HashSet operations?
+40. Time complexity of TreeSet operations?
+
+QUEUE
+
+41. What is Queue?
+42. Difference between Queue and Deque?
+43. What is PriorityQueue?
+44. How does PriorityQueue work internally?
+45. What is ArrayDeque?
+46. Difference between ArrayDeque and Stack?
+47. Difference between Queue and PriorityQueue?
+48. Time complexity of PriorityQueue?
+49. Can Queue contain null values?
+50. Real-world use cases of Queue?
+
+MAP
+
+51. What is Map?
+52. Difference between HashMap and Hashtable?
+53. Difference between HashMap and LinkedHashMap?
+54. Difference between HashMap and TreeMap?
+55. How does HashMap work internally?
+56. What is hashing?
+57. What is hashCode()?
+58. What is equals()?
+59. Contract between equals() and hashCode()?
+60. What is bucket in HashMap?
+
+61. What is collision in HashMap?
+62. How does HashMap handle collisions?
+63. What is load factor?
+64. What is capacity?
+65. Default capacity of HashMap?
+66. Default load factor of HashMap?
+67. What is rehashing?
+68. What is resizing in HashMap?
+69. Internal working of HashMap in Java 8?
+70. What is treeification?
+
+71. When does HashMap convert linked list to tree?
+72. Why Red-Black Tree is used?
+73. Time complexity before treeification?
+74. Time complexity after treeification?
+75. Can HashMap store null key?
+76. Can HashMap store multiple null values?
+77. Is HashMap thread-safe?
+78. How to make HashMap thread-safe?
+79. Difference between ConcurrentHashMap and HashMap?
+80. Internal working of ConcurrentHashMap?
+
+COMPARABLE AND COMPARATOR
+
+81. What is Comparable?
+82. What is Comparator?
+83. Difference between Comparable and Comparator?
+84. How does sorting work internally?
+85. What is natural ordering?
+86. What is custom sorting?
+87. Multiple field sorting using Comparator?
+88. Comparator.comparing() examples?
+89. Comparator chaining examples?
+90. Real-world sorting scenarios?
+
+FAIL FAST / FAIL SAFE
+
+91. What is Fail-Fast Iterator?
+92. What is Fail-Safe Iterator?
+93. What is ConcurrentModificationException?
+94. How to avoid ConcurrentModificationException?
+95. Which collections provide Fail-Safe iterators?
+96. Difference between Fail-Fast and Fail-Safe?
+97. What is modCount?
+98. How Iterator.remove() works?
+99. Production troubleshooting related to collections?
+100. Collection Framework best practices?
+
+MOST ASKED HASHMAP QUESTIONS
+
+1. How HashMap works internally?
+2. What is hashing?
+3. What is collision?
+4. How collision is resolved?
+5. What is bucket?
+6. What is load factor?
+7. Why default load factor is 0.75?
+8. What is capacity?
+9. Default capacity of HashMap?
+10. What is rehashing?
+11. What is resizing?
+12. Difference between Java 7 and Java 8 HashMap?
+13. What is treeification?
+14. Why Red-Black Tree?
+15. When does linked list become tree?
+16. Can HashMap have null key?
+17. Can HashMap have multiple null values?
+18. Is HashMap synchronized?
+19. How ConcurrentHashMap works?
+20. HashMap time complexity?
+
+MOST ASKED COLLECTION SCENARIOS
+
+1. ArrayList vs LinkedList in production?
+2. HashMap vs ConcurrentHashMap?
+3. HashSet vs TreeSet?
+4. HashMap vs TreeMap?
+5. Why HashMap lookup is O(1)?
+6. Why equals() and hashCode() are important?
+7. How to design immutable key for HashMap?
+8. How to avoid memory leaks in collections?
+9. Why ConcurrentModificationException occurs?
+10. How would you optimize collection performance in a high-load application?
+
+COLLECTION TIME COMPLEXITIES
+
+ArrayList
+get()       -> O(1)
+add()       -> O(1)
+remove()    -> O(n)
+search()    -> O(n)
+
+LinkedList
+get()       -> O(n)
+add()       -> O(1)
+remove()    -> O(1)
+
+HashMap
+put()       -> O(1)
+get()       -> O(1)
+remove()    -> O(1)
+
+TreeMap
+put()       -> O(log n)
+get()       -> O(log n)
+remove()    -> O(log n)
+
+HashSet
+add()       -> O(1)
+remove()    -> O(1)
+contains()  -> O(1)
+
+TreeSet
+add()       -> O(log n)
+remove()    -> O(log n)
+contains()  -> O(log n)

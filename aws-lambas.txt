@@ -1,0 +1,164 @@
+1. What is AWS Lambda?
+2. What is Serverless Computing?
+3. How does AWS Lambda work?
+4. What are the benefits of AWS Lambda?
+5. What are the limitations of AWS Lambda?
+6. What programming languages are supported by Lambda?
+7. What is an event-driven architecture?
+8. What are Lambda triggers?
+9. What is a Lambda function?
+10. What are Lambda layers?
+
+11. How do you create a Lambda function?
+12. What is the Lambda execution environment?
+13. What is a Lambda runtime?
+14. What is Lambda cold start?
+15. What is Lambda warm start?
+16. Why do cold starts occur?
+17. How can you reduce Lambda cold starts?
+18. What is Provisioned Concurrency?
+19. What is Reserved Concurrency?
+20. Difference between Reserved and Provisioned Concurrency?
+
+21. What are Lambda event sources?
+22. How does Lambda integrate with API Gateway?
+23. How does Lambda integrate with S3?
+24. How does Lambda integrate with DynamoDB?
+25. How does Lambda integrate with SQS?
+26. How does Lambda integrate with SNS?
+27. How does Lambda integrate with EventBridge?
+28. How does Lambda integrate with Kinesis?
+29. How does Lambda integrate with CloudWatch?
+30. How does Lambda integrate with Step Functions?
+
+31. What is Lambda execution role?
+32. Why does Lambda require IAM roles?
+33. How do you grant Lambda access to S3?
+34. How do you grant Lambda access to DynamoDB?
+35. How do you secure Lambda functions?
+36. What are resource-based policies?
+37. What is least privilege in Lambda?
+38. How do you secure environment variables?
+39. How do you use AWS Secrets Manager with Lambda?
+40. How do you use KMS with Lambda?
+
+41. What is Lambda timeout?
+42. What is Lambda memory allocation?
+43. How does memory affect CPU allocation?
+44. What is Lambda ephemeral storage?
+45. What is the maximum Lambda execution timeout?
+46. What is the maximum Lambda memory size?
+47. What is Lambda payload size limit?
+48. What is Lambda deployment package size limit?
+49. What is Lambda container image support?
+50. What is the maximum container image size?
+
+51. What is Lambda versioning?
+52. What are Lambda aliases?
+53. Why use aliases?
+54. What is blue-green deployment in Lambda?
+55. What is canary deployment in Lambda?
+56. How do you rollback a Lambda deployment?
+57. What is AWS SAM?
+58. What is AWS Serverless Framework?
+59. What is AWS CDK?
+60. How do you automate Lambda deployments?
+
+61. How do you monitor Lambda functions?
+62. What Lambda metrics are available in CloudWatch?
+63. What is Lambda Insights?
+64. What are Lambda logs?
+65. How do you troubleshoot Lambda failures?
+66. What is AWS X-Ray?
+67. How does X-Ray help Lambda monitoring?
+68. How do you trace Lambda requests?
+69. What causes Lambda throttling?
+70. How do you troubleshoot throttling?
+
+71. What is Lambda concurrency?
+72. How is concurrency calculated?
+73. What happens when concurrency limits are reached?
+74. What is account concurrency limit?
+75. How do you increase Lambda concurrency limits?
+76. What is burst concurrency?
+77. How do you manage high-traffic Lambda workloads?
+78. What is asynchronous invocation?
+79. What is synchronous invocation?
+80. Difference between synchronous and asynchronous Lambda execution?
+
+81. What is Dead Letter Queue (DLQ)?
+82. Why use a DLQ with Lambda?
+83. What services can be used as DLQ?
+84. What is Lambda retry behavior?
+85. How does Lambda handle failed executions?
+86. How do you configure retry policies?
+87. What is Lambda Destinations?
+88. Difference between DLQ and Destinations?
+89. How do you troubleshoot failed asynchronous invocations?
+90. How do you design fault-tolerant Lambda applications?
+
+91. How do you optimize Lambda performance?
+92. How do you reduce Lambda costs?
+93. How does Lambda pricing work?
+94. How do you estimate Lambda costs?
+95. What are common Lambda optimization techniques?
+96. How do you optimize Java Lambda functions?
+97. How do you optimize Spring Boot Lambda functions?
+98. How do you minimize package size?
+99. How do Lambda layers improve performance?
+100. How do you avoid excessive cold starts?
+
+101. A Lambda function is timing out. How do you troubleshoot?
+102. A Lambda function is running slowly. What will you check?
+103. Lambda receives AccessDenied errors. How do you troubleshoot?
+104. Lambda cannot access S3. What do you verify?
+105. Lambda cannot connect to RDS. What checks do you perform?
+106. Lambda is being throttled. How do you investigate?
+107. Lambda invocation count suddenly drops. Why?
+108. Lambda logs are missing in CloudWatch. What could be wrong?
+109. Lambda memory utilization is high. What do you do?
+110. Lambda execution duration suddenly increases. What might be the cause?
+
+111. How do you connect Lambda to RDS?
+112. What are challenges of Lambda-RDS integration?
+113. How do you manage database connections in Lambda?
+114. What is RDS Proxy?
+115. Why use RDS Proxy with Lambda?
+116. How do you connect Lambda to DynamoDB?
+117. How do you connect Lambda to ElastiCache?
+118. How do you connect Lambda to OpenSearch?
+119. How do you connect Lambda to external APIs?
+120. How do you secure outbound API calls?
+
+121. Explain Lambda architecture.
+122. Explain API Gateway + Lambda architecture.
+123. Explain S3 Event + Lambda architecture.
+124. Explain EventBridge + Lambda architecture.
+125. Explain SQS + Lambda architecture.
+126. Explain SNS + Lambda architecture.
+127. Explain Kinesis + Lambda architecture.
+128. Explain DynamoDB Streams + Lambda architecture.
+129. Explain Step Functions + Lambda architecture.
+130. Explain Serverless Microservices architecture.
+
+131. What is VPC-enabled Lambda?
+132. Why place Lambda inside a VPC?
+133. What are disadvantages of VPC-enabled Lambda?
+134. How does Lambda access private resources?
+135. What is NAT Gateway's role in Lambda networking?
+136. How do you troubleshoot VPC Lambda connectivity issues?
+137. What are ENIs in Lambda?
+138. How does Lambda create ENIs?
+139. What security groups are used with Lambda?
+140. How do you secure Lambda networking?
+
+141. Describe a Lambda timeout issue you resolved.
+142. Describe a Lambda cold start issue.
+143. Describe a Lambda throttling issue.
+144. Describe a Lambda-RDS connection issue.
+145. Describe a Lambda deployment failure.
+146. Describe a Lambda permission issue.
+147. Describe a Lambda performance optimization project.
+148. Describe a Lambda cost optimization initiative.
+149. Describe a Lambda monitoring setup.
+150. Describe a production incident involving Lambda and how you resolved it.

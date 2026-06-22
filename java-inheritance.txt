@@ -1,0 +1,164 @@
+1. What is inheritance in Java?
+2. Why is inheritance used in Java?
+3. What are the advantages of inheritance?
+4. What are the disadvantages of inheritance?
+5. What is the IS-A relationship?
+6. What is the HAS-A relationship?
+7. Difference between IS-A and HAS-A?
+8. What is code reusability in inheritance?
+9. How does inheritance support polymorphism?
+10. What keyword is used for inheritance in Java?
+
+11. What is single inheritance?
+12. What is multilevel inheritance?
+13. What is hierarchical inheritance?
+14. What is multiple inheritance?
+15. Does Java support multiple inheritance with classes?
+16. Why doesn't Java support multiple inheritance with classes?
+17. How does Java achieve multiple inheritance?
+18. What is hybrid inheritance?
+19. Does Java support hybrid inheritance?
+20. Give examples of inheritance in Java APIs.
+
+21. What is a superclass?
+22. What is a subclass?
+23. How do you inherit a class?
+24. Can a subclass access parent class members?
+25. Which members are inherited?
+26. Are private members inherited?
+27. Can constructors be inherited?
+28. Can static methods be inherited?
+29. Can final methods be inherited?
+30. Can abstract methods be inherited?
+
+31. What is method overriding?
+32. Difference between overloading and overriding?
+33. What are the rules of method overriding?
+34. Can static methods be overridden?
+35. What is method hiding?
+36. Can private methods be overridden?
+37. Can final methods be overridden?
+38. What is the @Override annotation?
+39. Why use @Override annotation?
+40. What happens if @Override is used incorrectly?
+
+41. What is super keyword?
+42. How do you call parent class constructor?
+43. How do you access parent class methods?
+44. How do you access parent class variables?
+45. Difference between super() and this()?
+46. Can super() and this() be used together?
+47. What happens if super() is not called explicitly?
+48. When is super() inserted automatically?
+49. Can super refer to static members?
+50. Can super be used in static methods?
+
+51. What is constructor chaining?
+52. How does constructor chaining work in inheritance?
+53. Which constructor executes first?
+54. What happens when parent class has parameterized constructor only?
+55. How do you call parameterized parent constructor?
+56. Can constructors be overridden?
+57. Why are constructors not inherited?
+58. What is implicit constructor invocation?
+59. Explain constructor execution order.
+60. Explain object creation in inheritance hierarchy.
+
+61. What is runtime polymorphism?
+62. How does inheritance enable polymorphism?
+63. What is upcasting?
+64. What is downcasting?
+65. Is upcasting implicit or explicit?
+66. Is downcasting implicit or explicit?
+67. What is ClassCastException?
+68. How do you avoid ClassCastException?
+69. What is instanceof operator?
+70. Why is instanceof used before downcasting?
+
+71. What is abstract class inheritance?
+72. Can abstract classes have constructors?
+73. Can abstract classes have concrete methods?
+74. What happens if abstract methods are not implemented?
+75. Difference between abstract class and inheritance?
+76. Can abstract class extend another abstract class?
+77. Can abstract class extend concrete class?
+78. Can concrete class extend abstract class?
+79. What is partial abstraction?
+80. What is complete abstraction?
+
+81. Can interfaces extend interfaces?
+82. Can classes implement multiple interfaces?
+83. How does interface inheritance work?
+84. What are default methods?
+85. What happens when two interfaces have same default method?
+86. How is diamond problem solved in Java?
+87. Difference between interface inheritance and class inheritance?
+88. Can interfaces inherit constants?
+89. Can interfaces inherit default methods?
+90. Can interfaces inherit static methods?
+
+91. What is Object class in Java?
+92. Which methods are inherited from Object class?
+93. Why does every class inherit Object class?
+94. Can Object class be extended?
+95. What is the top-most parent class in Java?
+96. Explain toString() inheritance.
+97. Explain equals() inheritance.
+98. Explain hashCode() inheritance.
+99. Explain clone() inheritance.
+100. Explain finalize() inheritance.
+
+101. What is composition?
+102. Difference between composition and inheritance?
+103. When should composition be preferred?
+104. What is tight coupling in inheritance?
+105. What is loose coupling?
+106. What is favor composition over inheritance?
+107. What are inheritance design problems?
+108. What is fragile base class problem?
+109. What are inheritance best practices?
+110. How do you avoid misuse of inheritance?
+
+111. Explain inheritance in Collections Framework.
+112. Explain inheritance in Exception hierarchy.
+113. Explain inheritance in Servlet API.
+114. Explain inheritance in Spring Framework.
+115. Explain inheritance in Hibernate entities.
+116. Explain inheritance mapping in JPA.
+117. What is Single Table inheritance in JPA?
+118. What is Joined inheritance in JPA?
+119. What is Table Per Class inheritance?
+120. Which JPA inheritance strategy is best?
+
+121. Describe a real project where you used inheritance.
+122. When would you avoid inheritance?
+123. How would you design Employee → Manager inheritance?
+124. How would you design Vehicle inheritance?
+125. How would you design Account inheritance in banking?
+126. How would you implement role hierarchy using inheritance?
+127. What problems can arise from deep inheritance hierarchies?
+128. How would you refactor inheritance to composition?
+129. How do you test inheritance-based code?
+130. What are common inheritance interview scenarios?
+
+131. Can a child class reduce method visibility?
+132. Can a child class increase method visibility?
+133. What exceptions rules apply during overriding?
+134. Can return types differ in overriding?
+135. What is covariant return type?
+136. Can final classes be inherited?
+137. Why is String class final?
+138. Can enums be inherited?
+139. Can records be extended?
+140. Can sealed classes restrict inheritance?
+
+141. What are sealed classes in Java 17?
+142. What is permits keyword?
+143. Difference between sealed, non-sealed and final classes?
+144. How does inheritance work with records?
+145. How does inheritance work with functional interfaces?
+146. How does inheritance affect JVM method dispatch?
+147. What is dynamic method dispatch?
+148. How does JVM resolve overridden methods?
+149. What is virtual method invocation?
+150. Explain inheritance from beginner to advanced level with examples.

@@ -1,0 +1,164 @@
+JAVA 8 STREAMS - 100 INTERVIEW QUESTIONS
+
+1. What is Stream API in Java 8?
+2. What are the advantages of Stream API?
+3. Difference between Collection and Stream?
+4. What is lazy evaluation in Streams?
+5. What is eager evaluation in Streams?
+6. What are intermediate operations in Streams?
+7. What are terminal operations in Streams?
+8. Can a Stream be reused after a terminal operation?
+9. What is the difference between map() and flatMap()?
+10. What is the purpose of filter() in Stream?
+
+11. How do you create a Stream from a Collection?
+12. How do you create a Stream from an Array?
+13. How do you create an empty Stream?
+14. How do you create an infinite Stream?
+15. Difference between Stream.of() and Arrays.stream()?
+16. How do you create a Stream using Stream.generate()?
+17. How do you create a Stream using Stream.iterate()?
+18. How do you convert Stream to List?
+19. How do you convert List to Stream?
+20. How do you create parallel streams?
+
+21. Find all even numbers using Stream.
+22. Find all odd numbers using Stream.
+23. Filter employees with salary greater than 50000.
+24. Filter strings starting with "A".
+25. Remove null values from a list.
+26. Remove empty strings from a list.
+27. Find numbers greater than 100.
+28. Filter duplicate values.
+29. Filter active users from a list.
+30. Find employees from a specific department.
+
+31. Convert all strings to uppercase.
+32. Convert all strings to lowercase.
+33. Multiply all numbers by 2 using map().
+34. Extract employee names from Employee objects.
+35. Convert List<Integer> to List<String>.
+36. Calculate square of each number.
+37. Calculate cube of each number.
+38. Convert names to their lengths.
+39. Extract email addresses from users.
+40. Create DTO objects using map().
+
+41. Sort numbers in ascending order.
+42. Sort numbers in descending order.
+43. Sort strings alphabetically.
+44. Sort strings by length.
+45. Sort employees by salary.
+46. Sort employees by age.
+47. Sort employees by name.
+48. Sort employees by multiple fields.
+49. Reverse sort a list.
+50. Custom comparator with Stream sorting.
+
+51. What is Collectors in Java 8?
+52. Difference between toList() and toSet()?
+53. Use joining() collector.
+54. Use counting() collector.
+55. Use averagingInt() collector.
+56. Use summingInt() collector.
+57. Use summarizingInt() collector.
+58. Use maxBy() collector.
+59. Use minBy() collector.
+60. Use collectingAndThen() collector.
+
+61. Group employees by department.
+62. Group employees by age.
+63. Count employees in each department.
+64. Find highest salary employee per department.
+65. Find lowest salary employee per department.
+66. Partition numbers into even and odd.
+67. Partition employees based on salary > 50000.
+68. Group strings by length.
+69. Nested grouping examples.
+70. Difference between groupingBy() and partitioningBy()?
+
+71. What is reduce() in Streams?
+72. Find sum of all numbers using reduce().
+73. Find product of all numbers.
+74. Find maximum number using reduce().
+75. Find minimum number using reduce().
+76. Concatenate strings using reduce().
+77. Find total salary of employees.
+78. Find longest string using reduce().
+79. Find shortest string using reduce().
+80. Difference between reduce() and collect()?
+
+81. What is Optional?
+82. How Optional is used with Streams?
+83. Difference between orElse() and orElseGet()?
+84. Difference between orElse() and orElseThrow()?
+85. Use findFirst() with Optional.
+86. Use findAny() with Optional.
+87. Handle null values using Optional.
+88. Use Optional.map().
+89. Use Optional.flatMap().
+90. Best practices for Optional.
+
+91. What is Parallel Stream?
+92. Difference between Stream and Parallel Stream?
+93. Advantages of Parallel Stream?
+94. Disadvantages of Parallel Stream?
+95. When should Parallel Stream be used?
+96. How does ForkJoinPool work?
+97. Is Parallel Stream thread-safe?
+98. Common issues with Parallel Stream?
+99. How to improve Parallel Stream performance?
+100. Explain a real-world use case of Java 8 Streams.
+
+MOST ASKED STREAM CODING QUESTIONS
+
+1. Find duplicate elements from a list.
+2. Find unique elements from a list.
+3. Find first non-repeated character in a string.
+4. Find first repeated character in a string.
+5. Find second highest number in a list.
+6. Find second lowest number in a list.
+7. Find highest salary employee.
+8. Find lowest salary employee.
+9. Group employees by department.
+10. Count employees in each department.
+11. Find average salary by department.
+12. Find maximum salary by department.
+13. Find minimum salary by department.
+14. Partition employees by gender.
+15. Partition numbers into even and odd.
+16. Count occurrence of each character in a string.
+17. Count occurrence of each word in a sentence.
+18. Convert list of strings to uppercase.
+19. Convert list of strings to lowercase.
+20. Sort strings by length.
+21. Sort employees by salary.
+22. Sort employees by age.
+23. Sort employees by multiple fields.
+24. Find longest string in a list.
+25. Find shortest string in a list.
+26. Join strings with comma separator.
+27. Remove duplicate elements.
+28. Sum all numbers in a list.
+29. Find product of all numbers.
+30. Find average of numbers.
+31. Find maximum number.
+32. Find minimum number.
+33. Check if list contains a specific element.
+34. Find all even numbers.
+35. Find all odd numbers.
+36. Filter null values.
+37. Filter empty strings.
+38. Find numbers starting with digit 1.
+39. Find common elements between two lists.
+40. Merge two lists and remove duplicates.
+41. Convert List<Integer> to List<String>.
+42. Convert array to list using Streams.
+43. Convert list to map.
+44. Convert map to stream.
+45. Flatten nested lists using flatMap().
+46. Find top 3 highest numbers.
+47. Find top 5 highest salary employees.
+48. Skip first 5 elements.
+49. Get first 10 elements.
+50. Find any matching element using findAny().

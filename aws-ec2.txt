@@ -1,0 +1,163 @@
+1. What is Amazon EC2?
+2. What are the key features of EC2?
+3. What is an EC2 instance?
+4. What are EC2 instance types?
+5. Difference between T2, T3, M5, C5, and R5 instances?
+6. What is an AMI (Amazon Machine Image)?
+7. How do you create an AMI?
+8. What is EBS in EC2?
+9. Difference between EBS and Instance Store?
+10. What is a Security Group?
+11. What is a Key Pair in EC2?
+12. How do you connect to an EC2 instance?
+13. What are Elastic IPs?
+14. Difference between Public IP and Elastic IP?
+15. What is User Data in EC2?
+16. What is EC2 Auto Recovery?
+17. What is EC2 Auto Scaling?
+18. What is an EC2 Launch Template?
+19. Difference between Launch Configuration and Launch Template?
+20. What is Placement Group?
+
+21. What are the different purchasing options in EC2?
+22. What is On-Demand Instance?
+23. What is Reserved Instance?
+24. What is Spot Instance?
+25. What is Dedicated Host?
+26. What is Savings Plan?
+27. Which EC2 pricing model is most cost-effective?
+28. How do Spot Instances work?
+29. What happens when a Spot Instance is interrupted?
+30. When should Reserved Instances be used?
+
+31. What is a Security Group?
+32. Difference between Security Group and NACL?
+33. Is Security Group stateful or stateless?
+34. Is NACL stateful or stateless?
+35. What are inbound rules?
+36. What are outbound rules?
+37. How do you allow SSH access to EC2?
+38. How do you restrict access to EC2?
+39. What ports are commonly used in EC2?
+40. How do you secure an EC2 instance?
+
+41. What is EBS?
+42. Types of EBS volumes?
+43. Difference between gp2 and gp3?
+44. What is Provisioned IOPS SSD?
+45. What is Throughput Optimized HDD?
+46. How do you attach an EBS volume?
+47. How do you resize an EBS volume?
+48. What is an EBS Snapshot?
+49. How are EBS Snapshots stored?
+50. How do you restore an EBS Snapshot?
+
+51. What is EC2 Auto Scaling?
+52. Why use Auto Scaling?
+53. What is a Scaling Policy?
+54. Difference between Dynamic and Predictive Scaling?
+55. What is a Launch Template?
+56. What is Desired Capacity?
+57. What is Minimum Capacity?
+58. What is Maximum Capacity?
+59. What is Cooldown Period?
+60. How does Auto Scaling improve availability?
+
+61. What is Elastic Load Balancer?
+62. Types of Load Balancers in AWS?
+63. Difference between ALB, NLB and CLB?
+64. What is Target Group?
+65. What are Health Checks?
+66. What happens when a target fails health checks?
+67. What is Cross Zone Load Balancing?
+68. How does ELB work with Auto Scaling?
+69. What is Sticky Session?
+70. How do you troubleshoot unhealthy targets?
+
+71. How do you monitor EC2 instances?
+72. What is CloudWatch?
+73. What are CloudWatch Metrics?
+74. What is CloudWatch Alarm?
+75. What is CloudWatch Agent?
+76. How do you monitor memory utilization in EC2?
+77. How do you monitor disk usage?
+78. How do you enable detailed monitoring?
+79. What logs are available in EC2?
+80. How do you troubleshoot high CPU utilization?
+
+81. How do you access EC2 Linux instances?
+82. How do you access Windows EC2 instances?
+83. How do you change key pairs for EC2?
+84. How do you recover a lost PEM file?
+85. What is Session Manager?
+86. How does Systems Manager help EC2 management?
+87. How do you patch EC2 instances?
+88. How do you automate EC2 maintenance?
+89. What is EC2 Image Builder?
+90. What is AWS Systems Manager?
+
+91. EC2 instance is unreachable. How do you troubleshoot?
+92. SSH connection timeout. What checks will you perform?
+93. Website hosted on EC2 is not accessible. What will you check?
+94. EC2 CPU utilization is 100%. How do you investigate?
+95. EC2 memory utilization is high. What will you do?
+96. EBS volume is full. How do you resolve it?
+97. Auto Scaling is not launching new instances. How do you troubleshoot?
+98. Load Balancer shows unhealthy targets. What do you check?
+99. EC2 instance restarted automatically. How do you investigate?
+100. Application performance is slow on EC2. What steps will you take?
+
+101. How do you deploy a Spring Boot application on EC2?
+102. How do you deploy a Docker container on EC2?
+103. How do you deploy Kubernetes worker nodes on EC2?
+104. How do you perform blue-green deployment using EC2?
+105. How do you perform rolling deployment using EC2?
+106. How do you configure HTTPS on EC2?
+107. How do you automate deployments using CodeDeploy?
+108. How do you integrate EC2 with Jenkins?
+109. How do you integrate EC2 with Ansible?
+110. How do you manage multiple environments using EC2?
+
+111. What are EC2 Reserved Instances?
+112. How can you reduce EC2 costs?
+113. What is EC2 Right Sizing?
+114. How do you identify underutilized instances?
+115. What is Compute Optimizer?
+116. How do Spot Instances reduce costs?
+117. How do Savings Plans work?
+118. What is EC2 Hibernate?
+119. Difference between Stop, Reboot and Terminate?
+120. What happens to EBS volumes when an EC2 instance is terminated?
+
+121. Explain EC2 architecture.
+122. Explain how EC2 communicates with RDS.
+123. Explain how EC2 communicates with S3.
+124. Explain how EC2 communicates with Lambda.
+125. Explain VPC architecture for EC2.
+126. Explain private and public subnet architecture.
+127. Explain Bastion Host architecture.
+128. Explain NAT Gateway architecture.
+129. Explain highly available EC2 architecture.
+130. Explain multi-region EC2 architecture.
+
+131. Describe an EC2 outage you handled.
+132. Describe a production issue caused by Security Groups.
+133. Describe a CPU bottleneck issue in EC2.
+134. Describe a disk space issue in EC2.
+135. Describe an Auto Scaling failure issue.
+136. Describe a Load Balancer issue.
+137. Describe a deployment failure on EC2.
+138. Describe an SSH connectivity issue.
+139. Describe an EC2 performance tuning activity.
+140. Describe a cost optimization initiative for EC2.
+
+141. What is ENI (Elastic Network Interface)?
+142. What is EFA (Elastic Fabric Adapter)?
+143. What is Nitro System?
+144. What is EC2 Fleet?
+145. What is Spot Fleet?
+146. What is Capacity Reservation?
+147. What is Dedicated Instance?
+148. What is Hibernation in EC2?
+149. What is EC2 Instance Metadata Service (IMDS)?
+150. Difference between IMDSv1 and IMDSv2?

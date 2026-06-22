@@ -1,0 +1,164 @@
+1. What is AWS IAM?
+2. Why is IAM important in AWS?
+3. What are the main components of IAM?
+4. What is an IAM User?
+5. What is an IAM Group?
+6. What is an IAM Role?
+7. What is an IAM Policy?
+8. What is the difference between User, Group, and Role?
+9. What are IAM Credentials?
+10. What is the root user in AWS?
+
+11. Why should root user access be restricted?
+12. What are best practices for securing the root account?
+13. How do you enable MFA for root user?
+14. What is Multi-Factor Authentication (MFA)?
+15. Why is MFA important?
+16. What MFA devices are supported by AWS?
+17. How do you enforce MFA for IAM users?
+18. What is password policy in IAM?
+19. How do you configure password policies?
+20. What are IAM security best practices?
+
+21. What is an IAM Policy?
+22. What are the types of IAM Policies?
+23. Difference between Managed Policy and Inline Policy?
+24. What is a Customer Managed Policy?
+25. What is an AWS Managed Policy?
+26. What is a JSON policy document?
+27. What are the components of an IAM Policy?
+28. What is Effect in IAM Policy?
+29. What is Action in IAM Policy?
+30. What is Resource in IAM Policy?
+
+31. What is Principal in IAM Policy?
+32. What is Condition in IAM Policy?
+33. What is Explicit Deny?
+34. What is Implicit Deny?
+35. Which takes precedence: Allow or Deny?
+36. How does IAM policy evaluation work?
+37. What are policy variables?
+38. What is policy versioning?
+39. What is least privilege access?
+40. How do you implement least privilege?
+
+41. What is an IAM Group?
+42. Why use IAM Groups?
+43. Can an IAM User belong to multiple groups?
+44. Can IAM Groups contain other groups?
+45. How do you assign permissions using groups?
+46. What are advantages of using groups?
+47. What are common IAM group structures?
+48. How do you audit IAM groups?
+49. How do you remove excessive permissions?
+50. What are IAM Access Analyzer findings?
+
+51. What is an IAM Role?
+52. Why use IAM Roles?
+53. Difference between IAM User and IAM Role?
+54. What is role assumption?
+55. What is STS (Security Token Service)?
+56. What are temporary credentials?
+57. What is AssumeRole API?
+58. How do EC2 instances use IAM Roles?
+59. How do Lambda functions use IAM Roles?
+60. How do ECS tasks use IAM Roles?
+
+61. What is a trust policy?
+62. What is a permission policy?
+63. What is role chaining?
+64. What is a service role?
+65. What is a cross-account role?
+66. How do you configure cross-account access?
+67. What are service-linked roles?
+68. What is federation in IAM?
+69. What is identity federation?
+70. What is SAML federation?
+
+71. What is OpenID Connect (OIDC)?
+72. How does AWS IAM integrate with Active Directory?
+73. What is AWS SSO / IAM Identity Center?
+74. What are permission sets?
+75. How do you manage access across AWS accounts?
+76. What is AWS Organizations integration with IAM?
+77. What are SCPs (Service Control Policies)?
+78. Difference between IAM Policies and SCPs?
+79. How do SCPs affect permissions?
+80. What are guardrails in AWS Organizations?
+
+81. What is IAM Access Analyzer?
+82. What is IAM Credential Report?
+83. What is IAM Access Advisor?
+84. How do you audit IAM permissions?
+85. How do you identify unused users?
+86. How do you identify unused roles?
+87. How do you identify unused access keys?
+88. What is CloudTrail's role in IAM auditing?
+89. How do you monitor IAM activities?
+90. What IAM events are critical to monitor?
+
+91. A user cannot access S3 despite having permissions. How do you troubleshoot?
+92. An EC2 instance cannot access S3. What do you check?
+93. Access is denied even though policy allows it. Why?
+94. How do you troubleshoot AssumeRole failures?
+95. A Lambda function gets AccessDenied. What steps do you take?
+96. How do you troubleshoot cross-account access issues?
+97. IAM changes are not taking effect. What could be wrong?
+98. User cannot login to AWS Console. What do you check?
+99. MFA authentication fails. How do you investigate?
+100. IAM policy simulator is showing unexpected results. Why?
+
+101. How do you secure IAM in production?
+102. How do you rotate access keys?
+103. How do you eliminate long-term credentials?
+104. How do you implement zero-trust principles in AWS?
+105. How do you manage secrets securely?
+106. What is the difference between IAM and Secrets Manager?
+107. What is the difference between IAM and KMS?
+108. How do you secure CI/CD pipelines using IAM?
+109. How do you secure Jenkins access to AWS?
+110. How do you secure GitHub Actions access to AWS?
+
+111. How do you grant EC2 access to S3 securely?
+112. How do you grant Lambda access to DynamoDB?
+113. How do you grant ECS access to SQS?
+114. How do you design IAM for a multi-team organization?
+115. How do you implement RBAC in AWS IAM?
+116. How do you implement ABAC in AWS IAM?
+117. What are tags in IAM?
+118. How do tags help authorization?
+119. How do you separate Dev, QA, and Prod permissions?
+120. How do you secure production AWS accounts?
+
+121. What is an access key?
+122. What is a secret access key?
+123. What is AWS CLI authentication?
+124. What is profile configuration in AWS CLI?
+125. What is credential chaining?
+126. What is AWS STS token expiration?
+127. What happens when access keys are compromised?
+128. How do you revoke credentials immediately?
+129. How do you monitor credential misuse?
+130. How do you detect suspicious IAM activity?
+
+131. Explain IAM policy evaluation logic.
+132. Explain role assumption flow.
+133. Explain cross-account access architecture.
+134. Explain SAML authentication flow.
+135. Explain OIDC authentication flow.
+136. Explain IAM Identity Center architecture.
+137. Explain SCP evaluation process.
+138. Explain IAM role usage in Kubernetes EKS.
+139. Explain IAM role usage in EC2.
+140. Explain IAM role usage in Lambda.
+
+141. Describe an IAM permission issue you resolved.
+142. Describe an AccessDenied troubleshooting scenario.
+143. Describe a cross-account access issue.
+144. Describe a security audit involving IAM.
+145. Describe a compromised credential incident.
+146. Describe an IAM least privilege implementation.
+147. Describe an IAM cleanup project.
+148. Describe a role assumption failure issue.
+149. Describe a CI/CD IAM permission issue.
+150. Describe an IAM security hardening initiative.

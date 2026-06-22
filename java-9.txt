@@ -1,0 +1,164 @@
+1. What are the major features introduced in Java 9?
+2. Why was Java 9 considered a significant release?
+3. What is Project Jigsaw?
+4. What problem does Project Jigsaw solve?
+5. What is the Java Platform Module System (JPMS)?
+6. What are the benefits of the Module System?
+7. What is a module in Java 9?
+8. What is module-info.java?
+9. How do you create a module in Java 9?
+10. What is module encapsulation?
+
+11. What are exports in module-info.java?
+12. What is requires keyword?
+13. What is requires transitive?
+14. What is requires static?
+15. What is opens keyword?
+16. What is open module?
+17. What is uses keyword?
+18. What is provides keyword?
+19. What is service loader mechanism?
+20. Difference between package and module?
+
+21. What is the Java REPL?
+22. What is JShell?
+23. What are the advantages of JShell?
+24. How do you start JShell?
+25. What commands are available in JShell?
+26. What is the use of JShell in development?
+27. How does JShell improve productivity?
+28. Can JShell execute class definitions?
+29. Can JShell execute methods directly?
+30. What are snippets in JShell?
+
+31. What enhancements were made to the Stream API in Java 9?
+32. What is takeWhile()?
+33. What is dropWhile()?
+34. Difference between takeWhile() and filter()?
+35. What is Stream.iterate() enhancement?
+36. What is Stream.ofNullable()?
+37. Why was ofNullable introduced?
+38. How does Stream.ofNullable() help with null handling?
+39. What are practical use cases of takeWhile()?
+40. What are practical use cases of dropWhile()?
+
+41. What enhancements were made to Optional in Java 9?
+42. What is Optional.ifPresentOrElse()?
+43. What is Optional.or()?
+44. What is Optional.stream()?
+45. Why was Optional.stream() introduced?
+46. How does Optional.stream() work with Stream API?
+47. What is the use of ifPresentOrElse()?
+48. Difference between Java 8 and Java 9 Optional?
+49. How do Optional enhancements improve readability?
+50. Give real-world examples of Java 9 Optional methods.
+
+51. What collection factory methods were introduced in Java 9?
+52. What is List.of()?
+53. What is Set.of()?
+54. What is Map.of()?
+55. What is Map.ofEntries()?
+56. Are collections created with List.of() mutable?
+57. What happens if duplicate values are added to Set.of()?
+58. What happens if null values are added?
+59. What are advantages of immutable collections?
+60. Difference between Arrays.asList() and List.of()?
+
+61. What private methods were added to interfaces in Java 9?
+62. Why were private methods introduced in interfaces?
+63. Can private methods be abstract?
+64. Can private methods be static?
+65. How do private methods improve code reuse?
+66. Difference between default and private methods?
+67. Can private interface methods be inherited?
+68. Can private methods be overridden?
+69. What are use cases of private interface methods?
+70. Explain interface enhancements in Java 9.
+
+71. What improvements were made to the Process API?
+72. What is ProcessHandle?
+73. How do you get process information?
+74. How do you get the current process ID?
+75. How do you destroy a process using ProcessHandle?
+76. How do you list all running processes?
+77. What process metadata can be retrieved?
+78. What are descendants() and children() methods?
+79. How did Java 9 improve process management?
+80. Give examples of Process API usage.
+
+81. What is the Flow API?
+82. What is Reactive Programming?
+83. What is Publisher?
+84. What is Subscriber?
+85. What is Subscription?
+86. What is Processor?
+87. How does Flow API support reactive streams?
+88. What is backpressure?
+89. Why is backpressure important?
+90. Explain Flow API architecture.
+
+91. What changes were made to try-with-resources in Java 9?
+92. How did try-with-resources work before Java 9?
+93. What simplification was introduced?
+94. Can effectively final variables be used in try-with-resources?
+95. Give examples of Java 9 try-with-resources improvements.
+96. What are the benefits of the enhancement?
+97. What is resource management?
+98. How does Java handle resource cleanup?
+99. What are common use cases of try-with-resources?
+100. Difference between Java 7 and Java 9 try-with-resources?
+
+101. What are multi-release JAR files?
+102. Why were multi-release JARs introduced?
+103. How do multi-release JARs work?
+104. What is the META-INF/versions directory?
+105. What are the advantages of multi-release JARs?
+106. How do they support backward compatibility?
+107. What are use cases of multi-release JARs?
+108. How do you create a multi-release JAR?
+109. What challenges do multi-release JARs solve?
+110. Explain multi-release JAR architecture.
+
+111. What improvements were made to the JVM in Java 9?
+112. What is G1 Garbage Collector?
+113. Why was G1 made the default GC?
+114. What improvements were made to GC logging?
+115. What is Unified JVM Logging?
+116. How do you enable unified logging?
+117. What are advantages of unified logging?
+118. What is segmented code cache?
+119. How does JVM startup improve in Java 9?
+120. What performance improvements came with Java 9?
+
+121. What deprecated features were introduced in Java 9?
+122. Why was Applet API deprecated?
+123. Why was the Security Manager marked for future removal?
+124. What APIs became deprecated?
+125. What migration challenges exist from Java 8 to Java 9?
+126. What is illegal reflective access warning?
+127. Why do reflection issues occur in Java 9?
+128. How do you resolve module access issues?
+129. What are common migration problems?
+130. How do you migrate Java 8 applications to Java 9?
+
+131. Explain Java 9 module architecture.
+132. Explain strong encapsulation in Java 9.
+133. Explain service provider architecture using modules.
+134. Explain modular monolith architecture.
+135. Explain microservices and Java modules.
+136. Explain Optional.stream() with examples.
+137. Explain Flow API with examples.
+138. Explain JShell use cases.
+139. Explain immutable collection factory methods.
+140. Explain ProcessHandle API with examples.
+
+141. Describe a migration from Java 8 to Java 9.
+142. Describe a module-related issue you resolved.
+143. Describe a reflection issue after migration.
+144. Describe a performance improvement observed in Java 9.
+145. Describe a JShell use case in development.
+146. Describe a Flow API use case.
+147. Describe a modularization project.
+148. Describe challenges in adopting JPMS.
+149. Describe best practices for Java 9 adoption.
+150. Explain Java 9 features from beginner to advanced level with real-world examples.

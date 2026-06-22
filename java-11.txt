@@ -1,0 +1,176 @@
+JAVA 11 INTERVIEW QUESTIONS (COPY-PASTE FORMAT)
+
+1. What are the major features introduced in Java 11?
+2. Why is Java 11 considered an LTS (Long Term Support) release?
+3. Difference between Java 8 and Java 11?
+4. What features were removed in Java 11?
+5. What are the benefits of upgrading from Java 8 to Java 11?
+6. What JVM improvements were introduced in Java 11?
+7. What garbage collectors are available in Java 11?
+8. What is the default garbage collector in Java 11?
+9. What is Flight Recorder in Java 11?
+10. What is Java Mission Control?
+
+STRING API
+
+11. What is String.isBlank()?
+12. Difference between isBlank() and isEmpty()?
+13. What is String.lines()?
+14. What is String.repeat()?
+15. What is String.strip()?
+16. Difference between trim() and strip()?
+17. What is stripLeading()?
+18. What is stripTrailing()?
+19. Give examples of String.repeat().
+20. Real-world use cases of new String methods.
+
+FILES API
+
+21. What new methods were added to Files class?
+22. What is Files.readString()?
+23. What is Files.writeString()?
+24. Difference between Files.readAllLines() and readString()?
+25. How to read file content in one line using Java 11?
+26. How to write String directly to file?
+27. What exceptions are handled during file operations?
+28. How to append content using Files.writeString()?
+29. Advantages of new Files APIs.
+30. Production use cases of Files API.
+
+COLLECTION API
+
+31. What is Collection.toArray(IntFunction)?
+32. Advantages over traditional toArray()?
+33. Examples of Collection.toArray(String[]::new).
+34. Performance benefits of new toArray().
+35. Use cases of new collection methods.
+
+OPTIONAL API
+
+36. What is Optional.isEmpty()?
+37. Difference between isPresent() and isEmpty()?
+38. How is Optional improved in Java 11?
+39. Examples using Optional.isEmpty().
+40. Best practices for Optional in Java 11.
+
+HTTP CLIENT API
+
+41. What is the new HTTP Client API?
+42. Difference between HttpURLConnection and HttpClient?
+43. How to create HttpClient?
+44. How to send GET requests?
+45. How to send POST requests?
+46. How to send asynchronous requests?
+47. What is HttpRequest?
+48. What is HttpResponse?
+49. How to handle timeouts?
+50. Production use cases of HttpClient.
+
+LAMBDA ENHANCEMENTS
+
+51. What enhancements were made to Lambda parameters?
+52. What is local variable syntax for lambda?
+53. Why was var introduced in lambda parameters?
+54. Examples using var in lambda expressions.
+55. Advantages of lambda enhancements.
+
+NEST-BASED ACCESS CONTROL
+
+56. What is Nest-Based Access Control?
+57. Why was it introduced?
+58. How did inner classes work before Java 11?
+59. What problems does Nest-Based Access solve?
+60. Performance benefits of Nest-Based Access.
+
+JVM IMPROVEMENTS
+
+61. What is Epsilon GC?
+62. What is ZGC?
+63. Advantages of ZGC?
+64. Use cases of ZGC?
+65. Difference between G1GC and ZGC?
+66. What is low latency garbage collection?
+67. How to enable ZGC?
+68. How to monitor garbage collection?
+69. Production tuning for JVM.
+70. JVM troubleshooting in Java 11.
+
+MODULE SYSTEM
+
+71. What is JPMS?
+72. Why was module system introduced?
+73. Difference between JAR and Module?
+74. What is module-info.java?
+75. How to export packages?
+76. How to require modules?
+77. Advantages of modular applications?
+78. Common module-related issues?
+79. Migration challenges from Java 8.
+80. Best practices for modules.
+
+PERFORMANCE QUESTIONS
+
+81. How is Java 11 faster than Java 8?
+82. Startup performance improvements?
+83. Memory improvements?
+84. GC improvements?
+85. JVM tuning techniques?
+86. Heap dump analysis?
+87. Thread dump analysis?
+88. CPU troubleshooting?
+89. Memory leak troubleshooting?
+90. Production performance optimization?
+
+REAL-TIME SCENARIOS
+
+91. How to migrate Java 8 application to Java 11?
+92. Common migration issues?
+93. Third-party library compatibility issues?
+94. How to resolve deprecated APIs?
+95. What tools help migration?
+96. How to test Java 11 upgrade?
+97. How to deploy Java 11 applications?
+98. What monitoring tools support Java 11?
+99. Java 11 production troubleshooting scenario?
+100. Why should organizations move from Java 8 to Java 11?
+
+MOST ASKED CODING QUESTIONS
+
+1. Reverse a String.
+2. Check Palindrome String.
+3. Count vowels in String.
+4. Remove duplicates from List.
+5. Find duplicate elements.
+6. Find second highest number.
+7. Find highest salary employee.
+8. Group employees by department.
+9. Count occurrence of characters.
+10. Count occurrence of words.
+11. Sort employees by salary.
+12. Find top 3 highest salaries.
+13. Flatten nested lists.
+14. Merge two lists.
+15. Partition even and odd numbers.
+16. Convert List to Map.
+17. Convert Map to Stream.
+18. Find longest string.
+19. Find shortest string.
+20. Find common elements between two lists.
+
+Java 11 Features to Remember for Interviews
+
+1. String.isBlank()
+2. String.lines()
+3. String.repeat()
+4. String.strip()
+5. Files.readString()
+6. Files.writeString()
+7. Optional.isEmpty()
+8. HTTP Client API
+9. Lambda var parameters
+10. Nest-Based Access Control
+11. Z Garbage Collector (ZGC)
+12. Epsilon GC
+13. Flight Recorder
+14. Java Mission Control
+15. Collection.toArray(IntFunction)

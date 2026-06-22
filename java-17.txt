@@ -1,3 +1,170 @@
+1. What is Java 17?
+2. Why is Java 17 important?
+3. Is Java 17 an LTS release?
+4. What are the major features of Java 17?
+5. Difference between Java 8 and Java 17?
+6. Difference between Java 11 and Java 17?
+7. What improvements were introduced in Java 17?
+8. Why should organizations migrate to Java 17?
+9. What are the performance benefits of Java 17?
+10. What are the migration challenges to Java 17?
+
+11. What are Sealed Classes?
+12. Why were Sealed Classes introduced?
+13. What is the sealed keyword?
+14. What is the permits keyword?
+15. What is a non-sealed class?
+16. What is a final class in sealed hierarchy?
+17. How do Sealed Classes improve design?
+18. What are use cases of Sealed Classes?
+19. Difference between sealed, non-sealed and final?
+20. Explain Sealed Classes with examples.
+
+21. What are Records in Java?
+22. Why were Records introduced?
+23. What problem do Records solve?
+24. How do Records reduce boilerplate code?
+25. What methods are automatically generated in Records?
+26. Can Records have constructors?
+27. Can Records have methods?
+28. Can Records extend classes?
+29. Can Records implement interfaces?
+30. Difference between POJO and Record?
+
+31. What is Pattern Matching for instanceof?
+32. How did instanceof work before Java 17?
+33. What improvement was introduced?
+34. How does Pattern Matching reduce casting?
+35. Explain Pattern Matching syntax.
+36. What are the benefits of Pattern Matching?
+37. How does it improve readability?
+38. What are real-world use cases?
+39. How does Pattern Matching improve performance?
+40. Explain Pattern Matching with examples.
+
+41. What is the new Switch Expression?
+42. Difference between switch statement and switch expression?
+43. What is arrow syntax (->)?
+44. What is yield keyword?
+45. How does switch expression improve code quality?
+46. Can switch expressions return values?
+47. How does switch expression reduce bugs?
+48. What are exhaustive switch expressions?
+49. Explain switch expressions with examples.
+50. What are advantages over traditional switch?
+
+51. What is Text Blocks?
+52. Why were Text Blocks introduced?
+53. What problem do Text Blocks solve?
+54. How do Text Blocks improve readability?
+55. What delimiter is used in Text Blocks?
+56. How are multiline strings handled?
+57. What are escape sequences in Text Blocks?
+58. How do Text Blocks help SQL queries?
+59. How do Text Blocks help JSON/XML handling?
+60. Explain Text Blocks with examples.
+
+61. What enhancements were made to the Stream API up to Java 17?
+62. What is Stream.toList()?
+63. Difference between collect(Collectors.toList()) and toList()?
+64. What improvements exist in Optional?
+65. What enhancements exist in String API?
+66. What enhancements exist in Collection APIs?
+67. What enhancements exist in Map APIs?
+68. What improvements were introduced after Java 8?
+69. How do modern APIs improve productivity?
+70. Explain commonly used Java 17 APIs.
+
+71. What is Strong Encapsulation?
+72. What is the Java Module System?
+73. How does Java 17 enforce module boundaries?
+74. What is illegal reflective access?
+75. How do you resolve reflection issues?
+76. What is jlink?
+77. What is jpackage?
+78. How does jlink reduce application size?
+79. How does jpackage help deployment?
+80. Explain modular application deployment.
+
+81. What Garbage Collectors are available in Java 17?
+82. What is G1 GC?
+83. What is ZGC?
+84. What is Shenandoah GC?
+85. Difference between G1, ZGC and Shenandoah?
+86. Which GC is default in Java 17?
+87. What are low-latency garbage collectors?
+88. When should ZGC be used?
+89. When should Shenandoah be used?
+90. How do you tune GC in Java 17?
+
+91. What JVM improvements exist in Java 17?
+92. What is CDS (Class Data Sharing)?
+93. What is AppCDS?
+94. What is JVM Unified Logging?
+95. What performance improvements exist?
+96. How does Java 17 improve startup time?
+97. How does Java 17 improve memory usage?
+98. How does Java 17 improve container support?
+99. What JVM flags are commonly used?
+100. How do you troubleshoot Java 17 performance?
+
+101. What security improvements exist in Java 17?
+102. What cryptography enhancements were added?
+103. What deprecated APIs were removed?
+104. What happened to Security Manager?
+105. What TLS versions are supported?
+106. What changes affect enterprise applications?
+107. How do you secure Java 17 applications?
+108. What security best practices apply?
+109. How does Java 17 improve cloud security?
+110. Explain Java 17 security enhancements.
+
+111. How does Spring Boot support Java 17?
+112. Which Spring Boot versions support Java 17?
+113. How does Hibernate work with Java 17?
+114. How does Java 17 improve microservices?
+115. How does Java 17 improve REST APIs?
+116. How does Java 17 help cloud-native applications?
+117. How does Java 17 improve Docker deployments?
+118. How does Java 17 improve Kubernetes deployments?
+119. What are enterprise adoption benefits?
+120. Explain Java 17 in modern backend development.
+
+121. What are migration considerations from Java 8 to Java 17?
+122. How do you migrate legacy applications?
+123. What dependency issues may occur?
+124. What module issues may occur?
+125. What reflection issues may occur?
+126. What testing strategy should be followed?
+127. How do you validate migration success?
+128. What tools help migration?
+129. What common migration failures occur?
+130. What are migration best practices?
+
+131. Explain Sealed Classes in a banking application.
+132. Explain Records in REST APIs.
+133. Explain Pattern Matching in service layers.
+134. Explain Switch Expressions in business rules.
+135. Explain Text Blocks in SQL query generation.
+136. Explain Java 17 in Spring Boot microservices.
+137. Explain Java 17 in cloud-native architecture.
+138. Explain Java 17 container awareness.
+139. Explain GC tuning in Java 17.
+140. Explain performance optimization in Java 17.
+
+141. Describe a Java 17 migration project.
+142. Describe a GC tuning activity.
+143. Describe a performance issue solved using Java 17.
+144. Describe a reflection issue after migration.
+145. Describe a modularization project.
+146. Describe a memory optimization project.
+147. Describe a Spring Boot Java 17 upgrade.
+148. Describe a containerized Java 17 deployment.
+149. Describe enterprise benefits of Java 17 adoption.
+150. Explain Java 17 features from beginner to advanced level with real-world examples.
+
+
+
 01- What is Java 17?
 Ans - Java 17 is a Long-Term Support (LTS) release of Java, released in September 2021.
  It includes performance improvements, language enhancements, security updates,
