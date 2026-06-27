@@ -1,3 +1,216 @@
+
+
+=========================================
+REST API PRODUCTION, PERFORMANCE &
+TROUBLESHOOTING INTERVIEW QUESTIONS
+(8+ Years Experience)
+=========================================
+
+1. What is REST API?
+2. What are REST principles?
+3. Difference between REST and SOAP?
+4. What are HTTP methods?
+5. Difference between PUT and PATCH?
+6. Difference between POST and PUT?
+7. Difference between 200, 201 and 204?
+8. Difference between 400, 401, 403 and 404?
+9. What is idempotency?
+10. What is statelessness?
+
+=========================================
+API DESIGN QUESTIONS
+=========================================
+
+11. How do you design REST APIs?
+12. What are REST API naming conventions?
+13. How do you version REST APIs?
+14. URI Versioning vs Header Versioning?
+15. How do you design pagination?
+16. Offset Pagination vs Cursor Pagination?
+17. How do you implement filtering?
+18. How do you implement sorting?
+19. How do you implement searching?
+20. How do you handle bulk APIs?
+
+21. How do you design APIs for millions of requests?
+22. How do you design backward-compatible APIs?
+23. How do you deprecate APIs?
+24. How do you design HATEOAS APIs?
+25. What are API contracts?
+26. What is OpenAPI/Swagger?
+27. What is Content Negotiation?
+28. XML vs JSON APIs?
+29. How do you standardize API responses?
+30. How do you handle API errors?
+
+=========================================
+PRODUCTION QUESTIONS
+=========================================
+
+31. REST API suddenly became slow in production. How do you troubleshoot?
+32. API latency increased from 100ms to 5 seconds. What will you check?
+33. API response times vary significantly. Root causes?
+34. API returns intermittent 500 errors. Investigation steps?
+35. API returns 503 Service Unavailable. Troubleshooting?
+36. API requests are timing out. What will you do?
+37. API throughput dropped suddenly. How do you investigate?
+38. API is consuming high CPU. What would you check?
+39. API is consuming high memory. Troubleshooting steps?
+40. API pod/container is restarting frequently. Investigation?
+
+41. How do you troubleshoot OutOfMemoryError?
+42. How do you analyze heap dumps?
+43. How do you analyze thread dumps?
+44. How do you identify memory leaks?
+45. How do you troubleshoot JVM GC issues?
+46. How do you diagnose thread contention?
+47. How do you troubleshoot deadlocks?
+48. How do you identify blocked threads?
+49. How do you diagnose excessive object creation?
+50. How do you optimize JVM performance?
+
+=========================================
+DATABASE RELATED QUESTIONS
+=========================================
+
+51. API is slow because database queries are slow. How do you investigate?
+52. How do you identify slow SQL queries?
+53. How do you analyze query execution plans?
+54. Missing indexes causing API slowness. How do you find them?
+55. Too many database connections. Troubleshooting?
+56. Connection pool exhausted. What will you do?
+57. HikariCP pool is exhausted. Root causes?
+58. Database locks causing API slowness. How do you identify?
+59. Deadlocks in database. Troubleshooting?
+60. N+1 query problem. How do you solve it?
+
+61. API performance degraded after database migration. Why?
+62. Read replica lag impacting APIs. Troubleshooting?
+63. High database CPU affecting APIs. Investigation?
+64. Database network latency causing slow APIs. How do you identify?
+65. How do you optimize database interactions?
+
+=========================================
+MICROSERVICES QUESTIONS
+=========================================
+
+66. One microservice is slowing the entire API chain. How do you identify it?
+67. How do you troubleshoot inter-service communication issues?
+68. Feign Client timeout issues. Troubleshooting?
+69. RestTemplate timeout issues. Troubleshooting?
+70. WebClient performance issues. Investigation?
+71. Service discovery issues affecting APIs. Troubleshooting?
+72. Eureka registration problems. Investigation?
+73. API Gateway latency issues. Root causes?
+74. Circuit Breaker not opening. Troubleshooting?
+75. Resilience4j fallback not working. Investigation?
+
+76. Distributed transaction issues. Troubleshooting?
+77. How do you troubleshoot message queue delays?
+78. Kafka consumer lag affecting APIs. Investigation?
+79. RabbitMQ backlog impacting APIs. Troubleshooting?
+80. Service mesh latency issues. How do you diagnose?
+
+=========================================
+SECURITY QUESTIONS
+=========================================
+
+81. How do you secure REST APIs?
+82. JWT authentication flow?
+83. OAuth2 authentication flow?
+84. Difference between OAuth2 and JWT?
+85. How do you secure API Gateway?
+86. What is API rate limiting?
+87. How do you prevent brute-force attacks?
+88. How do you prevent DDoS attacks?
+89. How do you secure sensitive API data?
+90. How do you implement role-based access control?
+
+91. API keys exposed in logs. What will you do?
+92. Unauthorized API access detected. Investigation?
+93. JWT token validation failures. Troubleshooting?
+94. SSL certificate expired. What happens?
+95. TLS handshake failures. Investigation?
+
+=========================================
+PERFORMANCE OPTIMIZATION QUESTIONS
+=========================================
+
+96. How do you improve API response times?
+97. How do you reduce API latency?
+98. How do you optimize serialization/deserialization?
+99. How do you optimize JSON responses?
+100. How do you reduce payload sizes?
+101. How do you implement compression?
+102. How do you use GZIP compression?
+103. How do you optimize REST endpoints?
+104. How do you improve throughput?
+105. How do you reduce network overhead?
+
+106. How do you use caching in REST APIs?
+107. Redis caching strategies?
+108. Cache-aside pattern?
+109. Write-through cache pattern?
+110. Cache invalidation strategies?
+111. CDN optimization for APIs?
+112. API response caching best practices?
+113. How do you benchmark API performance?
+114. How do you load test APIs?
+115. How do you stress test APIs?
+
+=========================================
+MONITORING & OBSERVABILITY QUESTIONS
+=========================================
+
+116. How do you monitor REST APIs?
+117. What API metrics should be monitored?
+118. What is P95 latency?
+119. What is P99 latency?
+120. How do you monitor error rates?
+121. How do you monitor API throughput?
+122. How do you use Prometheus?
+123. How do you use Grafana?
+124. How do you use ELK Stack?
+125. How do you use Splunk?
+
+126. How do you perform distributed tracing?
+127. How do you use Zipkin?
+128. How do you use Jaeger?
+129. How do you correlate logs across services?
+130. How do you perform root cause analysis?
+
+=========================================
+SCENARIO-BASED QUESTIONS
+=========================================
+
+131. API response time increased after deployment. How do you troubleshoot?
+132. CPU increased from 20% to 90% after release. Investigation steps?
+133. Database connections exhausted after traffic spike. What will you do?
+134. One endpoint is causing system-wide slowness. How do you identify it?
+135. APIs work in lower environments but fail in production. Why?
+136. External third-party API is slow. How do you protect your system?
+137. One customer generates 80% of traffic. How do you handle it?
+138. API receives 100k requests/minute. How do you scale?
+139. Traffic increased 10x during sale event. What preparations will you make?
+140. API Gateway became bottleneck. How do you solve it?
+
+=========================================
+PRESENTATION / MANAGERIAL QUESTIONS
+=========================================
+
+141. Explain a REST API production issue you solved.
+142. Explain a high-latency issue and how you fixed it.
+143. Explain a memory leak issue in production.
+144. Explain a database bottleneck issue.
+145. Explain a high CPU utilization issue.
+146. Explain a thread dump analysis case.
+147. Explain a connection pool exhaustion issue.
+148. Explain a caching optimization implemented by you.
+149. Explain a production outage RCA you presented to management.
+150. Explain the biggest REST API performance improvement you delivered and its business impact.
+
+
+
 Q01 - Explain Rest API to me, you have 30 seconds ? 
 Ans - A REST API is a way for two applications to talk over HTTP using URLs.
 

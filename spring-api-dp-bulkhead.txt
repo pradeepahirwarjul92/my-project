@@ -1,0 +1,317 @@
+=========================================
+BULKHEAD DESIGN PATTERN INTERVIEW QUESTIONS
+=========================================
+
+1. What is Bulkhead Design Pattern?
+
+2. Why is Bulkhead Pattern used?
+
+3. What problem does Bulkhead solve?
+
+4. Explain Bulkhead Pattern with a real-world example.
+
+5. Why is Bulkhead important in Microservices?
+
+6. How does Bulkhead improve system resilience?
+
+7. What is fault isolation?
+
+8. What is resource isolation?
+
+9. Difference between Bulkhead and Circuit Breaker?
+
+10. Difference between Bulkhead and Retry Pattern?
+
+11. Difference between Bulkhead and Rate Limiter?
+
+12. Difference between Bulkhead and Timeout Pattern?
+
+13. Explain Semaphore Bulkhead.
+
+14. Explain Thread Pool Bulkhead.
+
+15. Difference between Semaphore and Thread Pool Bulkhead?
+
+16. When should you use Semaphore Bulkhead?
+
+17. When should you use Thread Pool Bulkhead?
+
+18. What are the advantages of Bulkhead Pattern?
+
+19. What are the disadvantages of Bulkhead Pattern?
+
+20. What happens if Bulkhead is not implemented?
+
+=========================================
+MICROSERVICES QUESTIONS
+=========================================
+
+21. How does Bulkhead work in Microservices?
+
+22. How does Bulkhead prevent cascading failures?
+
+23. How does Bulkhead isolate downstream services?
+
+24. How does Bulkhead protect critical services?
+
+25. How do you implement Bulkhead in Spring Boot?
+
+26. How do you implement Bulkhead using Resilience4j?
+
+27. What annotations are used for Bulkhead in Spring Boot?
+
+28. How do you configure Bulkhead properties?
+
+29. How do you define thread pool sizes?
+
+30. How do you define concurrency limits?
+
+31. How do you monitor Bulkhead utilization?
+
+32. How do you monitor rejected requests?
+
+33. How do you handle Bulkhead exceptions?
+
+34. What fallback strategies are used with Bulkhead?
+
+35. How do Bulkhead and Circuit Breaker work together?
+
+36. How do Bulkhead and Retry work together?
+
+37. How do Bulkhead and Rate Limiter work together?
+
+38. How do Bulkhead and API Gateway work together?
+
+39. How do Bulkhead and Kafka consumers work together?
+
+40. How do Bulkhead and database calls work together?
+
+=========================================
+SPRING BOOT QUESTIONS
+=========================================
+
+41. Explain Bulkhead implementation using Resilience4j.
+
+42. What is @Bulkhead annotation?
+
+43. How do you configure maxConcurrentCalls?
+
+44. How do you configure maxWaitDuration?
+
+45. How do you configure ThreadPoolBulkhead?
+
+46. Difference between Bulkhead and ThreadPoolTaskExecutor?
+
+47. How do you use Bulkhead with WebClient?
+
+48. How do you use Bulkhead with Feign Client?
+
+49. How do you use Bulkhead with RestTemplate?
+
+50. How do you test Bulkhead behavior?
+
+=========================================
+PRODUCTION SCENARIOS
+=========================================
+
+51. One downstream service became slow and impacted all APIs. How would Bulkhead help?
+
+52. Payment Service is overloaded. How do you isolate failures?
+
+53. Notification Service is down. How do you prevent impact on Order Service?
+
+54. Database connection pool is exhausted. How does Bulkhead help?
+
+55. One API receives huge traffic and consumes all threads. Solution?
+
+56. External third-party API is slow. How do you protect your application?
+
+57. Kafka consumers are blocked by long-running requests. How do you solve it?
+
+58. Bulkhead rejection exceptions are increasing. What will you check?
+
+59. Thread pool utilization reached 100%. Troubleshooting approach?
+
+60. Bulkhead configuration is causing request failures. Investigation steps?
+
+=========================================
+PERFORMANCE QUESTIONS
+=========================================
+
+61. How does Bulkhead affect performance?
+
+62. How do you tune Bulkhead thread pools?
+
+63. How do you calculate maxConcurrentCalls?
+
+64. How do you size thread pools?
+
+65. How do you avoid thread starvation?
+
+66. How do you avoid excessive thread creation?
+
+67. How do you optimize resource utilization?
+
+68. How do you monitor latency inside Bulkheads?
+
+69. How do you identify bottlenecks?
+
+70. How do you benchmark Bulkhead configurations?
+
+=========================================
+MONITORING QUESTIONS
+=========================================
+
+71. Which Bulkhead metrics should be monitored?
+
+72. How do you monitor rejected requests?
+
+73. How do you monitor active threads?
+
+74. How do you monitor queue depth?
+
+75. How do you monitor thread pool utilization?
+
+76. Prometheus metrics for Bulkhead?
+
+77. Grafana dashboard for Bulkhead?
+
+78. Alerting strategies for Bulkhead?
+
+79. How do you identify saturation?
+
+80. How do you perform RCA for Bulkhead failures?
+
+=========================================
+REAL-WORLD SCENARIOS
+=========================================
+
+81. Explain a production issue where Bulkhead prevented an outage.
+
+82. Explain a scenario where Bulkhead was misconfigured.
+
+83. Explain thread pool exhaustion issue and solution.
+
+84. Explain cascading failure issue and solution.
+
+85. Explain high latency issue solved using Bulkhead.
+
+86. Explain third-party API outage and mitigation.
+
+87. Explain API Gateway overload scenario.
+
+88. Explain Kubernetes pod overload scenario.
+
+89. Explain resource isolation implementation.
+
+90. Explain resilience strategy using Bulkhead + Circuit Breaker.
+
+=========================================
+SYSTEM DESIGN QUESTIONS
+=========================================
+
+91. Design a resilient Payment System using Bulkhead.
+
+92. Design a resilient E-Commerce platform using Bulkhead.
+
+93. Design a resilient Banking system.
+
+94. Design a Notification platform.
+
+95. Design a high-throughput API system.
+
+96. Design a third-party integration platform.
+
+97. Design a cloud-native resilient application.
+
+98. Design a microservice architecture using Bulkhead.
+
+99. Design a fault-tolerant order management system.
+
+100. Explain a real production incident involving Bulkhead, RCA, troubleshooting steps, resolution, and preventive measures.
+
+Most Asked Interview Answer
+
+Q - What is Bulkhead Pattern?
+Answer: Bulkhead Pattern is a resilience pattern that isolates resources (threads, connections, memory, pools) so that failure in one component does not impact the entire system.
+
+The name comes from ship compartments (bulkheads). If one compartment floods, the entire ship does not sink.
+
+
+Example
+
+Without Bulkhead
+
+Order API
+   |
+   |---- Payment Service (Slow)
+   |
+   |---- Notification Service
+
+Payment Service consumes all threads
+↓
+Entire application becomes slow
+
+
+
+With Bulkhead
+
+Order API
+   |
+   |---- Payment Thread Pool (20 threads)
+   |
+   |---- Notification Thread Pool (10 threads)
+
+Payment failure
+↓
+Notification continues working
+
+
+Resilience4j Example
+
+@Bulkhead(name = "paymentService",
+          type = Bulkhead.Type.THREADPOOL)
+public CompletableFuture<String> processPayment() {
+    return CompletableFuture.completedFuture("Success");
+}
+
+
+Real Production Example
+
+Issue:
+Third-party payment provider response time increased
+from 200ms to 15 seconds.
+
+Impact:
+All Tomcat threads got blocked.
+
+Root Cause:
+No resource isolation.
+
+Solution:
+Implemented Resilience4j ThreadPoolBulkhead.
+
+Before:
+Application unavailable.
+
+After:
+Only Payment APIs degraded.
+Other APIs continued serving traffic.
+
+Result:
+Prevented complete outage.
+
+
+Difference: Circuit Breaker vs Bulkhead
+
+Circuit Breaker
+--------------
+Stops calls to failing service.
+
+Bulkhead
+---------
+Limits resource usage and isolates failures.
+
+Best Practice:
+Circuit Breaker + Bulkhead + Retry + Timeout
+used together.

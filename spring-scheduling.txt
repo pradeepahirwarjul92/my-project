@@ -1,171 +1,582 @@
 ====================================
-SPRING SCHEDULING - 100 QUESTIONS
+SPRING SCHEDULING - 
 ====================================
+1. What is Scheduling?
+Scheduling means executing a task automatically at a specified time 
+or interval without user intervention.
 
-BASICS
+Examples:
+	-	Generate daily reports
+	-	Send email notifications
+	-	Clean temporary files
+	-	Process payments
+	-	Refresh cache
+	-	Backup database
+	-	Sync data from another system
 
-1. What is Spring Scheduling?
-2. Why do we need scheduling?
-3. How does @Scheduled work?
-4. What is @EnableScheduling?
-5. What are the different scheduling options in Spring?
-6. What is fixedRate?
-7. What is fixedDelay?
-8. What is initialDelay?
-9. Difference between fixedRate and fixedDelay?
-10. What happens if a scheduled task takes longer than expected?
-
-CRON EXPRESSIONS
-
-11. What is a cron expression?
-12. How many fields are there in Spring cron?
-13. What does '*' mean in cron?
-14. What does '?' mean in cron?
-15. Difference between '*' and '?'?
-16. Run a job every minute.
-17. Run a job every 5 minutes.
-18. Run a job every day at midnight.
-19. Run a job every Monday at 10 AM.
-20. How do you test cron expressions?
-
-THREADING
-
-21. How many threads does Spring Scheduler use by default?
-22. What happens when multiple jobs execute simultaneously?
-23. What is ThreadPoolTaskScheduler?
-24. How do you configure scheduler thread pools?
-25. What happens if thread pool size is 1?
-26. How do you prevent task starvation?
-27. How do you handle long-running jobs?
-28. Difference between scheduling and async execution?
-29. @Scheduled + @Async usage?
-30. How do scheduler threads behave during shutdown?
-
-ERROR HANDLING
-
-31. What happens if a scheduled job throws an exception?
-32. How do you handle exceptions in scheduled jobs?
-33. How do you retry failed scheduled jobs?
-34. How do you send alerts for failures?
-35. How do you log scheduler failures?
-36. What happens if exception is not handled?
-37. How do you monitor failed jobs?
-38. How do you restart failed jobs?
-39. What is idempotency?
-40. Why is idempotency important in scheduled jobs?
-
-DATABASE RELATED
-
-41. Scheduled job updates database records.
-42. How do you avoid duplicate updates?
-43. How do you handle transactions in scheduled jobs?
-44. What happens if transaction fails?
-45. How do you recover failed jobs?
-46. How do you process millions of records?
-47. Batch update strategy?
-48. Pagination strategy?
-49. Chunk processing?
-50. How do you avoid database overload?
-
-MICROSERVICES
-
-51. What happens if application runs on 5 pods?
-52. Why can scheduled jobs run 5 times?
-53. How do you ensure only one instance executes?
-54. What is distributed locking?
-55. What is ShedLock?
-56. How does ShedLock work?
-57. How do you implement leader election?
-58. How do you avoid duplicate executions?
-59. How do you schedule jobs in Kubernetes?
-60. CronJob vs Spring Scheduler?
-
-QUARTZ
-
-61. What is Quartz Scheduler?
-62. Difference between Quartz and Spring Scheduler?
-63. What is JobDetail?
-64. What is Trigger?
-65. What is CronTrigger?
-66. What is SimpleTrigger?
-67. What is JobStore?
-68. What is JDBC JobStore?
-69. Quartz clustering?
-70. Misfire handling in Quartz?
-
-PERFORMANCE
-
-71. Scheduled job becomes slow. How do you investigate?
-72. CPU spikes during execution.
-73. Memory increases during job execution.
-74. Thread pool exhaustion.
-75. Database connection exhaustion.
-76. How do you optimize scheduler jobs?
-77. How do you process 10 million records?
-78. How do you parallelize jobs?
-79. How do you monitor scheduler performance?
-80. Metrics for scheduler monitoring?
-
-KUBERNETES
-
-81. How do scheduled jobs behave during pod restart?
-82. What happens during rolling deployment?
-83. Job execution during node failure?
-84. Kubernetes CronJob?
-85. CronJob retries?
-86. CronJob concurrency policy?
-87. How do you monitor CronJobs?
-88. CronJob failure handling?
-89. CronJob logs?
-90. Difference between CronJob and Scheduler?
-
-PRODUCTION TROUBLESHOOTING
-
-91. Scheduled job stopped running. How do you investigate?
-92. Job runs twice unexpectedly. Why?
-93. Job never executes. Why?
-94. Job executes but no data is processed. Why?
-95. Job execution time suddenly increased.
-96. Scheduler thread blocked.
-97. Deadlock during scheduler execution.
-98. Multiple servers executing same job.
-99. How do you design a reliable scheduler?
-100. Explain a production issue you solved involving scheduling.
+2. Types of Scheduling
+| Type          | Example                                       |
+| ------------- | --------------------------------------------- |
+| Fixed Rate    | Every 10 seconds                              |
+| Fixed Delay   | 10 seconds after previous execution completes |
+| Initial Delay | Start after 30 seconds                        |
+| Cron          | Every day at 9 AM                             |
 
 
-Most Asked Senior-Level Questions
+3. @Scheduled lifecycle and execution model
+Ans - During application startup , spring scan for @Scheduled method, register them with a TaskSchedular, and executes the, according to their configured shcedulesd.
 
-1. fixedRate vs fixedDelay
-2. Cron Expression
-3. @Scheduled Internals
-4. ThreadPoolTaskScheduler
-5. Scheduler Thread Pool Tuning
-6. Exception Handling
-7. Idempotency
-8. Distributed Locking
-9. ShedLock
-10. Quartz vs Spring Scheduler
-11. Quartz Clustering
-12. Kubernetes CronJob vs Scheduler
-13. Multiple Pods Problem
-14. Long Running Jobs
-15. Batch Processing
-16. Transaction Management
-17. Scheduler Monitoring
-18. Retry Mechanisms
-19. Parallel Processing
-20. Production Troubleshooting
+Application statrs
+	│
+    ▼
+@EnableScheduling
+|
+ScheduledAnnotationBeanPostProcessor Created
+|
+Spring scans All beans
+|
+Finds @Scheduled methods
+|
+Registered TaskSchedular
+|
+TaskSchedular created
+|
+Schedular starts
+|
+Method Executes Automatically
+|
+Next Execution Based on Trigger
+
+Q What happens internally when you write @EnableScheduling?
+Consider this code:
+
+@SpringBootApplication
+@EnableScheduling
+public class Application {
+}
+
+When Spring Boot starts, the following happens internally.
+
+
+Application Start
+	|
+Read @EnableScheduling
+	|
+Import SchedulingConfiguration
+	|
+Register Scheduling Infracture Beans
+	|
+Create ScheduledAnnotationBeanPostProcessor
+	|
+Scan All Spring beans
+	|
+Find @Scheduled Methods
+	|
+Register Task
+	|
+Create TaksScheduler
+	|
+Start Schedular
+	|
+Execute Scheduled Method
+
+Step1 - 
+Spring reads @EnableScheduling
+
+The annotation itself is very small
+simplified source code
+
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Import(SchedulingConfiguration.class)
+public @interface EnableScheduling {
+}
+
+Notice the important annotation:
+
+@Import(SchedulingConfiguration.class)
+This tells Spring: "Import the scheduling configuration into the application context."
+
+Step 2: SchedulingConfiguration is loaded
+Spring loads :
+	SchedulingConfiguration
+ This configuration registers important infrastructure beans.	
+ 
+ Main bean registered:
+ ScheduledAnnotationBeanPostProcessor
+ 
+Think of it as:
+@EnableScheduling
+        │
+        ▼
+SchedulingConfiguration
+        │
+        ▼
+ScheduledAnnotationBeanPostProcessor
+
+ 
+Step 3: What is ScheduledAnnotationBeanPostProcessor?
+This is the heart of Spring Scheduling.
+
+It implements Spring lifecycle interfaces like:
+
+BeanPostProcessor
+SmartInitializingSingleton
+ApplicationListener
+
+Its job is:
+After every bean is created
+
+↓
+
+Inspect all methods
+
+↓
+
+Find @Scheduled
+
+↓
+
+Register scheduled tasks
+
+Step 4: Spring creates all beans
+Suppose you have
+
+@Service
+public class EmailService {
+
+    @Scheduled(fixedRate = 5000)
+    public void sendEmail() {
+
+    }
+
+}
+
+Spring creates the bean normally.
+Instantiate
+
+↓
+
+Inject Dependencies
+
+↓
+
+@PostConstruct
+
+↓
+
+Bean Ready
+
+# Nothing special yet.
+
+Step 5: BeanPostProcessor intercepts every bean
+After bean creation,
+Spring calls
+postProcessAfterInitialization()
+
+Conceptually:
+for (Bean bean : allBeans) {
+
+    scan(bean);
+
+}
+
+
+Step 6: Reflection scans methods
+Spring uses Java Reflection.
+Conceptually
+Method[] methods = bean.getClass().getDeclaredMethods();
+
+for(Method m : methods){
+
+    if(m.isAnnotationPresent(Scheduled.class)){
+
+        register(m);
+
+    }
+
+}
+
+Spring discovers
+
+sendEmail()
+
+↓
+
+Has @Scheduled
+
+↓
+
+Register
+
+Step 7: Read annotation values
+Spring extracts
+@Scheduled(
+    fixedRate = 5000,
+    initialDelay = 2000
+)
+
+Internally stores
+Method
+
+↓
+
+fixedRate
+
+↓
+
+5000
+
+↓
+
+initialDelay
+
+↓
+
+2000
+
+Step 8: Create Runnable
+Your method cannot be executed directly.
+
+Spring wraps it.
+sendEmail()
+
+↓
+
+ScheduledMethodRunnable
+
+↓
+
+Runnable
+
+Conceptually
+Runnable task = new ScheduledMethodRunnable(
+        bean,
+        method
+);
+
+
+Step 9: Create Trigger
+Depending on annotation,
+Spring creates different trigger types.
+
+For
+@Scheduled(fixedRate = 5000)
+
+Creates
+FixedRateTask
+
+For
+@Scheduled(fixedDelay = 5000)
+
+Step 10: Register with TaskScheduler
+Spring now registers
+
+Runnable
+
++
+
+Trigger
+
+↓
+
+TaskScheduler
+
+Conceptually :
+
+taskScheduler.schedule(
+        runnable,
+        trigger
+);
+
+Step 11: TaskScheduler starts
+If you don't configure one,
+
+Spring creates : ConcurrentTaskScheduler
+Internally it uses : ScheduledExecutorService
+Java class : Executors.newSingleThreadScheduledExecutor()
+
+Step 12: Scheduler waits
+Suppose : @Scheduled(fixedRate = 5000)
+
+Timeline :: 
+Application Start
+
+↓
+
+Scheduler Sleeping
+
+↓
+
+5 sec completed
+
+↓
+
+Execute task
+
+↓
+
+Again wait
+
+↓
+
+Execute task
+
+Step 13: Scheduler invokes your method
+Internally
+Scheduler Thread
+
+↓
+
+Runnable.run()
+
+↓
+
+Reflection
+
+↓
+
+method.invoke(bean)
+
+↓
+
+Your Business Logic
+
+Conceptually :: 
+public void run(){
+
+    method.invoke(bean);
+
+}
+
+So your code ::   
+
+@Scheduled(fixedRate = 5000)
+public void sendEmail(){
+
+}
+
+is internally executed as : method.invoke(emailServiceBean);
+
+# Cron Scheduling
+@Scheduled(cron = "0 * * * * *")
+
+0 * * * * *
+
+│ │ │ │ │ │
+
+│ │ │ │ │ └ Day of week
+
+│ │ │ │ └ Month
+
+│ │ │ └ Day
+
+│ │ └ Hour
+
+│ └ Minute
+
+└ Second
+
+
+#14 : Externalize Cron
+application.properties
+
+report.cron=0 */2 * * * *
+
+Scheduler
+
+@Scheduled(cron="${report.cron}")
+public void generateReport(){
+
+}
+
+14. Time Zone
+@Scheduled(
+cron="0 0 10 * * *",
+zone="Asia/Kolkata"
+)
+
+Useful for global applications.
+
+
+15. Thread Pool Configuration
+Default scheduler uses a single thread.
+
+@Configuration
+@EnableScheduling
+public class SchedulerConfig {
+
+    @Bean
+    public TaskScheduler taskScheduler() {
+
+        ThreadPoolTaskScheduler scheduler =
+                new ThreadPoolTaskScheduler();
+
+        scheduler.setPoolSize(5);
+        scheduler.setThreadNamePrefix("Scheduler-");
+        scheduler.initialize();
+
+        return scheduler;
+    }
+}
+
+
+
+No code change required.
 
 
 Very Common Real Interview Scenarios
 
-1. Scheduled job is running twice in Production. Why?
-2. Application has 10 pods. Job should run only once. How will you implement it?
-3. A job processes 5 million records and takes 4 hours. How will you optimize it?
-4. Job fails midway after processing 2 million records. How will you restart safely?
-5. Scheduler stops working after deployment. What checks will you perform?
-6. Database connections are exhausted during job execution. Why?
-7. Job runs every minute but takes 3 minutes to complete. What happens?
-8. How would you implement distributed scheduling in microservices?
-9. When would you choose Quartz over Spring Scheduler?
-10. How would you monitor and alert on failed scheduled jobs?
+Q1. What is @EnableScheduling?
+
+It enables Spring's scheduled task infrastructure. 
+Without it, methods annotated with @Scheduled will not execute.
+
+
+Q2. What is @Scheduled?
+
+It marks a method to run automatically based on a 
+fixed rate, fixed delay, or cron expression
+
+
+Q5. Why does my scheduler not run?
+
+Common causes:
+		-	Missing @EnableScheduling
+		-	Scheduled class is not a Spring bean (@Service, @Component, etc.)
+		-	Method is not public
+		-	Bean is outside component scanning
+		-	Application context failed to start
+
+
+Q6. Can scheduled methods return values?
+
+No. Scheduled methods should generally have a void return type because 
+no caller receives the result.
+
+
+Q7. How do you prevent overlapping executions?
+Options include:
+	-	Use fixedDelay instead of fixedRate when appropriate.
+	-	Use a single-thread scheduler.
+	-	Use distributed locks (for example, the ShedLock library) in 
+		clustered deployments.
+	-	Track execution state carefully if business rules allow 
+		only one active execution.
+		
+		
+Q8. How do you run multiple schedulers concurrently?
+Ans- Configure a ThreadPoolTaskScheduler with an appropriate 
+pool size instead of relying on the default single-thread scheduler.
+
+package com.heg.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
+
+@Configuration
+@EnableScheduling
+public class SchedularConfig {
+	
+	@Bean
+	public TaskScheduler taskSchedular() {
+		
+		ThreadPoolTaskScheduler schedular= 
+				new ThreadPoolTaskScheduler();
+		
+		schedular.setPoolSize(5);
+		schedular.setThreadNamePrefix("Schedular-");
+		schedular.initialize();
+		
+		return schedular;
+		
+	}
+
+}
+
+Q9. How do you schedule jobs dynamically?
+
+Store scheduling configuration in a database or configuration service 
+and use TaskScheduler or SchedulingConfigurer to register tasks programmatically.
+
+Q10. How do you ensure only one instance executes a job in a clustered environment?
+
+In a multi-instance deployment, use a distributed locking mechanism 
+such as ShedLock, database locks, or a distributed coordinator (for example, 
+Redis-based locking) so that only one instance acquires the lock and executes the task.
+
+
+Scenario 1: Scheduler Runs Twice in Production
+Possible Reasons : 
+#. Multiple Application Instances
+ Both instances execute the same scheduler.
+Solution
+
+ShedLock
+Quartz Cluster
+Distributed Lock
+Redis Lock
+Database Lock 
+
+@Scheduled(cron = "0 */5 * * * *")
+@SchedulerLock(name = "emailScheduler")
+public void sendEmail() {
+}
+
+# Two Pods in Kubernetes
+Pod A
+
+Scheduler
+
+Pod B
+
+Scheduler
+
+Both execute.
+
+Solution
+
+Leader election
+
+OR
+
+ShedLock
+
+# Duplicate Deployment
+Two WAR files deployed.
+Tomcat
+
+App1
+
+App2
+
+
+Scenario 2: Scheduler Stops Running Suddenly
+Possible Reasons
+
+✔ Exception thrown
+
+✔ Thread dead
+
+✔ Memory issue
+
+✔ Application restarted
+
+✔ Scheduler disabled
+
+✔ Database blocked
+
+
+Scenario 3: Scheduler Becomes Very Slow
+
+Reasons
+
+Slow SQL
+API timeout
+Large files
+Thread starvation
+Blocking IO
+

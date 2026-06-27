@@ -1,0 +1,171 @@
+1. What is an LLM?
+
+2. What is the difference between Generative AI and Traditional AI?
+
+3. What are some popular LLMs?
+   - GPT
+   - Claude
+   - Gemini
+   - Llama
+   - Mistral
+
+4. How do you integrate an LLM into an application?
+
+5. What is an API-based LLM integration?
+
+6. What information is typically required to call an LLM API?
+
+7. How do you authenticate with an LLM API?
+
+8. What is a system prompt?
+
+9. What is a user prompt?
+
+10. What is prompt engineering?
+
+11. How do you design effective prompts?
+
+12. What are temperature and top_p parameters?
+
+13. How does temperature affect model output?
+
+14. What is max_tokens?
+
+15. How do you control response length?
+
+16. What is context window?
+
+17. What are tokens?
+
+18. How do you calculate token usage?
+
+19. What happens when context length exceeds model limits?
+
+20. How do you optimize token consumption?
+
+21. What is Retrieval-Augmented Generation (RAG)?
+
+22. Why is RAG needed?
+
+23. What are embeddings?
+
+24. How are embeddings generated?
+
+25. What is a vector database?
+
+26. Which vector databases have you used?
+
+27. How does similarity search work?
+
+28. Explain the end-to-end RAG workflow.
+
+29. How do you chunk documents for RAG?
+
+30. How do you improve retrieval accuracy?
+
+31. What is semantic search?
+
+32. What is hybrid search?
+
+33. What is reranking?
+
+34. How do you prevent hallucinations?
+
+35. What is prompt injection?
+
+36. How do you secure LLM applications?
+
+37. How do you handle sensitive data while calling LLM APIs?
+
+38. How do you implement rate limiting for LLM APIs?
+
+39. How do you handle API failures?
+
+40. How do you implement retries?
+
+41. How do you handle timeout issues?
+
+42. How do you monitor LLM API usage?
+
+43. How do you track token costs?
+
+44. How do you optimize LLM operational costs?
+
+45. What caching strategies can be used with LLMs?
+
+46. How do you improve response latency?
+
+47. What is response streaming?
+
+48. How do you implement streaming responses?
+
+49. What is function calling/tool calling?
+
+50. How do LLMs interact with external systems?
+
+51. What are AI agents?
+
+52. What is the difference between an LLM and an Agent?
+
+53. How would you build a chatbot using an LLM API?
+
+54. How would you build a document Q&A system using RAG?
+
+55. How would you integrate an LLM with Kafka?
+
+56. How would you integrate an LLM into a microservices architecture?
+
+57. How do you deploy LLM-powered applications in Kubernetes?
+
+58. How do you scale an LLM application for high traffic?
+
+59. How do you monitor LLM performance in production?
+
+60. What challenges have you faced while integrating LLM APIs in production?
+
+Production/Scenario-Based Questions
+
+1. LLM response time increased from 2 seconds to 20 seconds. How would you troubleshoot?
+
+2. API costs increased dramatically. How would you optimize spending?
+
+3. Users report hallucinated answers. How would you reduce them?
+
+4. Vector search is returning irrelevant documents. What would you check?
+
+5. The LLM provider API is down. How would your system handle it?
+
+6. Token limits are being exceeded frequently. What solutions would you implement?
+
+7. How would you build a multi-tenant AI platform using LLM APIs?
+
+8. How would you secure confidential enterprise documents in a RAG system?
+
+9. How would you design an AI assistant that can query databases and APIs?
+
+10. Describe an LLM-based project you built and explain the architecture.
+
+
+Frequently Asked Architecture Question
+
+Explain the architecture of a RAG-based chatbot.
+
+Expected flow:
+
+User Query
+    ↓
+API Gateway
+    ↓
+Embedding Model
+    ↓
+Vector Database Search
+    ↓
+Relevant Documents Retrieved
+    ↓
+Prompt Construction
+    ↓
+LLM API Call
+    ↓
+Generated Response
+    ↓
+User

@@ -1,0 +1,345 @@
+JAVA EXCEPTION HANDLING – 100 MOST ASKED PRODUCTION & INTERVIEW QUESTIONS
+
+1. What is an Exception in Java?
+2. What is the difference between Error and Exception?
+3. What is the difference between Checked and Unchecked Exceptions?
+4. What is RuntimeException?
+5. Explain Java Exception hierarchy.
+6. Why do we need exception handling?
+7. What happens when an exception is not handled?
+8. What is stack unwinding?
+9. What is exception propagation?
+10. What is the default exception handler in Java?
+
+11. How does try-catch work?
+12. Can a try block exist without a catch block?
+13. Can a catch block exist without a try block?
+14. Can multiple catch blocks be used with one try block?
+15. What is catch block ordering?
+16. Why should child exceptions be caught before parent exceptions?
+17. What happens if catch blocks are ordered incorrectly?
+18. Can we have nested try-catch blocks?
+19. What are the advantages of nested try blocks?
+20. How can multiple exceptions be caught in a single catch block?
+
+21. What is a finally block?
+22. Is finally always executed?
+23. In which scenarios is finally not executed?
+24. Can we write a return statement inside finally?
+25. Why is return in finally considered a bad practice?
+26. What happens if an exception occurs inside finally?
+27. Difference between final, finally, and finalize.
+28. Can try-finally exist without catch?
+29. How is resource cleanup performed using finally?
+30. Why was try-with-resources introduced?
+
+31. What is the difference between throw and throws?
+32. How do you manually throw an exception?
+33. When should custom exceptions be thrown?
+34. Can checked exceptions be thrown manually?
+35. Can runtime exceptions be thrown manually?
+36. What happens after a throw statement executes?
+37. Can multiple exceptions be declared in throws?
+38. Why use throws in API design?
+39. How should exceptions be propagated across layers?
+40. What are the best practices for throws declarations?
+
+41. What is a checked exception?
+42. Give examples of checked exceptions.
+43. Why does the compiler force handling of checked exceptions?
+44. How do you handle IOException?
+45. How do you handle SQLException?
+46. How do you handle FileNotFoundException?
+47. How do you handle ClassNotFoundException?
+48. How do you handle InterruptedException?
+49. Should checked exceptions be propagated or handled immediately?
+50. What production issues occur when checked exceptions are ignored?
+
+51. What is RuntimeException?
+52. What causes NullPointerException?
+53. What causes ArrayIndexOutOfBoundsException?
+54. What causes NumberFormatException?
+55. When should IllegalArgumentException be used?
+56. When should IllegalStateException be used?
+57. What causes ArithmeticException?
+58. What causes ClassCastException?
+59. What causes ConcurrentModificationException?
+60. What causes UnsupportedOperationException?
+
+61. How do you create a custom checked exception?
+62. How do you create a custom runtime exception?
+63. When should custom exceptions be used?
+64. Give examples of business exceptions.
+65. Give examples of validation exceptions.
+66. Give examples of API exceptions.
+67. Why create a custom exception hierarchy?
+68. What are naming conventions for custom exceptions?
+69. What is exception wrapping?
+70. What is exception chaining?
+
+71. How do you troubleshoot NullPointerException in production?
+72. How do you identify the root cause from a stack trace?
+73. What logs should be collected for exception debugging?
+74. How do you handle database connection failures?
+75. How do you handle external API failures?
+76. How do you handle timeout exceptions?
+77. What is exception swallowing?
+78. Why are empty catch blocks dangerous?
+79. How do you monitor exception rates in production?
+80. How do you handle memory-related exceptions?
+
+81. What is OutOfMemoryError?
+82. What causes OutOfMemoryError?
+83. How do you troubleshoot OutOfMemoryError?
+84. What is StackOverflowError?
+85. What causes StackOverflowError?
+86. How do you analyze heap dumps?
+87. What is a thread dump?
+88. How do you analyze deadlocks using thread dumps?
+89. What is JVM crash log analysis?
+90. How do you monitor JVM exceptions in production?
+
+91. What is @ExceptionHandler in Spring Boot?
+92. What is @ControllerAdvice?
+93. What is @RestControllerAdvice?
+94. Difference between local and global exception handling?
+95. How do you handle validation exceptions globally?
+96. How do you handle MethodArgumentNotValidException?
+97. How do you handle DataIntegrityViolationException?
+98. How do you handle NoSuchElementException?
+99. How do you design a standard API error response?
+100. What are exception handling best practices in microservices?
+
+PRODUCTION SCENARIO QUESTIONS
+
+101. Application suddenly starts throwing NullPointerException after deployment. How do you debug it?
+102. Database server is down. How should the application behave?
+103. External API returns HTTP 500 continuously. What will you do?
+104. Kafka consumer is failing due to serialization exceptions. How do you troubleshoot?
+105. Users are receiving Internal Server Error responses. How do you identify the root cause?
+106. Application is throwing OutOfMemoryError in production. What steps will you take?
+107. Thread pool is exhausted due to unhandled exceptions. How do you fix it?
+108. Microservice communication is failing because of timeout exceptions. How do you resolve it?
+109. Circuit breaker is opening frequently. What investigation will you perform?
+110. Logs contain exceptions but business functionality is still working. Is this acceptable?
+
+EXCEPTION HANDLING BEST PRACTICES
+
+1. Catch specific exceptions instead of Exception.
+2. Never use empty catch blocks.
+3. Log exceptions with proper context.
+4. Do not expose stack traces to end users.
+5. Use custom exceptions for business logic.
+6. Preserve original exception using exception chaining.
+7. Use try-with-resources for resource management.
+8. Use global exception handling in Spring Boot.
+9. Monitor exception metrics in production.
+10. Use retry and circuit breaker for transient failures.
+11. Use correlation IDs for distributed tracing.
+12. Avoid using exceptions for normal business flow.
+13. Always handle InterruptedException correctly.
+14. Validate input to prevent runtime exceptions.
+15. Return meaningful API error messages.
+
+
+JAVA OOPS + CONSTRUCTOR + EXCEPTION HANDLING INTERVIEW QUESTIONS
+
+=========================
+OOPS CONCEPTS
+=========================
+
+1. What are the four pillars of OOPs?
+2. What is Object-Oriented Programming?
+3. Difference between Class and Object?
+4. What is Encapsulation?
+5. What are advantages of Encapsulation?
+6. How is Encapsulation implemented in Java?
+7. What is Abstraction?
+8. Difference between Abstraction and Encapsulation?
+9. What is Inheritance?
+10. What are advantages of Inheritance?
+11. Types of Inheritance in Java?
+12. Why does Java not support Multiple Inheritance with classes?
+13. How does Java achieve Multiple Inheritance?
+14. What is Polymorphism?
+15. Types of Polymorphism?
+16. Difference between Compile-time and Runtime Polymorphism?
+17. What is Method Overloading?
+18. What are Overloading rules?
+19. What is Method Overriding?
+20. What are Overriding rules?
+21. Difference between Overloading and Overriding?
+22. Can static methods be overridden?
+23. Can private methods be overridden?
+24. What is Dynamic Method Dispatch?
+25. What is Association?
+26. What is Aggregation?
+27. What is Composition?
+28. Difference between Aggregation and Composition?
+29. What is an IS-A relationship?
+30. What is a HAS-A relationship?
+
+=========================
+ADVANCED OOPS
+=========================
+
+31. What is Object Class?
+32. Important methods of Object Class?
+33. Difference between == and equals()?
+34. Difference between equals() and hashCode()?
+35. Why override hashCode() when equals() is overridden?
+36. What is toString()?
+37. What is cloning?
+38. What is deep copy?
+39. What is shallow copy?
+40. What is immutable class?
+41. How to create immutable class?
+42. Why is String immutable?
+43. What is marker interface?
+44. What is Serializable?
+45. What is Comparable?
+46. What is Comparator?
+47. Difference between Comparable and Comparator?
+48. What is dependency injection?
+49. What is tight coupling?
+50. What is loose coupling?
+
+=========================
+CONSTRUCTOR QUESTIONS
+=========================
+
+51. What is a Constructor?
+52. Why do we need Constructors?
+53. What are Constructor characteristics?
+54. Types of Constructors?
+55. What is Default Constructor?
+56. What is No-Argument Constructor?
+57. What is Parameterized Constructor?
+58. Difference between Default and No-Arg Constructor?
+59. Can Constructor be private?
+60. Why use a private Constructor?
+61. Can Constructor be final?
+62. Can Constructor be static?
+63. Can Constructor be abstract?
+64. Can Constructor be synchronized?
+65. Can Constructor be inherited?
+66. Can Constructor be overridden?
+67. Can Constructor be overloaded?
+68. What is Constructor Chaining?
+69. What is this() Constructor?
+70. What is super() Constructor?
+71. Difference between this() and super()?
+72. What happens if super() is not called?
+73. Constructor execution order in inheritance?
+74. What is Copy Constructor?
+75. How do you implement a Copy Constructor in Java?
+76. What is Singleton Pattern using Constructor?
+77. How to prevent object creation?
+78. How many times Constructor executes?
+79. Constructor vs Method?
+80. Constructor best practices?
+
+=========================
+EXCEPTION HANDLING
+=========================
+
+81. What is Exception Handling?
+82. Difference between Error and Exception?
+83. Difference between Checked and Unchecked Exceptions?
+84. What is RuntimeException?
+85. What is Exception hierarchy?
+86. What is Exception propagation?
+87. What is stack unwinding?
+88. What happens if exception is not handled?
+89. What is default exception handler?
+90. Why exception handling is important?
+
+=========================
+TRY-CATCH-FINALLY
+=========================
+
+91. What is try block?
+92. What is catch block?
+93. What is finally block?
+94. Is finally always executed?
+95. When finally is not executed?
+96. Can try exist without catch?
+97. Can try exist without finally?
+98. Can finally exist without catch?
+99. Can multiple catch blocks be used?
+100. What is catch block ordering?
+
+=========================
+THROW & THROWS
+=========================
+
+101. Difference between throw and throws?
+102. How to manually throw exception?
+103. What happens after throw statement?
+104. Can multiple exceptions be declared in throws?
+105. What are best practices for throws?
+106. Why use throws in APIs?
+107. Can checked exceptions be thrown manually?
+108. Can runtime exceptions be thrown manually?
+109. What is exception wrapping?
+110. What is exception chaining?
+
+=========================
+CUSTOM EXCEPTIONS
+=========================
+
+111. What is custom exception?
+112. Why create custom exceptions?
+113. How to create checked custom exception?
+114. How to create unchecked custom exception?
+115. What is business exception?
+116. What is validation exception?
+117. What is API exception?
+118. Why custom exception hierarchy?
+119. Exception naming conventions?
+120. Production use cases of custom exceptions?
+
+=========================
+PRODUCTION TROUBLESHOOTING
+=========================
+
+121. How do you troubleshoot NullPointerException?
+122. How do you analyze stack traces?
+123. How do you identify root cause?
+124. How do you handle database failures?
+125. How do you handle API failures?
+126. How do you handle timeout exceptions?
+127. What is exception swallowing?
+128. Why are empty catch blocks dangerous?
+129. How do you monitor production exceptions?
+130. How do you design resilient applications?
+
+=========================
+SPRING BOOT EXCEPTION HANDLING
+=========================
+
+131. What is @ExceptionHandler?
+132. What is @ControllerAdvice?
+133. What is @RestControllerAdvice?
+134. Global Exception Handling?
+135. Validation Exception Handling?
+136. MethodArgumentNotValidException?
+137. DataIntegrityViolationException?
+138. NoSuchElementException?
+139. Standard API Error Response?
+140. Microservice Exception Handling?
+
+=========================
+MOST ASKED REAL-TIME QUESTIONS
+=========================
+
+141. Explain all 4 OOP principles with real examples.
+142. Why is Java called a pure OOP language or not?
+143. Why does Java not support multiple inheritance?
+144. Explain Constructor Chaining with example.
+145. Difference between this() and super()?
+146. Can we override constructors?
+147. Why are constructors not inherited?
+148. Explain exception propagation with example.
+149. How do you handle exceptions in Spring Boot REST APIs?
+150. Explain a production issue you solved using proper exception handling.

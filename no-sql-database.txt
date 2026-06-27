@@ -1,0 +1,202 @@
+
+===========================
+NoSQL PRODUCTION & TROUBLESHOOTING INTERVIEW QUESTIONS
+(8+ Years Experience)
+===========================
+
+1. What is NoSQL?
+2. Why NoSQL over RDBMS?
+3. What are the different types of NoSQL databases?
+4. Explain Key-Value databases.
+5. Explain Document databases.
+6. Explain Column-Family databases.
+7. Explain Graph databases.
+8. Difference between SQL and NoSQL?
+9. What are the advantages of NoSQL?
+10. What are the disadvantages of NoSQL?
+
+11. Explain CAP Theorem.
+12. Explain Consistency.
+13. Explain Availability.
+14. Explain Partition Tolerance.
+15. Difference between Strong and Eventual Consistency?
+16. What is BASE property?
+17. Difference between ACID and BASE?
+18. What is Data Partitioning?
+19. What is Sharding?
+20. What is Replication?
+
+===========================
+MongoDB Production Questions
+===========================
+
+21. Explain MongoDB Architecture.
+22. What is Replica Set?
+23. What is Primary Node?
+24. What is Secondary Node?
+25. What is Arbiter?
+26. What is Oplog?
+27. What is Write Concern?
+28. What is Read Preference?
+29. What is Journaling?
+30. What is MongoDB Aggregation?
+
+31. MongoDB CPU is 100%. How do you troubleshoot?
+32. MongoDB memory utilization is high. What will you check?
+33. MongoDB queries are slow. How do you investigate?
+34. Database connections are exhausted. Troubleshooting steps?
+35. MongoDB is frequently restarting. What logs will you check?
+36. Replication lag is increasing. How do you resolve it?
+37. Secondary nodes are not syncing. What could be wrong?
+38. Oplog is full. What actions will you take?
+39. MongoDB disk usage is increasing rapidly. How do you investigate?
+40. MongoDB server became read-only. What could be the reason?
+
+41. How do you identify slow queries?
+42. How do you analyze execution plans?
+43. What is explain() command?
+44. How do you optimize indexes?
+45. Difference between Single and Compound Index?
+46. What is Covered Query?
+47. What is Index Cardinality?
+48. How do you detect unused indexes?
+49. How do you rebuild indexes?
+50. How do you optimize aggregation pipelines?
+
+===========================
+Cassandra Production Questions
+===========================
+
+51. Explain Cassandra Architecture.
+52. What is Gossip Protocol?
+53. What is Snitch?
+54. What is Seed Node?
+55. What is SSTable?
+56. What is MemTable?
+57. What is Commit Log?
+58. What is Compaction?
+59. What is Tombstone?
+60. Explain Consistency Levels.
+
+61. Cassandra node is down. What will you do?
+62. Cassandra cluster has high latency. Troubleshooting steps?
+63. Read requests are slow. What could be wrong?
+64. Write requests are slow. How do you investigate?
+65. Tombstones are increasing. What actions will you take?
+66. Compaction backlog is growing. Troubleshooting approach?
+67. Cassandra disk utilization is 95%. What will you do?
+68. Repair jobs are failing. How do you investigate?
+69. Replication issues are occurring. What will you check?
+70. Hot partitions are affecting performance. How do you identify them?
+
+===========================
+Redis Production Questions
+===========================
+
+71. Explain Redis Architecture.
+72. What is Redis Persistence?
+73. Difference between RDB and AOF?
+74. What is Redis Replication?
+75. What is Redis Sentinel?
+76. What is Redis Cluster?
+77. What is Cache Eviction Policy?
+78. What is Cache Penetration?
+79. What is Cache Breakdown?
+80. What is Cache Avalanche?
+
+81. Redis memory is full. How do you troubleshoot?
+82. Redis latency is high. What could be wrong?
+83. Cache hit ratio is decreasing. How do you investigate?
+84. Redis replication lag is increasing. What will you do?
+85. Redis node crashed. Recovery steps?
+86. Redis persistence file is corrupted. How do you recover?
+87. Frequent cache misses are occurring. Root causes?
+88. Redis CPU utilization is high. Investigation steps?
+89. Large keys are affecting performance. How do you identify them?
+90. Redis connections are exhausted. Troubleshooting approach?
+
+===========================
+Couchbase Production Questions
+===========================
+
+91. Explain Couchbase Architecture.
+92. What is a Bucket?
+93. What is XDCR?
+94. What is N1QL?
+95. How does Couchbase indexing work?
+96. Couchbase node failed. What actions will you take?
+97. Index service is overloaded. Troubleshooting?
+98. Query performance degraded. How do you optimize?
+99. Couchbase rebalance is slow. Why?
+100. Memory quota exceeded. What will you do?
+
+===========================
+Production Troubleshooting
+===========================
+
+101. Database response time increased suddenly. How do you investigate?
+102. Application timeout errors are increasing. Troubleshooting steps?
+103. NoSQL cluster is unstable. What metrics will you check?
+104. Node frequently leaves cluster. What could be the reasons?
+105. Network latency is impacting database performance. Investigation?
+106. Disk I/O is high. How do you identify root cause?
+107. Storage utilization reached 90%. What actions will you take?
+108. Database backup failed. How do you troubleshoot?
+109. Database restore failed. Investigation steps?
+110. Replication stopped working. What will you check?
+
+111. High write latency observed. Root cause analysis?
+112. High read latency observed. Root cause analysis?
+113. Frequent GC pauses affecting database performance. Troubleshooting?
+114. JVM heap memory issues in NoSQL databases. Investigation?
+115. How do you analyze thread dumps?
+116. How do you analyze heap dumps?
+117. How do you identify memory leaks?
+118. Database process killed by OOM Killer. How do you investigate?
+119. Database logs show frequent errors. How do you approach RCA?
+120. How do you perform capacity planning?
+
+===========================
+Monitoring & Observability
+===========================
+
+121. Which NoSQL metrics should be monitored?
+122. How do you monitor replication lag?
+123. How do you monitor query performance?
+124. How do you monitor cache hit ratio?
+125. How do you monitor disk I/O?
+126. How do you monitor memory utilization?
+127. How do you monitor network latency?
+128. How do you integrate Prometheus with NoSQL?
+129. How do you create Grafana dashboards?
+130. What alerts should be configured?
+
+===========================
+Design & Architecture
+===========================
+
+131. How do you design a scalable NoSQL architecture?
+132. How do you choose between MongoDB, Cassandra, and Redis?
+133. How do you design a high-availability NoSQL cluster?
+134. How do you design multi-region replication?
+135. How do you handle disaster recovery?
+136. How do you design backup strategies?
+137. How do you design data retention policies?
+138. How do you design sharding strategies?
+139. How do you avoid hot partitions?
+140. How do you scale to billions of records?
+
+===========================
+Real Production Scenarios
+===========================
+
+141. MongoDB replica set election is happening frequently. How do you fix it?
+142. Cassandra cluster has uneven data distribution. Troubleshooting steps?
+143. Redis cache is causing stale data issues. Solution?
+144. NoSQL database is consuming excessive storage. Investigation?
+145. Application throughput dropped by 50%. How do you identify database bottlenecks?
+146. Production cluster upgrade failed. Recovery strategy?
+147. Cross-region replication lag is very high. Troubleshooting?
+148. Database performance degraded after index creation. Why?
+149. What are the most common NoSQL production incidents you have handled?
+150. Explain one real production issue, RCA, troubleshooting steps, resolution, and preventive actions.

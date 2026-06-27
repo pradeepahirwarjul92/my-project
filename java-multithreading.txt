@@ -1,0 +1,516 @@
+JAVA MULTITHREADING INTERVIEW QUESTIONS (150 MOST ASKED)
+
+====================================
+MULTITHREADING BASICS
+====================================
+
+1. What is a Thread?
+2. What is Multithreading?
+3. Why use Multithreading?
+4. Process vs Thread?
+5. Advantages of Multithreading?
+6. Disadvantages of Multithreading?
+7. Thread Lifecycle?
+8. States of a Thread?
+9. Difference between concurrency and parallelism?
+10. What is context switching?
+
+====================================
+CREATING THREADS
+====================================
+
+11. How to create a thread?
+12. Extending Thread class?
+13. Implementing Runnable interface?
+14. Difference between Thread and Runnable?
+15. Why Runnable is preferred?
+16. Can a thread be started twice?
+17. Difference between start() and run()?
+18. What happens if run() is called directly?
+19. How does JVM create threads?
+20. Best way to create threads?
+
+====================================
+THREAD LIFECYCLE
+====================================
+
+21. Explain New state.
+22. Explain Runnable state.
+23. Explain Running state.
+24. Explain Blocked state.
+25. Explain Waiting state.
+26. Explain Timed Waiting state.
+27. Explain Terminated state.
+28. State transition diagram?
+29. How does a thread move to blocked state?
+30. How does a thread terminate?
+
+====================================
+THREAD METHODS
+====================================
+
+31. What is start()?
+32. What is run()?
+33. What is sleep()?
+34. What is yield()?
+35. What is join()?
+36. What is interrupt()?
+37. What is isAlive()?
+38. What is currentThread()?
+39. What is setPriority()?
+40. What is getPriority()?
+
+====================================
+THREAD PRIORITIES
+====================================
+
+41. What are thread priorities?
+42. Default thread priority?
+43. Minimum thread priority?
+44. Maximum thread priority?
+45. Does priority guarantee execution order?
+46. Why should priorities be avoided?
+47. OS impact on priorities?
+48. Priority inversion?
+49. Production issues with priorities?
+50. Best practices?
+
+====================================
+SYNCHRONIZATION
+====================================
+
+51. What is synchronization?
+52. Why synchronization is required?
+53. Race condition?
+54. Critical section?
+55. How does synchronized keyword work?
+56. Method-level synchronization?
+57. Block-level synchronization?
+58. Class-level synchronization?
+59. Object lock?
+60. Class lock?
+
+====================================
+INTRINSIC LOCKS
+====================================
+
+61. What is intrinsic lock?
+62. Monitor lock?
+63. Lock acquisition process?
+64. Lock release process?
+65. Reentrant lock behavior?
+66. Can synchronized methods call each other?
+67. Nested synchronization?
+68. Lock contention?
+69. Lock escalation?
+70. Production lock issues?
+
+====================================
+VOLATILE KEYWORD
+====================================
+
+71. What is volatile?
+72. Why volatile is needed?
+73. Memory visibility problem?
+74. Volatile vs synchronized?
+75. Volatile vs AtomicInteger?
+76. Can volatile ensure atomicity?
+77. Double-checked locking?
+78. Volatile use cases?
+79. Production examples?
+80. Best practices?
+
+====================================
+INTER-THREAD COMMUNICATION
+====================================
+
+81. What is inter-thread communication?
+82. What is wait()?
+83. What is notify()?
+84. What is notifyAll()?
+85. Difference between wait() and sleep()?
+86. Why wait() releases lock?
+87. Why sleep() does not release lock?
+88. Producer Consumer Problem?
+89. Lost notification issue?
+90. Best practices?
+
+====================================
+DEADLOCK
+====================================
+
+91. What is deadlock?
+92. Causes of deadlock?
+93. Deadlock example?
+94. How to detect deadlock?
+95. How to avoid deadlock?
+96. Lock ordering technique?
+97. Thread dump analysis?
+98. Deadlock in production?
+99. Tools for deadlock detection?
+100. Deadlock troubleshooting?
+
+====================================
+JAVA CONCURRENT PACKAGE
+====================================
+
+101. What is java.util.concurrent?
+102. Benefits of concurrent package?
+103. Executor Framework?
+104. ExecutorService?
+105. ScheduledExecutorService?
+106. Callable?
+107. Future?
+108. FutureTask?
+109. CompletionService?
+110. ForkJoinPool?
+
+====================================
+THREAD POOL
+====================================
+
+111. What is Thread Pool?
+112. Why Thread Pool?
+113. FixedThreadPool?
+114. CachedThreadPool?
+115. SingleThreadExecutor?
+116. ScheduledThreadPool?
+117. Thread pool sizing?
+118. Thread starvation?
+119. Queue capacity impact?
+120. Production tuning?
+
+====================================
+LOCK FRAMEWORK
+====================================
+
+121. What is ReentrantLock?
+122. ReentrantLock vs synchronized?
+123. ReadWriteLock?
+124. StampedLock?
+125. Fair Lock?
+126. Unfair Lock?
+127. tryLock()?
+128. LockInterruptibly()?
+129. Lock performance?
+130. Production use cases?
+
+====================================
+ATOMIC CLASSES
+====================================
+
+131. What is AtomicInteger?
+132. CAS (Compare-And-Swap)?
+133. AtomicLong?
+134. AtomicReference?
+135. LongAdder?
+136. Atomic vs synchronized?
+137. Lock-free programming?
+138. ABA problem?
+139. Production examples?
+140. Performance benefits?
+
+====================================
+JAVA 8 CONCURRENCY
+====================================
+
+141. CompletableFuture?
+142. supplyAsync()?
+143. runAsync()?
+144. thenApply()?
+145. thenCompose()?
+146. thenCombine()?
+147. exceptionally()?
+148. handle()?
+149. whenComplete()?
+150. CompletableFuture vs Future?
+
+====================================
+MOST ASKED PRODUCTION SCENARIOS
+====================================
+
+1. API response time suddenly increased. How do you identify thread contention?
+2. Thread pool queue size keeps growing. Root cause?
+3. CPU usage reaches 100% after deployment.
+4. Application hangs intermittently due to deadlock.
+5. Database connection pool exhausted because of blocked threads.
+6. Kafka consumer lag increases due to slow processing.
+7. Microservice becomes unresponsive under load.
+8. Thread count continuously increases causing OutOfMemoryError.
+9. CompletableFuture tasks are not completing.
+10. Kubernetes pod restarts because of thread leak.
+
+====================================
+MOST ASKED INTERVIEW QUESTIONS
+====================================
+
+1. Difference between Process and Thread?
+2. Difference between Runnable and Callable?
+3. Difference between wait() and sleep()?
+4. Difference between synchronized and ReentrantLock?
+5. Difference between volatile and synchronized?
+6. Difference between Future and CompletableFuture?
+7. What is Deadlock and how do you resolve it?
+8. What is Race Condition?
+9. Explain Producer Consumer Problem.
+10. Explain Java Memory Model (JMM).
+11. What is CAS?
+12. What is AtomicInteger?
+13. What is Thread Pool and why use it?
+14. How do you tune Thread Pools in production?
+15. Explain CompletableFuture in Java 8.
+16. Explain synchronization internally.
+17. Explain lock contention.
+18. Explain thread dump analysis.
+19. Explain deadlock troubleshooting.
+20. Explain multithreading architecture in a high-traffic Spring Boot application.
+
+Multithreading Troubleshooting Commands
+
+jps
+jstack <pid>
+jcmd <pid> Thread.print
+jcmd <pid> GC.heap_info
+jvisualvm
+jconsole
+top -H -p <pid>
+
+
+Thread Lifecycle
+
+NEW
+ |
+start()
+ |
+RUNNABLE
+ |
+Running
+ |
+--------------------------
+| BLOCKED                |
+| WAITING                |
+| TIMED_WAITING          |
+--------------------------
+ |
+TERMINATED
+
+
+Java Memory Model (JMM)
+
+Main Memory
+      |
+-------------------
+| Thread 1 Cache  |
+-------------------
+| Thread 2 Cache  |
+-------------------
+| Thread 3 Cache  |
+-------------------
+
+volatile => Visibility
+synchronized => Visibility + Atomicity
+AtomicInteger => Lock-Free Atomicity
+
+
+BEGINNER LEVEL
+
+1. Create a thread using Thread class.
+2. Create a thread using Runnable interface.
+3. Print numbers 1 to 10 using a thread.
+4. Create two threads and print their names.
+5. Demonstrate start() vs run().
+6. Display current thread information.
+7. Use sleep() method in a thread.
+8. Use join() method to wait for thread completion.
+9. Demonstrate thread priorities.
+10. Check whether a thread is alive using isAlive().
+
+11. Create three threads and execute sequentially using join().
+12. Print even numbers using one thread.
+13. Print odd numbers using another thread.
+14. Calculate sum of first 100 numbers using a thread.
+15. Create a thread that runs every second.
+16. Interrupt a running thread.
+17. Handle InterruptedException properly.
+18. Print thread state at different stages.
+19. Create multiple worker threads.
+20. Execute 5 tasks using 5 threads.
+
+INTERMEDIATE LEVEL
+
+21. Implement synchronized method.
+22. Implement synchronized block.
+23. Create a shared counter and increment safely.
+24. Demonstrate race condition.
+25. Fix race condition using synchronized.
+26. Demonstrate deadlock.
+27. Resolve deadlock using lock ordering.
+28. Create a thread-safe bank account.
+29. Simulate money transfer between accounts.
+30. Create producer-consumer using wait() and notify().
+
+31. Create bounded buffer problem.
+32. Implement ticket booking system.
+33. Prevent double booking using synchronization.
+34. Implement thread-safe Singleton.
+35. Demonstrate volatile keyword.
+36. Create thread-safe cache.
+37. Use AtomicInteger for counter.
+38. Compare AtomicInteger vs synchronized.
+39. Implement custom thread pool.
+40. Create task scheduler.
+
+41. Implement ReadWriteLock example.
+42. Create thread-safe queue.
+43. Create thread-safe stack.
+44. Implement semaphore example.
+45. Demonstrate CountDownLatch.
+46. Demonstrate CyclicBarrier.
+47. Demonstrate Phaser.
+48. Demonstrate Exchanger.
+49. Create parallel file processing.
+50. Create concurrent log writer.
+
+ADVANCED LEVEL
+
+51. Implement ExecutorService.
+52. FixedThreadPool example.
+53. CachedThreadPool example.
+54. ScheduledThreadPool example.
+55. Submit Callable tasks.
+56. Retrieve results using Future.
+57. Handle Future timeout.
+58. Cancel running task using Future.
+59. Process multiple Futures.
+60. Implement CompletionService.
+
+61. Use ForkJoinPool.
+62. Implement RecursiveTask.
+63. Implement RecursiveAction.
+64. Parallel array sum using ForkJoin.
+65. Create image processing task using ForkJoin.
+66. Compare ForkJoin vs ExecutorService.
+67. Create work-stealing example.
+68. Measure parallel performance.
+69. Implement async service.
+70. Chain async tasks.
+
+JAVA 8 COMPLETABLE FUTURE
+
+71. Use CompletableFuture.runAsync().
+72. Use CompletableFuture.supplyAsync().
+73. Chain tasks using thenApply().
+74. Use thenAccept().
+75. Use thenRun().
+76. Use thenCompose().
+77. Use thenCombine().
+78. Handle exceptions using exceptionally().
+79. Handle exceptions using handle().
+80. Execute multiple async tasks in parallel.
+
+81. Use allOf().
+82. Use anyOf().
+83. Aggregate results from multiple APIs.
+84. Parallel database queries.
+85. Async email notification.
+86. Async report generation.
+87. Async file processing.
+88. Async payment processing.
+89. Async inventory update.
+90. Async order processing.
+
+PRODUCTION SCENARIOS
+
+91. Design thread-safe inventory system.
+92. Design thread-safe URL shortener.
+93. Design thread-safe rate limiter.
+94. Design thread-safe cache.
+95. Design thread-safe logger.
+96. Design concurrent order processing system.
+97. Design payment processing system.
+98. Design stock trading engine.
+99. Design ride booking service.
+100. Design ticket reservation system.
+
+THREAD DUMP ANALYSIS
+
+101. Identify blocked thread from thread dump.
+102. Identify deadlock from thread dump.
+103. Find thread consuming CPU.
+104. Analyze waiting threads.
+105. Analyze thread pool starvation.
+106. Analyze lock contention.
+107. Analyze application hang.
+108. Analyze Kafka consumer blockage.
+109. Analyze database connection pool exhaustion.
+110. Analyze memory leak caused by threads.
+
+INTERVIEW CODING QUESTIONS
+
+111. Print odd and even numbers using two threads.
+112. Print 1-100 using two threads alternately.
+113. Print A-B-C repeatedly using three threads.
+114. Print 1-2-3 repeatedly using three threads.
+115. Producer Consumer problem.
+116. Dining Philosophers problem.
+117. Readers Writers problem.
+118. Sleeping Barber problem.
+119. Thread-safe LRU cache.
+120. Implement custom BlockingQueue.
+
+REAL-TIME BACKEND SCENARIOS
+
+121. Thread-safe API rate limiter.
+122. Async notification service.
+123. Parallel REST API calls.
+124. Concurrent file uploads.
+125. Background report generation.
+126. Kafka message processing.
+127. Batch job parallelization.
+128. Payment transaction processing.
+129. Distributed locking simulation.
+130. Inventory reservation service.
+
+SENIOR JAVA QUESTIONS
+
+131. Explain Java Memory Model.
+132. Explain Happens-Before relationship.
+133. Explain volatile internals.
+134. Explain CAS operation.
+135. Explain lock-free programming.
+136. Explain ABA problem.
+137. Explain ReentrantLock internals.
+138. Explain synchronized internals.
+139. Explain biased locking.
+140. Explain monitor lock.
+
+PRODUCTION TROUBLESHOOTING
+
+141. Application CPU 100% due to threads.
+142. Deadlock in production.
+143. Thread pool exhaustion.
+144. CompletableFuture thread starvation.
+145. Kafka consumer lag.
+146. Slow API due to lock contention.
+147. Database pool exhausted.
+148. Memory leak due to ThreadLocal.
+149. OutOfMemoryError due to thread leak.
+150. High latency due to excessive context switching.
+
+Most Frequently Asked Coding Questions
+
+1. Print Odd-Even using 2 Threads.
+2. Producer Consumer using wait/notify.
+3. Thread-safe Singleton.
+4. Deadlock Example and Fix.
+5. Custom Thread Pool.
+6. CompletableFuture Chaining.
+7. Thread-safe Counter.
+8. Rate Limiter using Semaphore.
+9. BlockingQueue Implementation.
+10. LRU Cache Thread-Safe Design.
+11. ReadWriteLock Example.
+12. ExecutorService Example.
+13. ForkJoinPool Example.
+14. AtomicInteger vs synchronized Counter.
+15. Parallel REST API Calls using CompletableFuture.

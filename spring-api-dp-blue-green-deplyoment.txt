@@ -1,0 +1,260 @@
+1. What is Blue-Green Deployment?
+
+2. Why do we use Blue-Green Deployment?
+
+3. What problems does Blue-Green Deployment solve?
+
+4. Explain Blue-Green Deployment architecture.
+
+5. What is Blue environment?
+
+6. What is Green environment?
+
+7. How does traffic switching work in Blue-Green Deployment?
+
+8. Difference between Blue-Green and Rolling Deployment?
+
+9. Difference between Blue-Green and Canary Deployment?
+
+10. What are the advantages of Blue-Green Deployment?
+
+11. What are the disadvantages of Blue-Green Deployment?
+
+12. How does Blue-Green Deployment reduce downtime?
+
+13. How does Blue-Green Deployment support fast rollback?
+
+14. How do you perform a Blue-Green Deployment?
+
+15. What validations should be performed before switching traffic?
+
+16. How do you test Green environment before go-live?
+
+17. How do you rollback a failed deployment?
+
+18. How do you automate Blue-Green Deployment?
+
+19. How does Blue-Green Deployment work in Kubernetes?
+
+20. How does Blue-Green Deployment work in AWS?
+
+21. How do you implement Blue-Green Deployment using Kubernetes Services?
+
+22. How do you implement Blue-Green Deployment using Nginx?
+
+23. How do you implement Blue-Green Deployment using API Gateway?
+
+24. How do you implement Blue-Green Deployment using Load Balancer?
+
+25. How do you implement Blue-Green Deployment using Jenkins?
+
+26. How do you implement Blue-Green Deployment using ArgoCD?
+
+27. How do you implement Blue-Green Deployment using Spinnaker?
+
+28. What is traffic cutover?
+
+29. What is traffic switching?
+
+30. What is rollback strategy?
+
+31. How do you handle database changes in Blue-Green Deployment?
+
+32. Why are database changes challenging in Blue-Green Deployment?
+
+33. What is backward-compatible database schema?
+
+34. How do you deploy database migrations safely?
+
+35. Expand-and-Contract database migration pattern?
+
+36. How do you handle long-running transactions?
+
+37. How do you synchronize data between Blue and Green?
+
+38. How do you prevent data loss during deployment?
+
+39. How do you validate data consistency?
+
+40. What happens if Green deployment fails after traffic switch?
+
+41. How do you monitor Blue-Green Deployment?
+
+42. Which metrics should be monitored?
+
+43. How do you monitor application latency?
+
+44. How do you monitor error rates?
+
+45. How do you monitor JVM metrics?
+
+46. How do you monitor infrastructure metrics?
+
+47. How do you monitor business KPIs after deployment?
+
+48. How do you detect deployment failures?
+
+49. How do you use Prometheus during deployment?
+
+50. How do you use Grafana dashboards?
+
+51. What are common deployment risks?
+
+52. How do you prevent deployment outages?
+
+53. How do you secure deployment pipelines?
+
+54. How do you manage secrets during deployment?
+
+55. How do you validate SSL certificates?
+
+56. How do you perform smoke testing?
+
+57. How do you perform health checks?
+
+58. What are readiness probes?
+
+59. What are liveness probes?
+
+60. How do you use health endpoints in Spring Boot?
+
+61. How do you scale Blue and Green environments?
+
+62. How do you manage infrastructure costs?
+
+63. What are capacity planning considerations?
+
+64. How do you handle peak traffic during deployment?
+
+65. How do you deploy microservices using Blue-Green strategy?
+
+66. How do you coordinate multiple service deployments?
+
+67. How do you deploy API Gateway changes?
+
+68. How do you deploy Kafka consumers?
+
+69. How do you deploy Redis-dependent applications?
+
+70. How do you deploy database-heavy applications?
+
+71. Production deployment failed after release. How do you troubleshoot?
+
+72. Users report increased latency after Green deployment. Investigation steps?
+
+73. Error rate increased after traffic switch. What will you check?
+
+74. Memory usage doubled after Green deployment. Troubleshooting?
+
+75. CPU utilization reached 95% after deployment. Investigation?
+
+76. Application pods are restarting after deployment. Root causes?
+
+77. Readiness probes are failing. Troubleshooting?
+
+78. Database migration caused deployment failure. How do you recover?
+
+79. API Gateway routing is incorrect after deployment. Investigation?
+
+80. SSL issues after deployment. Troubleshooting?
+
+81. Kubernetes Service points to wrong version. What will you do?
+
+82. Load balancer routing issues after deployment. Investigation?
+
+83. Cache inconsistency after deployment. Troubleshooting?
+
+84. Session loss after deployment. How do you handle it?
+
+85. Message queue consumers duplicated after deployment. Investigation?
+
+86. Kafka lag increased after deployment. Troubleshooting?
+
+87. Redis connection failures after deployment. Investigation?
+
+88. Authentication failures after deployment. Root causes?
+
+89. JWT validation issues after deployment. Troubleshooting?
+
+90. OAuth2 login failures after deployment. Investigation?
+
+91. How do you implement Blue-Green Deployment in Spring Boot?
+
+92. How do you implement Blue-Green Deployment in Kubernetes?
+
+93. How do you implement Blue-Green Deployment in AWS ECS?
+
+94. How do you implement Blue-Green Deployment in EKS?
+
+95. How do you implement Blue-Green Deployment in Azure AKS?
+
+96. How do you implement Blue-Green Deployment in OpenShift?
+
+97. How do you automate deployments using Jenkins Pipeline?
+
+98. How do you automate deployments using GitHub Actions?
+
+99. How do you automate deployments using GitLab CI/CD?
+
+100. Explain a real Blue-Green Deployment production issue, RCA, troubleshooting steps, resolution, and preventive measures.
+
+
+Blue-Green Deployment Architecture
+
+                    Users
+                      |
+                      v
+               Load Balancer
+                      |
+          -------------------------
+          |                       |
+          v                       v
+   BLUE Environment       GREEN Environment
+ (Current Production)      (New Release)
+
+Before Switch:
+Traffic -> BLUE
+
+After Validation:
+Traffic -> GREEN
+
+If Failure:
+Rollback -> BLUE
+
+
+
+Q: What is Blue-Green Deployment?
+
+Answer:
+Blue-Green Deployment is a release strategy where two identical production environments exist:
+
+Blue = Current live production version
+Green = New application version
+
+The new version is deployed to Green, tested, and then traffic is switched from Blue to Green through 
+a load balancer, API Gateway, or Kubernetes Service. If issues occur, rollback is achieved instantly by redirecting traffic back to Blue.
+
+Benefits
+Near-zero downtime
+Fast rollback
+Safer releases
+Better production testing
+Reduced deployment risk
+
+
+Real Production Example
+
+Problem:
+Spring Boot deployment caused 5 minutes downtime.
+
+Solution:
+Implemented Blue-Green Deployment using Kubernetes.
+
+Before:
+Deployment downtime = 5 minutes
+
+After:
+Deployment downtime = 0 seconds
+
+Rollback time:
+Less than 30 seconds

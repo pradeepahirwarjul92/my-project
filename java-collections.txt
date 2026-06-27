@@ -1,5 +1,206 @@
 JAVA COLLECTION FRAMEWORK - 100 INTERVIEW QUESTIONS
 
+1. What is Java Collections Framework?
+2. Why do we need Collections in Java?
+3. What is difference between arrays and collections?
+4. What are main interfaces in Collections Framework?
+5. What is List interface?
+6. What is Set interface?
+7. What is Map interface?
+8. What is Queue interface?
+9. What is Deque interface?
+10. What is Collection interface in Java?
+11. What is Iterable interface?
+12. Difference between Collection and Collections class?
+13. What is ArrayList?
+14. How ArrayList works internally?
+15. What is LinkedList?
+16. Difference between ArrayList and LinkedList?
+17. When to use ArrayList vs LinkedList?
+18. What is Vector in Java?
+19. Difference between ArrayList and Vector?
+20. What is Stack in Java?
+21. How Stack works internally?
+22. What is HashSet?
+23. How HashSet works internally?
+24. What is LinkedHashSet?
+25. What is TreeSet?
+26. Difference between HashSet and TreeSet?
+27. Difference between HashSet and LinkedHashSet?
+28. What is HashMap?
+29. How HashMap works internally?
+30. What happens when hash collision occurs in HashMap?
+31. What is load factor in HashMap?
+32. What is initial capacity in HashMap?
+33. What is rehashing?
+34. What is ConcurrentHashMap?
+35. Difference between HashMap and ConcurrentHashMap?
+36. What is Hashtable?
+37. Difference between HashMap and Hashtable?
+38. What is LinkedHashMap?
+39. What is TreeMap?
+40. Difference between HashMap and TreeMap?
+41. What is Comparable interface?
+42. What is Comparator interface?
+43. Difference between Comparable and Comparator?
+44. What is sorting in Collections?
+45. How Collections.sort() works?
+46. What is Stream API in Java?
+47. What is filter in Streams?
+48. What is map in Streams?
+49. What is reduce in Streams?
+50. What is forEach in Streams?
+51. What is parallel stream?
+52. Difference between stream and collection?
+53. What is fail-fast iterator?
+54. What is fail-safe iterator?
+55. What is ConcurrentModificationException?
+56. How to avoid ConcurrentModificationException?
+57. What is Iterator interface?
+58. What is ListIterator?
+59. Difference between Iterator and ListIterator?
+60. What is Spliterator?
+61. What is immutable collection?
+62. How to create immutable collection?
+63. What is Collections.unmodifiableList()?
+64. What is List.of()?
+65. What is Set.of()?
+66. What is Map.of()?
+67. What is synchronized collection?
+68. How to make collection thread-safe?
+69. What is Collections.synchronizedList()?
+70. What is CopyOnWriteArrayList?
+71. What is CopyOnWriteArraySet?
+72. When to use CopyOnWrite collections?
+73. What is BlockingQueue?
+74. Types of BlockingQueue?
+75. What is ArrayBlockingQueue?
+76. What is LinkedBlockingQueue?
+77. What is PriorityBlockingQueue?
+78. What is DelayQueue?
+79. What is SynchronousQueue?
+80. What is Deque implementation in Java?
+81. What is ArrayDeque?
+82. Difference between Stack and ArrayDeque?
+83. What is priority queue?
+84. How PriorityQueue works internally?
+85. What is heap data structure?
+86. Min heap vs max heap?
+87. What is identityHashMap?
+88. What is WeakHashMap?
+89. What is EnumMap?
+90. What is EnumSet?
+91. When to use EnumMap?
+92. What is map iteration ways?
+93. What is entrySet in Map?
+94. What is keySet in Map?
+95. What is values() in Map?
+96. What is merge() in Map?
+97. What is compute() in Map?
+98. What is computeIfAbsent()?
+99. What is computeIfPresent()?
+100. What is putIfAbsent()?
+101. What is stream pipeline?
+102. What is terminal operation in streams?
+103. What is intermediate operation?
+104. What is lazy evaluation in streams?
+105. What is flatMap?
+106. Difference between map and flatMap?
+107. What is Optional in Java?
+108. Why Optional is used?
+109. What is method reference?
+110. What is lambda expression?
+111. What is functional interface?
+112. What is Predicate?
+113. What is Function?
+114. What is Consumer?
+115. What is Supplier?
+116. What is Collector in Streams?
+117. What is groupingBy collector?
+118. What is partitioningBy?
+119. What is reducing collector?
+120. What is toList collector?
+121. What is parallel stream performance issue?
+122. When not to use parallel stream?
+123. What is internal iteration?
+124. What is external iteration?
+125. What is sorted stream?
+126. What is distinct in stream?
+127. What is limit and skip?
+128. What is takeWhile and dropWhile?
+129. What is Java 8 Collections improvements?
+130. What is Java 9 Collection factory methods?
+131. What is Java 11 collection enhancement?
+132. What is Java 17 collection behavior?
+133. What is memory impact of collections?
+134. What is time complexity of ArrayList operations?
+135. What is time complexity of HashMap operations?
+136. What is time complexity of TreeMap operations?
+137. What is best collection for performance?
+138. What is best collection for sorting?
+139. What is best collection for lookup?
+140. What is best collection for insertion?
+141. What is best collection for iteration?
+142. What is internal bucket structure of HashMap?
+143. What is treeify in HashMap?
+144. What is red-black tree in HashMap?
+145. What is collision resolution techniques?
+146. What is open addressing?
+147. What is chaining in HashMap?
+148. What is hashing function?
+149. What makes good hashCode()?
+150. Why equals() and hashCode() important?
+151. What happens if hashCode is not overridden?
+152. What is identity vs equality in collections?
+153. What is object comparison in Java?
+154. What is sorting stability?
+155. What is stable sort?
+156. What is quicksort vs mergesort in collections?
+157. What is timsort?
+158. What is Arrays utility class?
+159. What is Collections utility class?
+160. What is binarySearch?
+161. What is reverse in Collections?
+162. What is shuffle in Collections?
+163. What is rotate in Collections?
+164. What is frequency in Collections?
+165. What is disjoint in Collections?
+166. What is checked collection?
+167. What is safe navigation in collections?
+168. What is defensive copying?
+169. What is memory leak in collections?
+170. How collections cause memory leaks?
+171. What is weak reference?
+172. What is strong reference?
+173. What is soft reference?
+174. What is phantom reference?
+175. What is GC impact on collections?
+176. What is resizing of ArrayList?
+177. What is capacity vs size in ArrayList?
+178. What is default capacity of ArrayList?
+179. What is fail-safe behavior in Concurrent collections?
+180. What is locking in ConcurrentHashMap?
+181. What is segment-based locking?
+182. What is CAS operation?
+183. What is atomic operations in collections?
+184. What is java.util.concurrent package?
+185. What is ExecutorService with collections?
+186. What is ForkJoin with collections?
+187. What is stream concurrency safety?
+188. What is collection benchmarking?
+189. What is JMH?
+190. What is performance tuning of collections?
+191. What is serialization of collections?
+192. What is externalizable?
+193. What is transient keyword?
+194. What is deep copy vs shallow copy?
+195. What is cloning in collections?
+196. What is copy constructor?
+197. What is immutability advantage?
+198. What is thread confinement?
+199. What is safe publication?
+200. Explain real-world use of Java Collections in enterprise applications.
+
 BASICS
 
 1. What is Collection Framework?

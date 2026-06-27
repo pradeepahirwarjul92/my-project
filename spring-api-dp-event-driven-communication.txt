@@ -1,0 +1,200 @@
+1. What is Event-Driven Architecture (EDA)?
+2. What is event-driven communication?
+3. Why event-driven communication is used in microservices?
+4. What is an event in microservices?
+5. Difference between event and message?
+6. What is producer in event-driven architecture?
+7. What is consumer in event-driven architecture?
+8. What is message broker?
+9. What is asynchronous communication?
+10. Difference between synchronous and asynchronous communication?
+11. What are advantages of event-driven architecture?
+12. What are disadvantages of event-driven architecture?
+13. What is loose coupling in EDA?
+14. What is scalability in event-driven systems?
+15. What is eventual consistency?
+16. What is real-time processing?
+17. What is pub-sub model?
+18. What is message queue model?
+19. Difference between queue and topic?
+20. What is event streaming?
+21. What is event sourcing?
+22. What is CQRS?
+23. How CQRS works with event-driven systems?
+24. What is domain event?
+25. What is integration event?
+26. What is event notification?
+27. What is event-carried state transfer?
+28. What is choreography pattern?
+29. What is orchestration pattern?
+30. Difference between choreography and orchestration?
+31. What is Saga pattern?
+32. How Saga works with events?
+33. What is compensating transaction?
+34. What is distributed transaction?
+35. Why distributed transactions are difficult?
+36. What is idempotency?
+37. Why idempotency is important in EDA?
+38. What is duplicate message handling?
+39. What is exactly-once delivery?
+40. What is at-most-once delivery?
+41. What is at-least-once delivery?
+42. What is message ordering?
+43. What is partitioning in Kafka?
+44. What is event replay?
+45. What is dead letter queue (DLQ)?
+46. What is retry mechanism?
+47. What is backpressure?
+48. What is event schema?
+49. What is schema evolution?
+50. What is schema registry?
+51. What is Apache Kafka?
+52. What is RabbitMQ?
+53. Difference between Kafka and RabbitMQ?
+54. What is ActiveMQ?
+55. What is Amazon SQS?
+56. What is Amazon SNS?
+57. What is Google Pub/Sub?
+58. What is Azure Service Bus?
+59. What is Kafka topic?
+60. What is Kafka partition?
+61. What is Kafka offset?
+62. What is Kafka consumer group?
+63. What is Kafka broker?
+64. What is Kafka replication?
+65. What is Kafka leader and follower?
+66. What is Kafka lag?
+67. How to improve Kafka throughput?
+68. What is RabbitMQ exchange?
+69. Types of exchanges in RabbitMQ?
+70. What is routing key?
+71. What is fanout exchange?
+72. What is topic exchange?
+73. What is direct exchange?
+74. What is headers exchange?
+75. What is durable queue?
+76. What is transient queue?
+77. What is message persistence?
+78. What is message acknowledgment?
+79. What is manual acknowledgment?
+80. What is auto acknowledgment?
+81. What is poison message?
+82. What is message retention?
+83. What is event retention policy?
+84. What is stream processing?
+85. What is Apache Flink?
+86. What is Apache Spark Streaming?
+87. What is Kafka Streams?
+88. What is real-time analytics?
+89. What is event enrichment?
+90. What is event filtering?
+91. What is event aggregation?
+92. What is event transformation?
+93. What is outbox pattern?
+94. Why outbox pattern is used?
+95. What is transactional outbox?
+96. What is CDC (Change Data Capture)?
+97. What is Debezium?
+98. What is dual write problem?
+99. How to avoid dual write issue?
+100. What is event versioning?
+101. What is event contract?
+102. What is event payload?
+103. JSON vs Avro in Kafka?
+104. What is Protobuf?
+105. What is serialization?
+106. What is deserialization?
+107. What is event metadata?
+108. What is correlation ID?
+109. What is trace ID?
+110. How distributed tracing works in EDA?
+111. What is observability in event-driven systems?
+112. What is centralized logging?
+113. What is OpenTelemetry?
+114. What is monitoring in Kafka?
+115. What is Kafka Connect?
+116. What is Kafka MirrorMaker?
+117. What is Kafka Connect Sink?
+118. What is Kafka Connect Source?
+119. What is consumer rebalance?
+120. What is sticky partitioning?
+121. What is consumer offset management?
+122. What is offset commit?
+123. What is auto commit in Kafka?
+124. What is manual commit in Kafka?
+125. What is event deduplication?
+126. What is event ordering guarantee?
+127. What is transactional messaging?
+128. What is message batching?
+129. What is producer batching?
+130. What is compression in Kafka?
+131. What is Kafka throughput optimization?
+132. What is Kafka producer tuning?
+133. What is Kafka consumer tuning?
+134. What is event-driven microservices architecture?
+135. What is reactive messaging?
+136. What is non-blocking messaging?
+137. What is message broker clustering?
+138. What is failover in Kafka?
+139. What is high availability in RabbitMQ?
+140. What is event-driven scalability?
+141. What is event storming?
+142. What is bounded context in DDD?
+143. How DDD relates to event-driven architecture?
+144. What is command event separation?
+145. What is event choreography in microservices?
+146. What is workflow orchestration?
+147. What is Temporal workflow?
+148. What is Camunda?
+149. What is BPMN?
+150. What is workflow engine?
+151. What is event gateway?
+152. What is API Gateway vs Event Gateway?
+153. What is webhook?
+154. What is webhook retry mechanism?
+155. What is push vs pull messaging?
+156. What is long polling?
+157. What is WebSocket communication?
+158. What is SSE (Server-Sent Events)?
+159. What is event-driven UI?
+160. What is reactive systems architecture?
+161. What is resilience in event-driven systems?
+162. What is circuit breaker in messaging?
+163. What is bulkhead pattern?
+164. What is throttling in messaging?
+165. What is rate limiting in event systems?
+166. What is queue backpressure?
+167. What is autoscaling for consumers?
+168. What is Kubernetes event-driven autoscaling?
+169. What is KEDA?
+170. What is event replay strategy?
+171. What is audit logging in EDA?
+172. What is compliance tracking?
+173. What is security in Kafka?
+174. What is SSL in Kafka?
+175. What is SASL authentication?
+176. What is ACL in Kafka?
+177. What is encryption in messaging?
+178. What is secure event communication?
+179. What is cloud-native messaging?
+180. What is serverless event-driven architecture?
+181. What is AWS EventBridge?
+182. What is Azure Event Grid?
+183. What is Google Eventarc?
+184. What is event mesh?
+185. What is hybrid event architecture?
+186. What is multi-region Kafka setup?
+187. What is disaster recovery in Kafka?
+188. What is active-active messaging?
+189. What is active-passive messaging?
+190. What is message replay for recovery?
+191. What is event sourcing recovery?
+192. What are best practices for event-driven communication?
+193. What are common challenges in EDA?
+194. What are anti-patterns in event-driven systems?
+195. How to troubleshoot Kafka issues?
+196. How to monitor RabbitMQ?
+197. How to optimize messaging performance?
+198. What are real-world use cases of event-driven architecture?
+199. What is payment event processing?
+200. Explain complete event-driven communication flow in microservices.

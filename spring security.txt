@@ -1,3 +1,205 @@
+
+
+=========================================
+SPRING SECURITY INTERVIEW QUESTIONS
+(8+ YEARS EXPERIENCE)
+=========================================
+
+1. What is Spring Security?
+2. Why do we use Spring Security?
+3. What are the core features of Spring Security?
+4. Explain Spring Security Architecture.
+5. What is Authentication?
+6. What is Authorization?
+7. Difference between Authentication and Authorization?
+8. What is SecurityContext?
+9. What is SecurityContextHolder?
+10. What is AuthenticationManager?
+
+11. What is AuthenticationProvider?
+12. What is UserDetailsService?
+13. What is UserDetails?
+14. What is GrantedAuthority?
+15. What is Principal?
+16. What is UsernamePasswordAuthenticationToken?
+17. What is PasswordEncoder?
+18. Why use BCryptPasswordEncoder?
+19. BCrypt vs PBKDF2?
+20. BCrypt vs Argon2?
+
+=========================================
+SPRING SECURITY CONFIGURATION
+=========================================
+
+21. How do you configure Spring Security in Spring Boot?
+22. What is SecurityFilterChain?
+23. Why WebSecurityConfigurerAdapter was deprecated?
+24. How do you secure REST APIs?
+25. How do you permit public endpoints?
+26. How do you secure specific URLs?
+27. How do you configure custom login pages?
+28. What is form-based authentication?
+29. What is HTTP Basic Authentication?
+30. What is Digest Authentication?
+
+31. How do you disable CSRF?
+32. What is CORS?
+33. How do you configure CORS?
+34. What is Session Management?
+35. What is Stateless Authentication?
+36. What is Stateful Authentication?
+37. Difference between Stateful and Stateless?
+38. How do you configure session timeout?
+39. How do you restrict concurrent sessions?
+40. How do you invalidate sessions?
+
+=========================================
+JWT QUESTIONS
+=========================================
+
+41. What is JWT?
+42. Structure of JWT?
+43. What are JWT Claims?
+44. What is JWT Signature?
+45. JWT Authentication Flow?
+46. Access Token vs Refresh Token?
+47. How do you generate JWT?
+48. How do you validate JWT?
+49. How do you implement JWT in Spring Boot?
+50. How do you refresh expired JWT tokens?
+
+51. What happens when JWT expires?
+52. How do you revoke JWT tokens?
+53. JWT vs Session Authentication?
+54. JWT Security Best Practices?
+55. How do you secure JWT secrets?
+56. JWT token tampering. How is it prevented?
+57. What is asymmetric JWT signing?
+58. What is RS256?
+59. What is HS256?
+60. RS256 vs HS256?
+
+=========================================
+OAUTH2 & OPENID CONNECT
+=========================================
+
+61. What is OAuth2?
+62. Why OAuth2?
+63. OAuth2 Roles?
+64. Resource Owner?
+65. Resource Server?
+66. Authorization Server?
+67. Client Application?
+68. What is Authorization Code Flow?
+69. What is Client Credentials Flow?
+70. What is Refresh Token Flow?
+
+71. What is PKCE?
+72. Why PKCE is important?
+73. What is OpenID Connect?
+74. Difference between OAuth2 and OpenID Connect?
+75. What is ID Token?
+76. What is Access Token?
+77. What is Scope?
+78. What is Consent Screen?
+79. OAuth2 with Keycloak?
+80. OAuth2 with Okta?
+
+=========================================
+AUTHORIZATION QUESTIONS
+=========================================
+
+81. Role-Based Access Control (RBAC)?
+82. Attribute-Based Access Control (ABAC)?
+83. What is @PreAuthorize?
+84. What is @PostAuthorize?
+85. What is @Secured?
+86. What is @RolesAllowed?
+87. How do you secure methods?
+88. URL-based authorization?
+89. Method-level authorization?
+90. Custom authorization logic?
+
+91. How do you implement dynamic permissions?
+92. How do you secure APIs based on user roles?
+93. How do you secure APIs based on claims?
+94. How do you secure APIs based on tenant?
+95. Fine-grained authorization?
+96. What is PermissionEvaluator?
+97. Custom PermissionEvaluator implementation?
+98. Role hierarchy?
+99. Authority vs Role?
+100. How do you audit authorization failures?
+
+=========================================
+MICROSERVICES SECURITY
+=========================================
+
+101. How do you secure microservices?
+102. JWT propagation between microservices?
+103. OAuth2 Resource Server?
+104. API Gateway Security?
+105. Service-to-Service Authentication?
+106. Mutual TLS (mTLS)?
+107. How do you secure Feign Clients?
+108. How do you secure WebClient calls?
+109. How do you validate downstream tokens?
+110. Zero Trust Security Model?
+
+=========================================
+PRODUCTION TROUBLESHOOTING
+=========================================
+
+111. Users suddenly cannot login. How do you troubleshoot?
+112. JWT validation failures in production. Investigation?
+113. OAuth2 login failures. Troubleshooting?
+114. Authentication service is slow. Investigation?
+115. Security filter chain causing latency. How do you identify?
+116. 401 Unauthorized errors increasing. Troubleshooting?
+117. 403 Forbidden errors increasing. Troubleshooting?
+118. Refresh token failures. Root causes?
+119. Session fixation issues. Investigation?
+120. CORS issues in production. How do you troubleshoot?
+
+121. CSRF token mismatch errors. Investigation?
+122. LDAP authentication failures. Troubleshooting?
+123. Keycloak authentication failures. Troubleshooting?
+124. SSL certificate expired. Impact?
+125. TLS handshake failures. Troubleshooting?
+126. API Gateway authentication failures?
+127. JWT signing key rotated unexpectedly. Impact?
+128. User permissions not updated. Investigation?
+129. SecurityContext is null. Troubleshooting?
+130. Authentication succeeds but authorization fails. Why?
+
+=========================================
+SECURITY VULNERABILITIES
+=========================================
+
+131. What is CSRF?
+132. How does CSRF work?
+133. How do you prevent CSRF?
+134. What is XSS?
+135. How do you prevent XSS?
+136. What is SQL Injection?
+137. How do you prevent SQL Injection?
+138. What is Clickjacking?
+139. How do you prevent Clickjacking?
+140. What is Session Hijacking?
+
+141. What is Session Fixation?
+142. What is Brute Force Attack?
+143. How do you prevent Brute Force Attacks?
+144. What is Credential Stuffing?
+145. How do you secure passwords?
+146. How do you secure API keys?
+147. How do you secure secrets?
+148. How do you implement rate limiting?
+149. What are OWASP Top 10 vulnerabilities?
+150. Describe a real Spring Security production issue, RCA, troubleshooting steps, resolution, and preventive actions.
+
+
+
 1- Spring security internal working 
 Ans - when dependency added 
 	Spring Boot auto-configures : 

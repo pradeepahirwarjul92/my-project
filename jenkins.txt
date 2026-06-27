@@ -1,0 +1,316 @@
+====================================
+JENKINS BASICS
+====================================
+
+1. What is Jenkins?
+2. Why is Jenkins used?
+3. What is CI/CD?
+4. Difference between Continuous Integration and Continuous Deployment?
+5. Jenkins architecture?
+6. Jenkins Master-Agent architecture?
+7. Features of Jenkins?
+8. Advantages of Jenkins?
+9. Jenkins alternatives?
+10. Why is Jenkins popular?
+
+====================================
+INSTALLATION & SETUP
+====================================
+
+11. How do you install Jenkins?
+12. Jenkins prerequisites?
+13. Install Jenkins on Linux?
+14. Install Jenkins using Docker?
+15. Jenkins WAR installation?
+16. Jenkins initial setup process?
+17. Default Jenkins port?
+18. Jenkins home directory?
+19. How to upgrade Jenkins?
+20. Backup Jenkins configuration?
+
+====================================
+JENKINS ARCHITECTURE
+====================================
+
+21. Explain Jenkins Master.
+22. Explain Jenkins Agent.
+23. Why use Jenkins Agents?
+24. How Jenkins communicates with agents?
+25. Static agents vs dynamic agents?
+26. SSH agent setup?
+27. Docker agent setup?
+28. Kubernetes agent setup?
+29. Agent labels?
+30. Distributed builds?
+
+====================================
+JOBS & PROJECTS
+====================================
+
+31. What is a Jenkins Job?
+32. Freestyle Project?
+33. Pipeline Project?
+34. Multi-branch Pipeline?
+35. Folder structure in Jenkins?
+36. Build triggers?
+37. Job parameters?
+38. Build history?
+39. Build retention policy?
+40. Concurrent builds?
+
+====================================
+PIPELINES
+====================================
+
+41. What is Jenkins Pipeline?
+42. Advantages of Pipeline?
+43. Declarative Pipeline?
+44. Scripted Pipeline?
+45. Difference between Declarative and Scripted?
+46. Pipeline syntax?
+47. Jenkinsfile?
+48. Stages in Pipeline?
+49. Steps in Pipeline?
+50. Pipeline execution flow?
+
+====================================
+JENKINSFILE
+====================================
+
+51. What is Jenkinsfile?
+52. Why store Jenkinsfile in Git?
+53. Pipeline as Code?
+54. Structure of Jenkinsfile?
+55. Environment variables in Jenkinsfile?
+56. Parameters in Jenkinsfile?
+57. Post actions?
+58. Parallel stages?
+59. Input step?
+60. Shared libraries?
+
+====================================
+GIT INTEGRATION
+====================================
+
+61. Jenkins Git integration?
+62. Webhook configuration?
+63. Poll SCM?
+64. Git credentials setup?
+65. Branch builds?
+66. Multi-branch pipelines?
+67. Git tags deployment?
+68. GitHub integration?
+69. GitLab integration?
+70. Bitbucket integration?
+
+====================================
+BUILD TOOLS
+====================================
+
+71. Maven integration?
+72. Gradle integration?
+73. Ant integration?
+74. Maven build stages?
+75. Running unit tests?
+76. Code coverage reports?
+77. Build artifacts?
+78. Archiving artifacts?
+79. Dependency management?
+80. Build optimization?
+
+====================================
+DOCKER INTEGRATION
+====================================
+
+81. Jenkins with Docker?
+82. Build Docker image in Jenkins?
+83. Push Docker image to registry?
+84. Docker agent?
+85. Docker pipeline?
+86. Docker Hub integration?
+87. Private registry integration?
+88. Containerized Jenkins?
+89. Docker cleanup?
+90. Multi-stage Docker builds?
+
+====================================
+KUBERNETES INTEGRATION
+====================================
+
+91. Jenkins on Kubernetes?
+92. Dynamic agents in Kubernetes?
+93. Kubernetes plugin?
+94. Pod templates?
+95. Deploy application to Kubernetes?
+96. Helm deployment?
+97. Rolling updates?
+98. Rollback deployments?
+99. Secrets management?
+100. Production deployment pipeline?
+
+====================================
+SECURITY
+====================================
+
+101. Jenkins authentication?
+102. Jenkins authorization?
+103. Matrix-based security?
+104. LDAP integration?
+105. Active Directory integration?
+106. Credentials management?
+107. Secret text credentials?
+108. SSH credentials?
+109. API tokens?
+110. Security best practices?
+
+====================================
+PLUGINS
+====================================
+
+111. What are Jenkins plugins?
+112. Popular Jenkins plugins?
+113. Git plugin?
+114. Pipeline plugin?
+115. Docker plugin?
+116. Kubernetes plugin?
+117. Blue Ocean plugin?
+118. SonarQube plugin?
+119. Artifactory plugin?
+120. Plugin troubleshooting?
+
+====================================
+CI/CD PIPELINE
+====================================
+
+121. Typical CI/CD pipeline?
+122. Source stage?
+123. Build stage?
+124. Test stage?
+125. Code quality stage?
+126. Artifact stage?
+127. Deployment stage?
+128. Approval stage?
+129. Rollback strategy?
+130. Blue-Green deployment?
+
+====================================
+PRODUCTION TROUBLESHOOTING
+====================================
+
+131. Jenkins build failing intermittently?
+132. Jenkins job stuck in queue?
+133. Agent disconnected issue?
+134. High Jenkins memory usage?
+135. Jenkins slow performance?
+136. Build timeout issues?
+137. Disk space full?
+138. Plugin conflict issue?
+139. Git checkout failures?
+140. Deployment failures?
+
+====================================
+REAL-TIME SCENARIOS
+====================================
+
+141. Design CI/CD pipeline for Spring Boot application.
+142. Deploy Dockerized application using Jenkins.
+143. Integrate Jenkins with SonarQube.
+144. Integrate Jenkins with Nexus.
+145. Integrate Jenkins with Kubernetes.
+146. Implement Blue-Green deployment.
+147. Implement Canary deployment.
+148. Handle rollback in production.
+149. Secure Jenkins in enterprise environment.
+150. Explain complete production Jenkins architecture.
+
+
+
+Jenkins Pipeline Coding Questions
+
+1. Create a basic Jenkins Pipeline.
+2. Create a Maven build pipeline.
+3. Build and test Spring Boot application.
+4. Build Docker image using Jenkins.
+5. Push Docker image to Docker Hub.
+6. Deploy application to Kubernetes.
+7. Create multi-stage pipeline.
+8. Create parallel execution stages.
+9. Use environment variables.
+10. Implement approval step before production deployment.
+11. Integrate SonarQube scan.
+12. Integrate Nexus artifact upload.
+13. Implement rollback stage.
+14. Create shared library.
+15. Create multi-branch pipeline.
+
+
+
+Sample Jenkinsfile
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/project/repo.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh 'docker build -t app .'
+            }
+        }
+    }
+}
+
+
+
+Production Troubleshooting Questions
+1. Jenkins build stuck in pending state.
+2. Jenkins agent disconnected unexpectedly.
+3. Maven build works locally but fails in Jenkins.
+4. Docker image build failing in pipeline.
+5. Kubernetes deployment fails after successful build.
+6. Jenkins server consuming high CPU.
+7. Jenkins disk space continuously increasing.
+8. Git webhook not triggering builds.
+9. SonarQube quality gate failing pipeline.
+10. Production deployment rollback using Jenkins.
+11. Jenkins master restarted unexpectedly.
+12. Credential issues during deployment.
+13. Plugin upgrade broke pipeline.
+14. Jenkins queue growing continuously.
+15. Parallel stages causing resource exhaustion.
+
+
+requently Asked Jenkins Interview Questions
+
+1. What is Jenkins and why is it used?
+2. Difference between CI and CD?
+3. What is Jenkins Pipeline?
+4. Difference between Declarative and Scripted Pipeline?
+5. What is Jenkinsfile?
+6. What is Master-Agent architecture?
+7. How does Jenkins integrate with Git?
+8. How do you build Docker images using Jenkins?
+9. How do you deploy to Kubernetes using Jenkins?
+10. How do you secure Jenkins credentials?
+11. How do you troubleshoot Jenkins build failures?
+12. How do you implement rollback in CI/CD?
+13. Explain Blue-Green deployment.
+14. Explain Canary deployment.
+15. Explain a production Jenkins pipeline you have worked on.

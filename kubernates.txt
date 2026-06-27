@@ -1,0 +1,266 @@
+16-10-2002
+
+1. What is Kubernetes?
+
+2. Why do we need Kubernetes?
+
+3. What are the main components of Kubernetes architecture?
+
+4. What is a Kubernetes Cluster?
+
+5. What is the difference between Master Node and Worker Node?
+
+6. What is a Pod?
+
+7. Why is Pod the smallest deployable unit in Kubernetes?
+
+8. Can a Pod contain multiple containers?
+
+9. What is a Deployment?
+
+10. What is the difference between Pod and Deployment?
+
+11. What is a ReplicaSet?
+
+12. What is the difference between Deployment and ReplicaSet?
+
+13. What is a Namespace?
+
+14. Why are Namespaces used?
+
+15. What is a Service in Kubernetes?
+
+16. What are the different types of Services?
+    - ClusterIP
+    - NodePort
+    - LoadBalancer
+    - ExternalName
+
+17. What is the difference between ClusterIP, NodePort, and LoadBalancer?
+
+18. What is an Ingress?
+
+19. What is the difference between Service and Ingress?
+
+20. What is a ConfigMap?
+
+21. What is a Secret?
+
+22. What is the difference between ConfigMap and Secret?
+
+23. What is a Volume?
+
+24. Why do we need Persistent Volumes?
+
+25. What is the difference between PV and PVC?
+
+26. What is a StatefulSet?
+
+27. What is the difference between Deployment and StatefulSet?
+
+28. What is a DaemonSet?
+
+29. What are DaemonSets used for?
+
+30. What is Horizontal Pod Autoscaler (HPA)?
+
+31. How does Auto Scaling work in Kubernetes?
+
+32. What is a Liveness Probe?
+
+33. What is a Readiness Probe?
+
+34. What is the difference between Liveness and Readiness Probes?
+
+35. What is a Rolling Update?
+
+36. What is a Recreate Deployment Strategy?
+
+37. What is a Kubernetes Namespace?
+
+38. What is etcd?
+
+39. What is kube-apiserver?
+
+40. What is kube-scheduler?
+
+41. What is kube-controller-manager?
+
+42. What is kubelet?
+
+43. What is kube-proxy?
+
+44. What happens when you run kubectl apply?
+
+45. How does Kubernetes schedule Pods on Nodes?
+
+46. What is a Node Selector?
+
+47. What are Taints and Tolerations?
+
+48. What is Affinity and Anti-Affinity?
+
+49. How do you check Pod logs?
+
+50. What commands do you use daily in Kubernetes?
+
+Common kubectl Commands (Must Know)
+kubectl get pods
+
+kubectl get deployments
+
+kubectl get services
+
+kubectl get nodes
+
+kubectl describe pod <pod-name>
+
+kubectl logs <pod-name>
+
+kubectl exec -it <pod-name> -- /bin/bash
+
+kubectl delete pod <pod-name>
+
+kubectl apply -f deployment.yaml
+
+kubectl rollout restart deployment <deployment-name>
+
+kubectl rollout status deployment <deployment-name>
+
+kubectl get events
+
+kubectl top pod
+
+kubectl top node
+
+Most Asked Interview Questions for 7–10 Years Experience
+1. Explain Kubernetes Architecture.
+
+2. What happens internally when a Pod is created?
+
+3. Difference between Deployment, StatefulSet, and DaemonSet.
+
+4. Difference between Service and Ingress.
+
+5. Difference between PV, PVC, and StorageClass.
+
+6. What are Taints, Tolerations, and Node Affinity?
+
+7. How does Kubernetes perform service discovery?
+
+8. How does HPA work?
+
+9. How do you troubleshoot a Pod stuck in Pending state?
+
+10. How do you troubleshoot CrashLoopBackOff?
+
+11. How do rolling updates work?
+
+12. How do you achieve zero-downtime deployments?
+
+13. What production issues have you handled in Kubernetes?
+
+14. How do you monitor Kubernetes clusters?
+
+15. What security best practices do you follow in Kubernetes?
+
+
+1. Pod is stuck in Pending state. How would you troubleshoot?
+
+2. Pod is stuck in CrashLoopBackOff. What steps would you take?
+
+3. Pod is stuck in ImagePullBackOff. How would you investigate?
+
+4. Container is restarting frequently. How do you find the root cause?
+
+5. Application is running locally but failing inside Kubernetes. How would you debug it?
+
+6. Pods are getting OOMKilled. What could be the reasons?
+
+7. Pod is running but application is not accessible. What would you check?
+
+8. Service is not routing traffic to Pods. How would you troubleshoot?
+
+9. Ingress is not working. What components would you verify?
+
+10. DNS resolution is failing inside Pods. How would you investigate?
+
+11. Pods cannot communicate with each other. What checks would you perform?
+
+12. Node is in NotReady state. How would you troubleshoot?
+
+13. Worker node suddenly becomes unavailable. What actions would you take?
+
+14. Pods are not getting scheduled. What could be the reasons?
+
+15. Deployment rollout is stuck. How would you debug it?
+
+16. Deployment completed but new Pods are failing. What would you check?
+
+17. ReplicaSet is not maintaining desired replicas. How would you investigate?
+
+18. StatefulSet Pods are not starting in sequence. What could be wrong?
+
+19. DaemonSet Pods are missing on some nodes. How would you troubleshoot?
+
+20. Persistent Volume Claim remains in Pending state. What would you check?
+
+21. Pod cannot mount Persistent Volume. How would you debug it?
+
+22. Storage is full on worker nodes. What actions would you take?
+
+23. Application data is missing after Pod restart. Why could this happen?
+
+24. ConfigMap changes are not reflected in running Pods. Why?
+
+25. Secret updates are not visible in the application. How would you handle it?
+
+26. High CPU utilization is observed in the cluster. How would you investigate?
+
+27. High memory utilization is observed in the cluster. What would you check?
+
+28. Cluster performance degraded after deployment. How would you troubleshoot?
+
+29. Kubernetes API Server is slow. What could be the reasons?
+
+30. etcd is consuming excessive resources. How would you investigate?
+
+31. Cluster Autoscaler is not adding nodes. What would you check?
+
+32. HPA (Horizontal Pod Autoscaler) is not scaling Pods. How would you troubleshoot?
+
+33. Pods are frequently evicted. What could be causing this?
+
+34. Nodes are under memory pressure. How would you resolve it?
+
+35. NetworkPolicy is blocking traffic unexpectedly. How would you debug it?
+
+36. LoadBalancer service is not getting an external IP. What could be wrong?
+
+37. Ingress Controller is not routing requests correctly. How would you troubleshoot?
+
+38. TLS certificate is not working with Ingress. What would you verify?
+
+39. Kubernetes upgrades failed. How would you recover?
+
+40. Worker node upgrade caused application downtime. What lessons learned would you apply?
+
+41. Cluster monitoring shows intermittent application failures. How would you investigate?
+
+42. Logs are missing for crashed Pods. How would you retrieve information?
+
+43. Application latency increased after moving to Kubernetes. What could be the reasons?
+
+44. Kubernetes cluster is experiencing frequent node reboots. How would you investigate?
+
+45. Resource quotas are preventing deployments. How would you identify and fix the issue?
+
+46. Production deployment caused downtime. How would you perform RCA?
+
+47. How would you troubleshoot a complete Kubernetes cluster outage?
+
+48. How would you migrate workloads between clusters with minimal downtime?
+
+49. Describe a major Kubernetes production issue you faced and how you resolved it.
+
+50. What monitoring, alerting, and troubleshooting practices do you follow in production Kubernetes environments?

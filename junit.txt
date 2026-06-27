@@ -6,3 +6,239 @@
 
 
 ----------Assertion --------
+
+1. What is JUnit?
+
+2. Why is JUnit used?
+
+3. What are the advantages of JUnit?
+
+4. What is the difference between JUnit 4 and JUnit 5?
+
+5. What are the main components of JUnit 5?
+   - JUnit Platform
+   - JUnit Jupiter
+   - JUnit Vintage
+
+6. What annotations are commonly used in JUnit?
+
+7. What is @Test?
+
+8. What is @BeforeEach?
+
+9. What is @AfterEach?
+
+10. What is @BeforeAll?
+
+11. What is @AfterAll?
+
+12. What is the difference between @BeforeEach and @BeforeAll?
+
+13. What is the difference between @AfterEach and @AfterAll?
+
+14. What is Assertions class in JUnit?
+
+15. What are common assertion methods?
+    - assertEquals()
+    - assertTrue()
+    - assertFalse()
+    - assertNull()
+    - assertNotNull()
+    - assertThrows()
+
+16. What is assertThrows()?
+
+17. How do you test exceptions in JUnit?
+
+18. What is parameterized testing?
+
+19. How do you create parameterized tests?
+
+20. What is @ParameterizedTest?
+
+21. What is @ValueSource?
+
+22. What is @CsvSource?
+
+23. What is @MethodSource?
+
+24. What is test lifecycle in JUnit?
+
+25. What is test fixture?
+
+26. What is the difference between unit testing and integration testing?
+
+27. What is test-driven development (TDD)?
+
+28. What are best practices for writing unit tests?
+
+29. What is code coverage?
+
+30. How do you measure code coverage?
+
+31. What is JaCoCo?
+
+32. What is mocking?
+
+33. Why is mocking required?
+
+34. What is Mockito?
+
+35. What is the difference between Mock and Spy?
+
+36. What is @Mock?
+
+37. What is @InjectMocks?
+
+38. What is @Spy?
+
+39. What is @MockBean in Spring Boot?
+
+40. What is the difference between @Mock and @MockBean?
+
+41. How do you verify method calls in Mockito?
+
+42. What is verify() in Mockito?
+
+43. What is when().thenReturn()?
+
+44. What is doThrow()?
+
+45. How do you mock exceptions?
+
+46. How do you test REST APIs in Spring Boot?
+
+47. What is MockMvc?
+
+48. How do you write unit tests for Service layer?
+
+49. How do you write unit tests for Controller layer?
+
+50. What is the difference between unit testing, integration testing, and end-to-end testing?
+
+Mockito Questions (Most Asked)
+
+1. What is Mockito?
+
+2. Why do we use Mockito?
+
+3. What is @Mock?
+
+4. What is @InjectMocks?
+
+5. What is @Spy?
+
+6. Difference between Mock and Spy?
+
+7. Difference between @Mock and @MockBean?
+
+8. What is MockitoExtension?
+
+9. How does when().thenReturn() work?
+
+10. What is verify()?
+
+11. How do you verify number of method calls?
+
+12. How do you mock void methods?
+
+13. How do you mock exceptions?
+
+14. What is ArgumentCaptor?
+
+15. What is any() matcher?
+
+16. What is eq() matcher?
+
+17. What is lenient mocking?
+
+18. What is stubbing?
+
+19. What is doReturn() vs when()?
+
+20. What is doThrow()?
+
+21. What is doNothing()?
+
+22. How do you mock repository calls?
+
+23. How do you test service methods using Mockito?
+
+24. What are common Mockito limitations?
+
+25. What production issues can be caught through unit testing?
+
+
+Spring Boot Testing Questions
+
+1. What is @SpringBootTest?
+
+2. What is @WebMvcTest?
+
+3. What is @DataJpaTest?
+
+4. Difference between @SpringBootTest and @WebMvcTest?
+
+5. What is MockMvc?
+
+6. How do you test REST Controllers?
+
+7. How do you test Exception Handlers?
+
+8. How do you test Service layer?
+
+9. How do you test Repository layer?
+
+10. What is TestRestTemplate?
+
+11. What is integration testing in Spring Boot?
+
+12. How do you test database interactions?
+
+13. How do you test Kafka consumers/producers?
+
+14. How do you test asynchronous methods?
+
+15. How do you test scheduled jobs?
+
+16. What is embedded database testing?
+
+17. How do you use H2 for testing?
+
+18. How do you generate test coverage reports?
+
+19. What is JaCoCo coverage threshold?
+
+20. What testing strategy do you follow in production projects?
+
+Senior-Level Scenario Questions
+
+1. A unit test passes locally but fails in Jenkins. How would you troubleshoot?
+
+2. Code coverage is only 40%. How would you improve it?
+
+3. How do you test a service that calls external APIs?
+
+4. How do you test Kafka consumers and producers?
+
+5. How do you test asynchronous code?
+
+6. How do you mock database failures?
+
+7. How do you test exception handling logic?
+
+8. How do you test retry mechanisms?
+
+9. How do you test microservices interactions?
+
+10. How do you test scheduled jobs?
+
+11. How do you test file upload/download functionality?
+
+12. How do you test distributed transactions?
+
+13. How do you test circuit breaker implementations?
+
+14. What is your testing pyramid strategy?
+
+15. Describe your unit testing approach in a production Spring Boot project.

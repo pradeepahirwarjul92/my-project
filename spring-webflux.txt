@@ -6,152 +6,1878 @@ SPRING WEBFLUX - 100 QUESTIONS
 BASICS
 
 1. What is Spring WebFlux?
+Ans- Spring WebFlux is Spring's reactive web framework that supports non-blocking, 
+	asynchronous programming using Reactor (Mono and Flux).
 2. Why was WebFlux introduced?
+
+WebFlux was introduced to:
+
+Handle large numbers of concurrent requests efficiently
+Support non-blocking I/O
+Improve scalability with fewer threads
+Support reactive programming
+
+
 3. Difference between Spring MVC and Spring WebFlux?
+| Feature           | Spring MVC             | Spring WebFlux       |
+| ----------------- | ---------------------- | -------------------- |
+| Programming Model | Synchronous            | Asynchronous         |
+| I/O               | Blocking               | Non-Blocking         |
+| Thread Model      | One Thread per Request | Event Loop           |
+| Return Type       | Object                 | Mono / Flux          |
+| Scalability       | Moderate               | High                 |
+| Server            | Tomcat                 | Netty, Tomcat, Jetty |
+
+
 4. What is Reactive Programming?
+Ans - Reactive Programming is a programming paradigm that handles data as streams of events and reacts to changes asynchronously.
+
+Example:
+
+Mono<String> mono = Mono.just("Hello");
+Flux<Integer> flux = Flux.just(1,2,3,4);
+
 5. What are the benefits of Reactive Programming?
+Ans- 
+Better scalability
+Non-blocking execution
+Efficient resource utilization
+High throughput
+Backpressure support
+Responsive applications
+
 6. What is Non-Blocking I/O?
+Ans - In Non-Blocking I/O, a thread does not wait for an operation to complete.
+
+Blocking
+String data = service.getData(); // waits
+Non-Blocking
+Mono<String> data = service.getData();
+
+The thread is free to process other requests.
+
+
 7. What is Asynchronous Processing?
+Ans - Asynchronous processing allows tasks to execute independently without blocking the caller.
+Mono<String> result = webClient
+    .get()
+    .retrieve()
+    .bodyToMono(String.class);
+	
+	The caller continues without waiting.
+	
+	
 8. What is Event-Driven Architecture?
+
+An architecture where components communicate through events.
+
+Example:
+
+Order Created
+      ↓
+Kafka Event
+      ↓
+Inventory Service
+      ↓
+Payment Service
+
+Services react when events occur.
+
 9. What problem does WebFlux solve?
+Ans 
+Traditional Spring MVC uses:
+
+1 Request = 1 Thread
+
+For thousands of concurrent requests:
+
+Thousands of Threads
+High Memory Usage
+Thread Context Switching
+
+WebFlux solves this by:
+
+Event Loop
+Non-Blocking I/O
+Fewer Threads
+Higher Scalability
+
 10. When should you use WebFlux?
+Use WebFlux when:
+
+✅ High concurrency is required
+
+✅ Microservices make many external API calls
+
+✅ Streaming applications
+
+✅ Real-time systems
+
+✅ Reactive databases and messaging
+
+✅ WebSocket applications
+
+Avoid WebFlux when:
+
+❌ Application is simple CRUD
+
+❌ Uses blocking JDBC extensively
+
+❌ Team lacks reactive programming experience
+
+
 
 REACTOR CORE
 
 11. What is Project Reactor?
+Ans - Project Reactor is the reactive programming library used by Spring WebFlux.
+It provides:
+
+Mono (0 or 1 item)
+Flux (0 to N items)
+Non-blocking APIs
+Backpressure support
+Asynchronous data processing
+
 12. What is Mono?
+Ans - Mono<T> represents 0 or 1 result.
+Mono<String> mono = Mono.just("Hello");
+
+Use Cases:
+
+		-	Get Employee by ID
+		-	Single API Response
+		-	Authentication Result
+
+
 13. What is Flux?
+Ans - Flux<T> represents 0 to N results.
+
+Examples:
+Flux<String> flux =
+    Flux.just("Java", "Spring", "Kafka");
+	
+Output:
+	Java
+	Spring
+	Kafka
+
+Use Cases:
+	-	Get All Employees
+	-	Streaming Data
+	-	Kafka Messages
+
+
 14. Difference between Mono and Flux?
+| Feature     | Mono           | Flux             |
+| ----------- | -------------- | ---------------- |
+| Elements    | 0 or 1         | 0 to N           |
+| Return Type | Single Result  | Multiple Results |
+| Example     | Employee by ID | All Employees    |
+| Methods     | Mono.just()    | Flux.just()      |
+
+
+
 15. How does Mono.empty() work?
+Ans - 
+	Creates a Mono that emits no value and completes successfully.
+	Example:
+
+Mono<String> mono = Mono.empty();
+
+Subscriber:
+
+mono.subscribe(
+    System.out::println,
+    System.err::println,
+    () -> System.out.println("Completed")
+);
+
+Output:
+
+Completed
+
+Use Case:
+
+Employee not found
+
+
 16. What is Mono.just()?
+Ans - Creates a Mono containing exactly one value.
+Mono<String> mono =
+    Mono.just("Spring WebFlux");
+	Output:
+
+Spring WebFlux
+
 17. What is Flux.just()?
+Ans -Creates a Flux from one or more values.
+Flux<Integer> flux =
+    Flux.just(1,2,3,4,5);
+1
+2
+3
+4
+5
+
 18. What is Flux.fromIterable()?
+reates a Flux from a Collection.
+List<String> names =
+    List.of("Rahul","Amit","Priya");
+
+Flux<String> flux =
+    Flux.fromIterable(names);
+	Output:
+
+Rahul
+Amit
+Priya
+
+Useful when data comes from:
+
+List
+Set
+Collection
+
+
 19. What is Flux.range()?
+Generates a sequence of integers.
+
+yntax:
+
+Flux.range(start, count);
+
+Example:
+
+Flux.range(1, 5)
+    .subscribe(System.out::println);
+
+Output:
+
+1
+2
+3
+4
+5
+
+
 20. What is Flux.interval()?
 
-OPERATORS
+Creates a Flux that emits values periodically.
 
-21. What is map()?
-22. What is flatMap()?
-23. Difference between map() and flatMap()?
-24. What is filter()?
-25. What is collectList()?
-26. What is zip()?
-27. What is merge()?
-28. What is concat()?
-29. Difference between merge and concat?
-30. What is switchIfEmpty()?
+Example:
+
+Flux.interval(Duration.ofSeconds(1))
+    .subscribe(System.out::println);
+
+Output:
+
+0
+1
+2
+3
+...
+
+Every second a new value is emitted.
+
+Use Cases:
+
+Live Notifications
+Real-time Monitoring
+Streaming Data
+Scheduled Events
+
+
 
 ERROR HANDLING
 
 31. What is onErrorReturn()?
+Ans - returns a default value when an error occurs.
+
+@GetMapping("/error-return")
+public Mono<String> errorReturn() {
+
+    return Mono.error(new RuntimeException("Something went wrong"))
+            .onErrorReturn("Default Response");
+}
+Output : 
+Default Response
+
+
 32. What is onErrorResume()?
+Ans - Provides an alternative Publisher when an error occurs.
+@GetMapping("/error-resume")
+public Mono<String> errorResume() {
+
+    return Mono.error(new RuntimeException("Database Error"))
+            .onErrorResume(ex ->
+                    Mono.just("Fallback Response"));
+}
+
+Output
+Fallback Response
+
+
 33. Difference between onErrorResume and onErrorReturn?
 34. What is onErrorMap()?
+Ans - Converts one exception into another.
+@GetMapping("/error-map")
+public Mono<String> errorMap() {
+
+    return Mono.error(new RuntimeException("DB Error"))
+            .onErrorMap(ex ->
+                    new IllegalArgumentException("Custom Error"));
+}
+
+
 35. What is doOnError()?
-36. How do you handle exceptions globally?
+Used for logging only.
+@GetMapping("/do-on-error")
+public Mono<String> doOnError() {
+
+    return Mono.error(new RuntimeException("Failure"))
+            .doOnError(ex ->
+                System.out.println(ex.getMessage()));
+}
+Output : 
+Failure
+
+
+| Operator                | Purpose                    |
+| ----------------------- | -------------------------- |
+| `onErrorReturn()`       | Return default value       |
+| `onErrorResume()`       | Return alternate Mono/Flux |
+| `onErrorMap()`          | Convert exception          |
+| `doOnError()`           | Logging                    |
+| `switchIfEmpty()`       | Handle empty results       |
+| `@RestControllerAdvice` | Global exception handling  |
+
+Interview Quick Answers
+
+Q: What is map()?
+Transforms each emitted item synchronously.
+
+Q: What is flatMap()?
+Transforms an item into another Mono/Flux and flattens the result.
+
+Q: Difference between map and flatMap?
+map() returns a value; flatMap() returns a Publisher (Mono/Flux).
+
+Q: What is filter()?
+Filters elements based on a condition.
+
+Q: What is collectList()?
+Converts a Flux into Mono<List<T>>.
+
+Q: What is zip()?
+Combines multiple publishers and waits for all to complete.
+
+Q: What is merge()?
+Combines publishers concurrently without preserving order.
+
+Q: What is concat()?
+Combines publishers sequentially while preserving order.
+
+Q: Difference between merge and concat?
+merge() is parallel and unordered; concat() is sequential and ordered.
+
+Q: What is switchIfEmpty()?
+Provides a fallback publisher when the source emits no data.
+
+
+
 37. What is WebExceptionHandler?
-38. How do you return custom error responses?
+Ans - WebExceptionHandler is the global exception handling mechanism in Spring WebFlux.
+
+It intercepts exceptions that occur during request processing and returns a custom response
+
 39. How do you retry failed requests?
+Ans - WebFlux provides retry() and retryWhen() operators.
+WebFlux provides retry() and retryWhen() operators.
+Simple Retry 
+webClient.get()
+         .uri("/employees")
+         .retrieve()
+         .bodyToMono(String.class)
+         .retry(3);
+
+Meaning:
+
+Try 1
+Try 2
+Try 3
+Try 4
+
+Retries 3 times after the initial attempt.
+
+Retry with Delay
+webClient.get()
+         .uri("/employees")
+         .retrieve()
+         .bodyToMono(String.class)
+         .retryWhen(
+             Retry.fixedDelay(
+                 3,
+                 Duration.ofSeconds(2)
+             )
+         );
+
+Behavior:
+
+Attempt 1
+Wait 2 sec
+
+Attempt 2
+Wait 2 sec
+
+Attempt 3
+Wait 2 sec
+
+Attempt 4
+
+
 40. What is retryWhen()?
+retryWhen() provides advanced retry control.
+It allows:
+
+Delay between retries
+Exponential backoff
+Conditional retries
+Logging retry attempts
+
+
 
 THREADING
 
 41. Explain WebFlux threading model.
+Ans - WebFlux uses a non-blocking, event-driven threading model.
+
+Traditional Spring MVC
+Request 1 → Thread 1
+Request 2 → Thread 2
+Request 3 → Thread 3
+
+Each request gets its own thread.
+
+WebFlux
+Request 1
+Request 2
+Request 3
+    ↓
+ Event Loop Thread
+
+A small number of threads can handle thousands of requests.
+
+Benefits
+Less memory usage
+Better scalability
+Handles many concurrent users
+
+
 42. What is Event Loop?
+An Event Loop is a thread that continuously listens for events and processes them asynchronously.
+
+Example
+Client Request
+      ↓
+ Event Loop
+      ↓
+ Register Callback
+      ↓
+ Continue Processing
+
+When data is ready, the callback executes.
+
+Benefits
+No thread blocking
+High throughput
+Efficient resource usage
+
 43. What is Netty?
+Ans - Netty is an asynchronous, non-blocking networking framework built on Java NIO.
+
+Features
+Event-driven
+Non-blocking I/O
+High performance
+Supports TCP/HTTP/WebSocket
+Example
+Client
+   ↓
+ Netty Server
+   ↓
+ WebFlux
+ 
 44. Why is Netty used in WebFlux?
+Ans - 
+Because Netty provides:
+
+Non-Blocking I/O
+1 Thread
+   ↓
+ Handles Thousands of Connections
+Advantages
+Fast
+Lightweight
+Event-loop architecture
+Better scalability than servlet containers
+
 45. Difference between Servlet and Netty?
+Ans 
+| Feature      | Servlet (Spring MVC) | Netty (WebFlux) |
+| ------------ | -------------------- | --------------- |
+| Architecture | Thread Per Request   | Event Loop      |
+| I/O          | Blocking             | Non-Blocking    |
+| Scalability  | Moderate             | High            |
+| Memory Usage | Higher               | Lower           |
+| Threads      | Many                 | Few             |
+| Best For     | Traditional Apps     | Reactive Apps   |
+
+
+Servlet
+1000 Requests
+   ↓
+1000 Threads
+Netty
+1000 Requests
+   ↓
+8 Event Loop Threads
+
+
 46. What is Scheduler?
+Ans 
+A Scheduler determines on which thread a reactive pipeline executes.
+
+Example
+Flux.range(1, 5)
+    .subscribeOn(Schedulers.parallel());
+
+Schedulers are similar to ExecutorService in Java.
+
+| Scheduler        | Purpose             |
+| ---------------- | ------------------- |
+| immediate()      | Current thread      |
+| single()         | One reusable thread |
+| parallel()       | CPU-intensive tasks |
+| boundedElastic() | Blocking I/O        |
+| fromExecutor()   | Custom Executor     |
+
+
+
 47. What is subscribeOn()?
+
+subscribeOn() decides where the source starts executing.
+
+Example
+Flux.range(1,5)
+    .subscribeOn(Schedulers.parallel())
+    .map(i -> i * 10)
+    .subscribe(System.out::println);
+Flow
+Source
+  ↓
+parallel Thread
+  ↓
+map()
+  ↓
+subscribe()
+Key Point
+
+Only the first subscribeOn() takes effect.
+
+
 48. What is publishOn()?
+
+Ans 
+publishOn() changes the thread for all downstream operations.
+
+Example
+Flux.range(1,5)
+    .publishOn(Schedulers.parallel())
+    .map(i -> i * 10)
+    .subscribe(System.out::println);
+Flow
+Source Thread
+      ↓
+publishOn()
+      ↓
+parallel Thread
+      ↓
+map()
+
 49. Difference between publishOn and subscribeOn?
+| Feature          | subscribeOn()        | publishOn()             |
+| ---------------- | -------------------- | ----------------------- |
+| Affects          | Source Execution     | Downstream Execution    |
+| Position Matters | No                   | Yes                     |
+| Multiple Calls   | First One Wins       | Every Call Works        |
+| Purpose          | Change Source Thread | Switch Thread Midstream |
+
+Example
+Flux.range(1,5)
+    .subscribeOn(Schedulers.single())
+    .publishOn(Schedulers.parallel())
+    .map(i -> i * 10)
+    .subscribe();
+Execution
+Source
+  ↓
+single Thread
+  ↓
+publishOn
+  ↓
+parallel Thread
+  ↓
+map()
+
+
+Interview Answer :
+
+subscribeOn() affects where the subscription and source execution start, while publishOn() changes the execution thread for downstream operators. Only the first subscribeOn() is honored, whereas multiple publishOn() calls can switch threads multiple times.
+
 50. What is boundedElastic Scheduler?
+Ans - 
+boundedElastic() is designed for blocking operations.
+
+Examples
+Database calls (JDBC)
+File reading
+Legacy APIs
+External SDK calls
+Example
+Mono.fromCallable(() -> {
+    Thread.sleep(5000);
+    return "Data";
+})
+.subscribeOn(Schedulers.boundedElastic());
+Why Not Use parallel()?
+
+Bad:
+
+Mono.fromCallable(this::blockingCall)
+    .subscribeOn(Schedulers.parallel());
+
+Blocking a CPU thread reduces performance.
+
+Correct
+Mono.fromCallable(this::blockingCall)
+    .subscribeOn(Schedulers.boundedElastic());
+Characteristics
+Creates worker threads when needed
+Reuses idle threads
+Has an upper limit (bounded)
+Prevents unlimited thread creation
+Real Project Example
+@GetMapping("/{id}")
+public Mono<Employee> getEmployee(Long id) {
+
+    return Mono.fromCallable(
+            () -> employeeRepository.findById(id).get()
+    )
+    .subscribeOn(Schedulers.boundedElastic());
+}
+Interview Answer
+
+boundedElastic() is a Scheduler intended for blocking I/O operations. It dynamically creates a bounded pool of worker threads and prevents blocking tasks from occupying event-loop or CPU-intensive threads. It is commonly used when integrating WebFlux with JDBC, file systems, or legacy blocking APIs.
+
 
 BACKPRESSURE
 
 51. What is Backpressure?
+Backpressure is a mechanism that allows a consumer to control how much data it receives from a producer.
+
+Problem
+Producer → 10000 events/sec
+Consumer → 100 events/sec
+
+Consumer gets overwhelmed.
+
+Solution
+
+Consumer tells producer:
+
+"Send only what I can process."
+
 52. Why is Backpressure needed?
+Without backpressure:
+
+Memory overflow
+OutOfMemoryError
+Slow consumers crash
+System instability
+Example
+Kafka Producer
+    ↓
+1,000,000 Messages
+    ↓
+Slow Consumer
+
+Messages accumulate rapidly.
+
+Benefits
+Prevents overload
+Improves stability
+Controls resource usage
+
 53. How does Reactor support Backpressure?
+Reactor implements the Reactive Streams Specification.
+
+The subscriber requests data explicitly.
+
+Example
+Flux.range(1, 100)
+    .subscribe(new BaseSubscriber<Integer>() {
+
+        @Override
+        protected void hookOnSubscribe(Subscription subscription) {
+            request(5);
+        }
+    });
+Flow
+Subscriber
+    ↓
+request(5)
+    ↓
+Publisher
+    ↓
+Send 5 Items
+
 54. What happens when producer is faster than consumer?
+Without Backpressure
+Producer
+  ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+Consumer
+
+Problems:
+
+Queue growth
+High memory usage
+Application crash
+With Backpressure
+Consumer
+    ↓
+request(10)
+    ↓
+Producer
+    ↓
+Send 10 Items
+
+Producer waits for more demand.
+
 55. What is onBackpressureBuffer()?
+Buffers items when consumer is slow.
+
+Example
+Flux.interval(Duration.ofMillis(1))
+    .onBackpressureBuffer()
+    .subscribe(System.out::println);
+Flow
+Producer
+   ↓
+ Buffer
+   ↓
+ Consumer
+Advantage
+
+No data loss.
+
+Disadvantage
+
+Large buffers may consume memory.
+
 56. What is onBackpressureDrop()?
+Drops excess items when consumer cannot keep up.
+
+Example
+Flux.interval(Duration.ofMillis(1))
+    .onBackpressureDrop()
+    .subscribe(System.out::println);
+Flow
+Producer
+   ↓
+Consumer Slow
+   ↓
+Extra Items Dropped
+Use Cases
+Sensor data
+Live metrics
+Monitoring dashboards
+
 57. What is onBackpressureLatest()?
+Keeps only the most recent item.
+
+Example
+Flux.interval(Duration.ofMillis(1))
+    .onBackpressureLatest()
+    .subscribe(System.out::println);
+Flow
+1 2 3 4 5 6 7 8
+        ↓
+Keep Only 8
+Use Cases
+Stock prices
+GPS location
+Real-time dashboards
+
 58. What is request(n)?
+request(n) tells the publisher how many items the subscriber can handle.
+
+Example
+Flux.range(1, 100)
+    .subscribe(new BaseSubscriber<Integer>() {
+
+        @Override
+        protected void hookOnSubscribe(Subscription subscription) {
+            request(3);
+        }
+    });
+Output
+1
+2
+3
+
+Only 3 items are delivered.
+
+Flow
+Subscriber
+    ↓
+request(3)
+    ↓
+Publisher
+    ↓
+Send 3 Items
+
 59. What is Reactive Streams Specification?
+Reactive Streams is a standard for asynchronous stream processing with non-blocking backpressure.
+
+Main Interfaces
+Publisher<T>
+Subscriber<T>
+Subscription
+Processor<T,R>
+Rules
+Non-blocking
+Asynchronous
+Backpressure support
+Demand-driven communication
+Relationship
+Publisher
+    ↓
+Subscription
+    ↓
+Subscriber
+Implementations
+Reactor
+RxJava
+Akka Streams
+
 60. Explain demand management.
+
+Interview Summary
+Backpressure Flow
+Publisher
+    ↓
+Subscription
+    ↓
+request(n)
+    ↓
+Subscriber
+
+Backpressure Strategies
+| Strategy               | Behavior          |
+| ---------------------- | ----------------- |
+| onBackpressureBuffer() | Store extra items |
+| onBackpressureDrop()   | Drop extra items  |
+| onBackpressureLatest() | Keep latest item  |
+| request(n)             | Ask for N items   |
+
+30-Second Interview Answer
+Backpressure is a mechanism in Reactive Streams that prevents a fast producer from overwhelming a 
+slow consumer. The consumer controls data flow using request(n). Reactor supports backpressure through 
+the Reactive Streams specification and provides strategies like onBackpressureBuffer(), 
+onBackpressureDrop(), and onBackpressureLatest() to handle excess data efficiently
+
 
 WEBCLIENT
 
 61. What is WebClient?
+WebClient is a non-blocking, reactive HTTP client introduced in Spring WebFlux.
+
+It is used to call external REST APIs asynchronously.
+
+Example
+WebClient webClient = WebClient.create();
+
+Mono<String> response = webClient.get()
+        .uri("https://api.example.com/users")
+        .retrieve()
+        .bodyToMono(String.class);
+Features
+Non-blocking
+Reactive
+Supports Mono and Flux
+Supports HTTP/2
+Better than RestTemplate
+
 62. Difference between RestTemplate and WebClient?
+| Feature           | RestTemplate     | WebClient    |
+| ----------------- | ---------------- | ------------ |
+| Programming Model | Synchronous      | Reactive     |
+| Thread Model      | Blocking         | Non-blocking |
+| WebFlux Support   | No               | Yes          |
+| Streaming Support | No               | Yes          |
+| Performance       | Lower            | Higher       |
+| Status            | Maintenance Mode | Recommended  |
+
+RestTemplate
+String result = restTemplate.getForObject(url, String.class);
+
+Thread waits until response arrives.
+
+WebClient
+Mono<String> result =
+        webClient.get()
+                .uri(url)
+                .retrieve()
+                .bodyToMono(String.class);
+
+Thread is not blocked.
+
+
 63. How to call external API using WebClient?
+GET Request
+WebClient client = WebClient.create();
+
+Mono<Employee> employee =
+        client.get()
+              .uri("http://localhost:8080/employees/1")
+              .retrieve()
+              .bodyToMono(Employee.class);
+POST Request
+client.post()
+      .uri("/employees")
+      .bodyValue(employee)
+      .retrieve()
+      .bodyToMono(Employee.class);
+	  
+	  
 64. How to add headers in WebClient?
+Per Request Header
+webClient.get()
+         .uri("/employees")
+         .header("Authorization", "Bearer token")
+         .header("client-id", "123")
+         .retrieve()
+         .bodyToMono(String.class);
+Global Header
+@Bean
+public WebClient webClient() {
+
+    return WebClient.builder()
+            .defaultHeader("client-id", "123")
+            .build();
+}
+
 65. How to set timeout in WebClient?
+
+Response Timeout
+HttpClient httpClient =
+        HttpClient.create()
+                  .responseTimeout(Duration.ofSeconds(5));
+
+WebClient client =
+        WebClient.builder()
+                .clientConnector(
+                    new ReactorClientHttpConnector(httpClient))
+                .build();
+Request Timeout
+webClient.get()
+         .uri("/employees")
+         .retrieve()
+         .bodyToMono(Employee.class)
+         .timeout(Duration.ofSeconds(3));
+		 
+		 
 66. How to handle WebClient errors?
+Handle 4xx and 5xx
+webClient.get()
+         .uri("/employees/1")
+         .retrieve()
+         .onStatus(
+             HttpStatusCode::is4xxClientError,
+             response -> Mono.error(
+                 new RuntimeException("Client Error"))
+         )
+         .onStatus(
+             HttpStatusCode::is5xxServerError,
+             response -> Mono.error(
+                 new RuntimeException("Server Error"))
+         )
+         .bodyToMono(Employee.class);
+Fallback
+webClient.get()
+         .uri("/employees/1")
+         .retrieve()
+         .bodyToMono(Employee.class)
+         .onErrorResume(ex ->
+                 Mono.just(new Employee()));
+				 
 67. How to log requests/responses?
+
+equest Logging Filter
+@Bean
+public WebClient webClient() {
+
+    return WebClient.builder()
+            .filter((request, next) -> {
+
+                System.out.println(
+                    "Request: " + request.url());
+
+                return next.exchange(request);
+            })
+            .build();
+}
+Response Logging
+.filter((request, next) ->
+        next.exchange(request)
+            .doOnNext(response ->
+                System.out.println(
+                  response.statusCode())))
+Wiretap Logging
+HttpClient httpClient =
+        HttpClient.create()
+                  .wiretap(true);
+				  
+				  
 68. How to configure connection pooling?
+
+WebClient uses Reactor Netty connection pooling.
+
+Custom Pool
+ConnectionProvider provider =
+        ConnectionProvider.builder("custom-pool")
+                .maxConnections(100)
+                .pendingAcquireMaxCount(500)
+                .build();
+
+HttpClient httpClient =
+        HttpClient.create(provider);
+
+WebClient client =
+        WebClient.builder()
+                .clientConnector(
+                  new ReactorClientHttpConnector(httpClient))
+                .build();
+Benefits
+Reuses connections
+Lower latency
+Better performance
+
+
 69. How to retry failed requests?
+Simple Retry
+webClient.get()
+         .uri("/employees")
+         .retrieve()
+         .bodyToMono(Employee.class)
+         .retry(3);
+
+Retries 3 times.
+
+Retry with Delay
+.retryWhen(
+    Retry.fixedDelay(
+        3,
+        Duration.ofSeconds(2)
+    )
+)
+Exponential Backoff
+.retryWhen(
+    Retry.backoff(
+        3,
+        Duration.ofSeconds(1)
+    )
+)
+Flow
+Attempt 1
+   ↓
+1 sec
+   ↓
+Attempt 2
+   ↓
+2 sec
+   ↓
+Attempt 3
+
+
 70. How to configure SSL in WebClient?
+Trust Store SSL
+SslContext sslContext =
+        SslContextBuilder
+            .forClient()
+            .trustManager(
+                new File("truststore.jks"))
+            .build();
+
+HttpClient httpClient =
+        HttpClient.create()
+                  .secure(spec ->
+                      spec.sslContext(sslContext));
+
+WebClient client =
+        WebClient.builder()
+                .clientConnector(
+                    new ReactorClientHttpConnector(
+                        httpClient))
+                .build();
+HTTPS Example
+webClient.get()
+         .uri("https://api.example.com")
+         .retrieve()
+         .bodyToMono(String.class);
 
 DATABASE
 
 71. What is R2DBC?
+R2DBC (Reactive Relational Database Connectivity) is a reactive API for relational databases.
+
+It provides non-blocking database access similar to how WebFlux provides non-blocking HTTP communication.
+
+Traditional
+Application
+    ↓
+   JDBC
+    ↓
+ Database
+Reactive
+Application
+    ↓
+  R2DBC
+    ↓
+ Database
+Benefits
+Non-blocking
+Reactive Streams compliant
+Backpressure support
+Suitable for WebFlux
+
 72. Difference between JDBC and R2DBC?
+| Feature                     | JDBC             | R2DBC        |
+| --------------------------- | ---------------- | ------------ |
+| Programming Model           | Blocking         | Non-Blocking |
+| Thread Usage                | Thread per Query | Event Loop   |
+| WebFlux Friendly            | No               | Yes          |
+| Backpressure                | No               | Yes          |
+| Reactive Streams            | No               | Yes          |
+| Performance under High Load | Lower            | Higher       |
+
+
 73. Why JDBC is blocking?
+JDBC waits until the database returns a response.
+
+Example
+Employee emp =
+    jdbcTemplate.queryForObject(sql, mapper);
+Flow
+Thread
+   ↓
+Execute SQL
+   ↓
+Wait...
+   ↓
+Receive Result
+
+During waiting time the thread is occupied.
+
+Problem
+1000 Requests
+    ↓
+1000 Waiting Threads
+
+Consumes memory and CPU.
+
 74. Can WebFlux work with JPA?
+Technically Yes
+Mono.fromCallable(
+    () -> employeeRepository.findById(id)
+)
+.subscribeOn(Schedulers.boundedElastic());
+Recommended?
+
+❌ No
+
+JPA is blocking.
+
+WebFlux is non-blocking.
+
 75. Problems using JPA with WebFlux?
+WebFlux + JPA
+
+loses many benefits of reactive programming.
+
+Best Practice
+WebFlux + R2DBC
+
+or
+
+Spring MVC + JPA
+
 76. What is ReactiveCrudRepository?
+Reactive equivalent of CrudRepository.
+
+Repository
+@Repository
+public interface EmployeeRepository
+        extends ReactiveCrudRepository<Employee, Long> {
+}
+Methods
+findById()
+save()
+findAll()
+deleteById()
+Return Types
+Mono<T>
+Flux<T>
+
+instead of
+
+Optional<T>
+List<T>
+
+
 77. What databases support R2DBC?
+| Database             | R2DBC Support |
+| -------------------- | ------------- |
+| PostgreSQL           | ✅             |
+| MySQL                | ✅             |
+| MariaDB              | ✅             |
+| Microsoft SQL Server | ✅             |
+| Oracle Database      | ✅             |
+| H2                   | ✅             |
+
+<dependency>
+    <groupId>io.asyncer</groupId>
+    <artifactId>r2dbc-mysql</artifactId>
+</dependency>
+
 78. How do transactions work in R2DBC?
+Reactive transactions use TransactionalOperator or @Transactional (with reactive transaction manager).
+
+Example
+@Transactional
+public Mono<Employee> save(Employee emp) {
+
+    return repository.save(emp);
+}
+Using TransactionalOperator
+TransactionalOperator operator =
+        TransactionalOperator.create(txManager);
+
+return operator.execute(
+        status -> repository.save(emp)
+);
+Flow
+Begin Transaction
+       ↓
+Execute Operations
+       ↓
+Commit/Rollback
+
 79. Reactive MongoDB support?
+Yes.
+
+Spring Data MongoDB provides reactive support.
+
+Dependency
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>
+      spring-boot-starter-data-mongodb-reactive
+    </artifactId>
+</dependency>
+Repository
+public interface EmployeeRepository
+extends ReactiveMongoRepository<Employee, String> {
+}
+Example
+Flux<Employee> employees =
+        repository.findAll();
+Benefits
+Fully reactive
+Non-blocking
+Excellent WebFlux integration
+
+
 80. How do you handle large result sets?
+Problem
+SELECT * FROM EMPLOYEES;
+
+Returns millions of rows.
+
+Loading everything into memory is dangerous.
+
+Solution 1: Use Flux
+Flux<Employee> employees =
+        repository.findAll();
+
+Data streams gradually.
+
+Solution 2: Pagination
+SELECT *
+FROM EMPLOYEES
+LIMIT 100
+OFFSET 0;
+Solution 3: Streaming
+Flux<Employee> stream =
+        repository.findAll();
+
+Rows are processed one by one.
+
+Solution 4: Backpressure
+repository.findAll()
+          .limitRate(100);
+Flow
+Database
+   ↓
+100 Rows
+   ↓
+Consumer
+   ↓
+Next 100 Rows
+
 
 TESTING
 
 81. What is StepVerifier?
+StepVerifier is a testing utility provided by Reactor for testing Mono and Flux.
+
+Dependency
+<dependency>
+    <groupId>io.projectreactor</groupId>
+    <artifactId>reactor-test</artifactId>
+    <scope>test</scope>
+</dependency>
+Example
+Flux<String> flux = Flux.just("A", "B", "C");
+
+StepVerifier.create(flux)
+            .expectNext("A")
+            .expectNext("B")
+            .expectNext("C")
+            .verifyComplete();
+Purpose
+Verify emitted values
+Verify completion
+Verify errors
+Verify timing
+
 82. How to test Mono?
+Service
+public Mono<String> getName() {
+    return Mono.just("John");
+}
+Test
+@Test
+void testMono() {
+
+    StepVerifier.create(service.getName())
+            .expectNext("John")
+            .verifyComplete();
+}
+Verify Empty Mono
+StepVerifier.create(Mono.empty())
+        .verifyComplete();
+		
 83. How to test Flux?
+Service
+public Flux<Integer> getNumbers() {
+    return Flux.just(1,2,3,4);
+}
+Test
+@Test
+void testFlux() {
+
+    StepVerifier.create(service.getNumbers())
+            .expectNext(1)
+            .expectNext(2)
+            .expectNext(3)
+            .expectNext(4)
+            .verifyComplete();
+}
+Short Version
+StepVerifier.create(service.getNumbers())
+        .expectNext(1,2,3,4)
+        .verifyComplete();
+		
+		
 84. What is WebTestClient?
+WebTestClient is a reactive HTTP testing client used to test WebFlux endpoints.
+
+Similar to:
+
+RestTemplate for Testing
+
+but reactive.
+
+Example
+@Autowired
+private WebTestClient webTestClient;
+Test API
+webTestClient.get()
+        .uri("/employees/1")
+        .exchange()
+        .expectStatus().isOk()
+        .expectBody(Employee.class);
+		
+		
 85. Difference between MockMvc and WebTestClient?
+| Feature                 | MockMvc    | WebTestClient |
+| ----------------------- | ---------- | ------------- |
+| Framework               | Spring MVC | WebFlux       |
+| Reactive Support        | No         | Yes           |
+| Mono/Flux               | No         | Yes           |
+| Non-blocking            | No         | Yes           |
+| Recommended for WebFlux | No         | Yes           |
+
+
 86. How do you test errors?
+Service
+public Mono<String> getData() {
+
+    return Mono.error(
+            new RuntimeException("Failed"));
+}
+Test
+StepVerifier.create(service.getData())
+        .expectError(RuntimeException.class)
+        .verify();
+Verify Message
+StepVerifier.create(service.getData())
+        .expectErrorMatches(ex ->
+                ex.getMessage()
+                  .equals("Failed"))
+        .verify();
+		
+		
 87. How do you test time-based Flux?
+Example
+Flux<Long> flux =
+        Flux.interval(Duration.ofSeconds(1))
+            .take(3);
+
+Normally test takes 3 seconds.
+
+Solution
+
+Use Virtual Time.
+
+StepVerifier.withVirtualTime(
+        () -> Flux.interval(Duration.ofSeconds(1))
+                  .take(3))
+    .thenAwait(Duration.ofSeconds(3))
+    .expectNext(0L,1L,2L)
+    .verifyComplete();
+Result
+
+Runs instantly.
+
+
 88. What is VirtualTimeScheduler?
+A scheduler that simulates time during testing.
+
+Problem
+Flux.interval(Duration.ofHours(1))
+
+Real test takes 1 hour.
+
+Solution
+VirtualTimeScheduler.getOrSet();
+
+Now time can be advanced programmatically.
+
+Example
+StepVerifier.withVirtualTime(
+    () -> Flux.interval(Duration.ofDays(1))
+              .take(2))
+    .thenAwait(Duration.ofDays(2))
+    .expectNext(0L,1L)
+    .verifyComplete();
+
+Benefits
+Fast tests
+Deterministic tests
+No waiting
+
+
 89. Integration testing in WebFlux?
+Integration testing verifies:
+
+Controller
+   ↓
+Service
+   ↓
+Repository
+   ↓
+Database
+Example
+@SpringBootTest(webEnvironment =
+    SpringBootTest.WebEnvironment.RANDOM_PORT)
+class EmployeeIT {
+}
+Using WebTestClient
+@Autowired
+private WebTestClient webTestClient;
+Test
+webTestClient.get()
+        .uri("/employees")
+        .exchange()
+        .expectStatus().isOk()
+        .expectBodyList(Employee.class);
+Common Tools
+TestContainers
+H2 Database
+Embedded MongoDB
+
+
 90. Performance testing WebFlux APIs?
+Tools
+Apache JMeter
+Gatling
+k6
+Locust
+
+Metrics to Measure
+| Metric       | Meaning          |
+| ------------ | ---------------- |
+| Throughput   | Requests/sec     |
+| Latency      | Response Time    |
+| Error Rate   | Failed Requests  |
+| CPU Usage    | Server Load      |
+| Memory Usage | Heap Consumption |
+
 
 PRODUCTION & TROUBLESHOOTING
 
 91. When should WebFlux NOT be used?
+WebFlux is not the best choice in every situation.
+
+Avoid WebFlux When
+1. Application is CRUD-heavy with JPA/Hibernate
+Spring MVC + JPA
+
+is usually simpler.
+
+2. Mostly Blocking APIs
+JDBC
+File IO
+Legacy SOAP APIs
+
+Reactive benefits are reduced.
+
+3. Small Applications
+
+For simple CRUD apps:
+
+Spring MVC
+
+is easier to develop and maintain.
+
+4. Team Has No Reactive Experience
+
+Reactive programming has a learning curve.
+
+Interview Answer
+
+WebFlux should be avoided when the application is primarily blocking, heavily dependent on JPA/Hibernate, or when scalability requirements do not justify the added complexity of reactive programming.
+
+
 92. What happens if blocking code is used?
+Example
+@GetMapping("/employee")
+public Mono<Employee> getEmployee() {
+
+    Employee emp =
+            repository.findById(1L);
+
+    return Mono.just(emp);
+}
+
+If findById() is JDBC/JPA:
+
+Netty Thread
+      ↓
+Blocked
+      ↓
+Cannot Process Other Requests
+Consequences
+Reduced throughput
+Increased latency
+Thread starvation
+Scalability loss
+Fix
+Mono.fromCallable(
+    () -> repository.findById(1L)
+)
+.subscribeOn(Schedulers.boundedElastic());
+
+
 93. How do you identify blocking calls?
+Common Blocking APIs
+Thread.sleep()
+Future.get()
+JDBC
+JPA
+Files.readAllBytes()
+RestTemplate
+Thread Dump
+
+Look for:
+
+BLOCKED
+WAITING
+TIMED_WAITING
+Monitoring
+
+Tools:
+
+VisualVM
+JProfiler
+YourKit
+Flight Recorder
+Best Tool
+BlockHound
+
+
 94. What is BlockHound?
+BlockHound detects blocking calls running on reactive threads.
+
+Dependency
+<dependency>
+    <groupId>io.projectreactor.tools</groupId>
+    <artifactId>blockhound</artifactId>
+</dependency>
+Install
+public static void main(String[] args) {
+
+    BlockHound.install();
+
+    SpringApplication.run(
+        Application.class,
+        args
+    );
+}
+Example
+Mono.fromRunnable(() -> {
+    Thread.sleep(1000);
+});
+Result
+BlockingOperationError
+
+BlockHound immediately reports the issue.
+
+
 95. Why is block() dangerous?
+Example
+String result =
+        webClient.get()
+                 .retrieve()
+                 .bodyToMono(String.class)
+                 .block();
+Problem
+Reactive Flow
+      ↓
+block()
+      ↓
+Thread Waits
+
+Destroys non-blocking behavior.
+
+Consequences
+Event-loop blocking
+Throughput reduction
+Deadlocks
+Scalability issues
+Preferred
+return webClient.get()
+        .retrieve()
+        .bodyToMono(String.class);
+		
+		
 96. How do you monitor WebFlux applications?
+Metrics
+
+Monitor:
+
+Response Time
+Throughput
+Error Rate
+Memory
+CPU
+GC
+Connection Pool
+Common Stack
+Micrometer
+    ↓
+Prometheus
+    ↓
+Grafana
+Dependency
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>
+        micrometer-registry-prometheus
+    </artifactId>
+</dependency>
+Actuator Endpoint
+/actuator/prometheus
+
 97. How do you debug reactive chains?
+Use log()
+Flux.just(1,2,3)
+    .log()
+    .map(i -> i*10);
+
+Output:
+
+onSubscribe
+onNext(1)
+onNext(2)
+onNext(3)
+Use doOnNext()
+Flux.just(1,2,3)
+    .doOnNext(System.out::println);
+Use checkpoint()
+Flux.just(1,2,3)
+    .checkpoint("Debug Point");
+
+Error stack traces become more meaningful.
+
+Reactor Debug Agent
+Hooks.onOperatorDebug();
+
+Useful in development.
+
 98. Common memory leak issues in WebFlux?
+1. Unbounded Buffering
+.onBackpressureBuffer()
+
+Without limits:
+
+Memory Growth
+       ↓
+OOM
+2. Huge collectList()
+flux.collectList()
+
+Millions of records:
+
+All Data In Memory
+3. Unreleased Data Buffers
+
+Occurs during file streaming.
+
+4. Infinite Flux
+Flux.interval(...)
+
+Without cancellation.
+
+5. Cached Streams
+.cache()
+
+Can retain data indefinitely.
+
 99. How do you optimize WebFlux performance?
+Use Reactive Drivers
+
+Good:
+
+WebFlux + R2DBC
+
+Avoid:
+
+WebFlux + JDBC
+Minimize Thread Switching
+
+Avoid excessive:
+
+publishOn()
+subscribeOn()
+Enable Connection Pooling
+ConnectionProvider.builder()
+Use Backpressure
+limitRate()
+Avoid collectList()
+
+Bad:
+
+flux.collectList();
+
+Good:
+
+return flux;
+Cache Frequently Used Data
+Redis
+Caffeine
+Monitor Event Loop Threads
+Netty Threads
+CPU
+Heap
+GC
+
+
 100. Explain a real production use case where WebFlux improved scalability.
+Scenario
+
+Payment Aggregation Service
+
+System called:
+
+User Service
+Payment Service
+Fraud Service
+Notification Service
+
+for every request.
+
+Before (Spring MVC)
+1000 Requests
+      ↓
+1000 Threads
+
+Problems:
+
+High memory usage
+Thread contention
+Increased response times
+After (WebFlux + WebClient)
+1000 Requests
+       ↓
+20 Event Loop Threads
+       ↓
+Async Calls
+Code
+Mono<User> user =
+        userClient.getUser(id);
+
+Mono<Payment> payment =
+        paymentClient.getPayment(id);
+
+Mono<Fraud> fraud =
+        fraudClient.getFraud(id);
+
+return Mono.zip(
+        user,
+        payment,
+        fraud
+);
+
+| Metric           | Before  | After       |
+| ---------------- | ------- | ----------- |
+| Threads          | ~1000   | ~20         |
+| Memory Usage     | High    | Low         |
+| Throughput       | Lower   | Higher      |
+| Latency          | Higher  | Lower       |
+| Concurrent Users | Limited | Much Higher |
 
 
-Most Frequently Asked Senior-Level Questions
-1. Spring MVC vs WebFlux
-2. Mono vs Flux
-3. map() vs flatMap()
-4. subscribeOn() vs publishOn()
-5. Netty Architecture
-6. Event Loop Model
-7. Backpressure
-8. WebClient vs RestTemplate
-9. Why block() is bad
-10. WebFlux with JPA issues
-11. JDBC vs R2DBC
-12. Reactive Streams Specification
-13. Error Handling
-14. Thread Usage in WebFlux
-15. Performance Benefits
-16. Connection Pooling
-17. Retry Mechanisms
-18. Production Troubleshooting
-19. BlockHound
-20. Scaling WebFlux Applications

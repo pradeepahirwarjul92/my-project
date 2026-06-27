@@ -1,0 +1,100 @@
+1. What is Spring Framework?
+2. What is Dependency Injection?
+3. What is Inversion of Control (IoC)?
+4. What is Spring IoC Container?
+5. Difference between BeanFactory and ApplicationContext?
+6. What is a Spring Bean?
+7. What are bean scopes in Spring?
+8. What is singleton scope in Spring?
+9. What is prototype scope in Spring?
+10. What is autowiring in Spring?
+11. Difference between @Component, @Service, @Repository, and @Controller?
+12. What is component scanning?
+13. What is @Configuration annotation?
+14. What is @Bean annotation?
+15. Difference between XML configuration and Java configuration?
+16. What is Spring Boot?
+17. Advantages of Spring Boot?
+18. What is auto-configuration in Spring Boot?
+19. What is Spring Boot Starter?
+20. What is Spring Initializr?
+21. What is application.properties?
+22. Difference between application.properties and application.yml?
+23. What is @SpringBootApplication?
+24. What is Spring Boot Actuator?
+25. What is embedded Tomcat?
+26. How to change default port in Spring Boot?
+27. What are Spring Boot profiles?
+28. What is @RestController?
+29. Difference between @Controller and @RestController?
+30. What is @RequestMapping?
+31. Difference between @GetMapping and @PostMapping?
+32. What is ResponseEntity?
+33. What is exception handling in Spring Boot?
+34. What is @ControllerAdvice?
+35. What is Spring Data JPA?
+36. Difference between JPA and Hibernate?
+37. What is Hibernate?
+38. What is @Entity annotation?
+39. What is @Id annotation?
+40. What is Lazy Loading?
+41. What is Eager Loading?
+42. Difference between CrudRepository and JpaRepository?
+43. What is pagination in JPA?
+44. What is sorting in Spring Data JPA?
+45. Explain OneToOne mapping.
+46. Explain OneToMany mapping.
+47. Explain ManyToMany mapping.
+48. What is cascading in Hibernate?
+49. What is orphanRemoval in JPA?
+50. What is JPQL?
+51. What is native query?
+52. What is transaction management in Spring?
+53. What is @Transactional annotation?
+54. What is Spring Security?
+55. Difference between authentication and authorization?
+56. What is JWT?
+57. How JWT authentication works?
+58. What is OAuth2?
+59. What is CSRF?
+60. What is BCryptPasswordEncoder?
+61. What is role-based authorization?
+62. What are Microservices?
+63. Advantages of Microservices?
+64. Difference between monolith and microservices?
+65. What is API Gateway?
+66. What is Eureka Server?
+67. What is service discovery?
+68. What is load balancing?
+69. What is Feign Client?
+70. What is Circuit Breaker pattern?
+71. What is Resilience4j?
+72. What is distributed tracing?
+73. What is centralized logging?
+74. What is Config Server?
+75. What is asynchronous communication?
+76. What is Kafka?
+77. What is RabbitMQ?
+78. What is containerization?
+79. Difference between VM and Docker?
+80. What is Docker?
+81. What is Docker Image?
+82. What is Docker Container?
+83. Difference between Docker Image and Container?
+84. What is Dockerfile?
+85. What is Docker Compose?
+86. What is Kubernetes?
+87. What is Pod in Kubernetes?
+88. What is Deployment in Kubernetes?
+89. What is Service in Kubernetes?
+90. What is ConfigMap?
+91. What is Secret in Kubernetes?
+92. Difference between Docker Swarm and Kubernetes?
+93. What are Design Patterns?
+94. Explain Singleton Design Pattern.
+95. Explain Factory Design Pattern.
+96. Explain Builder Design Pattern.
+97. Explain Strategy Design Pattern.
+98. Explain Observer Design Pattern.
+99. Explain MVC Design Pattern.
+100. What design patterns are used in Spring Framework?

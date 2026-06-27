@@ -1,0 +1,223 @@
+
+=========================================
+API GATEWAY INTERVIEW QUESTIONS
+(8+ YEARS EXPERIENCE)
+PRODUCTION + PERFORMANCE + TROUBLESHOOTING
+=========================================
+
+1. What is an API Gateway?
+2. Why do we need an API Gateway?
+3. What problems does API Gateway solve?
+4. Difference between API Gateway and Load Balancer?
+5. Difference between API Gateway and Reverse Proxy?
+6. What are the benefits of API Gateway?
+7. Explain API Gateway architecture.
+8. What are common API Gateway solutions?
+9. What is Spring Cloud Gateway?
+10. What is Kong API Gateway?
+
+11. What is NGINX API Gateway?
+12. What is Apigee?
+13. What is AWS API Gateway?
+14. What is Azure API Management?
+15. What is Zuul?
+16. Difference between Zuul and Spring Cloud Gateway?
+17. Why Spring Cloud Gateway replaced Zuul?
+18. What is Reactive API Gateway?
+19. How does Spring Cloud Gateway work?
+20. Explain request lifecycle in API Gateway.
+
+=========================================
+SPRING CLOUD GATEWAY
+=========================================
+
+21. What is Spring Cloud Gateway?
+22. How do routes work in Spring Cloud Gateway?
+23. What is Route Predicate?
+24. What are Predicate Factories?
+25. What is Gateway Filter?
+26. Global Filter vs Route Filter?
+27. What is RouteLocator?
+28. How do you configure routes?
+29. Dynamic routing in API Gateway?
+30. Service Discovery integration?
+
+31. Eureka integration with Gateway?
+32. Consul integration with Gateway?
+33. Load balancing in Gateway?
+34. How does Gateway handle failover?
+35. Path-based routing?
+36. Header-based routing?
+37. Query parameter routing?
+38. Host-based routing?
+39. Request rewriting?
+40. Response rewriting?
+
+=========================================
+SECURITY QUESTIONS
+=========================================
+
+41. How do you secure API Gateway?
+42. JWT validation in Gateway?
+43. OAuth2 integration with Gateway?
+44. API Key validation?
+45. Authentication vs Authorization?
+46. How do you implement RBAC?
+47. How do you secure internal APIs?
+48. How do you secure external APIs?
+49. How do you secure microservices communication?
+50. What is mTLS?
+
+51. JWT propagation to downstream services?
+52. OAuth2 Resource Server integration?
+53. Token relay pattern?
+54. Security filter chain in Gateway?
+55. Keycloak integration?
+56. Okta integration?
+57. Azure AD integration?
+58. LDAP integration?
+59. SSO integration?
+60. API Gateway security best practices?
+
+=========================================
+RATE LIMITING & THROTTLING
+=========================================
+
+61. What is Rate Limiting?
+62. Why Rate Limiting is important?
+63. Token Bucket Algorithm?
+64. Leaky Bucket Algorithm?
+65. Sliding Window Algorithm?
+66. Fixed Window Algorithm?
+67. How do you implement rate limiting?
+68. Redis-based rate limiting?
+69. Distributed rate limiting?
+70. User-level throttling?
+
+71. IP-based throttling?
+72. API key-based throttling?
+73. Tenant-based throttling?
+74. How do you prevent DDoS attacks?
+75. How do you handle traffic spikes?
+76. Burst traffic handling?
+77. Request quota management?
+78. Fair usage policy implementation?
+79. Rate limit exceeded handling?
+80. Monitoring rate limiting metrics?
+
+=========================================
+MICROSERVICES QUESTIONS
+=========================================
+
+81. API Gateway role in Microservices?
+82. Service Discovery integration?
+83. Circuit Breaker integration?
+84. Resilience4j integration?
+85. Retry pattern implementation?
+86. Fallback pattern?
+87. Bulkhead pattern?
+88. Request aggregation?
+89. Backend-for-Frontend (BFF)?
+90. API Composition Pattern?
+
+91. Service Mesh vs API Gateway?
+92. Istio vs API Gateway?
+93. Linkerd vs API Gateway?
+94. Gateway in Kubernetes?
+95. Ingress Controller vs API Gateway?
+96. API Gateway for multi-region deployments?
+97. Gateway for multi-cloud deployments?
+98. How do you route traffic to multiple versions?
+99. Canary deployments using Gateway?
+100. Blue-Green deployments using Gateway?
+
+=========================================
+PERFORMANCE QUESTIONS
+=========================================
+
+101. API Gateway latency increased. How do you troubleshoot?
+102. Gateway CPU utilization reached 100%. Investigation?
+103. Gateway memory utilization is high. Troubleshooting?
+104. Gateway throughput dropped suddenly. What will you check?
+105. API response times increased after deployment. Investigation?
+106. Gateway becoming bottleneck. How do you identify?
+107. Thread pool exhaustion in Gateway. Troubleshooting?
+108. Connection pool exhaustion. Investigation?
+109. Slow downstream services affecting Gateway. Solution?
+110. Gateway response caching?
+
+111. Redis cache integration with Gateway?
+112. Request compression?
+113. Response compression?
+114. GZIP optimization?
+115. Gateway JVM tuning?
+116. Gateway GC tuning?
+117. High traffic optimization?
+118. Horizontal scaling of Gateway?
+119. Vertical scaling of Gateway?
+120. Capacity planning for Gateway?
+
+=========================================
+PRODUCTION TROUBLESHOOTING
+=========================================
+
+121. API Gateway is down. What are your troubleshooting steps?
+122. Routes stopped working. Investigation?
+123. 404 errors increasing. Troubleshooting?
+124. 401 errors increasing. Troubleshooting?
+125. 403 errors increasing. Troubleshooting?
+126. 500 Internal Server Errors. Investigation?
+127. 502 Bad Gateway errors. Troubleshooting?
+128. 503 Service Unavailable errors. Troubleshooting?
+129. 504 Gateway Timeout errors. Investigation?
+130. SSL handshake failures. Troubleshooting?
+
+131. Gateway unable to discover services. Investigation?
+132. Eureka registration issues. Troubleshooting?
+133. DNS resolution failures. Investigation?
+134. JWT validation failures. Troubleshooting?
+135. OAuth2 authentication failures. Investigation?
+136. Gateway memory leak issue. How do you diagnose?
+137. High Full GC activity. Troubleshooting?
+138. OutOfMemoryError in Gateway. Investigation?
+139. Gateway pod restarting continuously. Root causes?
+140. Kubernetes readiness probe failures. Troubleshooting?
+
+=========================================
+MONITORING & OBSERVABILITY
+=========================================
+
+141. How do you monitor API Gateway?
+142. Which Gateway metrics should be monitored?
+143. Request count metrics?
+144. Error rate metrics?
+145. P95 latency?
+146. P99 latency?
+147. Throughput monitoring?
+148. Gateway logs analysis?
+149. Distributed tracing with Zipkin/Jaeger?
+150. Explain a real API Gateway production issue, RCA, troubleshooting steps, resolution, and preventive measures.
+
+=========================================
+MOST ASKED PRODUCTION SCENARIOS
+=========================================
+
+1. Users are receiving 502 Bad Gateway errors. How do you troubleshoot?
+
+2. API Gateway latency increased from 50ms to 2 seconds after deployment. Investigation steps?
+
+3. Gateway CPU utilization reached 95% during Black Friday sale. What actions will you take?
+
+4. JWT authentication suddenly stopped working. Root cause analysis?
+
+5. Gateway is unable to route traffic to one microservice. What will you check?
+
+6. API Gateway memory usage continuously increases until OOM. How do you investigate?
+
+7. Gateway returns 504 Gateway Timeout errors intermittently. Troubleshooting approach?
+
+8. Rate limiting stopped working after Redis outage. How do you resolve?
+
+9. Gateway pod restarts every few minutes in Kubernetes. Investigation steps?
+
+10. Explain a real production incident involving API Gateway that you resolved.

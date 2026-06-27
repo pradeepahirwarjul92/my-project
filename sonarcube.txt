@@ -1,0 +1,219 @@
+
+=========================================
+SONARQUBE PRODUCTION, PERFORMANCE &
+TROUBLESHOOTING INTERVIEW QUESTIONS
+(8+ Years Experience)
+=========================================
+
+1. What is SonarQube?
+2. Why is SonarQube used?
+3. What are the benefits of SonarQube?
+4. Explain SonarQube architecture.
+5. What are the main components of SonarQube?
+6. What is Sonar Scanner?
+7. What is a Quality Gate?
+8. What is a Quality Profile?
+9. What is Technical Debt?
+10. What is Code Smell?
+
+11. Difference between Bug, Vulnerability, and Code Smell?
+12. What is Security Hotspot?
+13. What is Maintainability Rating?
+14. What is Reliability Rating?
+15. What is Security Rating?
+16. What is Code Coverage?
+17. What is Duplication in SonarQube?
+18. What is New Code Period?
+19. How does SonarQube calculate technical debt?
+20. What databases are supported by SonarQube?
+
+=========================================
+INSTALLATION & CONFIGURATION
+=========================================
+
+21. How do you install SonarQube on Linux?
+22. How do you configure PostgreSQL with SonarQube?
+23. Why is PostgreSQL preferred over embedded databases?
+24. How do you configure Sonar Scanner?
+25. How do you integrate SonarQube with Jenkins?
+26. How do you integrate SonarQube with GitLab?
+27. How do you integrate SonarQube with GitHub?
+28. How do you configure SonarQube behind Nginx?
+29. How do you enable HTTPS in SonarQube?
+30. How do you configure SSL certificates?
+
+=========================================
+CI/CD QUESTIONS
+=========================================
+
+31. How do you integrate SonarQube in CI/CD pipelines?
+32. How do you fail a build based on Quality Gate?
+33. How do you enforce code quality in Jenkins?
+34. How do you enforce code quality in GitHub Actions?
+35. How do you enforce code quality in GitLab CI?
+36. How do you analyze pull requests using SonarQube?
+37. How do you configure branch analysis?
+38. How do you configure multi-module Maven projects?
+39. How do you configure Gradle projects?
+40. How do you analyze microservices using SonarQube?
+
+=========================================
+PRODUCTION TROUBLESHOOTING
+=========================================
+
+41. SonarQube service is down. How do you troubleshoot?
+42. SonarQube UI is not accessible. What will you check?
+43. SonarQube fails to start. Investigation steps?
+44. SonarQube startup takes too long. How do you investigate?
+45. SonarQube shows HTTP 500 errors. Troubleshooting steps?
+46. SonarQube login is failing. What could be wrong?
+47. Users cannot access projects. How do you troubleshoot?
+48. Sonar Scanner upload is failing. Investigation?
+49. Quality Gate status is not updating. What will you check?
+50. Background tasks are stuck. How do you resolve?
+
+51. SonarQube is consuming high CPU. Investigation steps?
+52. SonarQube memory utilization is very high. What will you do?
+53. SonarQube becomes slow during peak analysis times. Why?
+54. SonarQube response time suddenly increased. Troubleshooting?
+55. Elasticsearch service inside SonarQube is failing. How do you investigate?
+56. Search functionality is slow. What will you check?
+57. Large project analysis takes too long. How do you optimize?
+58. SonarQube server crashes during scans. Root causes?
+59. Scanner reports timeout errors. Troubleshooting?
+60. SonarQube server restarts unexpectedly. Investigation?
+
+=========================================
+DATABASE TROUBLESHOOTING
+=========================================
+
+61. SonarQube cannot connect to PostgreSQL. What will you check?
+62. Database connection pool exhausted. Troubleshooting?
+63. SonarQube database is growing rapidly. Investigation?
+64. Database queries are slow. How do you analyze?
+65. PostgreSQL CPU utilization is high. Troubleshooting?
+66. PostgreSQL disk utilization is increasing. What will you do?
+67. SonarQube migration failed after upgrade. Investigation?
+68. Database locks affecting SonarQube performance. Troubleshooting?
+69. Connection timeout between SonarQube and DB. Investigation?
+70. How do you optimize SonarQube database performance?
+
+=========================================
+ELASTICSEARCH TROUBLESHOOTING
+=========================================
+
+71. Why does SonarQube use Elasticsearch?
+72. Elasticsearch process failed to start. Investigation?
+73. Elasticsearch memory issues. Troubleshooting?
+74. Elasticsearch index corruption. Recovery steps?
+75. Search results are missing. What could be wrong?
+76. Elasticsearch disk watermark exceeded. What happens?
+77. Elasticsearch cluster health is RED. Investigation?
+78. Search latency is high. Troubleshooting?
+79. Elasticsearch heap memory exhausted. Solution?
+80. How do you rebuild Elasticsearch indexes?
+
+=========================================
+PERFORMANCE OPTIMIZATION
+=========================================
+
+81. How do you optimize SonarQube performance?
+82. How do you optimize large project scans?
+83. How do you optimize scanner execution time?
+84. How do you optimize database performance?
+85. How do you optimize Elasticsearch performance?
+86. How do you tune JVM heap size?
+87. How do you optimize garbage collection?
+88. How do you reduce analysis duration?
+89. How do you improve dashboard loading time?
+90. How do you handle thousands of daily scans?
+
+=========================================
+JVM TROUBLESHOOTING
+=========================================
+
+91. SonarQube throws OutOfMemoryError. What will you do?
+92. How do you generate thread dumps?
+93. How do you analyze thread dumps?
+94. How do you generate heap dumps?
+95. How do you analyze heap dumps?
+96. How do you identify memory leaks?
+97. How do you troubleshoot GC pauses?
+98. High Full GC activity affecting SonarQube. Investigation?
+99. SonarQube process killed by OOM Killer. What happened?
+100. How do you tune JVM parameters?
+
+=========================================
+SECURITY QUESTIONS
+=========================================
+
+101. How do you secure SonarQube?
+102. How do you integrate LDAP authentication?
+103. How do you integrate Active Directory?
+104. How do you implement SSO?
+105. How do you configure SAML?
+106. How do you configure OAuth authentication?
+107. How do you manage user roles?
+108. How do you restrict project access?
+109. How do you audit SonarQube activity?
+110. How do you secure SonarQube APIs?
+
+=========================================
+MONITORING & OBSERVABILITY
+=========================================
+
+111. How do you monitor SonarQube?
+112. Which SonarQube metrics should be monitored?
+113. How do you monitor JVM performance?
+114. How do you monitor PostgreSQL performance?
+115. How do you monitor Elasticsearch?
+116. How do you integrate SonarQube with Prometheus?
+117. How do you create Grafana dashboards?
+118. What alerts should be configured?
+119. How do you monitor scan durations?
+120. How do you track Quality Gate failures?
+
+=========================================
+BACKUP & RECOVERY
+=========================================
+
+121. How do you back up SonarQube?
+122. How do you restore SonarQube?
+123. What should be backed up?
+124. How do you validate backups?
+125. Disaster recovery strategy for SonarQube?
+126. How do you recover from database corruption?
+127. How do you recover from Elasticsearch corruption?
+128. How do you recover failed upgrades?
+129. How do you rollback SonarQube upgrades?
+130. How do you perform DR testing?
+
+=========================================
+SCALABILITY & ARCHITECTURE
+=========================================
+
+131. How do you scale SonarQube?
+132. How many projects can SonarQube support?
+133. How do you support thousands of developers?
+134. How do you design HA SonarQube architecture?
+135. How do you deploy SonarQube on Kubernetes?
+136. How do you deploy SonarQube on AWS?
+137. How do you deploy SonarQube on Azure?
+138. How do you design enterprise SonarQube infrastructure?
+139. How do you handle 10,000+ scans per day?
+140. Capacity planning for SonarQube?
+
+=========================================
+REAL-TIME SCENARIO QUESTIONS
+=========================================
+
+141. SonarQube became unavailable during release day. What actions will you take?
+142. Quality Gate suddenly started failing for all projects. Investigation?
+143. Sonar Scanner timeout after migration. Troubleshooting?
+144. PostgreSQL reached 100% CPU. Impact on SonarQube?
+145. Elasticsearch crashed after restart. Recovery steps?
+146. CI/CD pipelines blocked because SonarQube is down. What will you do?
+147. Dashboard loading takes 30+ seconds. Troubleshooting?
+148. Analysis duration increased from 5 minutes to 30 minutes. Investigation?
+149. What are the most common SonarQube production issues you have faced?
+150. Explain a real SonarQube production issue, RCA, troubleshooting steps, resolution, and preventive measures.

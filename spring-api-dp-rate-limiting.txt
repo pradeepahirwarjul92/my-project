@@ -1,0 +1,200 @@
+1. What is rate limiting?
+2. Why rate limiting is important?
+3. What problems does rate limiting solve?
+4. How rate limiting protects APIs?
+5. Difference between throttling and rate limiting?
+6. What is API abuse?
+7. What is DDoS attack?
+8. How rate limiting prevents DDoS attacks?
+9. What is traffic shaping?
+10. What is request quota?
+11. What is burst traffic?
+12. What is API Gateway rate limiting?
+13. What is client-side rate limiting?
+14. What is server-side rate limiting?
+15. What is distributed rate limiting?
+16. What is global rate limiting?
+17. What is user-based rate limiting?
+18. What is IP-based rate limiting?
+19. What is token-based rate limiting?
+20. What is API key-based rate limiting?
+21. What is concurrency limiting?
+22. What is request throttling?
+23. What is bandwidth throttling?
+24. What is backpressure?
+25. What is fairness in rate limiting?
+26. What are common rate limiting algorithms?
+27. What is Fixed Window algorithm?
+28. What is Sliding Window algorithm?
+29. What is Sliding Log algorithm?
+30. What is Token Bucket algorithm?
+31. What is Leaky Bucket algorithm?
+32. Difference between Token Bucket and Leaky Bucket?
+33. What is rolling window rate limiting?
+34. What is adaptive rate limiting?
+35. What is dynamic rate limiting?
+36. What is soft limit?
+37. What is hard limit?
+38. What is request rejection?
+39. What is HTTP 429 Too Many Requests?
+40. What is Retry-After header?
+41. What headers are used in rate limiting?
+42. What is X-RateLimit-Limit?
+43. What is X-RateLimit-Remaining?
+44. What is X-RateLimit-Reset?
+45. What is quota exhaustion?
+46. What is API monetization with rate limiting?
+47. What is tenant-based rate limiting?
+48. What is subscription-based rate limiting?
+49. What is priority-based throttling?
+50. What is burst allowance?
+51. What is request buffering?
+52. What is queue-based throttling?
+53. What is rate limiting in microservices?
+54. Why rate limiting is important in microservices?
+55. How API Gateway handles rate limiting?
+56. What is Spring Cloud Gateway rate limiting?
+57. What is Resilience4j RateLimiter?
+58. How Resilience4j rate limiter works?
+59. What is Bucket4j?
+60. How Bucket4j works?
+61. What is Redis-based rate limiting?
+62. Why Redis is used for distributed rate limiting?
+63. What is atomic increment in Redis?
+64. What is Lua scripting in Redis?
+65. What is distributed cache in rate limiting?
+66. What is in-memory rate limiting?
+67. Difference between local and distributed rate limiting?
+68. What is rate limiting in Kubernetes?
+69. What is ingress rate limiting?
+70. What is Nginx rate limiting?
+71. What is Envoy rate limiting?
+72. What is Istio rate limiting?
+73. What is cloud-based API rate limiting?
+74. What is AWS API Gateway throttling?
+75. What is Azure API Management throttling?
+76. What is Google Cloud API rate limiting?
+77. What is token refill rate?
+78. What is bucket capacity?
+79. What is request leak rate?
+80. What is request shaping?
+81. What is circuit breaker vs rate limiter?
+82. Difference between retry and rate limiting?
+83. What is timeout vs throttling?
+84. What is SLA-based rate limiting?
+85. What is QoS in API traffic?
+86. What is traffic prioritization?
+87. What is API protection?
+88. What is bot protection using rate limiting?
+89. What is brute force protection?
+90. What is login rate limiting?
+91. What is OTP request throttling?
+92. What is captcha with rate limiting?
+93. What is fraud prevention with rate limiting?
+94. What is session-based throttling?
+95. What is geo-based rate limiting?
+96. What is edge rate limiting?
+97. What is CDN rate limiting?
+98. What is Cloudflare rate limiting?
+99. What is Akamai rate limiting?
+100. What is API Gateway burst control?
+101. What is request smoothing?
+102. What is load shedding?
+103. What is graceful degradation?
+104. What is resilience in rate limiting?
+105. What is overload protection?
+106. What is autoscaling with throttling?
+107. What is queue saturation?
+108. What is downstream protection?
+109. What is database protection using throttling?
+110. What is Kafka consumer throttling?
+111. What is Kafka producer throttling?
+112. What is messaging rate limiting?
+113. What is RabbitMQ flow control?
+114. What is backpressure in reactive systems?
+115. What is Reactor backpressure?
+116. What is WebFlux rate limiting?
+117. What is reactive throttling?
+118. What is API concurrency control?
+119. What is semaphore-based rate limiting?
+120. What is thread pool throttling?
+121. What is request collapsing?
+122. What is traffic policing?
+123. What is bandwidth quota?
+124. What is token expiration?
+125. What is JWT-based throttling?
+126. What is OAuth API quota?
+127. What is OAuth scope-based throttling?
+128. What is user session quota?
+129. What is account-level throttling?
+130. What is endpoint-level throttling?
+131. What is method-level throttling?
+132. What is request fingerprinting?
+133. What is abuse detection?
+134. What is anomaly-based rate limiting?
+135. What is ML-based throttling?
+136. What is adaptive traffic control?
+137. What is request prioritization?
+138. What is API traffic analytics?
+139. What is observability in rate limiting?
+140. What metrics are monitored in rate limiting?
+141. What is throttled request monitoring?
+142. What is API consumption analytics?
+143. What is Prometheus monitoring for throttling?
+144. What is Grafana dashboard for APIs?
+145. What is OpenTelemetry for API monitoring?
+146. What is centralized logging for throttling?
+147. What is alerting for traffic spikes?
+148. What is DDoS mitigation?
+149. What is WAF rate limiting?
+150. What is firewall throttling?
+151. What is ingress controller throttling?
+152. What is service mesh throttling?
+153. What is sidecar-based throttling?
+154. What is distributed tracing for throttled requests?
+155. What is API usage tracking?
+156. What is quota management?
+157. What is request tokenization?
+158. What is sliding counter implementation?
+159. What is Redis sorted set in sliding window?
+160. What is TTL in Redis rate limiting?
+161. What is optimistic locking in rate limiting?
+162. What is eventual consistency in distributed throttling?
+163. What is clock synchronization issue?
+164. What is hotspot key problem in Redis?
+165. What is sharded rate limiting?
+166. What is multi-region throttling?
+167. What is edge computing throttling?
+168. What is serverless rate limiting?
+169. What is Lambda concurrency limit?
+170. What is API Gateway caching with throttling?
+171. What is request deduplication?
+172. What is replay attack prevention?
+173. What is webhook rate limiting?
+174. What is webhook retry throttling?
+175. What is payment API throttling?
+176. What is banking API quota management?
+177. What is e-commerce flash sale throttling?
+178. What is ticket booking traffic control?
+179. What is gaming server throttling?
+180. What is streaming service bandwidth limiting?
+181. What is mobile API throttling?
+182. What is IoT device rate limiting?
+183. What is edge device throttling?
+184. What is GraphQL query rate limiting?
+185. What is GraphQL complexity limiting?
+186. What is query depth limiting?
+187. What is REST API quota management?
+188. What is gRPC throttling?
+189. What is WebSocket connection throttling?
+190. What is SSE throttling?
+191. What are best practices for rate limiting?
+192. What are common challenges in throttling?
+193. What are anti-patterns in rate limiting?
+194. How to troubleshoot rate limiting issues?
+195. How to optimize throttling performance?
+196. How to test API rate limiting?
+197. What tools are used for load testing?
+198. What is JMeter throttling test?
+199. What is Gatling rate limit testing?
+200. Explain complete rate limiting flow in microservices architecture.

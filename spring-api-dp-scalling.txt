@@ -1,0 +1,200 @@
+1. What is scaling in software systems?
+2. What is scalability?
+3. Difference between scaling and performance optimization?
+4. Why scaling is important in modern applications?
+5. What are types of scaling?
+6. What is vertical scaling?
+7. What is horizontal scaling?
+8. Difference between vertical and horizontal scaling?
+9. What is diagonal scaling?
+10. What is auto scaling?
+11. What is elasticity in cloud systems?
+12. What is load balancing?
+13. Why load balancing is required for scaling?
+14. What is stateless architecture?
+15. Why stateless services scale better?
+16. What is stateful service?
+17. Challenges of scaling stateful systems?
+18. What is session management in scaling?
+19. What is sticky session?
+20. What is distributed session management?
+21. What is session replication?
+22. What is database scaling?
+23. What is vertical database scaling?
+24. What is horizontal database scaling?
+25. What is database sharding?
+26. What is database partitioning?
+27. What is read replica?
+28. What is master-slave replication?
+29. What is multi-master replication?
+30. What is CAP theorem?
+31. What is consistency in distributed systems?
+32. What is availability in distributed systems?
+33. What is partition tolerance?
+34. What is trade-off in CAP theorem?
+35. What is microservices scaling?
+36. How microservices help scaling?
+37. What is service decomposition?
+38. What is load distribution?
+39. What is traffic spike handling?
+40. What is burst traffic?
+41. What is throttling in scaling?
+42. What is rate limiting?
+43. What is backpressure?
+44. What is queue-based scaling?
+45. What is message broker scaling?
+46. What is Kafka scaling?
+47. What is partition in Kafka?
+48. How Kafka enables horizontal scaling?
+49. What is consumer group scaling?
+50. What is event-driven scaling?
+51. What is autoscaling in Kubernetes?
+52. What is HPA (Horizontal Pod Autoscaler)?
+53. What is VPA (Vertical Pod Autoscaler)?
+54. What is Cluster Autoscaler?
+55. How Kubernetes scaling works?
+56. What is pod scaling?
+57. What is replica set?
+58. What is deployment scaling?
+59. What is rolling update scaling?
+60. What is zero downtime scaling?
+61. What is cloud scaling?
+62. What is AWS autoscaling group?
+63. What is Azure autoscale?
+64. What is Google Cloud autoscaling?
+65. What is serverless scaling?
+66. What is Lambda scaling?
+67. What is function concurrency?
+68. What is cold start problem?
+69. What is warm start in serverless?
+70. What is API Gateway scaling?
+71. What is CDN scaling?
+72. How CDN improves scalability?
+73. What is edge computing scaling?
+74. What is caching in scaling?
+75. What is Redis scaling?
+76. What is distributed cache?
+77. What is cache eviction policy?
+78. What is cache invalidation?
+79. What is cache stampede?
+80. What is CDN caching?
+81. What is HTTP caching?
+82. What is load balancing algorithms?
+83. What is round robin?
+84. What is least connections?
+85. What is IP hash load balancing?
+86. What is weighted load balancing?
+87. What is global load balancing?
+88. What is DNS load balancing?
+89. What is failover scaling?
+90. What is high availability?
+91. What is redundancy?
+92. What is disaster recovery?
+93. What is RTO?
+94. What is RPO?
+95. What is multi-region deployment?
+96. What is active-active architecture?
+97. What is active-passive architecture?
+98. What is geo-distributed system?
+99. What is latency in scaling?
+100. What is network latency impact on scaling?
+101. What is throughput in scaling?
+102. What is concurrency?
+103. What is thread scaling?
+104. What is connection pooling?
+105. What is HikariCP?
+106. What is JVM scaling considerations?
+107. What is memory scaling?
+108. What is CPU scaling?
+109. What is garbage collection impact on scaling?
+110. What is JVM tuning for scaling?
+111. What is container scaling?
+112. What is Docker scaling?
+113. What is image optimization?
+114. What is microservice container scaling?
+115. What is Kubernetes pod autoscaling metrics?
+116. What is CPU-based scaling?
+117. What is memory-based scaling?
+118. What is custom metrics scaling?
+119. What is Prometheus-based scaling?
+120. What is KEDA?
+121. What is event-driven autoscaling?
+122. What is queue length scaling?
+123. What is request-based scaling?
+124. What is SLA-based scaling?
+125. What is cost optimization in scaling?
+126. What is over-provisioning?
+127. What is under-provisioning?
+128. What is resource utilization?
+129. What is cost-performance tradeoff?
+130. What is cloud cost scaling?
+131. What is FinOps?
+132. What is traffic shaping?
+133. What is burst capacity?
+134. What is graceful degradation?
+135. What is circuit breaker?
+136. What is fallback mechanism?
+137. What is bulkhead pattern?
+138. What is retry storm?
+139. What is cascading failure?
+140. What is bottleneck identification?
+141. What is APM?
+142. What is observability in scaling?
+143. What is monitoring metrics?
+144. What is Prometheus?
+145. What is Grafana?
+146. What is ELK stack?
+147. What is distributed tracing?
+148. What is OpenTelemetry?
+149. What is log aggregation?
+150. What is alerting system?
+151. What is SLO monitoring?
+152. What is SLA violation?
+153. What is performance benchmarking?
+154. What is load testing?
+155. What is stress testing?
+156. What is soak testing?
+157. What is JMeter?
+158. What is Gatling?
+159. What is scalability testing?
+160. What is capacity planning?
+161. What is peak load handling?
+162. What is traffic prediction?
+163. What is autoscaling threshold tuning?
+164. What is warm-up scaling?
+165. What is pre-scaling?
+166. What is predictive scaling?
+167. What is reactive scaling?
+168. What is hybrid scaling?
+169. What is service mesh scaling?
+170. What is Istio scaling?
+171. What is Envoy proxy scaling?
+172. What is API throttling in scaling?
+173. What is request queueing?
+174. What is backpressure handling?
+175. What is distributed system scaling challenges?
+176. What is data consistency in scaling?
+177. What is eventual consistency?
+178. What is strong consistency?
+179. What is conflict resolution?
+180. What is data replication lag?
+181. What is consistency vs availability tradeoff?
+182. What is multi-region latency?
+183. What is edge caching?
+184. What is CDN invalidation?
+185. What is image optimization for scaling?
+186. What is lazy loading?
+187. What is pagination optimization?
+188. What is database indexing?
+189. What is query optimization?
+190. What is connection pool tuning?
+191. What is async processing?
+192. What is reactive system scaling?
+193. What is WebFlux scaling?
+194. What is non-blocking I/O?
+195. What is thread pool tuning?
+196. What is CPU saturation?
+197. What is memory saturation?
+198. What is disk I/O saturation?
+199. What is system observability?
+200. Explain end-to-end scaling strategy for a microservices system.

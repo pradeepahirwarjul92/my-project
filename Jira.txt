@@ -1,0 +1,232 @@
+====================================
+JIRA BASICS
+====================================
+
+1. What is Jira?
+2. Why is Jira used?
+3. What are the main features of Jira?
+4. Difference between Jira Software and Jira Service Management?
+5. What is Agile in Jira?
+6. What is Scrum in Jira?
+7. What is Kanban in Jira?
+8. What are the advantages of Jira?
+9. What are the components of Jira?
+10. Explain Jira architecture.
+
+====================================
+ISSUES & ISSUE TYPES
+====================================
+
+11. What is an Issue in Jira?
+12. What are Issue Types?
+13. What is an Epic?
+14. What is a Story?
+15. What is a Task?
+16. What is a Sub-task?
+17. What is a Bug?
+18. Difference between Epic, Story, Task, and Bug?
+19. When should Sub-tasks be used?
+20. How do you link issues?
+
+====================================
+PROJECTS
+====================================
+
+21. What is a Project in Jira?
+22. Types of Jira Projects?
+23. Company-managed vs Team-managed Projects?
+24. How do you create a project?
+25. What is a Project Key?
+26. How do you archive a project?
+27. How do you manage project permissions?
+28. What are project roles?
+29. How do you assign users to a project?
+30. What is a project lead?
+
+====================================
+WORKFLOW
+====================================
+
+31. What is a Workflow?
+32. Why are workflows important?
+33. What are workflow statuses?
+34. What are workflow transitions?
+35. How do you customize workflows?
+36. What is workflow validation?
+37. What is a workflow condition?
+38. What is a workflow post-function?
+39. How do you troubleshoot workflow issues?
+40. Best practices for workflow design?
+
+====================================
+SCRUM
+====================================
+
+41. What is a Scrum Board?
+42. What is a Sprint?
+43. How do you create a Sprint?
+44. How do you start a Sprint?
+45. How do you complete a Sprint?
+46. What is Sprint Planning?
+47. What is Sprint Backlog?
+48. What is Product Backlog?
+49. What is Sprint Velocity?
+50. Sprint Burndown Chart?
+
+====================================
+KANBAN
+====================================
+
+51. What is a Kanban Board?
+52. Difference between Scrum and Kanban?
+53. What is Work In Progress (WIP)?
+54. How do you limit WIP?
+55. Kanban metrics?
+56. Cycle Time?
+57. Lead Time?
+58. Throughput?
+59. Continuous delivery using Kanban?
+60. Kanban best practices?
+
+====================================
+AGILE REPORTS
+====================================
+
+61. What is Burndown Chart?
+62. What is Burnup Chart?
+63. What is Velocity Chart?
+64. What is Sprint Report?
+65. What is Epic Report?
+66. What is Control Chart?
+67. What is Cumulative Flow Diagram?
+68. What is Release Report?
+69. How do you track team performance?
+70. How do you identify bottlenecks?
+
+====================================
+JQL (JIRA QUERY LANGUAGE)
+====================================
+
+71. What is JQL?
+72. Why use JQL?
+73. Find all open issues.
+74. Find issues assigned to me.
+75. Find bugs created this week.
+76. Find issues in current sprint.
+77. Find issues by priority.
+78. Find overdue issues.
+79. Find unresolved issues.
+80. Advanced JQL examples.
+
+====================================
+DASHBOARDS & FILTERS
+====================================
+
+81. What are Jira Dashboards?
+82. What are Filters?
+83. How do you create filters?
+84. How do you share filters?
+85. How do you create dashboards?
+86. What are gadgets?
+87. Most used dashboard gadgets?
+88. Sprint dashboard setup?
+89. Management dashboard setup?
+90. Dashboard best practices?
+
+====================================
+INTEGRATIONS
+====================================
+
+91. Jira integration with Git?
+92. Jira integration with Jenkins?
+93. Jira integration with Confluence?
+94. Jira integration with Slack?
+95. Jira integration with Bitbucket?
+96. Jira integration with GitHub?
+97. Jira integration with Azure DevOps?
+98. Jira webhooks?
+99. Jira REST API?
+100. Explain Jira usage in a real project.
+
+
+Most Used JQL Queries
+
+project = ABC
+
+project = ABC AND status = "In Progress"
+
+assignee = currentUser()
+
+reporter = currentUser()
+
+project = ABC AND priority = High
+
+project = ABC AND issuetype = Bug
+
+project = ABC AND sprint in openSprints()
+
+project = ABC AND resolution = Unresolved
+
+project = ABC ORDER BY created DESC
+
+project = ABC AND due <= now()
+
+
+ira Workflow (Typical)
+BACKLOG
+   |
+TO DO
+   |
+IN PROGRESS
+   |
+CODE REVIEW
+   |
+TESTING
+   |
+DONE
+
+
+Real-Time Jira Questions for Java Developers
+
+1. How do you track Sprint progress in Jira?
+2. How do you create and estimate Stories?
+3. Difference between Story Points and Hours?
+4. How do you handle production bugs in Jira?
+5. How do you link Jira issues with Git commits?
+6. How do you link Jira issues with Jenkins builds?
+7. How do you manage release tracking in Jira?
+8. How do you create dashboards for management?
+9. How do you monitor team velocity?
+10. Explain your team's Jira workflow.
+
+
+Jira + Agile Interview Questions
+1. What is Agile?
+2. What is Scrum?
+3. What is Kanban?
+4. What is Sprint Planning?
+5. What is Daily Standup?
+6. What is Sprint Review?
+7. What is Sprint Retrospective?
+8. What is Product Backlog?
+9. What is Sprint Backlog?
+10. What is Definition of Done (DoD)?
+11. What is Definition of Ready (DoR)?
+12. What is Velocity?
+13. What is Burndown Chart?
+14. What is Story Point Estimation?
+15. How do you estimate stories using Planning Poker?
+
+
+Frequently Asked Interview Questions
+
+1. What is Jira and why is it used?
+2. Difference between Epic, Story, Task, and Bug?
+3. What is Sprint in Jira?
+4. What is JQL?
+5. What is a Workflow?
+6. Difference between Scrum and Kanban?
+7. What is Velocity?
+8. What is Burndown Chart?
+9. How does Jira integrate with Git and Jenkins?
+10. Explain how you use Jira in your current project.

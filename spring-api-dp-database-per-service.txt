@@ -1,0 +1,100 @@
+1. What is Database per Service pattern?
+2. Why is Database per Service used in microservices?
+3. What problems does Database per Service solve?
+4. Difference between shared database and database per service?
+5. What are the advantages of Database per Service?
+6. What are the disadvantages of Database per Service?
+7. Why should each microservice own its database?
+8. What is loose coupling in microservices?
+9. How Database per Service improves scalability?
+10. How Database per Service improves deployment independence?
+11. Can multiple services access the same database?
+12. Why shared database is an anti-pattern in microservices?
+13. What is decentralized data management?
+14. What is polyglot persistence?
+15. Can each service use different database technology?
+16. Example of Database per Service architecture?
+17. What is schema ownership in microservices?
+18. What is bounded context in DDD?
+19. How Database per Service supports bounded context?
+20. What are challenges in Database per Service?
+21. How to manage transactions across services?
+22. What is distributed transaction?
+23. Why distributed transactions are difficult?
+24. What is eventual consistency?
+25. What is Saga pattern?
+26. Difference between choreography saga and orchestration saga?
+27. What is compensating transaction?
+28. How services communicate with separate databases?
+29. What is API composition?
+30. What is CQRS in microservices?
+31. What is Command Query Responsibility Segregation?
+32. How CQRS works with Database per Service?
+33. What is event-driven architecture?
+34. What is event sourcing?
+35. How Kafka helps in Database per Service?
+36. What is asynchronous communication?
+37. What is data duplication in microservices?
+38. Why data redundancy is acceptable in microservices?
+39. What is data synchronization?
+40. How to maintain consistency across databases?
+41. What is eventual consistency model?
+42. Difference between strong consistency and eventual consistency?
+43. What is distributed data management?
+44. How to query data from multiple services?
+45. What is aggregator service?
+46. What is Backend for Frontend (BFF)?
+47. What is materialized view pattern?
+48. What is database replication?
+49. What is read replica?
+50. What is sharding?
+51. What is partitioning?
+52. How to handle joins across microservices?
+53. Why joins across databases are avoided?
+54. What is foreign key problem in microservices?
+55. Why foreign keys are avoided across services?
+56. What is service autonomy?
+57. What is database isolation?
+58. What is data ownership?
+59. What is anti-corruption layer?
+60. What is service contract?
+61. How to migrate from monolith DB to Database per Service?
+62. What is strangler pattern?
+63. Steps to split monolithic database?
+64. Challenges in database migration?
+65. How to handle reporting with multiple databases?
+66. What is centralized reporting database?
+67. What is data lake?
+68. What is ETL process?
+69. What is CDC (Change Data Capture)?
+70. How Debezium works?
+71. What is outbox pattern?
+72. Why outbox pattern is used?
+73. What is transactional outbox?
+74. What is dual write problem?
+75. How to avoid dual write issue?
+76. What is idempotency in distributed systems?
+77. What is retry mechanism?
+78. What is dead letter queue?
+79. What is message broker?
+80. What is Kafka topic?
+81. What is RabbitMQ exchange?
+82. What is service database schema versioning?
+83. What is Flyway?
+84. What is Liquibase?
+85. How to manage DB migrations independently?
+86. What is database connection pooling?
+87. What is HikariCP?
+88. What is database scaling?
+89. Vertical vs horizontal database scaling?
+90. What is failover database setup?
+91. What is backup strategy for microservice databases?
+92. What is disaster recovery?
+93. How security is managed in Database per Service?
+94. What is database credential management?
+95. What is secret management in Kubernetes?
+96. What is Vault?
+97. What is observability in database architecture?
+98. How to monitor multiple databases?
+99. What are best practices for Database per Service?
+100. Explain Database per Service with real-time example.

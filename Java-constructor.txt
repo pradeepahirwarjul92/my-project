@@ -1,0 +1,246 @@
+JAVA CONSTRUCTOR ADVANCED INTERVIEW QUESTIONS (150)
+
+=========================
+CONSTRUCTOR BASICS
+=========================
+
+1. What is a constructor in Java?
+2. Why do we need constructors?
+3. What are the characteristics of constructors?
+4. What is the purpose of a constructor?
+5. How is a constructor different from a method?
+6. What happens when an object is created?
+7. Can a constructor return a value?
+8. Can a constructor return an object?
+9. What is the default constructor?
+10. When does the compiler generate a default constructor?
+11. What is a no-argument constructor?
+12. What is a parameterized constructor?
+13. Can a class have multiple constructors?
+14. Why is constructor overloading used?
+15. What is constructor initialization?
+
+=========================
+DEFAULT CONSTRUCTOR
+=========================
+
+16. What is a default constructor?
+17. When is a default constructor created?
+18. When is a default constructor not created?
+19. What values are assigned by a default constructor?
+20. What happens if a parameterized constructor is defined?
+21. Why does the compiler stop creating a default constructor?
+22. How do you manually create a default constructor?
+23. Can a default constructor be private?
+24. Can a default constructor be protected?
+25. Production use case of default constructor?
+
+=========================
+PARAMETERIZED CONSTRUCTOR
+=========================
+
+26. What is a parameterized constructor?
+27. Why use parameterized constructors?
+28. Constructor parameter validation techniques?
+29. How do parameterized constructors improve immutability?
+30. What happens when invalid data is passed?
+31. Can exceptions be thrown from constructors?
+32. How do you perform input validation in constructors?
+33. Can a constructor accept objects as arguments?
+34. Can constructors have varargs parameters?
+35. Real-time use cases of parameterized constructors?
+
+=========================
+CONSTRUCTOR OVERLOADING
+=========================
+
+36. What is constructor overloading?
+37. Why overload constructors?
+38. Constructor overloading vs method overloading?
+39. Rules of constructor overloading?
+40. How does JVM decide which constructor to call?
+41. Can overloaded constructors have different access modifiers?
+42. Can overloaded constructors call each other?
+43. Advantages of constructor overloading?
+44. Constructor ambiguity issues?
+45. Production use cases?
+
+=========================
+CONSTRUCTOR CHAINING
+=========================
+
+46. What is constructor chaining?
+47. Why use constructor chaining?
+48. What is this() constructor call?
+49. What is super() constructor call?
+50. Difference between this() and super()?
+51. Can this() and super() be used together?
+52. Why must this() be first statement?
+53. Why must super() be first statement?
+54. Constructor chaining execution order?
+55. Constructor chaining in multi-level inheritance?
+
+=========================
+THIS KEYWORD
+=========================
+
+56. What does this refer to?
+57. Using this inside constructors?
+58. this() vs this keyword?
+59. Can this() call multiple constructors?
+60. Recursive constructor call issue?
+61. How does this avoid variable shadowing?
+62. Can this be passed as parameter?
+63. Can this be returned?
+64. Real-world use cases of this?
+65. Constructor injection using this?
+
+=========================
+SUPER KEYWORD
+=========================
+
+66. What is super?
+67. Why use super()?
+68. How does parent constructor execute?
+69. Can super() be omitted?
+70. What happens if parent has no default constructor?
+71. How to call parameterized parent constructor?
+72. Constructor execution sequence in inheritance?
+73. Can super() call grandparent constructor?
+74. Common interview mistakes with super()?
+75. Production examples using super()?
+
+=========================
+INHERITANCE & CONSTRUCTORS
+=========================
+
+76. Are constructors inherited?
+77. Why are constructors not inherited?
+78. Can constructors be overridden?
+79. Why can't constructors be overridden?
+80. Constructor execution in inheritance hierarchy?
+81. Object creation flow in inheritance?
+82. Constructor call order in multilevel inheritance?
+83. Constructor call order in abstract classes?
+84. Constructor call order in interfaces?
+85. Constructor behavior in anonymous classes?
+
+=========================
+ACCESS MODIFIERS
+=========================
+
+86. Can constructors be private?
+87. Can constructors be public?
+88. Can constructors be protected?
+89. Can constructors have default access?
+90. Why use private constructors?
+91. Private constructor and Singleton pattern?
+92. Private constructor and utility classes?
+93. Private constructor and factory methods?
+94. Restricting object creation?
+95. Real-world examples?
+
+=========================
+SINGLETON & DESIGN PATTERNS
+=========================
+
+96. Constructor role in Singleton pattern?
+97. How does private constructor enforce Singleton?
+98. Lazy Singleton constructor behavior?
+99. Thread-safe Singleton constructor?
+100. Enum Singleton vs Constructor Singleton?
+101. Constructor usage in Factory Pattern?
+102. Constructor usage in Builder Pattern?
+103. Constructor usage in Prototype Pattern?
+104. Constructor usage in Dependency Injection?
+105. Constructor usage in Spring Framework?
+
+=========================
+ADVANCED CONSTRUCTOR CONCEPTS
+=========================
+
+106. Can constructors be final?
+107. Why can't constructors be final?
+108. Can constructors be static?
+109. Why can't constructors be static?
+110. Can constructors be abstract?
+111. Why can't constructors be abstract?
+112. Can constructors be synchronized?
+113. Why can't constructors be synchronized?
+114. Can constructors be native?
+115. Can constructors be strictfp?
+
+=========================
+EXCEPTIONS IN CONSTRUCTORS
+=========================
+
+116. Can constructors throw exceptions?
+117. Why throw exceptions from constructors?
+118. Checked exceptions in constructors?
+119. Runtime exceptions in constructors?
+120. Constructor failure handling?
+121. Object state after constructor exception?
+122. Resource leaks during constructor failure?
+123. Best practices for exception handling?
+124. Constructor validation strategies?
+125. Production examples?
+
+=========================
+IMMUTABLE CLASSES
+=========================
+
+126. How do constructors help create immutable classes?
+127. Constructor role in String immutability?
+128. Defensive copying in constructors?
+129. Immutable object initialization?
+130. Constructor validation in immutable classes?
+131. Constructor and final fields?
+132. Thread safety and constructors?
+133. Constructor best practices for immutability?
+134. Real-world immutable classes?
+135. Production advantages?
+
+=========================
+REFLECTION & CONSTRUCTORS
+=========================
+
+136. How does reflection access constructors?
+137. Can private constructors be called using reflection?
+138. Constructor object in reflection API?
+139. getConstructor() vs getDeclaredConstructor()?
+140. How does Spring use reflection?
+141. Reflection security risks?
+142. Breaking Singleton using reflection?
+143. Preventing reflection attacks?
+144. Reflection and framework internals?
+145. Real-time examples?
+
+=========================
+JVM INTERNALS
+=========================
+
+146. How are constructors represented in bytecode?
+147. What is <init>() method?
+148. Difference between <init>() and <clinit>()?
+149. Object creation lifecycle in JVM?
+150. Explain complete constructor execution flow from object creation to initialization.
+
+
+
+Frequently Asked Advanced Interview Questions
+
+1. Why are constructors not inherited?
+2. Why can't constructors be overridden?
+3. Difference between this() and super()?
+4. Explain constructor chaining with execution order.
+5. What happens if parent class has only parameterized constructor?
+6. Can constructor throw checked exceptions?
+7. Can private constructor be used for Singleton?
+8. How does Spring use constructors for Dependency Injection?
+9. What is the difference between <init>() and <clinit>()?
+10. Explain object creation flow inside JVM.
+11. Can reflection invoke private constructors?
+12. How can reflection break Singleton?
+13. Why can't constructors be static, final, or abstract?
+14. Explain constructor execution in multilevel inheritance.
+15. How do constructors help create immutable classes?

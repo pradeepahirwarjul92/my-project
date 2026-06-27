@@ -1,0 +1,371 @@
+1. What is Nexus Repository Manager?
+2. Why is Nexus used in CI/CD pipelines?
+3. What are the benefits of using Nexus?
+4. What are the different repository types in Nexus?
+5. Difference between Hosted, Proxy, and Group repositories?
+6. What is a Hosted Repository?
+7. What is a Proxy Repository?
+8. What is a Group Repository?
+9. How does Nexus improve build performance?
+10. How does Nexus reduce dependency download time?
+
+11. What is the default port of Nexus?
+12. How do you install Nexus on Linux?
+13. How do you start and stop Nexus services?
+14. Where are Nexus logs located?
+15. How do you check Nexus version?
+16. How do you upgrade Nexus Repository Manager?
+17. What are the minimum hardware requirements for Nexus?
+18. How do you configure Nexus behind a reverse proxy?
+19. How do you enable HTTPS in Nexus?
+20. How do you configure SSL certificates in Nexus?
+
+21. How do Maven projects use Nexus?
+22. What is settings.xml in Maven?
+23. How do you configure Nexus in Maven?
+24. How do you upload artifacts to Nexus?
+25. How do you download artifacts from Nexus?
+26. How do you configure Maven snapshots in Nexus?
+27. How do you configure Maven releases in Nexus?
+28. What is a Maven snapshot artifact?
+29. What is a Maven release artifact?
+30. Difference between Snapshot and Release repositories?
+
+31. How do Gradle projects integrate with Nexus?
+32. How do npm projects use Nexus?
+33. How do Docker repositories work in Nexus?
+34. How do NuGet repositories work in Nexus?
+35. How do PyPI repositories work in Nexus?
+36. How do Helm repositories work in Nexus?
+37. How do YUM repositories work in Nexus?
+38. How do APT repositories work in Nexus?
+39. How do raw repositories work in Nexus?
+40. How do you manage multiple package formats in Nexus?
+
+41. How do you create a repository in Nexus?
+42. How do you delete a repository?
+43. How do you back up Nexus repositories?
+44. How do you restore Nexus data?
+45. What is blob storage in Nexus?
+46. How do blob stores work?
+47. Difference between File Blob Store and S3 Blob Store?
+48. How do you configure blob stores?
+49. What happens when blob storage is full?
+50. How do you monitor storage usage?
+
+51. How do you create users in Nexus?
+52. How do you create roles in Nexus?
+53. What is Role-Based Access Control (RBAC)?
+54. How do you assign repository permissions?
+55. How do you integrate Nexus with LDAP?
+56. How do you integrate Nexus with Active Directory?
+57. How do you enable SSO in Nexus?
+58. How do you audit user activities?
+59. How do you manage anonymous access?
+60. How do you secure repositories?
+
+61. How does Jenkins integrate with Nexus?
+62. How do you upload build artifacts from Jenkins?
+63. How do you download artifacts in Jenkins pipelines?
+64. How do you use Nexus in GitLab CI/CD?
+65. How do you use Nexus in Azure DevOps?
+66. How do you use Nexus in GitHub Actions?
+67. How do you automate artifact publishing?
+68. How do you automate artifact promotion?
+69. What is artifact lifecycle management?
+70. How do you manage artifact retention?
+
+71. Nexus service is not starting. How do you troubleshoot?
+72. Nexus UI is inaccessible. What will you check?
+73. Repository uploads are failing. How do you investigate?
+74. Artifact downloads are slow. How do you troubleshoot?
+75. Nexus is consuming high CPU. What will you check?
+76. Nexus is consuming high memory. How do you troubleshoot?
+77. Blob store is growing rapidly. How do you investigate?
+78. Search functionality is slow. What could be the reasons?
+79. Nexus returns 500 Internal Server Error. Troubleshooting steps?
+80. Nexus disk space is full. What actions will you take?
+
+81. How do you clean old snapshots?
+82. How do you configure cleanup policies?
+83. What is repository compaction?
+84. How do you optimize Nexus performance?
+85. How do you improve repository search speed?
+86. How do you optimize JVM settings for Nexus?
+87. How do you tune garbage collection for Nexus?
+88. How do you optimize blob storage performance?
+89. How do you reduce repository response times?
+90. How do you handle large-scale artifact storage?
+
+91. How do you monitor Nexus health?
+92. What metrics should be monitored?
+93. How do you integrate Nexus with Prometheus?
+94. How do you integrate Nexus with Grafana?
+95. How do you monitor JVM performance?
+96. How do you analyze Nexus logs?
+97. How do you detect failed artifact uploads?
+98. How do you monitor repository usage?
+99. How do you track storage growth?
+100. How do you generate repository usage reports?
+
+101. Explain Nexus High Availability architecture.
+102. Does Nexus support clustering?
+103. How do you achieve high availability for Nexus?
+104. How do you use Nexus with Kubernetes?
+105. How do you deploy Nexus on Docker?
+106. How do you deploy Nexus on AWS?
+107. How do you deploy Nexus on Azure?
+108. How do you deploy Nexus on GCP?
+109. How do you scale Nexus for enterprise workloads?
+110. How do you implement disaster recovery for Nexus?
+
+111. Explain Nexus architecture.
+112. What are Nexus components?
+113. What is OrientDB in older Nexus versions?
+114. What database does Nexus use?
+115. How does Nexus store metadata?
+116. How does Nexus handle artifact indexing?
+117. How does Nexus proxy external repositories?
+118. How does repository grouping work internally?
+119. How does Nexus manage cache consistency?
+120. How does Nexus ensure artifact integrity?
+
+121. How would you design Nexus for 10,000 developers?
+122. How would you design a multi-region Nexus deployment?
+123. How would you secure Nexus in a banking environment?
+124. How would you migrate Nexus to AWS?
+125. How would you migrate Artifactory to Nexus?
+126. How would you handle 1 TB artifact storage?
+127. How would you design backup and recovery?
+128. How would you design HA Nexus architecture?
+129. How would you optimize Nexus for CI/CD pipelines?
+130. What production issues have you solved in Nexus?
+
+131. How do you configure Docker Hosted Repository?
+132. How do you configure Docker Proxy Repository?
+133. How do you push Docker images to Nexus?
+134. How do you pull Docker images from Nexus?
+135. How do you secure Docker repositories?
+136. How do you troubleshoot Docker image push failures?
+137. How do you troubleshoot Docker image pull failures?
+138. How do you manage Docker image retention?
+139. How do you scan Docker images for vulnerabilities?
+140. How do you integrate Nexus with Kubernetes image pulls?
+
+141. What are the most common Nexus production issues?
+142. How do you recover corrupted repositories?
+143. How do you recover deleted artifacts?
+144. How do you recover failed upgrades?
+145. How do you troubleshoot repository synchronization issues?
+146. How do you investigate blob store corruption?
+147. How do you resolve SSL certificate issues?
+148. How do you troubleshoot LDAP authentication failures?
+149. How do you troubleshoot slow artifact downloads?
+150. Describe a real-world Nexus performance optimization and troubleshooting experience.
+
+
+===========================
+NEXUS PRODUCTION & TROUBLESHOOTING INTERVIEW QUESTIONS
+===========================
+
+1. Nexus service is down in production. What are your troubleshooting steps?
+
+2. Nexus UI is not accessible. How do you investigate?
+
+3. Nexus is running but users cannot download artifacts. What could be the reasons?
+
+4. Artifact upload is failing with HTTP 401 Unauthorized. How do you troubleshoot?
+
+5. Artifact upload is failing with HTTP 403 Forbidden. What is your approach?
+
+6. Nexus is throwing HTTP 500 Internal Server Error. How do you investigate?
+
+7. Nexus startup is taking too long. What logs would you check?
+
+8. Nexus failed to start after server reboot. What could be the causes?
+
+9. How do you analyze nexus.log?
+
+10. What are the important Nexus log files?
+
+11. Nexus server is consuming 100% CPU. How do you troubleshoot?
+
+12. Nexus server memory utilization is continuously increasing. What will you do?
+
+13. How do you identify memory leaks in Nexus?
+
+14. How do you generate JVM thread dumps for Nexus?
+
+15. How do you analyze thread dumps?
+
+16. How do you capture heap dumps from Nexus?
+
+17. How do you analyze heap dumps?
+
+18. Nexus is frequently throwing OutOfMemoryError. How do you fix it?
+
+19. How do you tune JVM heap size for Nexus?
+
+20. How do you optimize Garbage Collection for Nexus?
+
+21. Artifact downloads are very slow. What could be the reasons?
+
+22. Artifact uploads are very slow. How do you investigate?
+
+23. Nexus search is taking too long. How do you optimize it?
+
+24. Users complain about intermittent repository access failures. How do you troubleshoot?
+
+25. Nexus becomes slow during peak CI/CD hours. What will you check?
+
+26. How do you troubleshoot repository indexing issues?
+
+27. Nexus response time suddenly increased. What are your troubleshooting steps?
+
+28. How do you identify network bottlenecks affecting Nexus?
+
+29. How do you diagnose storage performance issues?
+
+30. How do you monitor repository latency?
+
+31. Blob store disk is almost full. What actions will you take?
+
+32. Blob store size is growing rapidly. How do you investigate?
+
+33. How do you reclaim disk space in Nexus?
+
+34. What are cleanup policies and how do they help?
+
+35. How do you remove old snapshot artifacts?
+
+36. How do you remove unused Docker images?
+
+37. How do you perform blob store compaction?
+
+38. What happens when Nexus disk becomes 100% full?
+
+39. How do you recover from disk space exhaustion?
+
+40. How do you estimate Nexus storage requirements?
+
+41. Maven dependency downloads are failing through Nexus. How do you troubleshoot?
+
+42. Nexus proxy repository is not downloading dependencies from Maven Central. What will you check?
+
+43. Cached artifacts are not updating. How do you troubleshoot?
+
+44. How do you invalidate repository cache?
+
+45. How do you troubleshoot proxy repository synchronization issues?
+
+46. Docker image push is failing. What could be wrong?
+
+47. Docker image pull is failing. How do you investigate?
+
+48. Docker login to Nexus is failing. Troubleshooting steps?
+
+49. Kubernetes cannot pull images from Nexus. What will you check?
+
+50. Docker repository is slow. How do you optimize it?
+
+51. LDAP authentication stopped working. How do you troubleshoot?
+
+52. Active Directory integration is failing. What logs would you check?
+
+53. Nexus users cannot login. What could be the causes?
+
+54. How do you troubleshoot role-based access issues?
+
+55. Anonymous access stopped working. How do you investigate?
+
+56. SSL certificate expired on Nexus. What steps will you take?
+
+57. HTTPS is not working after certificate renewal. Troubleshooting approach?
+
+58. How do you troubleshoot reverse proxy issues with Nginx?
+
+59. How do you troubleshoot reverse proxy issues with Apache?
+
+60. Nexus behind Load Balancer is failing intermittently. What would you check?
+
+61. Jenkins artifact upload to Nexus is failing. Troubleshooting steps?
+
+62. Jenkins build cannot download dependencies from Nexus. How do you investigate?
+
+63. GitLab CI pipeline fails while pushing artifacts. What will you check?
+
+64. Nexus integration with GitHub Actions stopped working. How do you troubleshoot?
+
+65. How do you debug CI/CD pipeline repository failures?
+
+66. Nexus backup failed. What are your troubleshooting steps?
+
+67. How do you verify backup integrity?
+
+68. How do you restore Nexus from backup?
+
+69. Disaster recovery test failed. How do you investigate?
+
+70. What is your DR strategy for Nexus?
+
+71. Nexus upgrade failed. What logs would you analyze?
+
+72. Upgrade completed but repositories are inaccessible. What will you do?
+
+73. How do you rollback a failed Nexus upgrade?
+
+74. How do you perform zero-downtime Nexus upgrades?
+
+75. What precautions should be taken before upgrading Nexus?
+
+76. Nexus database corruption occurred. How do you recover?
+
+77. Blob store corruption detected. What are the recovery steps?
+
+78. Repository metadata corruption happened. How do you troubleshoot?
+
+79. Search index corruption occurred. How do you rebuild indexes?
+
+80. How do you recover accidentally deleted artifacts?
+
+81. How do you monitor Nexus in production?
+
+82. Which JVM metrics are important for Nexus?
+
+83. Which infrastructure metrics should be monitored?
+
+84. How do you integrate Nexus with Prometheus?
+
+85. How do you create Grafana dashboards for Nexus?
+
+86. What alerts should be configured for Nexus?
+
+87. How do you monitor blob store growth?
+
+88. How do you monitor repository usage?
+
+89. How do you identify abnormal artifact downloads?
+
+90. How do you perform capacity planning for Nexus?
+
+91. Nexus supports 100 developers today. Tomorrow it must support 5000 developers. What changes would you make?
+
+92. How do you scale Nexus horizontally?
+
+93. How do you scale Nexus vertically?
+
+94. How do you optimize Nexus for enterprise CI/CD pipelines?
+
+95. How do you design high availability for Nexus?
+
+96. How do you deploy Nexus on Kubernetes in production?
+
+97. How do you store Nexus artifacts in AWS S3?
+
+98. How do you design multi-region Nexus architecture?
+
+99. What are the most common Nexus production incidents you have faced?
+
+100. Describe a real production issue in Nexus, root cause analysis, troubleshooting steps, resolution, and preventive measures.
+
+

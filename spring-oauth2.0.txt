@@ -2,57 +2,7 @@
 SPRING SECURITY OAUTH2 - 100 QUESTIONS
 =========================================
 
-OAUTH2 BASICS
 
-1. What is OAuth2?
-2. Why was OAuth2 introduced?
-3. What problem does OAuth2 solve?
-4. Difference between Authentication and Authorization?
-5. Is OAuth2 Authentication or Authorization?
-6. What are OAuth2 roles?
-7. What is Resource Owner?
-8. What is Client Application?
-9. What is Authorization Server?
-10. What is Resource Server?
-
-TOKENS
-
-11. What is Access Token?
-12. What is Refresh Token?
-13. Why do we need Refresh Tokens?
-14. What is Token Expiration?
-15. What is Token Revocation?
-16. What is JWT Token?
-17. Difference between Opaque Token and JWT?
-18. Advantages of JWT?
-19. Disadvantages of JWT?
-20. How do you validate a JWT?
-
-OAUTH2 FLOWS
-
-21. What is Authorization Code Flow?
-22. What is Authorization Code + PKCE?
-23. What is Client Credentials Flow?
-24. What is Password Grant Flow?
-25. Why is Password Grant deprecated?
-26. What is Implicit Flow?
-27. Why is Implicit Flow deprecated?
-28. Which OAuth2 flow is used for microservices?
-29. Which flow is used for UI applications?
-30. Which flow is used for machine-to-machine communication?
-
-AUTHORIZATION CODE FLOW
-
-31. Explain Authorization Code Flow step-by-step.
-32. What happens after login?
-33. What is Authorization Code?
-34. Why exchange Authorization Code for Token?
-35. Why not send Access Token directly?
-36. What is Redirect URI?
-37. What is State Parameter?
-38. What attacks does State prevent?
-39. What is PKCE?
-40. Why is PKCE important?
 
 CLIENT CREDENTIALS FLOW
 

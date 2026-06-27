@@ -1,0 +1,339 @@
+1. What is Apache Kafka and why is it used?
+
+2. Explain Kafka architecture in detail.
+
+3. What are Topics, Partitions, Producers, Consumers, and Brokers?
+
+4. What is the role of a Kafka Broker?
+
+5. What is the difference between a Topic and a Partition?
+
+6. How does Kafka achieve high throughput and scalability?
+
+7. What is a Consumer Group?
+
+8. How does Kafka ensure fault tolerance?
+
+9. What is Replication Factor?
+
+10. What is ISR (In-Sync Replica)?
+
+11. What happens when a Broker goes down?
+
+12. How does Leader Election work in Kafka?
+
+13. What is the difference between Leader and Follower replicas?
+
+14. What are Under Replicated Partitions?
+
+15. What is min.insync.replicas?
+
+16. How do you determine the number of partitions for a topic?
+
+17. What are the advantages and disadvantages of increasing partitions?
+
+18. How does Kafka guarantee message ordering?
+
+19. Can Kafka guarantee global ordering across partitions?
+
+20. How are messages assigned to partitions?
+
+21. What is a partition key and why is it important?
+
+22. Explain Kafka Producer architecture.
+
+23. What are producer acknowledgments (acks=0, acks=1, acks=all)?
+
+24. What is an Idempotent Producer?
+
+25. How does Kafka handle duplicate messages?
+
+26. What are Producer Retries?
+
+27. What happens if a producer retries after a timeout?
+
+28. What is batching in Kafka Producer?
+
+29. What is linger.ms?
+
+30. What is batch.size?
+
+31. What producer configurations do you tune for high throughput?
+
+32. Explain Kafka Consumer architecture.
+
+33. How does a Consumer Group work?
+
+34. What is Consumer Lag?
+
+35. How do you monitor Consumer Lag?
+
+36. What causes Consumer Lag?
+
+37. How would you troubleshoot high Consumer Lag?
+
+38. What is Offset Management?
+
+39. Where are offsets stored?
+
+40. What is the difference between Auto Commit and Manual Commit?
+
+41. What is auto.offset.reset?
+
+42. What happens when offsets are lost?
+
+43. How do you replay messages in Kafka?
+
+44. What is Rebalancing?
+
+45. What triggers a Consumer Rebalance?
+
+46. What are Eager and Cooperative Rebalancing?
+
+47. How can frequent rebalancing be avoided?
+
+48. Explain At-most-once delivery.
+
+49. Explain At-least-once delivery.
+
+50. Explain Exactly-once delivery.
+
+51. How does Kafka achieve Exactly Once Semantics (EOS)?
+
+52. What are Kafka Transactions?
+
+53. What are Transactional Producers?
+
+54. Can Kafka guarantee exactly-once processing with external databases?
+
+55. What is Log Retention?
+
+56. What is Log Compaction?
+
+57. Difference between Retention and Compaction?
+
+58. How is data stored on disk in Kafka?
+
+59. What are Log Segments?
+
+60. How does Kafka manage large messages?
+
+61. What is Zero-Copy in Kafka?
+
+62. How does Kafka leverage OS Page Cache?
+
+63. Explain Kafka's Pull Model.
+
+64. Why does Kafka use Sequential Disk Writes?
+
+65. What are Kafka Internal Topics?
+
+66. What is __consumer_offsets topic?
+
+67. Explain Kafka Connect.
+
+68. What are Source Connectors and Sink Connectors?
+
+69. What is Kafka Connect Distributed Mode?
+
+70. What are Single Message Transforms (SMTs)?
+
+71. How does Kafka Connect handle failures?
+
+72. What is Kafka Streams?
+
+73. Difference between Kafka Streams and Consumer API?
+
+74. What is a KStream?
+
+75. What is a KTable?
+
+76. What is a GlobalKTable?
+
+77. What are Stateful and Stateless operations?
+
+78. What are Windowing Operations?
+
+79. Explain Tumbling, Hopping, and Sliding Windows.
+
+80. What are Stream Joins?
+
+81. What is Event Time Processing?
+
+82. How do you handle Late Arriving Events?
+
+83. How do you handle Out-of-Order Events?
+
+84. Explain Kafka Security Architecture.
+
+85. What is SSL in Kafka?
+
+86. What is SASL in Kafka?
+
+87. Difference between SSL, SASL, and SASL_SSL?
+
+88. What authentication mechanisms are supported in Kafka?
+
+89. What are Kafka ACLs?
+
+90. How do you secure Producer and Consumer communication?
+
+91. How do you encrypt data in transit?
+
+92. How do you secure a multi-tenant Kafka cluster?
+
+93. What metrics do you monitor in Kafka?
+
+94. How do you monitor Kafka in production?
+
+95. What tools have you used for Kafka monitoring?
+
+96. How do you troubleshoot Kafka performance issues?
+
+97. How do you identify Broker bottlenecks?
+
+98. How do you tune Kafka for high throughput?
+
+99. How do you tune Kafka for low latency?
+
+100. How would you design a highly available Kafka cluster?
+
+101. Consumer lag suddenly increased to millions. How would you investigate?
+
+102. Messages are getting duplicated. What could be the reasons?
+
+103. One partition receives significantly more traffic than others. How would you fix it?
+
+104. Kafka brokers frequently go out of ISR. What would you check?
+
+105. Topic disk usage is increasing rapidly. How would you troubleshoot?
+
+106. Producers are experiencing high latency. How would you investigate?
+
+107. Consumers are processing messages slowly. What steps would you take?
+
+108. How would you migrate a Kafka cluster with zero downtime?
+
+109. How would you handle a Kafka broker failure in production?
+
+110. How would you design Kafka for a banking transaction system?
+
+111. How would you design Kafka for a real-time fraud detection platform?
+
+112. Describe a major Kafka production issue you faced and how you resolved it.
+
+113. What are the best practices for Kafka topic design?
+
+114. What are the best practices for partition strategy?
+
+115. What are the best practices for Kafka security?
+
+116. What are the best practices for Kafka monitoring and alerting?
+
+117. What are the differences between Kafka and RabbitMQ?
+
+118. What are the differences between Kafka and ActiveMQ?
+
+119. What are the differences between Kafka and AWS SQS?
+
+120. Why would you choose Kafka over other messaging systems?
+
+1. Consumer lag suddenly increased from 0 to 10 million. How would you troubleshoot?
+
+2. Kafka producer latency increased significantly. What could be the reasons?
+
+3. One consumer is processing slowly while others are healthy. How would you investigate?
+
+4. Kafka brokers are running out of disk space. What checks would you perform?
+
+5. Under Replicated Partitions (URP) are increasing continuously. What could be the reasons?
+
+6. Kafka brokers are frequently going out of ISR. How would you troubleshoot?
+
+7. Messages are getting duplicated in the downstream system. How would you identify the root cause?
+
+8. A consumer application is skipping messages. What could be wrong?
+
+9. Consumers are reprocessing old messages after restart. Why?
+
+10. Producers are getting TimeoutException errors. What would you check?
+
+11. Kafka cluster CPU usage suddenly spikes to 90%. How would you investigate?
+
+12. Kafka broker memory utilization is very high. What are the possible causes?
+
+13. Kafka topic throughput dropped after increasing consumer instances. Why?
+
+14. Frequent consumer group rebalances are occurring. How would you resolve them?
+
+15. One partition has significantly higher traffic than other partitions. How would you fix it?
+
+16. Kafka cluster network traffic suddenly increased. How would you investigate?
+
+17. Consumers are unable to keep up with incoming traffic. What are your options?
+
+18. Kafka leader elections are happening frequently. What could cause this?
+
+19. Producer throughput dropped after enabling acknowledgments. Why?
+
+20. Consumer lag exists only for a few partitions. How would you analyze it?
+
+21. Kafka brokers restart unexpectedly. What logs and metrics would you check?
+
+22. A topic is receiving more messages than expected. How would you identify the source?
+
+23. Message ordering is getting broken. What could be the reasons?
+
+24. Consumers are getting OutOfMemoryError. How would you troubleshoot?
+
+25. Producers are sending messages successfully but consumers are not receiving them. What checks would you perform?
+
+26. Replication is slow between brokers. What factors would you investigate?
+
+27. Kafka Connect tasks are failing repeatedly. How would you troubleshoot?
+
+28. MirrorMaker replication lag is increasing. What could be the reasons?
+
+29. Kafka Streams application state store size is growing unexpectedly. How would you investigate?
+
+30. A broker becomes unavailable during peak traffic. How does Kafka recover?
+
+31. Retention policy is not deleting old messages. What would you check?
+
+32. Log compaction is not working as expected. How would you troubleshoot?
+
+33. Producers are experiencing message loss. What configurations would you verify?
+
+34. Consumer offsets are not getting committed. What could be the reasons?
+
+35. Kafka UI shows partitions offline. What actions would you take?
+
+36. Topic creation is failing in production. What could cause this?
+
+37. Kafka ACL changes are not taking effect. How would you investigate?
+
+38. SSL-enabled clients cannot connect to Kafka. What troubleshooting steps would you follow?
+
+39. SASL authentication failures are occurring. How would you debug them?
+
+40. Kafka broker startup is failing. What logs and configurations would you check?
+
+41. ZooKeeper/KRaft controller issues are impacting Kafka. How would you troubleshoot?
+
+42. Producers are blocked waiting for metadata. What could cause this?
+
+43. Kafka cluster performance degraded after partition count increased. Why?
+
+44. Large messages are causing broker instability. How would you address this?
+
+45. Broker heap memory usage keeps increasing. What could be causing it?
+
+46. Kafka consumer application crashes during peak load. How would you analyze it?
+
+47. How would you investigate a sudden increase in end-to-end message latency?
+
+48. How would you troubleshoot Kafka cluster imbalance across brokers?
+
+49. How would you perform root cause analysis for a Kafka outage?
+
+50. Describe a production issue you handled related to consumer lag, broker failure, data loss, or replication issues and explain the resolution.

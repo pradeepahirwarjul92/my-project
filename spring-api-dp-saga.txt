@@ -1,0 +1,438 @@
+
+=========================================
+SAGA DESIGN PATTERN INTERVIEW QUESTIONS
+=========================================
+
+1. What is Saga Pattern?
+
+2. Why do we need Saga Pattern?
+
+3. What problem does Saga solve?
+
+4. Why are distributed transactions difficult in Microservices?
+
+5. What is a distributed transaction?
+
+6. Why is 2PC (Two-Phase Commit) not preferred in Microservices?
+
+7. Difference between ACID and BASE?
+
+8. What is eventual consistency?
+
+9. What is compensating transaction?
+
+10. How does Saga maintain data consistency?
+
+=========================================
+BASICS
+=========================================
+
+11. Explain Saga architecture.
+
+12. What are the components of Saga Pattern?
+
+13. What is a local transaction?
+
+14. What is a compensation transaction?
+
+15. What happens if a service fails during Saga execution?
+
+16. What is rollback in Saga?
+
+17. How does Saga differ from traditional transactions?
+
+18. What is orchestration-based Saga?
+
+19. What is choreography-based Saga?
+
+20. Difference between Choreography and Orchestration?
+
+=========================================
+CHOREOGRAPHY SAGA
+=========================================
+
+21. What is Choreography Saga?
+
+22. How does Choreography work?
+
+23. Which messaging systems are used?
+
+24. How does Kafka support Saga?
+
+25. Advantages of Choreography?
+
+26. Disadvantages of Choreography?
+
+27. Event-driven Saga architecture?
+
+28. What are domain events?
+
+29. How do services communicate in Choreography?
+
+30. What happens if an event is lost?
+
+=========================================
+ORCHESTRATION SAGA
+=========================================
+
+31. What is Orchestration Saga?
+
+32. What is Saga Orchestrator?
+
+33. How does Saga Orchestrator work?
+
+34. Advantages of Orchestration?
+
+35. Disadvantages of Orchestration?
+
+36. How does Orchestrator manage failures?
+
+37. How does Orchestrator trigger compensation?
+
+38. State machine-based orchestration?
+
+39. Workflow engine-based orchestration?
+
+40. Centralized vs Decentralized Saga?
+
+=========================================
+SPRING BOOT QUESTIONS
+=========================================
+
+41. How do you implement Saga in Spring Boot?
+
+42. How do you implement Choreography Saga using Kafka?
+
+43. How do you implement Orchestration Saga using Spring Boot?
+
+44. How do you use Kafka Producers and Consumers in Saga?
+
+45. How do you manage Saga state?
+
+46. How do you persist Saga state?
+
+47. How do you handle retries in Saga?
+
+48. How do you implement compensation logic?
+
+49. How do you ensure idempotency?
+
+50. How do you handle duplicate events?
+
+=========================================
+KAFKA + SAGA
+=========================================
+
+51. Why is Kafka commonly used in Saga?
+
+52. What is Kafka Event Sourcing?
+
+53. What is Outbox Pattern?
+
+54. Why is Outbox Pattern important in Saga?
+
+55. Transactional Outbox Pattern?
+
+56. CDC (Change Data Capture) in Saga?
+
+57. How does Debezium help?
+
+58. Exactly Once Processing in Kafka?
+
+59. Consumer retries in Saga?
+
+60. Dead Letter Queue in Saga?
+
+=========================================
+PRODUCTION QUESTIONS
+=========================================
+
+61. Saga transaction stuck in production. How do you troubleshoot?
+
+62. Compensation transaction failed. What will you do?
+
+63. Kafka message lost during Saga. Investigation?
+
+64. Duplicate events processed. Troubleshooting?
+
+65. Saga state inconsistent. Root cause analysis?
+
+66. Orchestrator service crashed. Recovery steps?
+
+67. Event ordering issue. How do you handle it?
+
+68. Consumer lag affecting Saga. Investigation?
+
+69. Kafka broker failure during Saga. Impact?
+
+70. Database update succeeded but event publishing failed. Solution?
+
+=========================================
+OUTBOX PATTERN QUESTIONS
+=========================================
+
+71. What is Transactional Outbox Pattern?
+
+72. Why is Outbox needed?
+
+73. How does Outbox prevent data inconsistency?
+
+74. Outbox vs Dual Write Problem?
+
+75. What is CDC?
+
+76. Debezium architecture?
+
+77. Kafka Connect role in Outbox?
+
+78. How do you monitor Outbox tables?
+
+79. How do you clean Outbox tables?
+
+80. What are Outbox performance concerns?
+
+=========================================
+PERFORMANCE QUESTIONS
+=========================================
+
+81. How do you optimize Saga performance?
+
+82. How do you reduce event latency?
+
+83. How do you optimize Kafka throughput?
+
+84. How do you scale Saga Orchestrators?
+
+85. How do you handle millions of Saga transactions?
+
+86. Database optimization for Saga?
+
+87. Kafka partition strategy for Saga?
+
+88. How do you reduce compensation failures?
+
+89. How do you monitor Saga performance?
+
+90. Key metrics for Saga monitoring?
+
+=========================================
+MONITORING & OBSERVABILITY
+=========================================
+
+91. How do you monitor Saga transactions?
+
+92. How do you trace Saga execution?
+
+93. OpenTelemetry integration?
+
+94. Distributed tracing for Saga?
+
+95. Grafana dashboards for Saga?
+
+96. Alerting strategies for Saga?
+
+97. How do you identify failed Saga transactions?
+
+98. How do you identify compensation failures?
+
+99. RCA approach for Saga failures?
+
+100. Explain a real production Saga issue, RCA, troubleshooting steps, resolution, and preventive measures.
+
+
+Most Asked Interview Answer
+
+What is Saga Pattern?
+Answer:
+Saga Pattern is a distributed transaction management pattern used in Microservices architecture 
+where a business transaction is broken into multiple local transactions.
+
+Each service performs its own transaction and publishes an event.
+
+If any step fails, previously completed steps are undone using compensation transactions
+
+Example: Order Processing
+
+Order Service
+      |
+      v
+Create Order
+      |
+      v
+Payment Service
+      |
+      v
+Deduct Payment
+      |
+      v
+Inventory Service
+      |
+      v
+Reserve Product
+      |
+      v
+Shipping Service
+      |
+      v
+Create Shipment
+
+
+
+Failure Scenario
+
+Order Created  ✓
+Payment Done   ✓
+Inventory Fail ✗
+
+Compensation:
+
+Refund Payment
+Cancel Order
+
+
+
+Choreography-Based Saga
+
+Order Service
+      |
+OrderCreated Event
+      |
+      v
+Payment Service
+      |
+PaymentCompleted Event
+      |
+      v
+Inventory Service
+      |
+InventoryReserved Event
+      |
+      v
+Shipping Service
+
+
+Advantages
+No central coordinator
+Loosely coupled
+Easy scalability
+Disadvantages
+Difficult debugging
+Event dependency complexity
+Harder monitoring
+
+
+
+Orchestration-Based Saga
+
+Saga Orchestrator
+      |
+      |---- Order Service
+      |
+      |---- Payment Service
+      |
+      |---- Inventory Service
+      |
+      |---- Shipping Service
+	  
+Advantages
+	Centralized control
+	Easier monitoring
+	Easier compensation handling
+
+Disadvantages
+	Single coordination point
+	Additional service complexity	  
+
+Saga vs Two-Phase Commit (2PC)	
+2PC
+---
+Strong consistency
+Blocking
+Poor scalability
+Not cloud friendly
+
+Saga
+-----
+Eventual consistency
+Highly scalable
+Microservice friendly
+Cloud native
+
+
+Saga + Outbox Pattern
+
+Database Transaction
+---------------------
+1. Update Order Table
+2. Insert Outbox Event
+3. Commit
+
+Debezium CDC
+      |
+      v
+Kafka Topic
+      |
+      v
+Consumers
+
+
+
+Benefit
+
+Prevents Dual Write Problem:
+
+Bad:
+
+DB Commit Success
+Kafka Publish Fail
+
+Data Inconsistent
+
+Good:
+
+DB Commit + Outbox Insert
+Guaranteed Event Delivery
+
+
+Real Production Scenario
+
+Issue:
+
+Payment deducted successfully
+but Inventory Service was down.
+
+Problem:
+
+Customer charged but order not created.
+
+Root Cause:
+
+No compensation mechanism.
+
+Solution:
+
+Implemented Saga Pattern
+with Kafka + Outbox Pattern.
+
+Flow:
+
+Order Created
+Payment Success
+Inventory Failure
+
+Compensation:
+Refund Payment
+Cancel Order
+
+Result:
+
+100% transaction consistency
+No manual intervention required.
+
+
+Interview One-Liner
+
+Saga Pattern is a distributed transaction pattern that maintains
+data consistency across multiple microservices using local
+transactions and compensating transactions instead of
+traditional database transactions.

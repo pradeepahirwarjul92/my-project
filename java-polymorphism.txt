@@ -1,0 +1,185 @@
+====================================
+POLYMORPHISM BASICS
+====================================
+
+1. What is Polymorphism in Java?
+2. Why is Polymorphism important?
+3. What are the advantages of Polymorphism?
+4. What are the types of Polymorphism?
+5. Explain Compile-Time Polymorphism.
+6. Explain Run-Time Polymorphism.
+7. Difference between Compile-Time and Run-Time Polymorphism?
+8. How does Java support Polymorphism?
+9. Real-world example of Polymorphism?
+10. Why is Polymorphism one of the OOP pillars?
+
+====================================
+METHOD OVERLOADING
+====================================
+
+11. What is Method Overloading?
+12. Why is Method Overloading called Compile-Time Polymorphism?
+13. What are the rules of Method Overloading?
+14. Can methods be overloaded by changing number of parameters?
+15. Can methods be overloaded by changing parameter types?
+16. Can methods be overloaded by changing parameter order?
+17. Can methods be overloaded by changing return type only?
+18. Can static methods be overloaded?
+19. Can private methods be overloaded?
+20. Can constructors be overloaded?
+
+21. Can main() method be overloaded?
+22. Method overloading with inheritance?
+23. Method overloading with varargs?
+24. Method overloading ambiguity issues?
+25. Best practices for method overloading?
+
+====================================
+METHOD OVERRIDING
+====================================
+
+26. What is Method Overriding?
+27. Why is Method Overriding called Runtime Polymorphism?
+28. Rules of Method Overriding?
+29. Can static methods be overridden?
+30. Can private methods be overridden?
+31. Can final methods be overridden?
+32. Can constructors be overridden?
+33. Can abstract methods be overridden?
+34. Can protected methods be overridden?
+35. Can access modifiers be changed while overriding?
+
+36. Can return types differ while overriding?
+37. What is Covariant Return Type?
+38. What exceptions can be thrown while overriding?
+39. Method overriding with inheritance?
+40. Real-world examples of overriding?
+
+====================================
+RUNTIME POLYMORPHISM
+====================================
+
+41. What is Dynamic Method Dispatch?
+42. How does JVM resolve overridden methods?
+43. Parent reference to child object?
+44. Why does Runtime Polymorphism occur?
+45. How is method selection done at runtime?
+46. Can variables participate in Runtime Polymorphism?
+47. Why only methods are polymorphic?
+48. What happens if overridden method is absent?
+49. Runtime Polymorphism execution flow?
+50. Production examples?
+
+====================================
+INHERITANCE & POLYMORPHISM
+====================================
+
+51. Relationship between Inheritance and Polymorphism?
+52. Can Polymorphism exist without inheritance?
+53. How does inheritance enable Runtime Polymorphism?
+54. Parent reference and child object?
+55. Child reference and parent object?
+56. Upcasting?
+57. Downcasting?
+58. Risks of downcasting?
+59. ClassCastException?
+60. instanceof operator usage?
+
+====================================
+ABSTRACT CLASS POLYMORPHISM
+====================================
+
+61. How does abstract class support polymorphism?
+62. Parent abstract reference to child object?
+63. Abstract method overriding?
+64. Abstract class real-world examples?
+65. Why use abstract classes with polymorphism?
+66. Can abstract class have constructors?
+67. Can abstract class have concrete methods?
+68. Abstract class vs interface in polymorphism?
+69. Runtime dispatch with abstract classes?
+70. Production examples?
+
+====================================
+INTERFACE POLYMORPHISM
+====================================
+
+71. How do interfaces support polymorphism?
+72. Interface reference to implementation object?
+73. Why interface-based programming is preferred?
+74. Loose coupling using interfaces?
+75. Multiple implementations through interfaces?
+76. Dependency Injection and polymorphism?
+77. Spring Bean polymorphism?
+78. Interface polymorphism in collections?
+79. Real-world examples?
+80. Production benefits?
+
+====================================
+ADVANCED POLYMORPHISM
+====================================
+
+81. Polymorphism with Generics?
+82. Polymorphism with Collections?
+83. Polymorphism with Dependency Injection?
+84. Polymorphism in Factory Pattern?
+85. Polymorphism in Strategy Pattern?
+86. Polymorphism in Template Pattern?
+87. Polymorphism in Adapter Pattern?
+88. Polymorphism in Microservices?
+89. Polymorphism in Spring Boot?
+90. Polymorphism in Hibernate?
+
+====================================
+PRODUCTION SCENARIOS
+====================================
+
+91. How does Spring use polymorphism internally?
+92. How does Dependency Injection use polymorphism?
+93. Why prefer interfaces over implementations?
+94. How does Strategy Pattern use polymorphism?
+95. How does Factory Pattern use polymorphism?
+96. How does polymorphism improve maintainability?
+97. How does polymorphism reduce code duplication?
+98. Explain Open/Closed Principle using polymorphism.
+99. Explain polymorphism in enterprise applications.
+100. Explain a real production use case of polymorphism.
+
+====================================
+MOST ASKED INTERVIEW QUESTIONS
+====================================
+
+1. What is Polymorphism?
+2. Difference between Overloading and Overriding?
+3. Why is Overloading Compile-Time Polymorphism?
+4. Why is Overriding Runtime Polymorphism?
+5. What is Dynamic Method Dispatch?
+6. What is Upcasting?
+7. What is Downcasting?
+8. What is Covariant Return Type?
+9. Can static methods be overridden?
+10. Can constructors be overridden?
+11. Can private methods be overridden?
+12. Can final methods be overridden?
+13. Abstract Class vs Interface for Polymorphism?
+14. How does Spring use polymorphism?
+15. Explain Runtime Polymorphism with example.
+
+
+Coding Practice Questions
+
+1. Create method overloading example with addition().
+2. Create constructor overloading example.
+3. Override a method in child class.
+4. Demonstrate Runtime Polymorphism using Animal-Dog example.
+5. Implement interface polymorphism.
+6. Create Payment interface with CreditCard, UPI, NetBanking implementations.
+7. Create Shape abstract class with Circle and Rectangle.
+8. Demonstrate Upcasting and Downcasting.
+9. Use instanceof before downcasting.
+10. Implement Strategy Pattern using polymorphism.
+11. Implement Factory Pattern using polymorphism.
+12. Create Notification interface with Email and SMS implementations.
+13. Create Vehicle hierarchy and demonstrate runtime dispatch.
+14. Create Employee hierarchy and calculate salary polymorphically.
+15. Create Spring-style service interface with multiple implementations.

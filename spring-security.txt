@@ -1,170 +1,2997 @@
+~ Broken authentication
+~ Session fixation
+~ Cross-site scripting (XSS)
+~ Cross-site request forgery (CSRF)
+~ Injections
+~ Sensitive data exposure
+~ Lack of method access control
+~ Using dependencies with known vulnerabilities
+
+
 ====================================
 SPRING SECURITY - 100 QUESTIONS
 ====================================
 
 BASICS
 
-1. What is Spring Security?
-2. Why do we need Spring Security?
-3. What problems does Spring Security solve?
-4. What are Authentication and Authorization?
-5. Difference between Authentication and Authorization?
 6. What is Principal?
+A Principal represents the currently authenticated user.
+After a user successfully logs in, Spring Security stores the user's identity as a Principal in the Security Context.
+
+Principal is the identity of the currently authenticated user in Spring Security. After successful 
+authentication, Spring Security stores the user information as a Principal inside the Authentication 
+object, which can be accessed from the SecurityContext
+
 7. What is GrantedAuthority?
+Ans - A GrantedAuthority represents a permission or role assigned to an authenticated user.
+
+Spring Security uses GrantedAuthority objects to determine what a user is allowed to access.
+
+
 8. What is SecurityContext?
+SecurityContext is an object that stores the security information of the currently authenticated user.
+
+It mainly contains the Authentication object, which holds:
+
+Principal (logged-in user)
+Credentials (password/token)
+Authorities (roles/permissions)
+
 9. What is SecurityContextHolder?
+SecurityContextHolder is a utility class that provides access to the SecurityContext of the currently authenticated user.
+
 10. How does Spring Security work internally?
+Client Request
+      ↓
+Security Filter Chain
+      ↓
+Authentication Filter
+      ↓
+Authentication Manager
+      ↓
+Authentication Provider
+      ↓
+UserDetailsService
+      ↓
+Database
+      ↓
+Authentication Success
+      ↓
+SecurityContext
+      ↓
+Controller
+
 
 SECURITY FLOW
+Step 1: Request Enters Security Filter Chain
+	Every request first passes through the Security Filter Chain.
+	
+Step 2: Security Filter Chain Executes
+	Internally Spring Security contains multiple filters.
+
+Common filters:	
+	SecurityContextHolderFilter
+	LogoutFilter
+	UsernamePasswordAuthenticationFilter
+	BasicAuthenticationFilter
+	BearerTokenAuthenticationFilter
+	ExceptionTranslationFilter
+	AuthorizationFilter
+
+Step 3: Authentication Begins
+	Suppose user logs in:
+	POST /login
+{
+   "username":"john",
+   "password":"123"
+}
+
+The filter creates an Authentication object.
+
+	UsernamePasswordAuthenticationToken
+	Authentication auth =
+    new UsernamePasswordAuthenticationToken(
+        username,
+        password
+    );
+	
+Step 4: AuthenticationManager Called
+The filter delegates authentication.
+authenticationManager.authenticate(auth);
+	
+Step 5: AuthenticationProvider Validates User
+Step 6: UserDetailsService Loads User
+Step 7: Password Verification
+Step 8: Authentication Success
+Step 9: Store Authentication in SecurityContext
+Step 10: Authorization Happens
 
 11. Explain Spring Security request flow.
+Ans - 
+client request 
+	|
+ DelegatingFilterProxy
+	|
+FilterChainProxy
+	|
+Security Filter chain
+	|
+	+--> Authentication Filters
+	|
+	+--> Authorization Filter
+	|
+	+--> Exception Filters
+	|
+Controller
+	|
+Response	
+
+-----------------------
+Complete Internal Flow
+-----------------------
+Step 1: Client Sends Request
+	Example:
+
+GET /api/employees
+Authorization: Bearer eyJhbGciOi...
+ 
+- The request first reaches the Servlet Container (Tomcat).
+
+Step 2: DelegatingFilterProxy
+Spring Security registers a filter called:
+
+DelegatingFilterProxy
+
+Purpose : 
+	-	Entry point of Spring Security
+	-	Delegates request to Spring-managed beans
+	-	Looks for SpringSecurityFilterChain
+
+	Request
+		|
+	DelegatingFilterProxy
+
+	
+Step 3: FilterChainProxy
+DelegatingFilterProxy forwards request to:
+
+	-	FilterChainProxy
+
+This contains all Spring Security filters.
+Request
+   |
+   v
+FilterChainProxy
+
+Example : 
+
+SecurityFilterChain securityFilterChain(HttpSecurity http){
+	return http.build();
+}
+
+Spring converts this into a filter chain internally.	
+
+Step 4: Security Context Check
+Spring checks : 
+	securityContextHolder.getContext();
+
+Question : 
+ Is user already authenticated ? 
+	If yest - Skip authentication
+	If no 	-	Authenticate User
+	
+	
+Step 5: Authentication Filter
+Depending on authentication type, differenct filters execute
+
+	# Basic Authentication 
+		BasicAuthenticationFilter 
+	Reads : Authorization: Basic dxNlcjpwXYXnz	
+	
+	# JWT Authentication (Custom JWT Filter)
+		public class JwtFiltr extends OncePerRequestFilter
+	Reads: Authorization: Bearer token
+		
+	# Form Login
+		UsernamePasswordAuthenticationFilter
+	Reads: username,password	
+
+Step 6: Create Authentication Token
+	Example : UsernamePasswordAuthenticationToken
+	
+	Java - 
+	Authentication auth = 
+			new UsernamePasswordAuthenticationToken(
+			username,
+			password);
+	Token is sent to :
+		AuthenticationManager
+
+Step 7: AuthenticationManager
+Main authentication entry point : 
+			-	AuthenticationManager
+		
+	Flow : 
+		Authentication Filter
+				|
+				^
+		AuthenticationManager
+Example : 
+			authenticationManager.authenticate(auth);
+		
+
+Step 8: AuthenticationProvider
+AuthenticationManager delegates to : 
+			
+	AuthenticationProvider
+
+Usually
+DaoAuthenticationProvider
+
+Flow : 
+		AuthenticationManager
+				|
+				^
+		AuthenticationProvider
+		
+Step 9: UserDetailsService
+Provider loads user details.
+
+UserDetailsService
+		
+Example:
+public UserDetails loadUserByUsername(String username){
+	return repository.findByUsername(username);
+}
+
+
+Step10: Password Verification
+-	Spring compared password
+		passwordEncoder
+Example: 
+	BcryptPasswordEncoder
+
+passwordEncoder.matches(
+		rawPassword,
+		encodedPassword
+		);	
+
+
+Step 11 : Authentication Success
+spring creates authenticated object .
+
+Authentication auth = 
+		new UsernamePasseordAuthenticationToken(
+		user,
+		null,
+		authories
+		);
+		
+Example 
+	ROLE_ADMIN
+	ROLE_USER
+	
+Step 12 : Store in securityContext
+Spring stores user details
+	securityContxtHolder
+	.getContext()
+	.setAuthentication(auth)
+	
+ontains logged-in user information.
+
+Step 13 : Authorization Check 
+Now Spring checks :
+	Can this user access resource?
+
+Example:
+.requestMatchers("/admin/**")
+.hasRole("ADMIN")
+
+Spring checks:
+		GrantedAuthority
+	
+	User:
+		ROLE_USER
+	Trying:
+		/admin
+	Result:
+		403 Forbidden
+	
+Step 14: Controller Execution
+If authorization succeeds:
+
+@RestController
+public class EmployeeController {
+
+    @GetMapping("/employees")
+    public String getEmployees() {
+        return "Employees";
+    }
+}
+
+Controller executes.	
+	
+	
+Step 15: Response Returned
+	
+Controller
+    |
+    v
+Security Filters
+    |
+    v
+Client
+
+Response:
+200 OK
+
+
+| Spring Security        | Real-World Example                  |
+| ---------------------- | ----------------------------------- |
+| DelegatingFilterProxy  | Security Gate                       |
+| FilterChainProxy       | Reception Desk                      |
+| SecurityFilterChain    | Office Security Rules               |
+| AuthenticationFilter   | Guard asks for ID                   |
+| AuthenticationManager  | Security Manager                    |
+| AuthenticationProvider | Verification Officer                |
+| UserDetailsService     | Employee Database                   |
+| PasswordEncoder        | Password Checker                    |
+| Authentication         | Visitor Pass                        |
+| GrantedAuthority       | Access Level on Pass                |
+| SecurityContext        | Visitor Information Record          |
+| SecurityContextHolder  | File Cabinet Holding Visitor Record |
+| AuthorizationFilter    | Final Door Guard                    |
+
 12. What is Security Filter Chain?
+Ans - SecurityFilterChain is a collection of Spring Security filters that 
+		process incoming requests and enforce security rules such as authentication 
+		and authorization.
+		@Bean
+
+SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    return http
+            .authorizeHttpRequests(auth -> auth
+                    .requestMatchers("/admin/**").hasRole("ADMIN")
+                    .anyRequest().authenticated())
+            .build();
+}
+
+Interview One-Liner:
+SecurityFilterChain defines which security filters are applied and what security 
+rules protect application endpoints.
+
 13. What is DelegatingFilterProxy?
+Ans - DelegatingFilterProxy is the entry point of Spring Security.
+It is a servlet filter registered with the web container that 
+delegates request to Spring-managed security beans.
+
+Request
+   |
+   v
+DelegatingFilterProxy
+   |
+   v
+FilterChainProxy
+
+Interview One-Liner:
+
+DelegatingFilterProxy acts as a bridge between the Servlet container and Spring Security's 
+FilterChainProxy.
+
+
 14. What is FilterChainProxy?
+Ans - FilterChainProxy is the central Spring Security filter that manages and executes 
+		all configured security filters.
+		
+Responsibilities:
+		-	Holds SecurityFilterChains
+		-	Selects the appropriate chain
+		-	Executes security filters in order
+
+Interview One-Liner:
+		FilterChainProxy is the central filter that manages and invokes all 
+		Spring Security filters.		
+
+
 15. What is OncePerRequestFilter?
+Answer:
+	OncePerRequestFilter is a base class that guarantees a filter executes 
+	only once per HTTP request.
+
+Commonly used for:
+			-	JWT Validation
+			-	Logging
+			-	Custom Security Filters
+
+Interview One-Liner:
+	OncePerRequestFilter ensures a filter executes only once during a request lifecycle.
+	
 16. What happens when a request enters Spring Security?
+Answer: 
+Steps:
+	-	Request enters DelegatingFilterProxy.
+	-	Delegated to FilterChainProxy.
+	-	Security filters execute.
+	-	User is authenticated.
+	-	Authentication stored in SecurityContext.
+	-	Authorization rules are checked.
+	-	Request reaches Controller.
+
 17. How is SecurityContext populated?
+Answer : After successful authentication, Spring creates an Authentication object and stores it inside SecurityContext.
+
+Authentication authentication =
+        authenticationManager.authenticate(token);
+
+SecurityContextHolder
+        .getContext()
+        .setAuthentication(authentication);
+
+Interview One-Liner:
+		SecurityContext is populated after successful authentication by storing the 
+		authenticated Authentication object.		
+		
 18. How is Authentication stored?
+Answer - Authentication is stored inside SecurityContext, which is managed by SecurityContextHolder.
+SecurityContextHolder
+        .getContext()
+        .setAuthentication(authentication);
+
+Retrieve later:
+
+Authentication auth =
+        SecurityContextHolder
+                .getContext()
+                .getAuthentication();
+
+				
 19. What is AuthenticationManager?
+Answer : AuthenticationManager is the main interface responsible for processing authentication requests.
+
+Example:
+
+Authentication authentication =
+        authenticationManager.authenticate(token);
+
+Responsibilities:
+		-	Receives Authentication object
+		-	Delegates validation to AuthenticationProvider
+		-	Returns authenticated user
+		
 20. What is AuthenticationProvider?
+Answer: AuthenticationProvider performs the actual authentication logic.
+
+Typical implementation:
+		DaoAuthenticationProvider
+
+Responsibilities:
+		-	Load user using UserDetailsService.
+		-	Validate password using PasswordEncoder.
+		-	Return authenticated Authentication object.
 
 AUTHENTICATION
 
 21. What is UsernamePasswordAuthenticationToken?
+Ans - It is Spring Security's authentication object used for username/password login.
+
+	It contains:
+			-	Username
+			-	Password
+			-	Authorities (Roles)
+
+
+Before Authentication
+UsernamePasswordAuthenticationToken token =
+    new UsernamePasswordAuthenticationToken(
+        "admin",
+        "password"
+    );
+
+
+	Contains:
+		-	Principal = admin
+		-	Credentials = password
+		-	Authenticated = false
+
+After Authentication
+UsernamePasswordAuthenticationToken token =
+    new UsernamePasswordAuthenticationToken(
+        userDetails,
+        null,
+        authorities
+    );
+
+	Contains:
+		-	Principal = UserDetails
+		-	Credentials = null
+		-	Authorities = ROLE_ADMIN
+		-	Authenticated = true	
+
+
 22. What is DaoAuthenticationProvider?
+Ans- Most commonly used AuthenticationProvider.
+
+Authenticates users using:
+		Database
+			+
+		UserDetailsService
+			+
+		PasswordEncoder		
+
 23. What is UserDetailsService?
+Ans : Interface responsible for loading user information. 
+Method 
+public interface UserDetailsService {
+
+    UserDetails loadUserByUsername(
+            String username)
+            throws UsernameNotFoundException;
+}
+
+Purpose: 
+Spring Security asks:
+"Give me user details for username = admin"
+
+Your implementation fetches from:
+	Database
+	LDAP
+	API
+	Active Directory
+
+
 24. What is UserDetails?
+Ans - Represents authenticated user information.
+
+public interface UserDetails {
+}
+
+Contains:
+		-	Username
+		-	Password
+		-	Roles
+		-	Account Status
+
+Methods: 
+getUsername()
+
+getPassword()
+
+getAuthorities()
+
+isAccountNonExpired()
+
+isAccountNonLocked()
+
+isCredentialsNonExpired()
+
+isEnabled()
+		
+
+
 25. How do you implement custom authentication?
-26. How do you authenticate against a database?
-27. How do you authenticate using LDAP?
-28. How do you authenticate using Active Directory?
-29. What is PasswordEncoder?
-30. Why should passwords never be stored in plain text?
+Ans: Create your own AuthenticationProvider.
+@Component
+public class CustomAuthenticationProvider
+        implements AuthenticationProvider {
+
+    @Override
+    public Authentication authenticate(
+            Authentication auth) {
+
+        String user = auth.getName();
+        String pass = auth.getCredentials().toString();
+
+        if("admin".equals(user)
+                && "123".equals(pass)) {
+
+            return new UsernamePasswordAuthenticationToken(
+                    user,
+                    pass,
+                    List.of(
+                       new SimpleGrantedAuthority(
+                           "ROLE_ADMIN")));
+        }
+
+        throw new BadCredentialsException(
+                "Invalid User");
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return UsernamePasswordAuthenticationToken.class
+                .isAssignableFrom(clazz);
+    }
+}
+
+Flow: 
+	AuthenticationManager
+			↓
+	CustomAuthenticationProvider
+			↓
+	Custom Validation Logic
 
 PASSWORDS
 
 31. What is BCrypt?
+BCrypt is a password hashing algorithm specifically designed for securely storing passwords.
+
+Features
+	-	One-way hashing algorithm
+	-	Automatically generates a unique salt
+	-	Configurable work factor (cost)
+	-	Resistant to brute-force attacks
+Note : BCrypt is a password hashing algorithm that combines hashing, salting, and an adjustable work factor to securely store passwords.	
+
 32. Why is BCrypt preferred?
+Ans - Because it is designed specifically for password storage.
+
+| Algorithm | Good for Passwords?      |
+| --------- | ------------------------ |
+| MD5       | ❌ No                     |
+| SHA-1     | ❌ No                     |
+| SHA-256   | ⚠️ Not recommended alone |
+| BCrypt    | ✅ Yes                    |
+
+note : BCrypt is preferred because it automatically salts passwords and intentionally 
+	hashes slowly, making brute-force attacks much harder.
+
+
 33. Difference between hashing and encryption?
+| Feature    | Hashing      | Encryption      |
+| ---------- | ------------ | --------------- |
+| Purpose    | Verification | Confidentiality |
+| Reversible | ❌ No        | ✅ Yes          |
+| Uses Key   | ❌ No        | ✅ Yes          |
+| Output     | Hash         | Cipher Text     |
+| Example    | BCrypt       | AES             |
+
+
 34. What is salting?
+Ans: A salt is random data added to a password before hashing.
+Salting adds random data to passwords before hashing so that identical passwords generate different hashes.
+
 35. What is peppering?
+| Salt             | Pepper               |
+| ---------------- | -------------------- |
+| Unique per user  | Same for application |
+| Stored with hash | Stored separately    |
+| Public           | Secret               |
+
+
 36. What is Argon2?
+Answer: Argon2 is the winner of the Password Hashing Competition (PHC) and is considered 
+one of the strongest password hashing algorithms.
+
+Features
+	Memory-hard
+	CPU intensive
+	Resistant to GPU attacks
+	Configurable memory and iterations
+
+| Variant  | Purpose                 |
+| -------- | ----------------------- |
+| Argon2d  | GPU resistance          |
+| Argon2i  | Side-channel protection |
+| Argon2id | Recommended             |
+
+	
+
 37. What is PBKDF2?
-38. How does password verification work?
-39. Why can't hashed passwords be decrypted?
-40. Best practices for password storage?
+Ans - PBKDF2 strengthens passwords by applying 
+many hashing iterations, making brute-force attacks slower.
+| Question              | One-Line Answer                                      |
+| --------------------- | ---------------------------------------------------- |
+| BCrypt                | Password hashing algorithm with salt and cost factor |
+| Why BCrypt?           | Slow and secure against brute force                  |
+| Hashing vs Encryption | Hashing is one-way, encryption is reversible         |
+| Salt                  | Random value added before hashing                    |
+| Pepper                | Secret application-wide value added before hashing   |
+| Argon2                | Modern memory-hard password hashing algorithm        |
+| PBKDF2                | Repeated hashing with many iterations                |
+| Password Verification | Hash entered password and compare                    |
+| Why not decrypt hash? | Hashing is one-way                                   |
+| Best Practice         | BCrypt/Argon2 + salt + HTTPS + rate limiting         |
+
+
 
 AUTHORIZATION
 
 41. What is role-based access control?
+Answer : Role-Based Access Control (RBAC) restricts access based on the role assigned to a user.
+	Instead of giving permissions directly to users, permissions are assigned to roles.
+
+User → Role → Permissions
+| User  | Role    | Can Access |
+| ----- | ------- | ---------- |
+| John  | ADMIN   | Everything |
+| Alice | MANAGER | Reports    |
+| Bob   | USER    | Profile    |
+
+Spring Security: 
+http.authorizeHttpRequests(auth -> auth
+    .requestMatchers("/admin/**").hasRole("ADMIN")
+    .requestMatchers("/user/**").hasRole("USER")
+);
+
+Internally,
+	hasRole("ADMIN")
+
+actually checks	
+	ROLE_ADMIN
+	
 42. What is authority-based access control?
+Answer: Authority-Based Access Control grants access based on specific permissions instead of roles.
+
+Example authorities:
+		-	READ_PRODUCT
+		-	WRITE_PRODUCT
+		-	DELETE_PRODUCT
+		-	APPROVE_ORDER
+Spring
+
+http.authorizeHttpRequests(auth -> auth
+    .requestMatchers("/products").hasAuthority("READ_PRODUCT")
+    .requestMatchers("/delete").hasAuthority("DELETE_PRODUCT")
+);
+
+Difference :
+
+Role
+		-	ADMIN
+
+contains many authorities
+		-	READ
+		-	WRITE
+		-	DELETE
+		-	UPDATE
+
+Authorities are more fine-grained.
+
+
 43. Difference between ROLE_ADMIN and ADMIN?
+Answer: 
+Spring Security automatically prefixes roles with:
+ROLE_
+
+Example: 
+hasRole("ADMIN")
+
+Spring internally checks
+ROLE_ADMIN
+
+Whereas : hasAuthority("ADMIN")
+checks - ADMIN
+
+Interview Answer : 
+hasRole() automatically adds the ROLE_ prefix, whereas hasAuthority() checks 
+the exact authority string.
+
 44. What is @PreAuthorize?
+Answer: Executes before the method runs.
+If access is denied,
+Method never executes.
+
 45. What is @PostAuthorize?
+Answer: Runs after the method executes.
+
+Used to validate the returned object.
+
+Example
+
+@PostAuthorize("returnObject.owner == authentication.name")
+public Account getAccount(Long id) {
+    return repository.findById(id);
+}
+
 46. What is @Secured?
+Anser: Older annotation.
+
+Example
+
+@Secured("ROLE_ADMIN")
+public void deleteUser() {
+}
+
+Supports only roles.
+
+Cannot write expressions.
+
+Cannot compare values.
+
+Limited functionality.
+
 47. What is @RolesAllowed?
+Answer: 
+Comes from Jakarta annotations.
+
+Example
+
+@RolesAllowed("ADMIN")
+public void updateEmployee() {
+}
+
+Similar to
+
+@Secured("ROLE_ADMIN")
+
+Needs
+
+@EnableMethodSecurity(jsr250Enabled = true)
+
 48. Method level security?
+Answer : Method-level security protects individual methods instead of entire URLs.
+@Service
+public class EmployeeService {
+
+    @PreAuthorize("hasRole('ADMIN')")
+    public void deleteEmployee() {
+    }
+
+    @PreAuthorize("hasRole('USER')")
+    public Employee getEmployee() {
+    }
+}
+
+Enable it
+
+@Configuration
+@EnableMethodSecurity
+public class SecurityConfig {
+}
+
+Benefits
+
+Fine-grained security
+Protects service layer
+Independent of controllers
+Works even if methods are called internally (through Spring proxies)
+
+
 49. URL level security?
+Answer : Protects HTTP endpoints.
+
+	Configured inside SecurityFilterChain.
+
+@Bean
+SecurityFilterChain security(HttpSecurity http) throws Exception {
+
+    http.authorizeHttpRequests(auth -> auth
+        .requestMatchers("/admin/**").hasRole("ADMIN")
+        .requestMatchers("/user/**").hasRole("USER")
+        .requestMatchers("/public/**").permitAll()
+        .anyRequest().authenticated()
+    );
+
+    return http.build();
+}
+	
+Flow
+
+Incoming Request
+        ↓
+SecurityFilterChain
+        ↓
+URL Matching
+        ↓
+Authentication
+        ↓
+Authorization
+        ↓
+Controller	
+
+| URL Security                        | Method Security              |
+| ----------------------------------- | ---------------------------- |
+| Protects endpoints                  | Protects methods             |
+| Configured in `SecurityFilterChain` | Configured using annotations |
+| Easier for API rules                | Better for business logic    |
+| Based on URL patterns               | Based on method execution    |
+
+
 50. How do you secure APIs?
+Answer: A secure REST API should implement multiple layers of protection.
+
+1. Authentication
+Verify who the user is.
+Examples:
+JWT
+OAuth2
+Basic Authentication (development only)
+http.oauth2ResourceServer(oauth -> oauth.jwt());
+
+2. Authorization
+Allow only authorized users.
+
+.requestMatchers("/admin/**")
+.hasRole("ADMIN")
+
+3. Password Encryption
+
+Never store plain-text passwords.
+
+@Bean
+PasswordEncoder encoder() {
+    return new BCryptPasswordEncoder();
+}
+
+4. HTTPS
+
+Encrypt all traffic.
+
+Client
+   ↓ HTTPS
+Server
+
+5. JWT Tokens
+
+Use stateless authentication.
+
+Login
+↓
+JWT Generated
+↓
+Client stores JWT
+↓
+JWT sent in every request
+↓
+Server validates JWT
+↓
+Access Granted
+
+6. Disable CSRF (for stateless REST APIs)
+http.csrf(csrf -> csrf.disable());
+
+For browser-based applications using sessions, keep CSRF enabled.
+
+7. Validate Inputs
+
+Prevent:
+
+SQL Injection
+XSS
+Invalid data
+
+Use Bean Validation.
+
+public ResponseEntity save(
+    @Valid @RequestBody UserDto dto
+)
+
+8. Exception Handling
+
+Do not expose stack traces.
+
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+}
+
+9. CORS Configuration
+
+Allow only trusted origins.
+
+http.cors(Customizer.withDefaults());
+
+10. Security Headers
+
+Enable headers such as:
+
+X-Content-Type-Options
+X-Frame-Options
+Content-Security-Policy
+Strict-Transport-Security (HSTS)
+
+Spring Security configures several secure headers by default, and you can customize them as needed.
+
 
 JWT
 
 51. What is JWT?
+Answer : 
+JWT (JSON Web Token) is a compact, URL-safe token used to 
+securely transmit user information between a client and a server.
+Instead of storing user sessions on the server, the server issues a 
+signed token after successful login. The client sends this token with every request.
+
+Authentication Flow : 
+Login Request
+      │
+      ▼
+Username + Password
+      │
+      ▼
+Authentication Successful
+      │
+      ▼
+Server Generates JWT
+      │
+      ▼
+Client Stores JWT
+      │
+      ▼
+Client Sends JWT in Authorization Header
+      │
+      ▼
+Server Validates JWT
+      │
+      ▼
+Access Granted
+
+
 52. Structure of JWT?
+Answer : 
+A JWT has three parts separated by dots.
+
+	Header.Payload.Signature
+
+Example : 
+eyJhbGciOiJIUzI1NiJ9.
+eyJzdWIiOiJqb2huIn0.
+x8F1v9...
+
+Visualization
++---------+---------+-----------+
+| Header  | Payload | Signature |
++---------+---------+-----------+
+
+JWT is Base64URL encoded, not encrypted by default.
+	
+
 53. Header, Payload, Signature?
+Answer : 
+Header - Contains metadata about the token.
+
+Example
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+
+Meaning
+Algorithm = HS256
+Type = JWT
+
+Payload : 
+Contains claims (user information).
+
+Example: 
+{
+  "sub": "john",
+  "role": "ADMIN",
+  "exp": 1750000000
+}
+| Claim | Meaning            |
+| ----- | ------------------ |
+| sub   | Subject (username) |
+| iss   | Issuer             |
+| aud   | Audience           |
+| exp   | Expiration time    |
+| iat   | Issued at          |
+| nbf   | Not before         |
+| jti   | Token ID           |
+
+⚠️ Do not store sensitive data (passwords, credit card numbers) in the payload.
+
+Signature
+
+Ensures the token hasn't been modified.
+
+Created using
+
+HMACSHA256(
+    Base64(Header)
+    +
+    "."
+    +
+    Base64(Payload),
+    SecretKey
+)
+
+If anyone changes the payload, the signature validation fails.
+
+Interview Answer
+
+A JWT consists of:
+Header → Algorithm and token type
+Payload → User claims
+Signature → Prevents tampering
+
+
 54. How does JWT authentication work?
+User Login
+     │
+     ▼
+Username + Password
+     │
+     ▼
+AuthenticationManager
+     │
+     ▼
+UserDetailsService
+     │
+     ▼
+Password Verification
+     │
+     ▼
+Generate JWT
+     │
+     ▼
+Return JWT
+     │
+     ▼
+Store JWT (Client)
+     │
+     ▼
+Every Request:
+Authorization: Bearer JWT
+     │
+     ▼
+JWT Filter
+     │
+     ▼
+Validate Signature
+     │
+     ▼
+Check Expiration
+     │
+     ▼
+Load User
+     │
+     ▼
+Create Authentication
+     │
+     ▼
+SecurityContextHolder
+     │
+     ▼
+Controller
+
 55. Difference between JWT and Session?
+| Feature       | Session                      | JWT                       |
+| ------------- | ---------------------------- | ------------------------- |
+| Storage       | Server                       | Client                    |
+| Stateful      | Yes                          | No (Stateless)            |
+| Scalability   | Harder                       | Easier                    |
+| Memory        | Uses server memory           | No server session         |
+| Logout        | Easy                         | More complex              |
+| Performance   | Session lookup required      | Signature validation only |
+| Load Balancer | Sticky sessions often needed | Works well across servers |
+
+
 56. JWT advantages?
+-	 Stateless
+-	 Scalable
+-	 Fast
+-	 Self-contained
+-	 Works across domains
+-	 Mobile Friendly
+
 57. JWT disadvantages?
+	-	Difficult Logout
+	-	Cannot Modify
+	-	Larger Requests
+	-	Payload is Visible
+	-	Secret Key Protection
+	
 58. What is JWT expiration?
+Best Practice
+Access Token: 5–30 minutes
+Refresh Token: days or weeks, depending on your security requirements
+
 59. What is Refresh Token?
+A Refresh Token is a long-lived token used to obtain a new access token after the access token expires.
+
 60. How do you revoke JWT tokens?
+
+1. Token Blacklist
+Store revoked token IDs (jti) or token hashes in a database or cache (such as Redis).
+
+2. Short-lived Access Tokens
+Issue access tokens that expire quickly (e.g., 15 minutes).
+
+3. Refresh Token Rotation
+
+Every time a refresh token is used:
+
+Issue a new access token
+Issue a new refresh token
+Invalidate the old refresh token
+
+This reduces the impact of a stolen refresh token.
+
+4. Signing Key Rotation
+
+Rotate signing keys when necessary. Tokens signed with retired keys can be rejected, though this may invalidate many active tokens depending on your strategy.
+
+Maintain Refresh Tokens Server-side
+
+Store refresh tokens (or their hashes) in a database and delete them during logout.
+
+Logout
+   │
+   ▼
+Delete Refresh Token
+   │
+   ▼
+User Cannot Obtain New Access Tokens
 
 OAUTH2
 
 61. What is OAuth2?
+Answer : OAuth 2.0 is an authorization framework that allows a third-party application 
+to access a user's resources without sharing the user's password
+
+Important: OAuth2 is for authorization, not authentication. Authentication is 
+often provided by OpenID Connect (OIDC), which is built on top of OAuth2.
+
 62. Why OAuth2?
+Answer : Before OAuth2
+
+User
+   │
+Username + Password
+   │
+   ▼
+Third-party App
+
+Problems
+
+Password sharing
+Security risk
+Full account access
+Hard to revoke
+
+
+
+With OAuth2
+
+User
+   │
+Login
+   │
+   ▼
+Authorization Server
+   │
+Access Token
+   │
+   ▼
+Third-party App
+
+Benefits
+
+No password sharing
+Limited permissions (scopes)
+Token expiration
+Easy revocation
+Safer third-party integration
+
 63. OAuth2 Roles?
+Answer - 
+OAuth2 defines four main roles.
+
+            +---------------------+
+            | Resource Owner      |
+            | (User)              |
+            +----------+----------+
+                       |
+                       |
+                       ▼
+            +---------------------+
+            | Authorization       |
+            | Server              |
+            +----------+----------+
+                       |
+             Access Token
+                       |
+                       ▼
+            +---------------------+
+            | Client Application  |
+            +----------+----------+
+                       |
+                       ▼
+            +---------------------+
+            | Resource Server     |
+            +---------------------+
+Roles
+
+	-	Resource Owner
+	-	Client Application
+	-	Authorization Server
+	-	Resource Server
+			
 64. Resource Owner?
+Ans - The Resource Owner is the user who owns the protected resources.
+
+John
+  │
+Owns
+  │
+Google Drive Files
+
+Interview Answer
+
+The Resource Owner is the user who owns the protected resources and grants permission to access them
+
+
 65. Resource Server?
+Answer : The Resource Server hosts the protected APIs or data.
+Example - 
+Google Drive API
+GitHub API
+Microsoft Graph API
+
+Responsibilities
+	-	Receive Access Token
+	-	Validate Access Token
+	-	Return protected resources
+
+
 66. Authorization Server?
+Answer - The Authorization Server authenticates the user, obtains consent, 
+and issues tokens.
+
+Responsibilities
+		-	User login
+		-	Consent screen
+		-	Generate Access Token
+		-	Generate Refresh Token
+		-	Validate client credentials
+
+Examples
+		-	Google Authorization Server
+		-	GitHub Authorization Server
+		-	Keycloak
+		-	Okta
+		-	Auth0
+
+Flow :
+
+Login
+   │
+   ▼
+Authorization Server
+   │
+Issue Token
+   │
+   ▼
+Client
+
+
 67. Client Application?
+Ans: The Client Application is the application requesting access to the user's resources.
+
+Examples : 
+	-	Web application
+	-	Mobile application
+	-	React application
+	-	Angular application
+	-	Spring Boot application
+
+
 68. Access Token?
+Ans - An Access Token is a short-lived credential that allows access to protected resources.
+
+Properties : 
+	-	Short-lived
+	-	Sent with every request
+	-	Contains scopes or permissions
+	-	Expires automatically
+
 69. Refresh Token?
+Ans - A Refresh Token is a long-lived credential used to obtain a new Access Token 
+without requiring the user to log in again.
+
+Benefits :
+	-	Better user experience
+	-	Short-lived access tokens
+	-	Improved security
+
+
 70. Authorization Code Flow?
+Ans- The Authorization Code Flow is the most secure OAuth2 flow for server-side applications.
 
 OPENID CONNECT
 
 71. What is OpenID Connect?
+Ans - OpenID Connect (OIDC) is an authentication protocol built on top of OAuth 2.0.
+	While OAuth2 answers:
+		"Can this application access your resources?"
+		
+	OpenID Connect answers:
+		"Who is the user?"
+It allows applications to verify the user's identity and obtain basic profile information.
+
 72. Difference between OAuth2 and OpenID Connect?
+ANs- 
+| Feature         | OAuth2        | OpenID Connect                 |
+| --------------- | ------------- | ------------------------------ |
+| Purpose         | Authorization | Authentication + Authorization |
+| User Identity   | ❌ No          | ✅ Yes                          |
+| Access Token    | ✅ Yes         | ✅ Yes                          |
+| ID Token        | ❌ No          | ✅ Yes                          |
+| User Profile    | ❌ No          | ✅ Yes                          |
+| Built on OAuth2 | No            | Yes                            |
+
+
 73. What is ID Token?
+An ID Token is a JWT issued by the OpenID Provider that contains information 
+about the authenticated user.
+
+Unlike an Access Token:
+Access Token → Access APIs
+ID Token → Identify the user
+
 74. What information does ID Token contain?
+{
+  "sub": "123456",
+  "name": "John Doe",
+  "email": "john@gmail.com",
+  "picture": "profile.jpg",
+  "iss": "https://accounts.google.com",
+  "aud": "client-id",
+  "iat": 1719400000,
+  "exp": 1719403600
+}
+
 75. Why is OpenID Connect needed?
+OAuth2 alone cannot tell an application who the user is.
+
+Example
+Without OIDC
+
+OAuth2
+
+↓
+
+Access Token
+
+↓
+
+Can access API
+
+↓
+
+Who is the user?
+
+Unknown
+
+--------With OIDC-------
+Login
+
+↓
+
+ID Token
+
+↓
+
+User = John
+
+↓
+
+Email = john@gmail.com
+
+↓
+
+Authenticated
+
+
+Easy interview line:
+
+OAuth2 = Authorization
+OpenID Connect = Authentication
+JWT = Token Format
+
 
 JWT + OAUTH2
 
 76. Spring Security OAuth2 Resource Server?
+Ans : An OAuth2 Resource Server is a Spring Boot application that hosts protected APIs 
+and validates Access Tokens before allowing access to resources.
+
+It does not authenticate users directly (no login page). Instead, it trusts an Authorization 
+Server (such as Keycloak, Okta, Auth0, or Google) to issue tokens.
+
+Flow : 
+User
+   │
+   ▼
+Login
+   │
+   ▼
+Authorization Server
+   │
+Issues Access Token
+   │
+   ▼
+Client
+   │
+Authorization: Bearer <token>
+   │
+   ▼
+Spring Boot Resource Server
+   │
+Validate JWT
+   │
+   ▼
+Protected REST API
+
+
+
 77. OAuth2 Client?
+Definition :
+An OAuth2 Client is an application that requests authorization to access protected 
+resources on behalf of a user.
+
+Examples :
+Spring Boot application
+React application
+Angular application
+Mobile application
+
 78. JWT Validation Flow?
-79. JWKS Endpoint?
+Ans - Whenever a request contains a JWT, Spring Security validates it before granting access.
+
+Validation Steps : 
+Incoming Request
+      │
+Authorization: Bearer JWT
+      │
+      ▼
+Extract JWT
+      │
+      ▼
+Verify Signature
+      │
+      ▼
+Check Expiration
+      │
+      ▼
+Check Issuer (iss)
+      │
+      ▼
+Check Audience (aud)
+      │
+      ▼
+Read Claims
+      │
+      ▼
+Create Authentication
+      │
+      ▼
+SecurityContextHolder
+      │
+      ▼
+Controller
+
+Spring Internally : 
+BearerTokenAuthenticationFilter
+        │
+        ▼
+JwtDecoder
+        │
+        ▼
+NimbusJwtDecoder
+        │
+        ▼
+Validate Signature
+
+If Validation Fails
+
+Examples:
+
+Invalid signature
+Expired token
+Wrong issuer
+Wrong audience
+
+Response
+
+401 Unauthorized
+
 80. Public vs Private Keys?
-81. RS256 vs HS256?
+Used in asymmetric encryption/signing (for example, RSA).
+
+Private Key - 
+		-	Secret
+		-	Kept only by the Authorization Server
+		-	Used to sign JWTs
+
+Public Key
+		-	Shared publicly
+		-	Used to verify JWT signatures
+		-	Available through the JWKS endpoint
+
+81. HS256 vs RS256?
+Both are algorithms used to sign JWTs.
+
+HS256: (HMAC + SHA-256) 
+-----------------------
+Uses one shared secret key.
+Server
+  │
+Secret Key
+  │
+Sign + Verify
+
+Pros : 
+	-	Faster
+	-	Simple configuration
+
+Cons :
+	-	Same key signs and verifies
+	-	Less suitable for distributed systems
+	
+RS256 (RSA + SHA-256)
+-----------------------
+Uses two keys.
+
+Private Key
+      │
+Sign
+      ▼
+JWT
+      │
+Verify
+      ▼
+Public Key
+
+Pros :
+More secure for distributed systems
+Public key can be shared safely
+Ideal for OAuth2 and microservices
+
+Cons :
+Slightly slower
+More complex setup
+
+| Feature       | HS256             | RS256                               |
+| ------------- | ----------------- | ----------------------------------- |
+| Keys          | One shared secret | Public & Private key pair           |
+| Verification  | Shared secret     | Public key                          |
+| Security      | Good              | Better for distributed environments |
+| OAuth2 Usage  | Less common       | Common choice                       |
+| Microservices | Not ideal         | Recommended                         |
+
+
+
 82. Token Introspection?
 83. Token Revocation?
 84. Key Rotation?
 85. SSO Implementation?
+Definition
+Single Sign-On (SSO) allows users to log in once and access multiple applications 
+without signing in again.
+Login to Google
+       │
+       ▼
+Gmail
+       │
+       ▼
+YouTube
+       │
+       ▼
+Google Drive
+
+No additional login required.
+
+
+OAuth2 + OpenID Connect Flow
+User
+   │
+Login
+   │
+   ▼
+Identity Provider
+(Google, Keycloak, Okta)
+   │
+   ▼
+ID Token + Access Token
+   │
+   ▼
+Application A
+Application B
+Application C
+
 
 CSRF / CORS
 
 86. What is CSRF?
-87. How does CSRF attack work?
+Ans: CSRF (Cross-Site Request Forgery) is an attack in which a malicious website 
+tricks a logged-in user into sending an unwanted request to another website.
+
+The browser automatically includes the user's session cookie, making 
+the request appear legitimate
+
+Attack Flow :
+User logs into Bank
+        │
+        ▼
+Browser stores Session Cookie
+        │
+        ▼
+User visits Malicious Website
+        │
+        ▼
+Hidden Form Submitted
+        │
+        ▼
+Browser automatically sends Session Cookie
+        │
+        ▼
+Bank thinks request is legitimate
+
+
 88. How does Spring Security prevent CSRF?
+Ans : Spring Security generates a unique CSRF token for each user session.
+Every state-changing request (POST, PUT, PATCH, DELETE) must include this token.
+
+Flow : 
+User Login
+      │
+      ▼
+Spring Generates CSRF Token
+      │
+      ▼
+Token sent with HTML page
+      │
+      ▼
+User submits form
+      │
+      ▼
+Browser sends:
+
+Session Cookie
++
+CSRF Token
+      │
+      ▼
+Spring compares tokens
+      │
+ ┌────┴─────┐
+ │          │
+Match     No Match
+ │          │
+Allow    Reject (403)
+
+HTML Example : 
+<input type="hidden"
+       name="_csrf"
+       value="abc123xyz"/>
+
+Spring Security :
+CSRF protection is enabled by default for traditional web applications that use sessions.
+	
+Interview Answer :
+Spring Security prevents CSRF by generating a unique token for 
+each session and verifying that token on every state-changing request.	
+
+
 89. When can CSRF be disabled?
+Ans: CSRF protection is generally not needed for stateless REST APIs that 
+use tokens instead of session cookies.
+
+Example:
+JWT Authentication
+OAuth2 Bearer Tokens
+Mobile APIs
+Microservices
+
+Configuration : 
+http.csrf(csrf -> csrf.disable());
+
+When NOT to Disable :
+
+Keep CSRF enabled if your application:
+		-	Uses HTTP sessions
+		-	Uses cookies for authentication
+		-	Contains HTML forms
+		-	Is a browser-based MVC applicatio
+
+Rule of Thumb :
+| Application       | CSRF          |
+| ----------------- | ------------- |
+| Session + Cookies | ✅ Enable      |
+| JWT REST API      | ❌ Can Disable |
+| Mobile API        | ❌ Can Disable |
+| Browser Forms     | ✅ Enable      |
+
+
 90. What is CORS?
+Definition :
+CORS (Cross-Origin Resource Sharing) is a browser security mechanism that
+ controls whether a webpage from one origin can access resources from another origin.
+
 91. Difference between CORS and CSRF?
+| Feature          | CORS                                        | CSRF                                 |
+| ---------------- | ------------------------------------------- | ------------------------------------ |
+| Purpose          | Controls cross-origin access                | Prevents forged requests             |
+| Browser Feature  | Yes                                         | Security attack                      |
+| Protects Against | Unauthorized cross-origin JavaScript access | Unauthorized state-changing requests |
+| Uses             | Response headers                            | CSRF tokens                          |
+| Related To       | Different origins                           | Authenticated browser sessions       |
+
+
 92. How do you configure CORS?
+Global Configuration :
+@Bean
+SecurityFilterChain security(HttpSecurity http) throws Exception {
+
+    http
+        .cors(Customizer.withDefaults());
+
+    return http.build();
+}
+
+CorsConfigurationSource
+@Bean
+CorsConfigurationSource corsConfigurationSource() {
+
+    CorsConfiguration config = new CorsConfiguration();
+
+    config.setAllowedOrigins(
+        List.of("http://localhost:3000"));
+
+    config.setAllowedMethods(
+        List.of("GET","POST","PUT","DELETE"));
+
+    config.setAllowedHeaders(
+        List.of("*"));
+
+    UrlBasedCorsConfigurationSource source =
+            new UrlBasedCorsConfigurationSource();
+
+    source.registerCorsConfiguration("/**", config);
+
+    return source;
+}
+
+Controller-Level : 
+@CrossOrigin(origins = "http://localhost:3000")
+@RestController
+public class ProductController {
+}
+
 93. What is Preflight Request?
+Ans:  Before sending certain cross-origin requests, the browser sends an OPTIONS 
+request to check whether the actual request is allowed.
+Browser
+   │
+OPTIONS /api/products
+   │
+   ▼
+Server
+   │
+Returns
+
+Access-Control-Allow-Origin
+
+Access-Control-Allow-Methods
+
+Access-Control-Allow-Headers
+↓
+Browser
+↓
+Actual POST Request
+
+Example : 
+OPTIONS /api/users
+Origin: http://localhost:3000
+Access-Control-Request-Method: POST
+
+Server Response : 
+
+HTTP/1.1 200 OK
+Access-Control-Allow-Origin: http://localhost:3000
+Access-Control-Allow-Methods: POST
+
+When is a Preflight Sent?
+
+Typically for requests that:
+
+Use methods other than GET, HEAD, or simple POST
+Include custom headers (for example, Authorization)
+Use non-simple content types (such as application/json)
+
 94. What is Same-Origin Policy?
+Definition:
+The Same-Origin Policy is a browser security rule that restricts scripts 
+on one origin from reading resources from another origin unless explicitly allowed.
+
+An origin consists of:
+Protocol + Host + Port
+
+| URL                                                | Same Origin?         |
+| -------------------------------------------------- | -------------------- |
+| [http://example.com](http://example.com)           | Base                 |
+| [http://example.com/page](http://example.com/page) | ✅ Yes                |
+| [https://example.com](https://example.com)         | ❌ Different protocol |
+| [http://api.example.com](http://api.example.com)   | ❌ Different host     |
+| [http://example.com:8080](http://example.com:8080) | ❌ Different port     |
+
+
+
 95. How do browsers enforce CORS?
+Browsers enforce CORS by checking the server's response headers before 
+allowing JavaScript to access the response.
+
+Browser
+      │
+Cross-Origin Request
+      │
+      ▼
+Server
+      │
+Returns
+
+Access-Control-Allow-Origin
+
+↓
+
+Browser Checks Header
+
+↓
+
+Allowed?
+
+↓
+
+Yes → JavaScript gets response
+
+No → Browser blocks access
+
+Important Headers
+Access-Control-Allow-Origin
+Access-Control-Allow-Methods
+Access-Control-Allow-Headers
+Access-Control-Allow-Credentials
+
 
 TROUBLESHOOTING
 
 96. Why am I getting 401 Unauthorized?
+A 401 Unauthorized error usually means authentication failed due to a missing, 
+invalid, expired token, or because Spring Security couldn't establish an authenticated user.
+
 97. Why am I getting 403 Forbidden?
+A 403 Forbidden error means authentication succeeded, but authorization failed because 
+the user lacks the required roles, authorities, or another security requirement such 
+as a valid CSRF token.
+
 98. JWT token is valid but request fails. Why?
+A valid JWT alone is not enough. The request can fail because of incorrect authority mapping, 
+missing Bearer prefix, expired claims, issuer/audience validation, or because the authentication 
+was never placed into the SecurityContext.
+
 99. Security filter not executing. Why?
+Spring Security filters may not execute due to configuration issues.
+
+Common Reasons
+	1. Filter Not Added
+	2. Wrong Filter Order
+	3. URL Ignored
+	4. Security Disabled
+	5. Incorrect URL Pattern
+	6. Multiple SecurityFilterChain Beans
+	
 100. Spring Security application suddenly became slow. How would you troubleshoot?
+Interview Answer
 
+When a Spring Security application becomes slow, I first determine whether the delay occurs during authentication or authorization.
+ I enable Spring Security debug logs, measure authentication latency, inspect 
+ database queries in UserDetailsService, check password hashing cost, verify JWT 
+ validation isn't making unnecessary remote calls, review custom filters for 
+ expensive operations, analyze thread dumps and JVM metrics, and use profiling tools 
+ to identify the bottleneck before optimizing the affected component.
 
-1. Authentication vs Authorization
-2. Security Filter Chain
-3. AuthenticationManager
-4. AuthenticationProvider
-5. UserDetailsService
-6. JWT Authentication Flow
-7. JWT vs Session
-8. OAuth2 Authorization Code Flow
-9. OAuth2 vs OpenID Connect
-10. Resource Server
-11. Refresh Token
-12. RS256 vs HS256
-13. CORS vs CSRF
-14. 401 vs 403
-15. BCrypt
-16. PasswordEncoder
-17. SecurityContextHolder
-18. @PreAuthorize
-19. Method Security
-20. Spring Security Architecture
 
 Scenario-Based Questions (Very Common for 8+ Years)
 1. Users suddenly receive 401 after deployment. How do you investigate?
+
+Step 1: Understand the Error
+
+A 401 Unauthorized means:
+	Authentication failed.
+It does not necessarily mean the user lacks permission (that's 403 Forbidden).
+
+Step 2: Gather Information
+
+Ask questions like:
+		-	Did it start immediately after deployment?
+		-	Are all users affected or only some?
+		-	Is every endpoint returning 401 or only protected APIs?
+		-	Is the issue occurring in all environments (Dev, QA, Production)?
+		-	Are users using JWT, OAuth2, or Session authentication?
+
+Step 3: Check Application Logs	
+Enable Spring Security debug logging.
+logging.level.org.springframework.security=DEBUG
+
+Look for messages such as:
+Bearer token not found
+
+Authentication failed
+
+JWT expired
+
+Invalid signature
+
+AuthenticationEntryPoint called
+
+Step 4: Verify Authorization Header		
+Step 5: Validate the JWT
+Step 6: Verify Signing Keys
+Step 7: Check JWT Filter
+Step 8: Check SecurityContext
+Step 9: Verify Security Configuration
+Step 10: Check Infrastructure Changes
+Step 11: Verify Token Issuer
+Step 12: Check Clock Synchronization
+Step 13: Compare Before vs After Deployment
+
 2. JWT token is valid but APIs return 403. Why?
+Ans:  A valid JWT only proves that the user has been authenticated.
+A 403 Forbidden means:
+Authentication succeeded, but authorization failed.
+	-	Missing Role/Authority
+	-	Wrong Role Mapping
+	-	Wrong Claim Name
+	-	Authentication Exists but Authorities Are Empty
+	-	URL Security Rules
+	-	Method Security
+	-	Custom JWT Converter Problem
+	-	CSRF Enabled (Session-Based Apps)
+	- 	SecurityContext Has Authentication but Wrong Authorities	Incorrect SecurityFilterChain
+
+
+-----------------------------
 3. OAuth2 login works locally but fails in production. What will you check?
+Step-by-Step Troubleshooting
+1. Verify Redirect URI (Most Common Issue)
+Local
+http://localhost:8080/login/oauth2/code/google
+Production
+https://mycompany.com/login/oauth2/code/google
+
+The URI configured in the OAuth provider must exactly match the application URI.
+
+Wrong:
+
+https://mycompany.com/login/oauth2/code/google/
+
+Correct:
+
+https://mycompany.com/login/oauth2/code/google
+
+Even a trailing slash can cause failure.
+
+
+2. Verify Client ID and Client Secret
+Ensure production is using the correct credentials.
+
+Example
+
+spring.security.oauth2.client.registration.google.client-id=xxxxx
+spring.security.oauth2.client.registration.google.client-secret=yyyyy
+
+Common mistakes:
+
+Using development credentials
+Secret expired
+Typo
+Wrong environment variable
+
+3. Check HTTPS
+Most OAuth providers require HTTPS.
+4. Verify Callback URL
+5. Reverse Proxy / Load Balancer
+6. Check OAuth Provider Configuration
+Production usually has
+
+Browser
+      │
+NGINX
+      │
+Spring Boot
+
+If headers aren't forwarded correctly:
+
+Spring thinks
+
+http://
+
+instead of
+
+https://
+
+Generated redirect becomes
+
+http://mycompany.com/login/oauth2/code/google
+
+Provider rejects it.
+
+Fix
+
+server.forward-headers-strategy=framework
+
+or
+
+ForwardedHeaderFilter
+7. Check DNS
+8. Session Problems
+9. Check State Parameter
+10. Verify Cookies
+11. CORS Issues
+12. Firewall / Network
+13. Check Application Logs
+14. Check Time Synchronization
+15. Verify Environment Variables
+Production may not load
+
+CLIENT_ID
+CLIENT_SECRET
+kubectl describe secret
+
+16. Validate OAuth Provider Availability
+Check whether the provider is experiencing an outage or rate limiting.
+
+
 4. Refresh tokens stop working after server restart. Why?
+| Cause                               | Result                          | Fix                                    |
+| ----------------------------------- | ------------------------------- | -------------------------------------- |
+| Tokens stored in memory             | Lost after restart              | Store in DB/Redis                      |
+| JWT signing key changed             | Signature validation fails      | Use a fixed secret or keystore         |
+| Encryption key changed              | Cannot decrypt token            | Persist encryption keys                |
+| Database reset                      | Token records removed           | Preserve data; use migrations          |
+| Redis cache cleared                 | Tokens missing                  | Enable persistence or use DB           |
+| Session invalidated                 | Refresh fails                   | Use Spring Session or stateless tokens |
+| Multiple servers with local storage | Token not found on another node | Use a shared token store               |
+| Token expired                       | Refresh rejected                | Issue a new login                      |
+
+Description # 
+	#1. Refresh Tokens Stored in Memory (Most Common)
+	The application stores refresh tokens in an in-memory collection (e.g., HashMap, ConcurrentHashMap).
+	
+	After restarting:
+
+JVM shuts down
+Memory is cleared
+All refresh tokens disappear
+
+Result:
+
+Refresh Token Not Found
+Solution
+
+Store refresh tokens in a persistent store:
+
+MySQL
+PostgreSQL
+Redis
+MongoDB
+
+
+
+#2 JWT Signing Secret Changed
+
+If refresh tokens are JWTs:
+
+	Refresh Token
+		↓
+	Signed using Secret Key
+
+	After restart, if the application generates a new secret:
+
+		Keys.secretKeyFor(SignatureAlgorithm.HS256);
+
+	every startup creates a different key.
+
+	Old tokens become invalid.
+
+	Validation fails:
+
+		SignatureException
+		Invalid JWT Signature
+Correct
+
+Keep the secret fixed.
+
+	jwt.secret=MyVeryLongSecretKey123456789
+
+or use a keystore.
+
+
+#3
+3. Encryption Keys Changed
+
+If refresh tokens are encrypted rather than signed:
+
+Encrypt
+↓
+
+Restart
+
+↓
+
+Different encryption key
+
+↓
+
+Cannot decrypt
+
+Store encryption keys securely instead of generating them at startup.
+
+
+#4. Database Was Reset
+
+Sometimes during development:
+
+docker-compose down -v
+
+or
+
+spring.jpa.hibernate.ddl-auto=create
+
+drops the refresh token table.
+
+After restart:
+
+No refresh token exists.
+Fix
+
+Use
+
+spring.jpa.hibernate.ddl-auto=update
+
+or manage schema with migration tools like Flyway or Liquibase.
+#5. Redis Cache Was Cleared
+
+Many applications store refresh tokens in Redis.
+
+If Redis restarts:
+
+Redis restart
+↓
+
+Cache cleared
+
+↓
+
+Refresh tokens lost
+
+Use Redis persistence (RDB/AOF) if appropriate, or store long-lived refresh tokens in a database.
+
+
+#6. Token Expired During Downtime
+
+Example:
+
+Refresh Token Valid = 30 minutes
+
+Server down = 40 minutes
+
+When the server comes back:
+
+Token already expired.
+
+# 7. Refresh Token Blacklist Lost
+
+Some applications keep revoked or active tokens in memory.
+
+Restart:
+
+Blacklist lost
+
+or
+
+Whitelist lost
+
+This can cause valid tokens to fail (or, depending on the design, revoked tokens to become valid again).
+
+Persist this information in a shared store.
+
+
+#8. Session-Based Refresh Tokens
+
+If refresh tokens depend on HTTP sessions:
+
+JSESSIONID
+↓
+
+Restart
+
+↓
+
+Session destroyed
+
+Result:
+
+Invalid Session
+
+Solutions:
+
+Use Spring Session with Redis.
+Use stateless JWT refresh tokens if appropriate.
+
+#9. Multiple Servers with Local Storage
+Server A
+  Token Stored
+
+↓
+
+Restart
+
+↓
+
+Load Balancer
+
+↓
+
+Request goes to Server B
+
+↓
+
+Token not found
+
+Store refresh tokens in a shared database or Redis instead of local memory.
+
+#10. Token Version/User State Changed
+
+Some systems validate additional user state.
+
+Example:
+
+Refresh Token
+contains
+
+version = 3
+
+After restart:
+
+version reset
+
+Validation fails.
+
+Ensure token versioning or user state is persisted.
+
+------------------------------------
+
 5. How would you implement Single Sign-On (SSO)?
+Ans- Single Sign-On (SSO) allows users to authenticate once with a centralized Identity 
+Provider (IdP) and access multiple applications without logging in again.
+
+Common SSO protocols include:
+		-	OAuth 2.0 – Authorization
+		-	OpenID Connect (OIDC) – Authentication (built on OAuth 2.0)
+		-	SAML 2.0 – Enterprise SSO
+		-	Kerberos – Windows/Active Directory environment
+
+or modern Spring Boot applications, I generally implement OIDC using providers 
+such as Keycloak, Okta, Auth0, Azure AD, or Google.
+
+                +----------------+
+                |     User       |
+                +--------+-------+
+                         |
+                         |
+                         v
+                +----------------+
+                |  Spring Boot   |
+                |  Application   |
+                +--------+-------+
+                         |
+        Redirect for Login
+                         |
+                         v
+                +----------------+
+                | Identity       |
+                | Provider(IdP)  |
+                | Keycloak/Okta  |
+                +--------+-------+
+                         |
+          Authenticate User
+                         |
+                         v
+      Authorization Code + ID Token
+                         |
+                         v
+               Spring Security
+                         |
+                  Create Session/JWT
+                         |
+                         v
+                 User Access Granted
+				 
+Implementation Steps : 
+Step 1 : Configure Identity Provider
+
+Create:
+	-	Realm/Tenant
+	-	Client
+	-	Redirect URI
+	-	Client ID
+	-	Client Secret
+	-	Users
+	-	Roles
+Example : 				 
+Realm: company
+
+Client:
+employee-portal
+
+Redirect URI:
+http://localhost:8080/login/oauth2/code/keycloak
+
+Step 2 : Add Dependencies
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-oauth2-client</artifactId>
+</dependency>
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+
+Step 3 : Configure application.yml
+Example for Keycloak
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: employee-portal
+            client-secret: xxxxxxxxx
+            scope:
+              - openid
+              - profile
+              - email
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8080/realms/company
+
+Step 4 : Configure Security			
+@Bean
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+    http
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers("/", "/public/**").permitAll()
+            .anyRequest().authenticated()
+        )
+        .oauth2Login(Customizer.withDefaults());
+
+    return http.build();
+}
+That's enough to enable SSO.
+
+Login Flow: 
+User opens application
+        │
+        ▼
+Spring Security detects unauthenticated user
+        │
+        ▼
+Redirect to Identity Provider
+        │
+        ▼
+User enters credentials
+        │
+        ▼
+Identity Provider authenticates
+        │
+        ▼
+Authorization Code returned
+        │
+        ▼
+Spring exchanges code for tokens
+        │
+        ▼
+SecurityContext created
+        │
+        ▼
+User logged in
+
+Access Multiple Applications
+             +----------------+
+             |   Keycloak     |
+             +-------+--------+
+                     |
+        +------------+------------+
+        |                         |
+        v                         v
++---------------+         +---------------+
+| Employee App  |         | Payroll App   |
++---------------+         +---------------+
+        |                         |
+        +------------+------------+
+                     |
+             Same Login Session
+The second application does not ask for credentials because the user already has a valid session with the Identity Provider.
+
+# JWT Validation
+
+Each application validates:
+
+Signature
+Expiration
+Issuer
+Audience
+Roles/Authorities
+
+without storing user passwords locally.
+			 
+
 6. How would you secure communication between microservices?
+Ans : 
+Securing communication between microservices involves ensuring that only 
+trusted services can communicate, data is encrypted in transit, and requests are 
+properly authenticated and authorized.
+
+The key security pillars are:
+
+Encryption (TLS/mTLS)
+Authentication
+Authorization
+Network Security
+Secret Management
+Monitoring and Auditing
+
+#1 Use HTTPS Everywhere
+Never allow HTTP communication between services.
+Service A
+     │
+ HTTPS
+     │
+     ▼
+Service B
+
+Benefits:
+	-	Encrypts data in transit.
+	-	Prevents packet sniffing.
+	-	Protects against man-in-the-middle attacks.
+	
+#2 Mutual TLS (mTLS)
+With mTLS, both the client and server authenticate each other using certificates.
+Service A
+(Client Certificate)
+        │
+        │ TLS Handshake
+        ▼
+Service B
+(Server Certificate)
+
+Both identities are verified.
+	
+Benefits:
+
+	-	Strong service identity.
+	-	Prevents unauthorized services from connecting.
+	-	Encrypts communication.
+
+Popular implementations:
+
+	-	Service Mesh (e.g., Istio, Linkerd)
+	-	Kubernetes with mTLS
+	-	Spring Boot SSL configuration
+
+#3. JWT Between Services
+After a user is authenticated, propagate a JWT to downstream services.
+User
+   │
+JWT
+   ▼
+Gateway
+   │
+JWT
+   ▼
+Order Service
+   │
+JWT
+   ▼
+Payment Service
+
+Each service validates:
+
+	-	Signature
+	-	Expiration
+	-	Issuer
+	-	Audience
+	-	Roles/Scopes
+
+Advantages:
+
+	-	Stateless authentication.
+	-	No shared session required.
+	-	Scales well for distributed systems.
+
+#4 OAuth2 Client Credentials Flow	
+For service-to-service communication without a user context, use the OAuth2 Client 
+Credentials flow.
+
+Order Service
+      │
+Client ID + Secret
+      ▼
+Authorization Server
+      │
+Access Token
+      ▼
+Payment Service
+
+Each service gets its own access token.
+
+#5 API Gateway
+Expose only the API Gateway externally.
+Internet
+     │
+     ▼
+API Gateway
+     │
+ ┌───┴────┐
+ ▼        ▼
+Order   Payment
+
+The gateway can:
+
+		-	Authenticate requests.
+		-	Validate JWTs.
+		-	Enforce rate limits.
+		-	Filter malicious traffic.
+		-	Log requests.
+
+#6 Network Isolation
+
+Restrict communication using network policies or firewalls.	
+
+Example:
+
+Order Service
+      │
+      ▼
+Payment Service
+
+Inventory Service
+      X
+Cannot directly access Payment Service
+
+Only approved services can communicate.
+
+
+#7. Secret Management	
+Never hardcode secrets.
+
+Instead use:
+	-	Environment variables
+	-	Secret management systems (e.g., Vault, cloud secret managers)
+	-	Kubernetes Secrets (with appropriate protections)
+
+Store:
+	-	API keys
+	-	Client secrets
+	-	Certificates
+	-	Database passwords
+
+#8 Validate Every Request
+Each service should independently verify incoming tokens.
+
+Checks include:
+
+	-	Signature
+	-	Expiration (exp)
+	-	Issuer (iss)
+	-	Audience (aud)
+	-	Required scopes or roles
+
+Never rely solely on the API Gateway.
+
+#9. Principle of Least Privilege
+Grant only the permissions a service requires.
+
+Example:
+	-	Order Service → can call Payment Service.
+	-	Inventory Service → cannot call Payment Service unless explicitly allowed.
+
+#10. Logging and Auditing	
+Log security-relevant events such as:
+	-	Authentication failures.
+	-	Authorization failures.
+	-	Invalid or expired tokens.
+	-	Certificate validation errors.
+	-	Unusual traffic patterns.
+
+Avoid logging:
+	-	JWTs
+	-	Passwords
+	-	API keys
+	-	Client secrets
+
 7. How would you rotate JWT signing keys without downtime?
+Answer : 
+JWT signing key rotation is the process of replacing the private key used to sign JWTs without 
+interrupting authentication for existing users.
+
+The standard approach is to use multiple active keys with a Key ID (kid) in the JWT 
+header and expose the public keys through a JWKS (JSON Web Key Set) endpoint. 
+This allows services to validate tokens signed with both old and new keys during the 
+transition.
+
+
+# Why Rotate Signing Keys?
+	-	Reduce the impact of key compromise.
+	-	Meet security and compliance requirements.
+	-	Support periodic key rotation.
+	-	Minimize operational risk.
+	
+High-Level Architecture
+                    Identity Provider
+              (Keycloak/Okta/Auth Server)
+
+          Old Key (K1)      New Key (K2)
+                │               │
+                └──────┬────────┘
+                       │
+                JWKS Endpoint
+                       │
+      +----------------+----------------+
+      |                                 |
+      ▼                                 ▼
+ Order Service                  Payment Service
+      │                                 │
+ Validates K1 and K2            Validates K1 and K2
+ 
+Step-by-Step Zero-Downtime Rotation :
+------------------------------------ :
+Step 1: Generate a New Key Pair
+Create a new public/private key pair.
+Old Key  : K1
+New Key  : K2
+#Do not remove the old key yet.
+
+Step 2: Publish Both Public Keys
+Expose both keys via the JWKS endpoint.
+
+Example:
+{
+  "keys": [
+    {
+      "kid": "K1",
+      "alg": "RS256"
+    },
+    {
+      "kid": "K2",
+      "alg": "RS256"
+    }
+  ]
+}
+
+Resource servers can now validate tokens signed with either key.
+
+Step 3: Start Signing New Tokens with the New Key
+New JWT header:
+{
+  "alg": "RS256",
+  "kid": "K2"
+}
+Existing tokens continue using K1 until they expire.
+
+Step 4: Continue Accepting Old Tokens
+Validation logic:
+JWT received
+      │
+Read kid
+      │
+      ▼
+Find matching public key
+      │
+      ▼
+Validate signature
+
+	-	kid = K1 → Validate with old public key.
+	-	kid = K2 → Validate with new public key.
+	
+	
+Step 5: Wait for Old Tokens to Expire
+Example:
+	-	Access token lifetime: 15 minutes
+	-	Refresh token lifetime: 7 days
+
+After the maximum lifetime of tokens signed with K1 has 
+passed (or they are refreshed), the old key is no longer needed.
+
+Step 6: Remove the Old Key
+Once no valid tokens remain that were signed with K1, remove it 
+from the JWKS endpoint and stop accepting it.
+
+Example Timeline : 
+Day 1
+------
+K1 signs tokens
+
+Day 30
+-------
+Generate K2
+Publish K1 + K2
+Start signing with K2
+
+Day 31
+-------
+Services validate K1 and K2
+
+Day 38
+-------
+All K1 tokens expired
+
+Remove K1
+Only K2 remains
+
+
+Common Interview Follow-up Questions
+1. Why not replace the key immediately?
+
+Because users still have valid JWTs signed with the old key. Removing the old key 
+immediately would cause those tokens to fail validation, resulting in authentication 
+failures.
+
+2. Why are asymmetric keys preferred?
+With algorithms like RS256, only the authorization server holds the private signing key.
+ All microservices only need the public key to verify signatures, reducing the risk of 
+ key exposure.
+
+3. What happens if the private signing key is compromised?
+		-	Generate a new key pair immediately.
+		-	Stop signing with the compromised key.
+		-	Publish the new public key.
+		-	Revoke or invalidate affected tokens if your architecture supports 
+				it (for example, through token revocation or short token lifetimes).
+		-	Remove the compromised key from the JWKS endpoint once it is safe to do so. 
+
+
 8. How would you implement logout with JWT?
+JWT is stateless, so unlike session-based authentication, the server does not keep track 
+of logged-in users. This means simply deleting the token on the client is not enough in 
+all scenarios, especially if the token has not yet expired.
+
+The logout strategy depends on your application's security requirements.
+
+Why Logout is Different with JWT
+
+Option 1: Client-Side Logout (Simple)
+
+The client removes the stored JWT.
+
+Login
+   │
+JWT Stored
+   │
+Logout
+   ▼
+Delete JWT
+
+Example (JavaScript):
+
+localStorage.removeItem("access_token");
+localStorage.removeItem("refresh_token");
+
+Pros
+
+Very simple.
+Fully stateless.
+No server-side storage.
+
+Cons
+
+If the token is stolen before logout, it remains valid until it expires.
+
+
+Option 2: Short-Lived Access Tokens + Refresh Tokens (Recommended)
+
+This is the most common production approach.
+
+Access Token
+      │
+15 minutes
+      │
+Expires
+
+Refresh Token
+      │
+7 days
+
+Logout flow:
+
+Delete the access token.
+Revoke or delete the refresh token on the server.
+The user cannot obtain new access tokens.
+The existing access token expires shortly afterward.
+
+Advantages
+
+Minimal server state.
+Limits exposure if an access token is compromised.
+Scales well in distributed systems.
+
+Option 3: Token Blacklisting
+
+Maintain a blacklist of revoked JWTs.
+
+Logout
+   │
+JWT ID (jti)
+   │
+Store in Redis
+   ▼
+Blacklist
+
+On each request:
+
+Receive JWT
+     │
+Check Redis
+     │
+Blacklisted?
+   /     \
+ Yes      No
+  │        │
+Reject   Validate JWT
+
+Example schema:
+
+JWT ID: 8fa12...
+Expires: 2026-06-30T10:30
+
+Pros
+	-	Immediate logout.
+	-	Immediate revocation.
+Cons
+	-	Introduces server-side state.
+	-	Additional lookup on every request.
+
+
+Option 4: Refresh Token Revocation
+
+Store refresh tokens in a database.
+
+User Login
+      │
+Refresh Token
+      │
+Database
+
+Logout:
+
+Delete Refresh Token
+
+When the access token expires, the user cannot refresh it and must log in again.
+
+Option 5: OAuth2/OIDC Logout
+
+With providers like Keycloak, Okta, or Azure AD:
+
+User
+   │
+Logout
+   ▼
+Application
+   │
+Logout Endpoint
+   ▼
+Identity Provider
+
+The Identity Provider:
+
+Revokes refresh tokens.
+Clears its session.
+Optionally performs Single Logout (SLO) across applications.
+
+
 9. How would you secure WebFlux APIs?
-10. How would you secure a Spring Boot microservices architecture using OAuth2 and JWT?
+"To secure WebFlux APIs, I use Spring Security's reactive support with 
+SecurityWebFilterChain. 
+I authenticate requests using JWT or OAuth2 Resource Server, 
+authorize access with role- or scope-based rules, 
+and enable reactive method-level security where appropriate. 
+I enforce HTTPS, configure CORS, disable CSRF only for stateless JWT APIs, 
+add standard security headers, and use BCrypt for password hashing. 
+I also implement rate limiting, centralized exception handling, 
+and audit logging while avoiding blocking operations in the reactive pipeline. 
+For authentication details inside reactive flows, I
+ use ReactiveSecurityContextHolder instead of the traditional SecurityContextHolder.

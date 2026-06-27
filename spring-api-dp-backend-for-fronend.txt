@@ -1,0 +1,252 @@
+1. What is Backend for Frontend (BFF) Pattern?
+
+2. Why was BFF introduced?
+
+3. What problems does BFF solve?
+
+4. Difference between API Gateway and BFF?
+
+5. Difference between BFF and Aggregator Pattern?
+
+6. When should we use BFF?
+
+7. When should we avoid BFF?
+
+8. Explain BFF architecture.
+
+9. How does BFF work in Microservices?
+
+10. What are the advantages of BFF?
+
+11. What are the disadvantages of BFF?
+
+12. How does BFF improve frontend performance?
+
+13. How does BFF reduce network calls?
+
+14. How does BFF support multiple frontends?
+
+15. Why do mobile and web applications need separate BFFs?
+
+16. How does BFF reduce frontend complexity?
+
+17. What is API aggregation in BFF?
+
+18. How does BFF handle data transformation?
+
+19. How does BFF support UI-specific responses?
+
+20. Explain request flow in BFF architecture.
+
+21. Design a BFF for an E-Commerce application.
+
+22. Design a BFF for a Banking application.
+
+23. Design a BFF for a Food Delivery application.
+
+24. Design a BFF for a Ride Booking application.
+
+25. Design a BFF for a Streaming platform.
+
+26. Mobile BFF vs Web BFF?
+
+27. How do you create a BFF using Spring Boot?
+
+28. How do you create a BFF using Node.js?
+
+29. How do you integrate BFF with Microservices?
+
+30. How does BFF communicate with downstream services?
+
+31. Feign Client vs WebClient in BFF?
+
+32. Why is WebClient preferred in BFF?
+
+33. How do you implement asynchronous calls in BFF?
+
+34. How do you use CompletableFuture in BFF?
+
+35. How do you implement parallel API calls?
+
+36. How do you aggregate multiple service responses?
+
+37. How do you handle partial failures?
+
+38. How do you implement fallback responses?
+
+39. How do you use Circuit Breaker in BFF?
+
+40. How do you use Resilience4j with BFF?
+
+41. How do you secure BFF?
+
+42. JWT validation in BFF?
+
+43. OAuth2 integration in BFF?
+
+44. Token propagation to downstream services?
+
+45. How do you secure service-to-service communication?
+
+46. How do you implement mTLS in BFF?
+
+47. How do you prevent unauthorized access?
+
+48. How do you implement RBAC in BFF?
+
+49. How do you handle CORS in BFF?
+
+50. How do you manage sessions in BFF?
+
+51. How do you cache responses in BFF?
+
+52. Redis integration with BFF?
+
+53. Cache Aside Pattern in BFF?
+
+54. Response caching strategies?
+
+55. Cache invalidation strategies?
+
+56. How do you improve BFF performance?
+
+57. How do you reduce BFF latency?
+
+58. How do you optimize downstream calls?
+
+59. How do you handle high traffic?
+
+60. How do you scale BFF horizontally?
+
+61. What metrics should be monitored in BFF?
+
+62. How do you monitor API latency?
+
+63. How do you monitor downstream service calls?
+
+64. How do you use Prometheus with BFF?
+
+65. How do you use Grafana with BFF?
+
+66. How do you perform distributed tracing?
+
+67. How do you use OpenTelemetry in BFF?
+
+68. How do you use Zipkin or Jaeger?
+
+69. How do you correlate logs across services?
+
+70. How do you perform RCA for BFF failures?
+
+71. BFF latency suddenly increased from 100ms to 3 seconds. How do you troubleshoot?
+
+72. One downstream service is slow. How do you handle it?
+
+73. API aggregation endpoint is timing out. Investigation steps?
+
+74. CPU utilization reached 90%. Troubleshooting approach?
+
+75. Memory utilization is continuously increasing. Investigation?
+
+76. Thread pool exhaustion in BFF. How do you diagnose?
+
+77. Connection pool exhaustion. Root cause analysis?
+
+78. Redis cache outage affecting BFF. How do you respond?
+
+79. JWT validation failures after deployment. Troubleshooting?
+
+80. OAuth2 authentication failures. Investigation?
+
+81. BFF returns intermittent 500 errors. How do you investigate?
+
+82. BFF returns 504 Gateway Timeout. What will you check?
+
+83. BFF pod restarting continuously. Troubleshooting?
+
+84. OutOfMemoryError in BFF. How do you analyze?
+
+85. Full GC pauses causing latency spikes. Investigation?
+
+86. Kubernetes readiness probe failures. Troubleshooting?
+
+87. Kubernetes liveness probe failures. Troubleshooting?
+
+88. Downstream microservice unavailable. How do you respond?
+
+89. Circuit Breaker is not opening. Investigation?
+
+90. Retry mechanism causing service overload. How do you fix it?
+
+91. How do you deploy BFF on Kubernetes?
+
+92. How do you autoscale BFF?
+
+93. HPA configuration for BFF?
+
+94. How do you perform canary deployment?
+
+95. How do you perform blue-green deployment?
+
+96. How do you achieve zero-downtime deployment?
+
+97. How do you design HA BFF architecture?
+
+98. How do you deploy BFF in multiple regions?
+
+99. How do you implement disaster recovery for BFF?
+
+100. Explain a real BFF production issue, RCA, troubleshooting steps, resolution, and preventive measures.
+
+Common Architecture Interview Question
+
+Frontend (Web/Mobile)
+          |
+          v
+      BFF Layer
+          |
+  -------------------
+  |       |        |
+User   Order   Product
+Svc     Svc      Svc
+  |       |        |
+  --------|--------
+          |
+      Response
+	  
+
+Why BFF?	  
+
+	-	UI-specific API responses
+	-	Reduced frontend complexity
+	-	Aggregation of multiple microservices
+	-	Better security control
+	-	Reduced network round trips
+	-	Independent evolution of web and mobile APIs
+	
+Real Production Example
+Problem:
+Dashboard API was taking 4-5 seconds.
+
+Root Cause:
+Frontend called:
+1. User Service
+2. Order Service
+3. Product Service
+4. Notification Service
+
+Sequentially.
+
+Solution:
+Implemented BFF with parallel WebClient calls.
+
+Before:
+4.8 seconds
+
+After:
+900 ms
+
+Improvement:
+~80% latency reduction.
+
+	

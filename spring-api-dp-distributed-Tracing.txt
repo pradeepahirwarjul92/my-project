@@ -1,0 +1,401 @@
+1. What is distributed tracing?
+2. Why distributed tracing is needed in microservices?
+3. What problem does distributed tracing solve?
+4. What is request tracing?
+5. What is end-to-end tracing?
+6. What is observability?
+7. Difference between monitoring and observability?
+8. What are the three pillars of observability?
+9. What are traces, logs, and metrics?
+10. What is a trace?
+11. What is a span?
+12. What is trace ID?
+13. What is span ID?
+14. What is parent span?
+15. What is child span?
+16. What is correlation ID?
+17. Difference between trace ID and correlation ID?
+18. What is context propagation?
+19. How trace context is propagated across services?
+20. What is distributed context?
+21. What is OpenTelemetry?
+22. What is OpenTracing?
+23. What is OpenCensus?
+24. Difference between OpenTracing and OpenTelemetry?
+25. What is Jaeger?
+26. What is Zipkin?
+27. Difference between Jaeger and Zipkin?
+28. What is Spring Cloud Sleuth?
+29. How Spring Cloud Sleuth works?
+30. How trace IDs are generated?
+31. How spans are created?
+32. What is automatic instrumentation?
+33. What is manual instrumentation?
+34. What is instrumentation in tracing?
+35. What is sampling in distributed tracing?
+36. Why sampling is required?
+37. Types of sampling in tracing?
+38. What is head sampling?
+39. What is tail sampling?
+40. What is probabilistic sampling?
+41. What is baggage in tracing?
+42. What is MDC in logging?
+43. How MDC helps in tracing?
+44. What is structured logging?
+45. What is centralized logging?
+46. What is ELK stack?
+47. What is Elasticsearch?
+48. What is Logstash?
+49. What is Kibana?
+50. What is Fluentd?
+51. What is Fluent Bit?
+52. What is Loki?
+53. What is Grafana?
+54. How Grafana is used with tracing?
+55. What is Tempo in Grafana?
+56. What is service map?
+57. What is dependency graph in tracing?
+58. What is latency analysis?
+59. How distributed tracing helps in debugging?
+60. How to identify slow microservices?
+61. How to identify bottlenecks using tracing?
+62. What is root cause analysis using tracing?
+63. What is service latency?
+64. What is network latency?
+65. What is application latency?
+66. What is downstream service latency?
+67. What is tracing overhead?
+68. How tracing affects performance?
+69. What is asynchronous tracing?
+70. How tracing works with async calls?
+71. How tracing works with Kafka?
+72. How tracing works with RabbitMQ?
+73. How tracing works with REST APIs?
+74. How tracing works with gRPC?
+75. What is propagation header?
+76. What is B3 propagation?
+77. What is W3C Trace Context?
+78. What is traceparent header?
+79. What is tracestate header?
+80. What is baggage header?
+81. What is distributed transaction tracing?
+82. What is transaction flow tracking?
+83. What is API request lifecycle tracing?
+84. What is request flow visualization?
+85. How tracing helps in production support?
+86. What is real-time request tracking?
+87. What is user journey tracking?
+88. What is session tracking?
+89. Difference between tracking and tracing?
+90. What is event tracking?
+91. What is audit tracking?
+92. What is log correlation?
+93. What is request correlation?
+94. What is transaction correlation?
+95. How to correlate logs across services?
+96. What is log aggregation?
+97. What is JSON logging?
+98. What is structured trace logging?
+99. What is distributed debugging?
+100. What is synthetic monitoring?
+101. What is APM?
+102. What is Application Performance Monitoring?
+103. What is Dynatrace?
+104. What is New Relic?
+105. What is AppDynamics?
+106. What is Datadog tracing?
+107. What is cloud-native observability?
+108. What is Kubernetes observability?
+109. How tracing works in Kubernetes?
+110. What is sidecar tracing?
+111. What is service mesh?
+112. What is Istio?
+113. How Istio supports tracing?
+114. What is Envoy proxy?
+115. How Envoy collects traces?
+116. What is ingress tracing?
+117. What is egress tracing?
+118. What is distributed tracing architecture?
+119. What are tracing collectors?
+120. What is trace exporter?
+121. What is OTLP?
+122. What is telemetry data?
+123. What is observability pipeline?
+124. What is telemetry collector?
+125. What is span enrichment?
+126. What is trace visualization?
+127. What is trace analysis?
+128. What is request replay?
+129. What is anomaly detection in tracing?
+130. What is SLA monitoring?
+131. What is SLO monitoring?
+132. What is SLI in observability?
+133. What is golden signal monitoring?
+134. What are the four golden signals?
+135. What is throughput monitoring?
+136. What is error rate monitoring?
+137. What is saturation monitoring?
+138. What is health monitoring?
+139. What is distributed health check?
+140. What is heartbeat monitoring?
+141. What is endpoint monitoring?
+142. What is API monitoring?
+143. What is synthetic transaction monitoring?
+144. What is business transaction tracking?
+145. What is transaction tracing in banking systems?
+146. What is payment flow tracing?
+147. What is order tracking in e-commerce systems?
+148. What is event-driven tracing?
+149. What is stream tracing?
+150. What is Kafka consumer tracing?
+151. What is Kafka producer tracing?
+152. What is trace retention?
+153. What is telemetry storage?
+154. What is observability backend?
+155. What is high-cardinality data?
+156. What is tag explosion issue?
+157. What are labels in tracing?
+158. What are dimensions in observability?
+159. What is metric correlation?
+160. What is trace-to-log correlation?
+161. What is trace-to-metric correlation?
+162. What is distributed cache tracing?
+163. How Redis operations are traced?
+164. What is DB query tracing?
+165. What is SQL latency tracing?
+166. What is Hibernate query tracing?
+167. What is API Gateway tracing?
+168. What is Spring Cloud Gateway tracing?
+169. What is OAuth request tracing?
+170. What is JWT request tracking?
+171. What is security event tracking?
+172. What is compliance audit tracking?
+173. What is user activity tracking?
+174. What is access tracking?
+175. What is fraud detection tracking?
+176. What is observability maturity?
+177. What are observability best practices?
+178. How to reduce tracing cost?
+179. What is adaptive sampling?
+180. What is dynamic sampling?
+181. What is always-on tracing?
+182. What is selective tracing?
+183. What is debug tracing?
+184. What is cold start tracing?
+185. What is serverless tracing?
+186. What is cloud tracing?
+187. What is AWS X-Ray?
+188. What is Azure Monitor tracing?
+189. What is Google Cloud Trace?
+190. What is production tracing strategy?
+191. How to troubleshoot production issues using tracing?
+192. How to detect microservice failures?
+193. How to detect timeout issues using tracing?
+194. How to identify retry storms using tracing?
+195. What is cascading failure tracking?
+196. What is circuit breaker tracing?
+197. What is resilience monitoring?
+198. What is distributed observability platform?
+199. What are best tools for distributed tracing?
+200. Explain complete distributed tracing flow in microservices.
+
+1. What is performance tuning?
+2. What is application optimization?
+3. What is troubleshooting in production?
+4. What are common production issues in microservices?
+5. How do you troubleshoot a slow application?
+6. What is root cause analysis?
+7. What is incident management?
+8. What is SLA?
+9. What is SLO?
+10. What is SLI?
+11. What are golden signals in monitoring?
+12. What is latency?
+13. What is throughput?
+14. What is error rate?
+15. What is saturation?
+16. What is bottleneck analysis?
+17. What is CPU bottleneck?
+18. What is memory bottleneck?
+19. What is I/O bottleneck?
+20. What is network bottleneck?
+21. What is JVM tuning?
+22. What are JVM parameters?
+23. What is Xms and Xmx?
+24. What is Metaspace?
+25. What is heap memory?
+26. What is stack memory?
+27. What is garbage collection?
+28. Types of garbage collectors in Java?
+29. What is G1GC?
+30. What is ZGC?
+31. Difference between G1GC and Parallel GC?
+32. What is Minor GC?
+33. What is Major GC?
+34. What is Full GC?
+35. How to reduce Full GC?
+36. What is memory leak?
+37. How to identify memory leaks?
+38. What is OutOfMemoryError?
+39. Types of OutOfMemoryError?
+40. What is heap dump?
+41. How to analyze heap dump?
+42. What is thread dump?
+43. How to generate thread dump?
+44. How to analyze thread dump?
+45. What is deadlock?
+46. How to identify deadlocks?
+47. What is thread starvation?
+48. What is race condition?
+49. What is synchronization issue?
+50. What is lock contention?
+51. What is CPU profiling?
+52. What is memory profiling?
+53. What tools are used for profiling?
+54. What is JProfiler?
+55. What is VisualVM?
+56. What is JConsole?
+57. What is MAT tool?
+58. What is async processing?
+59. What is CompletableFuture?
+60. How to optimize asynchronous processing?
+61. What is thread pool?
+62. What is ExecutorService?
+63. Difference between fixed and cached thread pool?
+64. What is ForkJoinPool?
+65. What is reactive programming?
+66. What is WebFlux?
+67. Difference between Spring MVC and WebFlux?
+68. What is non-blocking I/O?
+69. What is backpressure?
+70. What is connection pooling?
+71. What is HikariCP?
+72. How to tune connection pool?
+73. What is DB connection leak?
+74. How to detect connection leaks?
+75. What causes slow database queries?
+76. How to optimize SQL queries?
+77. What is query execution plan?
+78. What is indexing?
+79. Types of database indexes?
+80. What is composite index?
+81. What is clustered index?
+82. What is non-clustered index?
+83. What is query optimization?
+84. What is normalization?
+85. What is denormalization?
+86. What is database partitioning?
+87. What is sharding?
+88. What is replication?
+89. What is read replica?
+90. What is caching?
+91. Types of caching?
+92. What is Redis cache?
+93. What is distributed cache?
+94. What is cache eviction?
+95. What is cache invalidation?
+96. What is cache stampede?
+97. What is lazy loading?
+98. What is eager loading?
+99. What is N+1 query problem?
+100. How to solve N+1 issue?
+101. What is Hibernate optimization?
+102. What is second-level cache?
+103. What is batch processing?
+104. What is batch insert optimization?
+105. What is pagination optimization?
+106. Offset vs cursor pagination?
+107. What is API optimization?
+108. How to reduce API response time?
+109. What is gzip compression?
+110. What is HTTP caching?
+111. What is CDN?
+112. What is ETag?
+113. What is API Gateway?
+114. What is rate limiting?
+115. What is throttling?
+116. What is circuit breaker?
+117. What is Resilience4j?
+118. What is retry mechanism?
+119. What is fallback method?
+120. What is timeout configuration?
+121. Connection timeout vs read timeout?
+122. What is socket timeout?
+123. What is bulkhead pattern?
+124. What is autoscaling?
+125. Vertical scaling vs horizontal scaling?
+126. What is load balancing?
+127. What is sticky session?
+128. What is Kubernetes autoscaling?
+129. What is HPA in Kubernetes?
+130. What is VPA in Kubernetes?
+131. What is pod optimization?
+132. What is CrashLoopBackOff?
+133. How to troubleshoot crashing pods?
+134. What is readiness probe?
+135. What is liveness probe?
+136. Difference between readiness and liveness probes?
+137. What is resource limit in Kubernetes?
+138. What is CPU throttling?
+139. What is memory throttling?
+140. What is container optimization?
+141. How to reduce Docker image size?
+142. What is multi-stage Docker build?
+143. What is image layering?
+144. What is startup optimization?
+145. What is zero downtime deployment?
+146. What is blue-green deployment?
+147. What is canary deployment?
+148. What is rolling deployment?
+149. What is observability?
+150. Difference between monitoring and observability?
+151. What is distributed tracing?
+152. What is correlation ID?
+153. What is centralized logging?
+154. What is ELK stack?
+155. What is Prometheus?
+156. What is Grafana?
+157. What is Micrometer?
+158. What is OpenTelemetry?
+159. What is Zipkin?
+160. What is Jaeger?
+161. What is log aggregation?
+162. What is structured logging?
+163. What is JSON logging?
+164. What is alerting?
+165. What is anomaly detection?
+166. What is production support?
+167. How to troubleshoot 500 Internal Server Error?
+168. How to troubleshoot 502 Bad Gateway?
+169. How to troubleshoot 504 Gateway Timeout?
+170. What is SSL handshake issue?
+171. What is DNS resolution issue?
+172. What is packet loss?
+173. What is network latency?
+174. What is Kafka optimization?
+175. What is Kafka lag?
+176. How to improve Kafka throughput?
+177. What is Kafka partition?
+178. What is Kafka consumer group?
+179. What is idempotency?
+180. What is exactly-once processing?
+181. What is eventual consistency?
+182. What is Saga pattern?
+183. What is distributed transaction?
+184. What is CAP theorem?
+185. What is failover strategy?
+186. What is disaster recovery?
+187. What is rollback strategy?
+188. What is feature toggle?
+189. What is chaos engineering?
+190. What is resilience testing?
+191. What is load testing?
+192. What is stress testing?
+193. What is soak testing?
+194. What is JMeter?
+195. What is Gatling?
+196. What is performance benchmark?
+197. What are performance KPIs?
+198. What are optimization best practices?
+199. What are troubleshooting best practices?
+200. Explain a real-time production issue and how you solved it.

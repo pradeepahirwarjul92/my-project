@@ -1,3 +1,588 @@
+SPRING BOOT INTERVIEW QUESTIONS (8+ YEARS EXPERIENCE)
+
+1. What is Spring Boot?
+2. What are the advantages of Spring Boot?
+3. Difference between Spring and Spring Boot?
+4. What is auto-configuration?
+5. How does Spring Boot auto-configuration work?
+6. What is @SpringBootApplication?
+7. Explain embedded servers in Spring Boot.
+8. Difference between Tomcat, Jetty, and Undertow?
+9. What are Spring Boot starters?
+10. What is Spring Initializr?
+
+11. Explain Spring Boot architecture.
+12. What is dependency injection?
+13. What are IoC and DI?
+14. What is BeanFactory?
+15. What is ApplicationContext?
+16. Difference between BeanFactory and ApplicationContext?
+17. What is a Spring Bean?
+18. Bean lifecycle in Spring Boot?
+19. What is @Component?
+20. Difference between @Component, @Service, @Repository, @Controller?
+
+21. What is @Autowired?
+22. Constructor Injection vs Field Injection?
+23. Why Constructor Injection is preferred?
+24. What is @Qualifier?
+25. What is @Primary?
+26. What is @Value annotation?
+27. What is @Configuration?
+28. What is @Bean annotation?
+29. What is @PropertySource?
+30. What is Environment abstraction?
+
+31. What are Spring Bean scopes?
+32. Singleton vs Prototype scope?
+33. Request Scope vs Session Scope?
+34. What is Lazy Initialization?
+35. What is @Lazy?
+36. What is eager initialization?
+37. What is circular dependency?
+38. How do you resolve circular dependency?
+39. What is @DependsOn?
+40. What is BeanPostProcessor?
+
+41. What is Spring MVC?
+42. Explain DispatcherServlet.
+43. Request flow in Spring MVC?
+44. What is @RequestMapping?
+45. Difference between @GetMapping and @PostMapping?
+46. Difference between PUT and PATCH?
+47. What is @PathVariable?
+48. What is @RequestParam?
+49. What is @RequestBody?
+50. What is @ResponseBody?
+
+51. What is ResponseEntity?
+52. What is content negotiation?
+53. What is @ControllerAdvice?
+54. What is @ExceptionHandler?
+55. Global exception handling?
+56. Custom exception handling?
+57. What is Validation API?
+58. What is @Valid?
+59. What is @Validated?
+60. Difference between @Valid and @Validated?
+
+61. What is Spring Data JPA?
+62. What is Hibernate?
+63. Difference between JPA and Hibernate?
+64. What is EntityManager?
+65. What is Persistence Context?
+66. What is first-level cache?
+67. What is second-level cache?
+68. What is @Entity?
+69. What is @Table?
+70. What is @Column?
+
+71. What is @Id?
+72. What are primary key generation strategies?
+73. Difference between GenerationType.IDENTITY and SEQUENCE?
+74. What is @OneToOne?
+75. What is @OneToMany?
+76. What is @ManyToOne?
+77. What is @ManyToMany?
+78. What is FetchType.LAZY?
+79. What is FetchType.EAGER?
+80. Difference between Lazy and Eager loading?
+
+81. What is N+1 query problem?
+82. How do you solve N+1 problem?
+83. What is JPQL?
+84. What is Native Query?
+85. What is Criteria API?
+86. What is Pagination?
+87. What is Sorting?
+88. What is Specification API?
+89. What is QueryDSL?
+90. What is @Transactional?
+
+91. How does transaction management work?
+92. Transaction propagation types?
+93. Transaction isolation levels?
+94. Difference between READ_COMMITTED and SERIALIZABLE?
+95. What is rollback?
+96. What causes transaction rollback?
+97. What is optimistic locking?
+98. What is pessimistic locking?
+99. What is @Version?
+100. Deadlock handling in Spring Boot?
+
+101. What is Spring Security?
+102. Authentication vs Authorization?
+103. What is JWT?
+104. JWT flow?
+105. How do you secure REST APIs?
+106. What is OAuth2?
+107. OAuth2 grant types?
+108. What is OpenID Connect?
+109. What is CSRF?
+110. What is CORS?
+
+111. How do you configure Spring Security?
+112. What is SecurityFilterChain?
+113. What is UserDetailsService?
+114. What is PasswordEncoder?
+115. BCrypt vs PBKDF2?
+116. Role-based security?
+117. Method-level security?
+118. What is @PreAuthorize?
+119. What is @PostAuthorize?
+120. How do you secure microservices?
+
+121. What is Spring Boot Actuator?
+122. What are Actuator endpoints?
+123. What is /health endpoint?
+124. What is /metrics endpoint?
+125. How do you monitor Spring Boot applications?
+126. What is Micrometer?
+127. Prometheus integration?
+128. Grafana integration?
+129. Distributed tracing?
+130. Zipkin integration?
+
+131. What is Spring Cloud?
+132. What is Eureka?
+133. Service Discovery?
+134. What is API Gateway?
+135. What is Spring Cloud Gateway?
+136. What is Config Server?
+137. What is Config Client?
+138. What is Circuit Breaker?
+139. What is Resilience4j?
+140. Retry pattern?
+
+141. What is Bulkhead pattern?
+142. What is Rate Limiter?
+143. What is Service Mesh?
+144. What is OpenFeign?
+145. Feign vs RestTemplate?
+146. Feign vs WebClient?
+147. What is WebClient?
+148. Reactive Programming?
+149. Mono vs Flux?
+150. Spring WebFlux?
+
+151. What is Kafka integration in Spring Boot?
+152. Kafka Producer?
+153. Kafka Consumer?
+154. Consumer Groups?
+155. Kafka Partitioning?
+156. Kafka Offset Management?
+157. Kafka Retry?
+158. Dead Letter Queue?
+159. Kafka Transactions?
+160. Exactly Once Semantics?
+
+161. Spring Batch basics?
+162. Chunk Processing?
+163. Tasklet?
+164. Job Repository?
+165. Job Launcher?
+166. Spring Scheduling?
+167. @Scheduled annotation?
+168. Cron Expressions?
+169. Async Processing?
+170. @Async annotation?
+
+171. CompletableFuture in Spring Boot?
+172. ExecutorService configuration?
+173. ThreadPoolTaskExecutor?
+174. Virtual Threads support?
+175. Spring Boot with Docker?
+176. Spring Boot with Kubernetes?
+177. Health probes?
+178. Liveness Probe?
+179. Readiness Probe?
+180. Resource limits?
+
+181. What is caching?
+182. Spring Cache abstraction?
+183. @Cacheable?
+184. @CachePut?
+185. @CacheEvict?
+186. Redis integration?
+187. Hazelcast integration?
+188. Cache Aside Pattern?
+189. Write Through Cache?
+190. Cache Invalidation?
+
+191. What is Spring Profiles?
+192. @Profile annotation?
+193. application.properties vs application.yml?
+194. Externalized Configuration?
+195. Environment Variables?
+196. Secrets Management?
+197. Spring Boot with Vault?
+198. Refresh Scope?
+199. Dynamic Configuration Reload?
+200. Feature Flags?
+
+201. Spring Boot production troubleshooting?
+202. High CPU troubleshooting?
+203. High Memory troubleshooting?
+204. OutOfMemoryError troubleshooting?
+205. Heap dump analysis?
+206. Thread dump analysis?
+207. Deadlock troubleshooting?
+208. GC tuning?
+209. Full GC issues?
+210. Memory leak troubleshooting?
+
+211. API latency troubleshooting?
+212. Slow database troubleshooting?
+213. Connection pool exhaustion?
+214. HikariCP tuning?
+215. Thread pool exhaustion?
+216. Slow startup troubleshooting?
+217. ClassLoader issues?
+218. Bean creation failures?
+219. Circular dependency issues?
+220. Application crash troubleshooting?
+
+221. REST API performance optimization?
+222. Database performance optimization?
+223. Hibernate performance tuning?
+224. Query optimization?
+225. Batch insert optimization?
+226. Bulk update optimization?
+227. Read replica usage?
+228. Connection pool optimization?
+229. JVM tuning?
+230. Garbage collection optimization?
+
+231. Microservice troubleshooting?
+232. Service discovery issues?
+233. API Gateway issues?
+234. Distributed transaction issues?
+235. Saga Pattern?
+236. Choreography vs Orchestration?
+237. Event-driven architecture?
+238. CQRS Pattern?
+239. Event Sourcing?
+240. Outbox Pattern?
+
+241. Design URL Shortener in Spring Boot.
+242. Design Notification Service.
+243. Design Payment Service.
+244. Design Order Management System.
+245. Design Inventory System.
+246. Design E-Commerce Backend.
+247. Design Ride Booking System.
+248. Design Banking Application.
+249. Design Chat Application.
+250. Design High-Traffic REST API.
+
+251. What are the major features introduced in Spring Boot 3.x?
+252. What are the breaking changes in Spring Boot 3.x?
+253. Difference between Spring Boot 2.x and 3.x?
+254. What is Jakarta EE migration?
+255. Why javax packages were changed to jakarta?
+256. How do you migrate Spring Boot 2.x applications to 3.x?
+257. What is AOT Processing?
+258. What is Native Image support?
+259. What is GraalVM?
+260. Benefits of Native Images?
+
+261. What is Spring AI?
+262. How does Spring AI integrate with LLMs?
+263. What is PromptTemplate in Spring AI?
+264. What is VectorStore?
+265. What is Embedding Model?
+266. What is Retrieval Augmented Generation (RAG)?
+267. What is Function Calling?
+268. What is Tool Calling?
+269. How do you build AI Agents using Spring AI?
+270. What is MCP (Model Context Protocol)?
+
+271. What is Spring Cloud Stream?
+272. Spring Cloud Stream vs Kafka?
+273. What are binders in Spring Cloud Stream?
+274. How do you integrate Kafka using Spring Cloud Stream?
+275. What is message-driven architecture?
+276. What is event-driven architecture?
+277. What is Event Sourcing?
+278. What is CQRS?
+279. When should CQRS be used?
+280. Challenges of CQRS?
+
+281. What is Kafka Streams?
+282. Difference between Kafka and Kafka Streams?
+283. What is KTable?
+284. What is KStream?
+285. What is Stateful Processing?
+286. What is Windowing in Kafka Streams?
+287. What is Stream Join?
+288. What is Aggregation in Kafka Streams?
+289. What is Exactly Once Processing?
+290. How do you handle stream failures?
+
+291. What is Multi-Tenancy?
+292. Database per Tenant approach?
+293. Schema per Tenant approach?
+294. Shared Database approach?
+295. Which Multi-Tenancy approach is best?
+296. How do you implement Multi-Tenancy in Spring Boot?
+297. How do you isolate tenant data?
+298. How do you manage tenant-specific configurations?
+299. Challenges in Multi-Tenancy?
+300. Performance considerations in Multi-Tenant systems?
+
+301. How do you configure multiple data sources?
+302. How do you use multiple databases in Spring Boot?
+303. Multi-DataSource transaction management?
+304. How do you implement read-write splitting?
+305. How do you use read replicas?
+306. How do you switch databases dynamically?
+307. How do you implement database routing?
+308. What is AbstractRoutingDataSource?
+309. Challenges with multiple databases?
+310. Troubleshooting multi-database applications?
+
+311. How do you secure microservices communication?
+312. Mutual TLS (mTLS)?
+313. API Gateway security?
+314. OAuth2 Resource Server?
+315. OAuth2 Client?
+316. OAuth2 Authorization Server?
+317. JWT validation flow?
+318. Token introspection?
+319. Refresh Token flow?
+320. Security best practices for microservices?
+
+321. What is OpenTelemetry?
+322. Why OpenTelemetry?
+323. OpenTelemetry architecture?
+324. What are Traces?
+325. What are Spans?
+326. What are Metrics?
+327. What are Logs?
+328. How do you integrate OpenTelemetry with Spring Boot?
+329. How do you monitor distributed systems?
+330. How do you troubleshoot distributed transactions?
+
+331. What is Service Mesh?
+332. Istio architecture?
+333. Linkerd architecture?
+334. Sidecar pattern?
+335. Benefits of Service Mesh?
+336. Traffic management in Istio?
+337. Circuit Breaking in Istio?
+338. Fault Injection?
+339. Canary Deployments?
+340. Blue-Green Deployments?
+
+341. How do you design APIs for 1 million users?
+342. How do you handle 10,000 requests per second?
+343. API rate limiting strategies?
+344. Load balancing techniques?
+345. Sticky Sessions?
+346. Stateless architecture?
+347. Horizontal scaling?
+348. Vertical scaling?
+349. Database scaling techniques?
+350. Cache scaling strategies?
+
+351. What is Redis Cluster?
+352. Redis Sentinel?
+353. Redis Pub/Sub?
+354. Redis Streams?
+355. Cache Aside pattern?
+356. Write Through cache?
+357. Write Behind cache?
+358. Read Through cache?
+359. Cache Penetration?
+360. Cache Avalanche?
+
+361. Spring Boot application has high CPU. How do you troubleshoot?
+362. Spring Boot application has high memory. Investigation steps?
+363. Application startup takes 10 minutes. Troubleshooting?
+364. Full GC occurs every minute. What will you check?
+365. OutOfMemoryError in production. RCA approach?
+366. Thread pool exhausted. Investigation?
+367. Database pool exhausted. Investigation?
+368. API response time increased after deployment. Troubleshooting?
+369. Kafka lag increased suddenly. Investigation?
+370. Redis latency increased. Troubleshooting?
+
+371. Application works in QA but fails in production. Why?
+372. SSL certificate expired in production. Impact?
+373. API Gateway unavailable. How do you respond?
+374. Eureka unavailable. What happens?
+375. Config Server unavailable. What happens?
+376. Kafka brokers unavailable. Impact?
+377. Database failover occurred. Troubleshooting?
+378. Kubernetes pod restarting continuously. Investigation?
+379. Memory leak after release. Investigation?
+380. Deadlock issue in production. Troubleshooting?
+
+381. Explain a production incident you resolved.
+382. Explain a database bottleneck issue.
+383. Explain a memory leak issue.
+384. Explain a high CPU issue.
+385. Explain a high latency issue.
+386. Explain a Kafka outage.
+387. Explain a Redis outage.
+388. Explain a Kubernetes deployment issue.
+389. Explain a microservice communication issue.
+390. Explain a production RCA you presented.
+
+391. Design Netflix using Spring Boot.
+392. Design YouTube backend.
+393. Design WhatsApp backend.
+394. Design Uber backend.
+395. Design Swiggy/Zomato backend.
+396. Design E-Commerce backend.
+397. Design Banking backend.
+398. Design Payment Gateway.
+399. Design URL Shortener.
+400. Design Notification Platform.
+
+401. Design Distributed Logging System.
+402. Design Audit System.
+403. Design Recommendation Engine.
+404. Design Search Engine.
+405. Design Chat Application.
+406. Design Real-Time Analytics System.
+407. Design Fraud Detection System.
+408. Design Inventory Service.
+409. Design Order Service.
+410. Design User Management Service.
+
+411. How do you perform JVM tuning?
+412. How do you tune G1GC?
+413. How do you tune ZGC?
+414. What JVM metrics do you monitor?
+415. What is heap fragmentation?
+416. How do you analyze GC logs?
+417. What is safepoint?
+418. What are stop-the-world pauses?
+419. What is Metaspace?
+420. Metaspace OutOfMemoryError troubleshooting?
+
+421. How do you benchmark Spring Boot applications?
+422. How do you perform load testing?
+423. JMeter vs Gatling?
+424. How do you perform stress testing?
+425. How do you perform endurance testing?
+426. What is spike testing?
+427. What is soak testing?
+428. Performance tuning methodology?
+429. Capacity planning approach?
+430. How do you estimate infrastructure requirements?
+
+431. What are the Spring Boot best practices?
+432. How do you structure enterprise applications?
+433. Hexagonal Architecture?
+434. Clean Architecture?
+435. Onion Architecture?
+436. Domain Driven Design (DDD)?
+437. Bounded Context?
+438. Aggregate Root?
+439. Repository Pattern?
+440. Specification Pattern?
+
+441. What leadership responsibilities do you have?
+442. How do you mentor junior developers?
+443. How do you perform code reviews?
+444. How do you handle production escalations?
+445. How do you estimate project timelines?
+446. How do you lead architecture discussions?
+447. How do you handle technical debt?
+448. How do you communicate with stakeholders?
+449. How do you manage cross-team dependencies?
+450. How do you drive engineering excellence?
+
+451. What is the most critical production issue you solved?
+452. What was your biggest performance optimization?
+453. What was your biggest scalability challenge?
+454. What architecture decision had the highest impact?
+455. What was your biggest outage and RCA?
+456. How did you reduce API latency?
+457. How did you improve application throughput?
+458. How did you reduce cloud costs?
+459. How did you improve deployment frequency?
+460. How did you improve system reliability?
+
+461. What are common Spring Boot production issues?
+462. How do you prevent memory leaks?
+463. How do you prevent thread leaks?
+464. How do you prevent connection leaks?
+465. How do you secure APIs?
+466. How do you secure secrets?
+467. How do you implement zero-downtime deployments?
+468. How do you implement feature toggles?
+469. How do you implement canary releases?
+470. How do you implement blue-green deployments?
+
+471. How do you handle 100M records in a database?
+472. How do you handle billions of Kafka messages?
+473. How do you handle millions of concurrent users?
+474. How do you scale Redis clusters?
+475. How do you scale Kubernetes workloads?
+476. How do you scale API Gateways?
+477. How do you scale databases globally?
+478. How do you handle multi-region deployments?
+479. How do you design disaster recovery?
+480. How do you design business continuity?
+
+481. What are the new features in Java 17 relevant to Spring Boot?
+482. What are the new features in Java 21 relevant to Spring Boot?
+483. Virtual Threads use cases?
+484. Structured Concurrency?
+485. Record classes?
+486. Sealed classes?
+487. Pattern Matching?
+488. Switch Expressions?
+489. Scoped Values?
+490. Foreign Function API?
+
+491. Future of Spring ecosystem?
+492. Future of Microservices?
+493. Future of Event-Driven Architecture?
+494. Future of AI integration in Spring?
+495. How would you modernize a monolith?
+496. How would you migrate legacy systems?
+497. How would you move to cloud-native architecture?
+498. How would you reduce operational costs?
+499. How would you improve developer productivity?
+500. Tell us why we should hire you as a Senior Spring Boot Developer/Lead?
+
+
+
+251-500. (Continue with advanced topics)
+- Spring AI
+- Spring Boot 3.x Features
+- Spring Security OAuth2 Resource Server
+- Virtual Threads
+- GraalVM Native Images
+- Spring Cloud Stream
+- Kafka Streams
+- Reactive Microservices
+- Kubernetes Production Deployment
+- Service Mesh
+- Observability
+- OpenTelemetry
+- Distributed Tracing
+- Resilience Patterns
+- API Versioning
+- Multi-Tenancy
+- Multi-Datasource
+- Event Sourcing
+- CQRS
+- Saga Pattern
+- Production RCA
+- System Design Scenarios
+- Real Production Incidents
+- Scalability Problems
+- Performance Bottlenecks
+- Enterprise Architecture Questions
+- Leadership and Design Decisions
+
+
+
 Company
  ├── Departments
  │     └── Employees

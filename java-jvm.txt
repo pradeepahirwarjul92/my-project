@@ -1,0 +1,296 @@
+JAVA JVM INTERVIEW QUESTIONS (150 MOST ASKED)
+
+====================================
+JVM BASICS
+====================================
+
+1. What is JVM?
+2. What is JRE?
+3. What is JDK?
+4. Difference between JVM, JRE, and JDK?
+5. Why is Java platform independent?
+6. What is bytecode?
+7. How does JVM execute bytecode?
+8. What are JVM responsibilities?
+9. What is Write Once Run Anywhere (WORA)?
+10. JVM architecture overview?
+
+====================================
+CLASS LOADING
+====================================
+
+11. What is ClassLoader?
+12. Types of ClassLoaders?
+13. Bootstrap ClassLoader?
+14. Extension ClassLoader?
+15. Application ClassLoader?
+16. Custom ClassLoader?
+17. Parent Delegation Model?
+18. Why use Parent Delegation?
+19. How does class loading work?
+20. Difference between loading and initialization?
+
+====================================
+CLASS LOADING PHASES
+====================================
+
+21. What are class loading phases?
+22. Loading phase?
+23. Linking phase?
+24. Verification phase?
+25. Preparation phase?
+26. Resolution phase?
+27. Initialization phase?
+28. When are static blocks executed?
+29. When are static variables initialized?
+30. What triggers class loading?
+
+====================================
+JVM MEMORY STRUCTURE
+====================================
+
+31. Explain JVM memory architecture.
+32. What is Heap Memory?
+33. What is Stack Memory?
+34. What is Method Area?
+35. What is Metaspace?
+36. What is Program Counter Register?
+37. What is Native Method Stack?
+38. Which memory areas are shared?
+39. Which memory areas are thread specific?
+40. Difference between Heap and Stack?
+
+====================================
+HEAP MEMORY
+====================================
+
+41. What is Heap Memory?
+42. Why are objects stored in Heap?
+43. Young Generation?
+44. Eden Space?
+45. Survivor Space?
+46. Old Generation?
+47. Permanent Generation?
+48. Metaspace vs PermGen?
+49. Heap memory tuning parameters?
+50. Heap dump analysis?
+
+====================================
+STACK MEMORY
+====================================
+
+51. What is Stack Memory?
+52. What is Stack Frame?
+53. Local Variable Table?
+54. Operand Stack?
+55. Stack memory lifecycle?
+56. Why is stack thread-safe?
+57. StackOverflowError?
+58. Causes of StackOverflowError?
+59. Recursive method issue?
+60. Stack memory troubleshooting?
+
+====================================
+METASPACE
+====================================
+
+61. What is Metaspace?
+62. Why was PermGen removed?
+63. Metaspace storage location?
+64. Metaspace OutOfMemoryError?
+65. Metaspace tuning?
+66. Class metadata storage?
+67. Dynamic class loading impact?
+68. Metaspace monitoring?
+69. Common production issues?
+70. Metaspace troubleshooting?
+
+====================================
+GARBAGE COLLECTION
+====================================
+
+71. What is Garbage Collection?
+72. Why is Garbage Collection needed?
+73. How does GC work?
+74. What objects are eligible for GC?
+75. Can GC be forced?
+76. System.gc() behavior?
+77. finalize() method?
+78. Why is finalize deprecated?
+79. Reference counting vs GC?
+80. Reachability analysis?
+
+====================================
+GC ALGORITHMS
+====================================
+
+81. Mark and Sweep?
+82. Mark and Compact?
+83. Copying Algorithm?
+84. Generational GC?
+85. Incremental GC?
+86. Parallel GC?
+87. Concurrent GC?
+88. Stop-The-World event?
+89. GC pause?
+90. How to reduce GC pause?
+
+====================================
+GARBAGE COLLECTORS
+====================================
+
+91. Serial GC?
+92. Parallel GC?
+93. CMS GC?
+94. Why CMS removed?
+95. G1 GC?
+96. ZGC?
+97. Shenandoah GC?
+98. Which GC is default in Java 17?
+99. Difference between G1 and ZGC?
+100. Production GC selection?
+
+====================================
+JIT COMPILER
+====================================
+
+101. What is JIT Compiler?
+102. Why JIT is needed?
+103. Interpreter vs JIT?
+104. HotSpot JVM?
+105. What are Hot Methods?
+106. Code Optimization?
+107. Inlining?
+108. Escape Analysis?
+109. Tiered Compilation?
+110. JIT troubleshooting?
+
+====================================
+JVM EXECUTION ENGINE
+====================================
+
+111. What is Execution Engine?
+112. Components of Execution Engine?
+113. Interpreter role?
+114. JIT role?
+115. Garbage Collector role?
+116. Native Method Interface (JNI)?
+117. Native libraries?
+118. JVM execution flow?
+119. Bytecode execution?
+120. Production troubleshooting?
+
+====================================
+MEMORY LEAKS
+====================================
+
+121. What is Memory Leak?
+122. Memory Leak in Java?
+123. Static collection leak?
+124. Unclosed resources?
+125. Listener leaks?
+126. Cache leaks?
+127. ThreadLocal leaks?
+128. Detecting memory leaks?
+129. Heap dump analysis?
+130. MAT tool usage?
+
+====================================
+OUTOFMEMORYERROR
+====================================
+
+131. What is OutOfMemoryError?
+132. Java Heap Space Error?
+133. GC Overhead Limit Exceeded?
+134. Metaspace OOM?
+135. Direct Buffer Memory OOM?
+136. Native Thread OOM?
+137. Troubleshooting OOM?
+138. Heap dump collection?
+139. Memory monitoring tools?
+140. Production fixes?
+
+====================================
+PRODUCTION TROUBLESHOOTING
+====================================
+
+141. Application suddenly slow. How do you troubleshoot JVM?
+142. High CPU usage due to JVM. How to analyze?
+143. Frequent Full GC. What will you do?
+144. Heap memory continuously increasing. Root cause?
+145. Metaspace OutOfMemoryError. Solution?
+146. Application crash due to OOM. Steps to resolve?
+147. How to capture heap dump?
+148. How to capture thread dump?
+149. Explain GC logs analysis.
+150. Explain complete JVM architecture and object lifecycle.
+
+====================================
+MOST ASKED JVM INTERNAL QUESTIONS
+====================================
+
+1. Explain complete JVM Architecture.
+2. Difference between Heap and Stack.
+3. Difference between JDK, JRE, and JVM.
+4. Explain Class Loading Process.
+5. Explain Parent Delegation Model.
+6. Explain Heap Memory Structure.
+7. Explain Young Generation and Old Generation.
+8. Explain G1 Garbage Collector.
+9. Explain ZGC and Shenandoah.
+10. Explain JIT Compiler.
+11. Explain Metaspace.
+12. Explain OutOfMemoryError troubleshooting.
+13. Explain Memory Leak detection.
+14. Explain Thread Dump analysis.
+15. Explain Heap Dump analysis.
+16. Explain Stop-The-World Event.
+17. Explain Object Creation Lifecycle.
+18. Explain StackOverflowError.
+19. Explain GC tuning in production.
+20. Explain JVM performance troubleshooting.
+
+====================================
+PRODUCTION SCENARIOS
+====================================
+
+1. Application response time increased from 100ms to 5 seconds.
+2. Heap usage reaches 100% every hour.
+3. Full GC occurring every 2 minutes.
+4. CPU utilization is 95% due to JVM.
+5. Metaspace OutOfMemoryError after deployment.
+6. Memory leak caused by static HashMap.
+7. Thread count continuously increasing.
+8. Kubernetes pod restarting due to OOMKilled.
+9. High GC pause causing API timeout.
+10. Java application consuming 16GB memory unexpectedly.
+
+JVM Architecture (Interview Answer)
+Class Loader
+     |
+Execution Engine
+     |
+----------------------------------
+| Heap Memory                   |
+|  - Young Generation           |
+|  - Old Generation             |
+----------------------------------
+| Method Area / Metaspace       |
+----------------------------------
+| Stack Memory                  |
+----------------------------------
+| PC Register                   |
+----------------------------------
+| Native Method Stack           |
+----------------------------------
+
+
+Most Used JVM Troubleshooting Commands
+
+jps
+jstack <pid>
+jmap -heap <pid>
+jmap -dump:live,format=b,file=heap.hprof <pid>
+jstat -gc <pid>
+jcmd <pid> GC.heap_info
+jcmd <pid> Thread.print

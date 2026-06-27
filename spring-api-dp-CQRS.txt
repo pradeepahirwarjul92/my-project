@@ -1,0 +1,401 @@
+1. What is CORS?
+2. What does CORS stand for?
+3. Why is CORS needed?
+4. What is same-origin policy?
+5. What is cross-origin request?
+6. What causes CORS errors?
+7. What is origin in CORS?
+8. Difference between origin and host?
+9. What is a preflight request?
+10. What is an OPTIONS request?
+11. What are simple requests in CORS?
+12. What are non-simple requests in CORS?
+13. What headers are used in CORS?
+14. What is Access-Control-Allow-Origin?
+15. What is Access-Control-Allow-Methods?
+16. What is Access-Control-Allow-Headers?
+17. What is Access-Control-Allow-Credentials?
+18. What is Access-Control-Expose-Headers?
+19. What is Access-Control-Max-Age?
+20. What is Access-Control-Request-Method?
+21. What is Access-Control-Request-Headers?
+22. What is the difference between CORS and CSRF?
+23. Can frontend fix CORS issues?
+24. Why browsers enforce CORS?
+25. Is CORS a backend issue or frontend issue?
+26. What is @CrossOrigin annotation in Spring Boot?
+27. How to enable CORS in Spring Boot?
+28. How to configure CORS globally?
+29. How to configure CORS locally?
+30. Difference between global and local CORS configuration?
+31. How to allow all origins in Spring Boot?
+32. How to allow specific origins?
+33. How to allow multiple origins?
+34. How to allow specific methods in CORS?
+35. How to allow headers in CORS?
+36. How to expose headers in CORS?
+37. What is allowCredentials(true)?
+38. Why "*" cannot be used with credentials?
+39. What is maxAge in CORS?
+40. How does Spring Boot handle preflight requests?
+41. What is WebMvcConfigurer?
+42. How to configure addCorsMappings()?
+43. What is CorsRegistry?
+44. What is CorsConfiguration?
+45. What is CorsConfigurationSource?
+46. What is UrlBasedCorsConfigurationSource?
+47. What is CorsFilter?
+48. Difference between CorsFilter and @CrossOrigin?
+49. How to create a CorsFilter bean?
+50. What is FilterRegistrationBean in Spring?
+51. How to enable CORS in Spring Security?
+52. Why CORS may fail with Spring Security?
+53. How to disable CSRF for APIs?
+54. What is SecurityFilterChain?
+55. How to configure cors() in Spring Security?
+56. What is HttpSecurity in Spring Security?
+57. What is csrf().disable()?
+58. What is authorizeHttpRequests()?
+59. What is permitAll()?
+60. What are common CORS issues in Spring Boot?
+61. How to debug CORS errors?
+62. What is browser console CORS error?
+63. How to test CORS using Postman?
+64. Why Postman may not show CORS issues?
+65. How to test CORS in browser?
+66. What is frontend proxy configuration?
+67. How Angular handles CORS?
+68. How React handles CORS?
+69. What is proxy.conf.json in Angular?
+70. What is package.json proxy in React?
+71. How API Gateway handles CORS?
+72. How CORS works in microservices?
+73. What are security risks of allowing all origins?
+74. Best practices for CORS configuration?
+75. Can CORS protect APIs?
+76. Is CORS a security feature?
+77. What happens if CORS is disabled?
+78. What is localhost CORS issue?
+79. Difference between HTTP and HTTPS origins?
+80. Difference between port-based origins?
+81. What is wildcard origin?
+82. What is wildcard method?
+83. What is wildcard header?
+84. Can multiple origins be configured dynamically?
+85. How to configure dynamic origins?
+86. What is allowedOriginPatterns()?
+87. Difference between allowedOrigins and allowedOriginPatterns?
+88. What is credentialed request?
+89. What is anonymous request?
+90. What are custom headers in CORS?
+91. How to allow Authorization header?
+92. How JWT works with CORS?
+93. What happens during preflight request?
+94. Why OPTIONS request fails?
+95. How to allow OPTIONS request?
+96. What is browser cache in CORS?
+97. How maxAge improves performance?
+98. What is exposedHeaders()?
+99. Why some headers are hidden by browser?
+100. What is Vary: Origin header?
+101. What is CORS misconfiguration?
+102. What is reflected origin vulnerability?
+103. How to secure CORS configuration?
+104. What is strict-origin policy?
+105. Can mobile apps face CORS issues?
+106. Do server-to-server calls require CORS?
+107. Does CURL enforce CORS?
+108. Difference between browser and backend requests?
+109. What is fetch API CORS behavior?
+110. What is mode: 'cors' in fetch?
+111. What is mode: 'no-cors'?
+112. What is mode: 'same-origin'?
+113. How Axios handles CORS?
+114. How browser validates origin?
+115. What is Origin request header?
+116. What happens when origin is not allowed?
+117. Can multiple Access-Control-Allow-Origin values exist?
+118. Why browser blocks response in CORS?
+119. What is transparent CORS handling?
+120. What is Spring Cloud Gateway CORS configuration?
+121. How to configure CORS in API Gateway?
+122. What is gateway-level CORS?
+123. Difference between app-level and gateway-level CORS?
+124. What is Nginx CORS configuration?
+125. What is Apache server CORS configuration?
+126. What is reverse proxy in CORS?
+127. How load balancer affects CORS?
+128. What is cross-site request?
+129. What is cross-domain communication?
+130. What are secure headers in CORS?
+131. What is browser preflight cache?
+132. What is actual request in CORS?
+133. What is simple GET request?
+134. What is simple POST request?
+135. Which content types trigger preflight?
+136. What are safe-listed headers?
+137. What are forbidden headers?
+138. Can cookies work with CORS?
+139. How SameSite cookies relate to CORS?
+140. What is SameSite=None?
+141. What is secure cookie?
+142. How session authentication works with CORS?
+143. How token authentication works with CORS?
+144. What is bearer token in Authorization header?
+145. How to allow Authorization header in Spring?
+146. What is exposed custom response header?
+147. What is browser SOP policy?
+148. Difference between SOP and CORS?
+149. Why browsers introduced CORS?
+150. What is iframe cross-origin issue?
+151. What is JSONP?
+152. Difference between JSONP and CORS?
+153. Is JSONP still used?
+154. What is cross-origin resource embedding?
+155. What is cross-origin isolation?
+156. What is COOP header?
+157. What is COEP header?
+158. What is CORP header?
+159. What is browser security model?
+160. How REST APIs use CORS?
+161. How GraphQL APIs handle CORS?
+162. What is WebSocket CORS behavior?
+163. Does WebSocket use CORS?
+164. What is SockJS CORS support?
+165. What is STOMP CORS configuration?
+166. How file upload works with CORS?
+167. Why multipart requests trigger preflight?
+168. How to allow multipart/form-data?
+169. How to handle CORS in file download APIs?
+170. What is CDN CORS configuration?
+171. How S3 bucket CORS works?
+172. What is cloud storage CORS policy?
+173. How Firebase handles CORS?
+174. How Kubernetes ingress handles CORS?
+175. What is ingress CORS annotation?
+176. How Dockerized apps face CORS issues?
+177. How environment variables affect CORS?
+178. What is production CORS setup?
+179. What is development CORS setup?
+180. How to avoid hardcoded origins?
+181. What is environment-based CORS config?
+182. How to configure CORS using YAML?
+183. How to configure CORS using properties file?
+184. What is Spring Boot default CORS behavior?
+185. Can CORS be disabled completely?
+186. How to log CORS requests?
+187. What is debugging network tab for CORS?
+188. How browser handles failed preflight?
+189. What is opaque response?
+190. What is opaque redirect?
+191. What is no-cors opaque request?
+192. What are browser restrictions in no-cors mode?
+193. What is Access-Control-Allow-Private-Network?
+194. What is private network access in browsers?
+195. What is localhost secure context?
+196. What are enterprise CORS policies?
+197. What is zero-trust API access?
+198. What is API security with CORS?
+199. What are interview best answers for CORS?
+200. Explain complete CORS request flow in Spring Boot.
+
+1. What is a production issue in Spring Boot?
+2. How do you troubleshoot a Spring Boot application in production?
+3. What are common production issues in microservices?
+4. How do you analyze high CPU usage in Java applications?
+5. How do you analyze high memory usage in Spring Boot?
+6. What is OutOfMemoryError?
+7. Types of OutOfMemoryError in Java?
+8. How to fix Java heap space issue?
+9. What is heap dump?
+10. How to generate heap dump in production?
+11. What is thread dump?
+12. How to take thread dump in Linux?
+13. How to analyze thread dump?
+14. What is deadlock in Java?
+15. How to detect deadlock?
+16. What causes memory leaks in Java?
+17. How to identify memory leak in Spring Boot?
+18. What are GC logs?
+19. How to enable GC logging?
+20. Difference between Minor GC and Full GC?
+21. What is JVM tuning?
+22. What are JVM startup parameters?
+23. What is Xms and Xmx?
+24. How to optimize JVM performance?
+25. What is garbage collection?
+26. Types of garbage collectors in Java?
+27. What is G1GC?
+28. Difference between Parallel GC and G1GC?
+29. What is CPU profiling?
+30. What is memory profiling?
+31. What tools are used for production troubleshooting?
+32. What is JConsole?
+33. What is VisualVM?
+34. What is JProfiler?
+35. What is MAT tool?
+36. How to monitor Spring Boot applications?
+37. What is Spring Boot Actuator?
+38. How to enable health checks in Spring Boot?
+39. What are Actuator endpoints?
+40. What is centralized logging?
+41. What is ELK stack?
+42. What is Kibana?
+43. What is Logstash?
+44. What is Elasticsearch?
+45. What is Splunk?
+46. What is distributed tracing?
+47. What is Zipkin?
+48. What is Sleuth in Spring Cloud?
+49. What is correlation ID?
+50. How to trace requests across microservices?
+51. What causes slow API response?
+52. How to optimize REST API performance?
+53. What is connection pooling?
+54. What is HikariCP?
+55. How to tune database connection pool?
+56. What causes database connection leaks?
+57. How to identify slow SQL queries?
+58. What is query optimization?
+59. What are database indexes?
+60. How indexes improve performance?
+61. What is N+1 query problem?
+62. How to solve N+1 problem in Hibernate?
+63. What is lazy loading issue?
+64. What is eager loading issue?
+65. How to optimize Hibernate performance?
+66. What is second-level cache in Hibernate?
+67. What is Redis cache?
+68. How caching improves performance?
+69. What is cache eviction?
+70. What is API rate limiting?
+71. What is circuit breaker pattern?
+72. What is Resilience4j?
+73. What is retry mechanism?
+74. What is fallback method?
+75. What is timeout configuration?
+76. What causes thread starvation?
+77. What is thread pool?
+78. Difference between fixed thread pool and cached thread pool?
+79. What is async processing in Spring Boot?
+80. What is CompletableFuture?
+81. How to optimize asynchronous processing?
+82. What is Kafka lag?
+83. How to troubleshoot Kafka consumers?
+84. What causes message duplication in Kafka?
+85. What is idempotency?
+86. What is horizontal scaling?
+87. What is vertical scaling?
+88. What is load balancing?
+89. What is sticky session?
+90. What is autoscaling in Kubernetes?
+91. What is pod restart issue?
+92. How to debug crashing pods in Kubernetes?
+93. What is CrashLoopBackOff?
+94. How to check Kubernetes pod logs?
+95. What is readiness probe?
+96. What is liveness probe?
+97. Difference between readiness and liveness probes?
+98. What causes container memory issues?
+99. What is Docker resource limitation?
+100. How to optimize Docker image size?
+101. What is multi-stage Docker build?
+102. What is image layering in Docker?
+103. How to optimize container startup time?
+104. What is Kubernetes deployment strategy?
+105. Difference between rolling update and recreate strategy?
+106. What is blue-green deployment?
+107. What is canary deployment?
+108. What is zero downtime deployment?
+109. What is API Gateway timeout issue?
+110. How to troubleshoot 502 Bad Gateway?
+111. What causes 504 Gateway Timeout?
+112. What is SSL handshake failure?
+113. How to troubleshoot SSL certificate issues?
+114. What is DNS resolution issue?
+115. How to debug network latency?
+116. What is packet loss?
+117. What is health monitoring?
+118. What is Prometheus?
+119. What is Grafana?
+120. How to monitor JVM metrics?
+121. What are Micrometer metrics?
+122. What is alerting in production?
+123. What is SLA?
+124. What is SLO?
+125. What is SLI?
+126. What is incident management?
+127. What is root cause analysis?
+128. What is RCA document?
+129. How to handle production outages?
+130. What is rollback strategy?
+131. What is feature toggle?
+132. What is chaos engineering?
+133. What is bulkhead pattern?
+134. What is backpressure?
+135. What is throttling?
+136. What is database failover?
+137. What is replication in databases?
+138. What is sharding?
+139. What is partitioning?
+140. What is optimistic locking?
+141. What is pessimistic locking?
+142. What causes deadlocks in databases?
+143. How to troubleshoot deadlocks?
+144. What is transaction isolation level?
+145. What is connection timeout?
+146. What is socket timeout?
+147. Difference between connection timeout and read timeout?
+148. What is memory fragmentation?
+149. What is CPU bottleneck?
+150. What is I/O bottleneck?
+151. How to optimize API throughput?
+152. What is batching in database operations?
+153. What is pagination optimization?
+154. What is CDN?
+155. How CDN improves performance?
+156. What is gzip compression?
+157. How to enable compression in Spring Boot?
+158. What is caching at API Gateway?
+159. What is browser caching?
+160. What is ETag?
+161. What is optimistic caching?
+162. What is Redis pub/sub?
+163. What is distributed cache?
+164. What is session replication?
+165. What is sticky load balancing?
+166. What is service mesh?
+167. What is Istio?
+168. What is Envoy proxy?
+169. What is sidecar pattern?
+170. What is observability?
+171. Difference between monitoring and observability?
+172. What are golden signals in monitoring?
+173. What is log aggregation?
+174. What is structured logging?
+175. What is JSON logging?
+176. What is log rotation?
+177. What is heap utilization?
+178. What is CPU utilization threshold?
+179. What is autoscaling threshold?
+180. What is Kubernetes HPA?
+181. What is Kubernetes VPA?
+182. What is node affinity?
+183. What is taint and toleration?
+184. What is pod disruption budget?
+185. What is ingress controller?
+186. What is reverse proxy?
+187. What is Nginx?
+188. What is Apache Kafka optimization?
+189. How to improve Kafka throughput?
+190. What is Kafka partition?
+191. What is Kafka consumer group?
+192. What is replay in Kafka?
+193. What is exactly-once processing?
+194. What is eventual consistency?
+195. What is distributed transaction?
+196. What is Saga pattern?
+197. What is two-phase commit?
+198. What is CAP theorem?
+199. What are production support responsibilities?
+200. Explain a real-time production issue you solved.
