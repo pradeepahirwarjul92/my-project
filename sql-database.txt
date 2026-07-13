@@ -43,7 +43,8 @@ ORACLE SQL - 100 QUESTIONS
 BASIC SQL
 
 1. What is the difference between WHERE and HAVING?
-Ans - WHERE filters individual rows before aggregation, whereas HAVING filters 
+Ans - WHERE filters individual rows before aggregation, 
+whereas HAVING filters 
 grouped data after aggregation.
 
 4. What is the difference between COUNT(*) and COUNT(column)?

@@ -1,4 +1,68 @@
 1. What is Apache Kafka and why is it used?
+Ans - Kafka is a distributed event streaming platform.
+ 
+ Instead of Service A calling Service B directly:
+Order Service
+      |
+      | HTTP
+      V
+Notification Service
+
+	-	Order Service sends an event:
+Order Service
+      |
+      | OrderCreated Event
+      V
+Kafka Topic
+      |
+      V
+Notification Service
+
+Order Service doesn't know whether Notification Service is running.
+
+ Important Terminology : 
+Producer :
+
+Produces (publishes) messages.
+
+Example: Order Service
+publishes - OrderCreated
+	
+Consumer - Reads messages.
+Example - Notification Service
+consumes - OrderCreated
+
+Topic - A topic is like a logical queue.
+Example: - order-created - All order creation events go here.
+
+Broker - Kafka Server. 
+Example: localhost:9092
+
+ Event  - A Java object sent to Kafka.
+ 
+public class OrderCreatedEvent {
+
+    private Long orderId;
+    private Long productId;
+    private Integer quantity;
+
+}
+
+
+docker run -d --name kafka -p 9092:9092 
+
+docker run -d ^
+  --name kafka ^
+  -p 9092:9092 ^
+  -e KAFKA_NODE_ID=1 ^
+  -e KAFKA_PROCESS_ROLES=broker,controller ^
+  -e KAFKA_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093 ^
+  -e KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092 ^
+  -e KAFKA_CONTROLLER_LISTENER_NAMES=CONTROLLER ^
+  -e KAFKA_CONTROLLER_QUORUM_VOTERS=1@localhost:9093 ^
+  -e KAFKA_LOG_DIRS=/tmp/kraft-combined-logs ^
+  apache/kafka:latest
+
 
 2. Explain Kafka architecture in detail.
 

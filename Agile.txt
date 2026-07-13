@@ -1,20 +1,20 @@
 1. What Agile methodologies have you worked with?
 
 Answer:
-"I have primarily worked in Scrum-based Agile teams and have also been involved in Kanban for production support activities. In Scrum, 
+"I have primarily worked in Scrum-based Agile teams for production support activities. In Scrum, 
 we followed sprint planning, daily stand-ups, backlog refinement, 
-sprint reviews, and retrospectives. Typically, our sprint duration was two weeks."
+sprint reviews, and retrospectives. 
+Typically, our sprint duration was two weeks."
 
 
 2. What is the role of a Scrum Master?
 
 Answer:
-
-Facilitates Scrum ceremonies.
-Removes impediments.
-Protects the team from external distractions.
-Ensures Agile principles are followed.
-Helps improve team productivity.
+	-	Facilitates Scrum ceremonies.
+	-	Removes impediments.
+	-	Protects the team from external distractions.
+	-	Ensures Agile principles are followed.
+	-	Helps improve team productivity.
 
 
 3. What is the difference between Scrum and Kanban?

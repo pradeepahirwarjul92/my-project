@@ -1,0 +1,436 @@
+Client
+   │
+   ▼
+Controller
+   │
+   ▼
+Service
+   │
+   │ @Cacheable
+   ▼
+Spring Cache AOP
+   │
+   ▼
+CacheInterceptor
+   │
+   ▼
+CacheAspectSupport
+   │
+   ▼
+CacheManager
+   │
+   ▼
+Cache (Redis / EhCache / Caffeine / ConcurrentMap)
+
+#1. @EnableCaching
+@Configuration
+@EnableCaching
+public class CacheConfig {
+
+}
+
+Purpose
+
+Enables Spring Cache Framework.
+
+Without this annotation
+	-	@Cacheable
+	-	@CachePut
+	-	@CacheEvict
+
+	do absolutely nothing.	
+
+
+--------- Internal working cache ---------------
+When Spring starts
+		@EnableCaching
+	imports	
+		CachingConfigurationSelector  - reads that mode attribute and checks your classpath
+
+		# Notes - Spring needs a way to decide how to iject that caching behavour into our apply for that cachingConfigurationSelector comes in .
+				-	It is an internal routing mechanism that determines which configuration classes to load based on the seeting we provide in @EnableCaching
+				=======Dynamic Configuration Switching (Proxy vs. AspectJ) ==========
+				- The primary job of CachingConfigurationSelector is to look at the mode attribute of your @EnableCaching annotation and dynamically load the correct architecture
+		
+		
+			-	which registers : ProxyCachingConfiguration
+		
+	Inside this configuration Spring creates				
+			-	CacheOperationSource
+			-	CacheInterceptor
+			-	BeanFactoryCacheOperationSourceAdvisor
+			-	CacheOperationSourcePointcut
+		
+		# 1. CacheOperationSource
+			Purpose : Responsible for finding cache annotations on methods and classes.
+				@Cacheable ,@CachePut, @CacheEvict, @Caching
+			
+			^ and converts them into Spring internal objects.	
+			
+			Think of it as
+				"Annotation Reader"
+			
+			Example : 
+
+				@Cacheable(value="users", key="#id")
+					public User getUser(Long id) { 
+					}	
+			
+			It converts this into
+				CacheOperation
+
+						cacheName = users
+						key = #id
+						condition = null
+						unless = null
+						sync = false
+			Internally
+				CacheOperation operation =cacheOperationSource.getCacheOperations(method, targetClass);
+			
+			Returns
+				Collection<CacheOperation>
+
+					Why needed?
+
+					 Without it,
+						Spring doesn't know
+
+					Is this method cacheable?
+						Which cache?
+						Which key?
+						Should cache be updated?
+						Should cache be removed?			
+		
+		#2.	CacheInterceptor - This is the heart of Spring Cache.
+			Purpose - Intercept method calls.
+			
+		Example	-	service.getUser(10);	
+			Instead of directly executing - getUser()
+		
+		Spring Proxy executes - CacheInterceptor.invoke()	
+		
+			Flow : 
+User
+   |
+   v
+Proxy
+   |
+   v
+CacheInterceptor
+   |
+   +--> check cache
+   |
+   +--> return cached value
+   |
+   +--> OR execute method
+   |
+   +--> store result
+   
+	
+	# These become Spring AOP advisors.		 
+				 
+Q1 - What happend when apply @EnableCaching ?
+Ans - 
+#1 @EnableCaching
+        │
+        ▼
+CachingConfigurationSelector
+        │
+        ▼
+Registers Cache Beans
+        │
+        ▼
+CacheInterceptor
+        │
+        ▼
+ConcurrentMapCacheManager
+        │
+        ▼
+ConcurrentMapCache
+        │
+        ▼
+ConcurrentHashMap
+
+Step 1. Enable Caching
+
+@SpringBootApplication
+@EnableCaching
+public class Application {
+}
+
+Spring finds @EnableCaching during startup.
+
+It imports:
+# CachingConfigurationSelector
+
+Step 2. Register Infrastructure Beans
+
+Spring creates:
+
+CacheOperationSource
+CacheInterceptor
+BeanFactoryCacheOperationSourceAdvisor
+CacheAspectSupport
+
+| Class                                    | Responsibility                                                                                            | When Used                                     |
+| ---------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| `CacheOperationSource`                   | Reads `@Cacheable`, `@CachePut`, `@CacheEvict`, `@Caching` and creates `CacheOperation` metadata          | Before cache processing                       |
+| `CacheOperationSourcePointcut`           | Checks whether a method has cache operations and should be advised                                        | During proxy method matching                  |
+| `BeanFactoryCacheOperationSourceAdvisor` | Connects the pointcut with the cache advice (`CacheInterceptor`) so only matching methods are intercepted | During proxy creation                         |
+| `CacheInterceptor`                       | Executes the caching logic (check cache, invoke method if needed, update/evict cache, return result)      | At runtime when the proxied method is invoked |
+
+
+
+# These beans enable cache interception.
+
+#2 . @Cacheable - Most commonly used annotation.
+
+@Cacheable(value="users", key="#id")
+	public User getUser(Long id){
+		return repository.findById(id);
+	}
+	Internal working 
+		Client calls - getUser(10)
+			|
+		Spring proxy intercepts	 - CacheInterceptor
+			|
+		Looks into - 	CacheOperationSource
+			|
+		Finds 	 @Cacheable
+			|
+		Generates Key - 10
+			|
+		Calls - 	CacheManager
+			|
+		Cache Lookup  if found - 	Return cached object (No database call.)
+					  If not found  - Execute actual method (Save result into cache) (Return result)
+
+#3 . @CachePut - Always executes method.
+@CachePut(value="users", key="#user.id")
+public User update(User user){
+   return repository.save(user);
+}
+
+Request
+
+↓
+
+Method executes
+
+↓
+
+Database updated
+
+↓
+
+Returned object
+
+↓
+
+Stored in Cache
+
+↓
+
+Return Response
+
+#4. @CacheEvict - Removes cache.
+@CacheEvict(value="users", key="#id")
+public void delete(Long id){
+
+}
+Remove All Cache - @CacheEvict(value="users", allEntries=true)
+
+#5 @Caching - Multiple cache operations.
+@Caching(
+			put = {
+					@CachePut(value = "users", key ="#id")
+			},
+			evict = {
+					@CacheEvict(value = "users", allEntries = true)
+			}
+			)
+
+#6 - @CacheConfig - Avoid repeating cache names.
+@CacheConfig(cacheNames="users")
+@Service
+public class UserService{
+
+    @Cacheable(key="#id")
+
+    @CachePut(key="#user.id")
+
+    @CacheEvict(key="#id")
+
+}
+
+#7. condition
+@Cacheable(
+value="users",
+condition="#id>100"
+)
+
+Only cache - 
+101
+102
+200
+
+#8. unless
+Executed AFTER method.
+
+@Cacheable(
+value="users",
+unless="#result==null"
+)
+Null result - > 	Do not cache.
+
+#9. sync=true
+
+Problem
+
+100 users request
+
+User 10
+
+same time.
+
+Without sync
+
+DB
+
+↓
+
+100 queries
+
+With
+
+sync=true
+First Thread
+
+↓
+
+DB
+
+↓
+
+Cache
+
+↓
+
+Remaining Threads
+
+↓
+
+Read Cache
+
+Only one DB hit.
+
+@Cacheable(value="users",sync=true)
+
+#10. key
+		-	key="#id"
+		-	key="#user.id"
+		-	key="#name + '_' + #age"
+	Spring uses SpEL.
+
+#11 . keyGenerator -  Instead of	
+@Cacheable(
+value="users",
+keyGenerator="customKeyGenerator"
+)
+
+#12. cacheManager - Multiple cache managers.
+@Cacheable(
+value="users",
+cacheManager="redisCacheManager"
+)
+
+#13 cacheResolver - Dynamic cache selection.
+@Cacheable(
+cacheResolver="dynamicResolver"
+)
+Spring ignores - cacheManager	
+if resolver exists.
+
+#14 CacheManager - Main interface.
+CacheManager
+      │
+      ├── RedisCacheManager
+      ├── CaffeineCacheManager
+      ├── EhCacheCacheManager
+      ├── ConcurrentMapCacheManager
+
+Responsibilities:
+		-	Creates caches
+		-	Returns cache by name
+		-	Manages cache lifecycle	  
+		
+#15. Cache
+Interface methods - get(),	put(),	evict(), clear()
+Every provider implements these methods.
+
+#16 - CacheInterceptor : Most important class.
+Responsibilities
+	-	Intercepts method
+	-	Reads annotation metadata
+	-	Generates key
+	-	Calls CacheManager
+	-	Stores value
+	-	Returns cached value
+	
+#17. CacheAspectSupport - Base class used by CacheInterceptor.
+Responsibilities
+		-	Parse cache annotations
+		-	Evaluate SpEL expressions
+		-	Create cache keys
+		-	Execute cache operations
+		-	Handle cache errors
+#18. CacheOperationSource
+Reads annotations.
+		@Cacheable
+		@CachePut
+		@CacheEvict
+ 	and converts them into - CacheOperation (Objects)
+
+#19 BeanFactoryCacheOperationSourceAdvisor
+Spring AOP Advisor.
+	Responsibilities:
+			Detect methods with cache annotations
+			Attach CacheInterceptor
+			Create proxy
+Without this - @Cacheable
+never intercepts methods.	
+	
+Complete Cache Summary
+	
+| Method      | Cache                              | Annotation                  |
+| ----------- | ---------------------------------- | --------------------------- |
+| `save()`    | `users` + clear `userPages`        | `@CachePut` + `@CacheEvict` |
+| `getById()` | `users`                            | `@Cacheable`                |
+| `getAll()`  | `userPages`                        | `@Cacheable`                |
+| `update()`  | `users` + clear `userPages`        | `@CachePut` + `@CacheEvict` |
+| `delete()`  | remove `users` + clear `userPages` | `@CacheEvict`               |
+
+
+What happens internally when @EnableCaching is added?
+How does CacheInterceptor work?
+What is the role of CacheAspectSupport?
+How does CacheOperationSource parse annotations?
+Why is BeanFactoryCacheOperationSourceAdvisor required?
+What is the difference between @Cacheable and @CachePut?
+When would you use @CacheEvict(beforeInvocation = true)?
+What are condition and unless, and when are they evaluated?
+How does sync = true prevent a cache stampede?
+What is the difference between CacheManager and CacheResolver?
+How are cache keys generated by default, and how do you implement a custom KeyGenerator?
+Why do self-invoked methods (this.someCachedMethod()) not trigger caching with proxy-based AOP?
+How do you configure TTL, serialization, and cache names for Redis-backed caches?
+How do you handle cache consistency after database updates?
+What strategies do you use to avoid stale data and cache penetration in production?
+
+	
+	
+
+	
+
+
+

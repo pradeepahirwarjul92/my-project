@@ -1,1 +1,188 @@
+1. Explain Redis architecture.
+Ans - Redis is an in-memory key-value database.
+Everything is primarily stored in RAM, which makes it extremely fast
+
+Client
+   |
+Spring Boot
+   |
+Redis Server
+   |
+RAM
+
+Redis also supports persistence.
+
+RAM
+ |
+ |------RDB Snapshot
+ |
+ |------AOF Log
+ 
+ Operations are mostly single-threaded for command execution, avoiding locking overhead, 
+ while newer versions use additional threads for networking and some background tasks.
+ 
+2. Why is Redis so fast?
+ Ans - Expected answer: Redis is fast because
+	-	Data stored in RAM
+	-	No disk seek during reads
+	-	Efficient data structures
+	-	Event-driven architecture
+	-	Mostly single-threaded execution
+	-	No expensive locking
+	-	Optimized C implementation 
+Typical latency - 
+	MySQL
+	3-10 ms
+	Redis
+	0.2 ms
+
+3. 	Why single threaded?
+Ans : Interview favorite.
+Expected answer
+	Multiple threads introduce
+		-	synchronization
+		-	locking
+		-	context switching
+		-	deadlocks
+
+Redis operations are already memory based.
+CPU isn't usually the bottleneck.
+Network and memory access dominate.
+Single thread makes execution deterministic.
+
+4. Explain Redis persistence. 
+Ans - Two types
+
+ # RDB -Snapshot
+	-	Every 5 minutes
+	-	Save entire memory
+
+	# Advantages
+		Small file	
+		Fast restart
+		Low overhead
+
+	Disadvantages
+		Can lose recent data.
+
+	# 	AOF	 (Append Only File)	
+			-	SET user:1
+			-	SET user:2
+			-	DEL user:1
+		
+		Advantages :
+			Much safer
+			Less data loss
+		
+		Disadvantages :
+			Larger file
+			Slower than RDB
+		
+		Production :
+			Usually enable both.
+
+5. 	Difference between Cache and Redis?
+Ans - 
+	# Cache : Concept
+	# Redis : Technology
+	
+
+6.	Redis Data Structures
+Ans - 
+Expected answer
+	- 	String : OTP, Token, Counter
+	-	Hash : User, name, email, age
+	-	List
+	-	Set
+	-	Sorted Set
+	-	Bitmap  : Attendance, Login tracking
+	-	HyperLogLog
+	-	Stream : Messaging, Event processing
+	-	Geo
+- Interview may ask use cases.
+	
+7. 	Explain Redis eviction policies.
+Ans: what Redis should do when it reaches its configured maximum memory.
+
+Why do we need eviction policies : 
+	Suppose you configure Redis like this: maxmemory 1gb
+	Your application keeps writing data: 100 MB, 200 MB, 500 MB, 800 MB, 950 MB, 1 GB	
+	Now another write comes: SET product:101 ....
+	
+	# Redis cannot store more than 1 GB.
+	
+	Question: Which key should Redis remove? 
+	Ans - The answer depends on the configured eviction policy.
+	
+	I. noeviction (Default)
+		maxmemory = 1GB
+		Current Memory = 1GB
+		SET user:100 ...
+	Redis says: OOM command not allowed when used memory > maxmemory
+	
+	# No key is removed.
+		The write fails.
+			Use Case : 
+				-	Banking
+				-	Payment systems
+				-	Financial applications
+				-	Any application where losing cached data is unacceptable
+		
+		Interview Answer : 	Redis refuses new writes instead of deleting existing keys.
+	
+	II. allkeys-lru (LRU = Least Recently Used)
+			# Redis removes the key that has not been accessed for the longest time.
+		
+		Example - 	A  (used 1 second ago)
+					B  (used 5 seconds ago)
+					C  (used 10 minutes ago)
+					D  (used yesterday)
+				Memory is full. Redis Removes -D	
+			
+			Use Case :
+					-	API caching 
+							# Frequently viewed products remain.
+							# Old products disappear.
+							# Most common policy.
+							
+					
+| Policy            | Removes Keys From | Selection Rule         | Typical Use                              |
+| ----------------- | ----------------- | ---------------------- | ---------------------------------------- |
+| `noeviction`      | None              | Reject new writes      | Banking, payments, critical data         |
+| `allkeys-lru`     | All keys          | Least recently used    | General-purpose caching (most common)    |
+| `volatile-lru`    | TTL keys only     | Least recently used    | Session caches with expiration           |
+| `allkeys-lfu`     | All keys          | Least frequently used  | Popular content, recommendation caches   |
+| `volatile-lfu`    | TTL keys only     | Least frequently used  | Expiring caches where popularity matters |
+| `allkeys-random`  | All keys          | Random                 | Testing, uncommon production cases       |
+| `volatile-random` | TTL keys only     | Random                 | Rarely used                              |
+| `volatile-ttl`    | TTL keys only     | Shortest remaining TTL | Expiring sessions or temporary data      |
+
+
+LRU vs LFU (Interview Favorite)
+	-	Suppose you have these products:
+
+| Product | Last Access  | Access Count |
+| ------- | ------------ | -----------: |
+| iPhone  | 10 days ago  |       10,000 |
+| Laptop  | 1 minute ago |           50 |
+| Mouse   | 2 hours ago  |            5 |
+
+	# LRU would likely evict iPhone because it hasn't been used recently.
+	# LFU would likely evict Mouse because it has the lowest usage count.	
+
+Very common (When memory becomes full)
+
+Redis removes keys.
+	Policies : 
+		-	noeviction 			:	(Default)
+		-	allkeys-lru			:
+		-	volatile-lru		:
+		-	allkeys-lfu			:
+		-	volatile-lfu		:
+		-	allkeys-random		:
+		-	volatile-random		:
+		-	volatile-ttl		:
+
+	
+
 1- As Redis is single threaded, how to handles multiple request ? 

@@ -3,26 +3,14 @@ JAVA DSA STRINGS - 100 INTERVIEW QUESTIONS
 =================================
 STRING BASICS (1-20)
 =================================
-
-1. What is a String?
-2. Difference between String and StringBuilder?
-3. Difference between String and StringBuffer?
+3. how to make our immutable class ? 
+Ans - 
 4. Why is String immutable in Java?
 5. What is String Pool?
-6. Difference between == and equals()?
 7. How are Strings stored in memory?
 8. What is intern() method?
 9. Time complexity of String operations?
-10. How to reverse a String?
-11. How to convert String to char array?
-12. How to convert char array to String?
-13. How to concatenate Strings?
-14. How to compare two Strings?
-15. How to find length of String?
 16. How to extract substring?
-17. How to split a String?
-18. How to trim spaces?
-19. How to convert String to uppercase/lowercase?
 20. How to replace characters in String?
 
 =================================
