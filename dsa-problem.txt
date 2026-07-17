@@ -1,3 +1,91 @@
+ARRAY ROADMAP (BASIC TO ADVANCED) – 50 PROBLEMS
+
+LEVEL 1: BASICS
+1. Reverse an Array
+2. Find Maximum and Minimum Element
+3. Find Second Largest Element
+4. Find Second Smallest Element
+5. Check if an Array is Sorted
+6. Find Sum of Elements
+7. Count Even and Odd Numbers
+8. Find Frequency of Each Element
+9. Find Largest Three Elements
+10. Find the Missing Number
+
+LEVEL 2: EASY PATTERNS
+11. Remove Duplicates from Sorted Array
+12. Move All Zeroes to End
+13. Move Negative Numbers to One Side
+14. Left Rotate Array by One Position
+15. Rotate Array by K Positions
+16. Merge Two Sorted Arrays
+17. Union of Two Sorted Arrays
+18. Intersection of Two Sorted Arrays
+19. Find Leaders in an Array
+20. Find Equilibrium Index
+
+LEVEL 3: HASHING & PREFIX SUM
+21. Two Sum
+22. Majority Element
+23. Majority Element II (n/3)
+24. Longest Consecutive Sequence
+25. Longest Subarray with Sum K
+26. Count Subarrays with Given Sum
+27. Prefix Sum Queries
+28. Product of Array Except Self
+29. Find Missing and Repeating Number
+30. Find Duplicate Number
+
+LEVEL 4: TWO POINTERS & SLIDING WINDOW
+31. Container With Most Water
+32. Trapping Rain Water
+33. Three Sum
+34. Four Sum
+35. Sort Colors (Dutch National Flag)
+36. Remove Duplicates II
+37. Maximum Consecutive Ones
+38. Maximum Average Subarray
+39. Minimum Size Subarray Sum
+40. Maximum Circular Subarray Sum
+
+LEVEL 5: ADVANCED ARRAYS
+41. Maximum Subarray Sum (Kadane's Algorithm)
+42. Maximum Product Subarray
+43. Merge Overlapping Intervals
+44. Insert Interval
+45. Count Inversions
+46. Next Greater Element
+47. Next Smaller Element
+48. Gas Station (Circular Tour)
+49. Candy Distribution
+50. Median of Two Sorted Arrays
+
+| Phase     | Topic                          |                   Problems |
+| --------- | ------------------------------ | -------------------------: |
+| 1         | Time & Space Complexity, Big O |                     Theory |
+| 2         | Arrays                         |                         50 |
+| 3         | Strings                        |                         30 |
+| 4         | Searching & Binary Search      |                         20 |
+| 5         | Sorting                        |                         15 |
+| 6         | HashMap & HashSet              |                         20 |
+| 7         | Two Pointers                   |                         15 |
+| 8         | Sliding Window                 |                         20 |
+| 9         | Prefix Sum                     |                         10 |
+| 10        | Recursion                      |                         15 |
+| 11        | Backtracking                   |                         15 |
+| 12        | Linked List                    |                         20 |
+| 13        | Stack                          |                         15 |
+| 14        | Queue & Deque                  |                         10 |
+| 15        | Heap (Priority Queue)          |                         15 |
+| 16        | Trees                          |                         25 |
+| 17        | Binary Search Tree             |                         10 |
+| 18        | Graphs                         |                         25 |
+| 19        | Greedy                         |                         15 |
+| 20        | Dynamic Programming            |                         35 |
+| 21        | Bit Manipulation               |                         10 |
+| **Total** |                                | **390 (including theory)** |
+
+
 JAVA DSA PROBLEMS LIST (TOP 150 INTERVIEW QUESTIONS)
 
 =================================

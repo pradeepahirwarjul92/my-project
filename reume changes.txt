@@ -1,0 +1,200 @@
+# PRADEEP AHIRWAR
+
+**Senior Java Backend Engineer | Java | Spring Boot | Microservices | Kafka | Docker | CI/CD**
+
+📍 Bhopal, Madhya Pradesh, India
+📞 +91 8839968076
+✉️ [pradeepahirwarjul92@gmail.com](mailto:pradeepahirwarjul92@gmail.com)
+LinkedIn: linkedin.com/in/pradeep-ahirwar-78830717a
+
+---
+
+## PROFESSIONAL SUMMARY
+
+Java Backend Engineer with 5+ years of experience in designing, developing, and deploying scalable enterprise applications using Java, Spring Boot, and Microservices architecture. Experienced in building secure RESTful APIs, distributed systems, event-driven applications, and CI/CD pipelines. Strong expertise in Spring Cloud, Kafka, Redis, Docker, Jenkins, Oracle Database, and performance optimization. Passionate about developing high-performance backend systems with clean architecture and best coding practices.
+
+---
+
+## TECHNICAL SKILLS
+
+**Languages:** Java 8, Java 11, Java 17, SQL
+
+**Frameworks:** Spring Boot, Spring MVC, Spring Data JPA, Spring Security, Hibernate
+
+**Microservices:** Spring Cloud, Eureka Server, Config Server, API Gateway, OpenFeign, Resilience4j
+
+**Messaging:** Apache Kafka, RabbitMQ
+
+**Caching:** Redis
+
+**Databases:** Oracle, MySQL, MongoDB
+
+**DevOps & CI/CD:** Docker, Jenkins
+
+**Build Tools:** Maven, Gradle
+
+**Version Control:** Git, GitHub
+
+**API Documentation:** Swagger (OpenAPI), Postman
+
+**Monitoring:** Spring Boot Actuator, Zipkin, Spring Cloud Sleuth
+
+**Testing:** JUnit 5, Mockito
+
+**Frontend:** JSP, Thymeleaf, HTML, CSS, JavaScript
+
+**Application Server:** Apache Tomcat
+
+**IDE:** IntelliJ IDEA, Eclipse, STS
+
+---
+
+# PROFESSIONAL EXPERIENCE
+
+## Java Backend Engineer
+
+**Xtranet Technologies Pvt. Ltd. | Bhopal**
+**January 2022 – Present**
+
+### Responsibilities & Achievements
+
+* Designed and developed scalable Microservices using Java 17, Spring Boot, and Spring Cloud.
+* Developed and maintained 25+ RESTful APIs for enterprise applications and third-party integrations.
+* Implemented Service Discovery using Eureka Server and centralized configuration with Spring Cloud Config.
+* Configured API Gateway for routing, authentication, and request filtering.
+* Developed asynchronous communication using Apache Kafka for event-driven architecture.
+* Integrated JWT-based authentication and authorization using Spring Security.
+* Implemented fault tolerance using Resilience4j Circuit Breaker and Retry mechanisms.
+* Reduced API response time by approximately **40%** through Redis caching.
+* Improved backend performance by **35%** through SQL query optimization and application tuning.
+* Containerized applications using Docker and automated deployments using Jenkins CI/CD pipelines.
+* Used Zipkin and Spring Cloud Sleuth for distributed tracing and troubleshooting.
+* Participated in Agile ceremonies including sprint planning, code reviews, and production deployments.
+* Maintained **99.9% production uptime** through proactive monitoring and issue resolution.
+
+**Environment:**
+Java 17, Spring Boot, Spring Cloud, Kafka, Redis, Docker, Jenkins, Oracle Database, Git, Maven, REST APIs, JWT, Swagger
+
+---
+
+## Apprentice Engineer
+
+**HEG Limited | Raisen**
+**January 2017 – October 2018**
+
+* Assisted in enterprise application development, debugging, and testing.
+* Participated in Agile development and peer code reviews.
+* Supported defect resolution and deployment activities.
+* Improved development efficiency by approximately **15%** through process improvements.
+
+---
+
+# KEY PROJECTS
+
+## Vehicle Permission & Pass Management System (Microservices)
+
+Designed and developed a cloud-native enterprise application using Microservices Architecture.
+
+### Key Contributions
+
+* Developed Employee, Vehicle, Request, Document, and Notification microservices.
+* Implemented Service Discovery using Eureka.
+* Configured centralized configuration using Config Server.
+* Built API Gateway for request routing.
+* Integrated Kafka for asynchronous event processing.
+* Implemented Redis caching for high-frequency APIs.
+* Containerized services using Docker.
+* Automated deployments using Jenkins.
+* Secured APIs using JWT authentication.
+
+**Technology Stack**
+
+Java 17, Spring Boot, Spring Cloud, Kafka, Redis, Oracle Database, Docker, Jenkins
+
+---
+
+## Workforce Management System
+
+Enterprise workforce management application developed using Spring MVC.
+
+### Modules
+
+* Employee Management
+* Attendance
+* Leave Management
+* Payroll
+* Reports
+
+### Responsibilities
+
+* Developed secure REST APIs.
+* Optimized Oracle SQL queries.
+* Improved application performance.
+* Implemented Spring Data JPA and Hibernate.
+
+**Technology Stack**
+
+Java, Spring Boot, Spring MVC, Oracle Database, REST APIs, Maven, Git
+
+---
+
+## Admin Expense Management System
+
+Enterprise expense management application using Monolithic Architecture.
+
+### Features
+
+* Expense Requests
+* Approval Workflow
+* Reimbursement
+* Role-Based Access Control
+
+### Responsibilities
+
+* Implemented JWT authentication.
+* Integrated RabbitMQ for asynchronous notifications.
+* Dockerized application deployment.
+* Developed REST APIs.
+
+**Technology Stack**
+
+Java, Spring Boot, Spring Security, RabbitMQ, Oracle Database, Docker
+
+---
+
+# EDUCATION
+
+**Bachelor of Engineering (Information Technology)**
+
+Rajiv Gandhi Proudyogiki Vishwavidyalaya (RGPV), Bhopal
+
+Graduated: 2016
+
+---
+
+# CERTIFICATIONS
+
+* Technology-Based Entrepreneurship Development Program (TEDP)
+* HTML Foundation
+* CSS Foundation
+* SQL Foundation
+
+---
+
+# CORE COMPETENCIES
+
+* Java Backend Development
+* Microservices Architecture
+* Spring Boot
+* Spring Cloud
+* REST API Development
+* Distributed Systems
+* Secure Application Development
+* Performance Optimization
+* CI/CD Pipelines
+* Event-Driven Architecture
+* Docker & Containerization
+* Kafka Messaging
+* Redis Caching
+* Oracle Database
+* Agile & Scrum

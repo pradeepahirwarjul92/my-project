@@ -70,10 +70,18 @@ And - Yes. Over the last few years I have worked on backend service development,
 15. Tell me about yourself
 Ans - My name is Pradeep Ahirwar, and I am a Java Backend Engineer with over 5 years of experience in developing enterprise applications.
 
-I have been primarily working with Java, Spring Boot, Hibernate, and REST API development, and in my current role I have been involved in building microservices using Spring Cloud components like Eureka, Config Server, and API Gateway.
-I have also worked with technologies such as Kafka for asynchronous communication, Redis for caching, Docker for containerization, and Jenkins for CI/CD automation. My focus has been on building secure, scalable, and high-performance backend systems.
-In my current organization, I have worked on designing REST APIs, improving application performance, optimizing database queries, and supporting production deployments. One of my key contributions was reducing API response time significantly through caching and backend optimization.
-At this stage of my career, I am looking for an opportunity where I can work on larger-scale backend systems, contribute more to architecture decisions, and continue growing as a backend engineer.
+I have been primarily working with Java, Spring Boot, Hibernate, and REST API development, and in my current role I have been involved in building microservices 
+using Spring Cloud components like Eureka, Config Server, and API Gateway.
+
+I have also worked with technologies such as Kafka for asynchronous communication, Redis for caching, Docker for containerization, 
+and Jenkins,github Action for CI/CD automation. My focus has been on building secure, scalable, and high-performance backend systems.
+
+In my current organization, I have worked on designing REST APIs, improving application performance, optimizing database queries, 
+and supporting production deployments.
+One of my key contributions was reducing API response time significantly through caching and backend optimization.
+
+At this stage of my career, I am looking for an opportunity where I can work on larger-scale backend systems, contribute more 
+to architecture decisions, and continue growing as a backend engineer.
 
 
 16 . HR asked me - How long will you stay with us ? 
@@ -90,6 +98,13 @@ with the release. It taught me how to stay focused and solve problems
 under pressure.”
 
 18 - 
+
+
+
+
+
+
+
 
 
 

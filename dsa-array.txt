@@ -1,373 +1,186 @@
-JAVA DSA ARRAYS - 100 PRACTICE QUESTIONS
+==================== ARRAY BASICS ====================
 
 1. Find the largest element in an array.
 2. Find the smallest element in an array.
-3. Find the second largest element in an array.
-4. Find the second smallest element in an array.
+3. Find the second largest element.
+4. Find the second smallest element.
 5. Reverse an array.
-6. Find the sum of all elements in an array.
-7. Find the average of array elements.
-8. Count even and odd numbers in an array.
-9. Check if an array is sorted.
-10. Find the maximum and minimum element in an array.
-11. Search an element in an array (Linear Search).
-12. Search an element using Binary Search.
-13. Find frequency of an element in an array.
-14. Count occurrences of each element.
-15. Find duplicate elements in an array.
-16. Remove duplicates from a sorted array.
-17. Remove duplicates from an unsorted array.
-18. Move all zeros to the end.
-19. Move all zeros to the beginning.
-20. Move all negative numbers to one side.
-21. Separate even and odd numbers.
-22. Sort an array of 0s, 1s, and 2s.
-23. Rotate an array left by one position.
-24. Rotate an array right by one position.
-25. Rotate an array by K positions.
-26. Merge two sorted arrays.
-27. Merge two unsorted arrays.
-28. Find union of two arrays.
-29. Find intersection of two arrays.
-30. Find difference between two arrays.
-31. Find common elements in three arrays.
-32. Find missing number in an array.
-33. Find multiple missing numbers.
-34. Find repeating elements.
-35. Find first repeating element.
-36. Find first non-repeating element.
-37. Find all non-repeating elements.
-38. Find majority element.
-39. Find element appearing more than N/2 times.
-40. Find element appearing more than N/3 times.
-41. Find pair with given sum.
-42. Find all pairs with given sum.
-43. Find triplet with given sum.
-44. Find quadruplet with given sum.
-45. Find pair with minimum difference.
-46. Find pair with maximum difference.
-47. Find closest pair to target sum.
-48. Find kth largest element.
-49. Find kth smallest element.
-50. Find median of an array.
-51. Find equilibrium index.
-52. Find equilibrium point in array.
-53. Find leaders in an array.
-54. Replace every element with greatest element on right side.
-55. Find stock buy and sell profit.
-56. Find maximum profit from stock prices.
-57. Find maximum subarray sum (Kadane's Algorithm).
-58. Find minimum subarray sum.
-59. Find maximum product subarray.
-60. Find maximum circular subarray sum.
-61. Find longest increasing subarray.
-62. Find longest decreasing subarray.
-63. Find longest consecutive sequence.
-64. Find longest subarray with sum K.
-65. Find longest subarray with zero sum.
-66. Count subarrays with sum K.
-67. Count subarrays with zero sum.
-68. Find subarray with given sum.
-69. Find smallest subarray with given sum.
-70. Find largest subarray with equal 0s and 1s.
-71. Find maximum sum of subarray of size K.
-72. Find minimum sum of subarray of size K.
-73. Find first negative number in every window of size K.
-74. Find maximum element in every window of size K.
-75. Count distinct elements in every window.
-76. Find sliding window maximum.
-77. Find sliding window minimum.
-78. Implement prefix sum array.
-79. Perform range sum queries using prefix sum.
-80. Find pivot index.
-81. Find peak element.
-82. Find local minima.
-83. Search in rotated sorted array.
-84. Find minimum element in rotated sorted array.
-85. Find rotation count in rotated array.
-86. Find floor of an element.
-87. Find ceil of an element.
-88. Find first occurrence of an element.
-89. Find last occurrence of an element.
-90. Count occurrences using binary search.
-91. Find single element in sorted array.
-92. Find square root using binary search.
-93. Find median of two sorted arrays.
-94. Trapping Rain Water problem.
-95. Container With Most Water problem.
-96. Jump Game problem.
-97. Jump Game II problem.
-98. Gas Station problem.
-99. Merge Intervals problem.
-100. Insert Interval problem.
+6. Check if an array is sorted.
+7. Find the sum of all elements.
+8. Find the average of all elements.
+9. Count even and odd numbers.
+10. Count positive, negative, and zero elements.
+
+==================== ARRAY ROTATION ====================
+
+11. Left rotate an array by one position.
+12. Right rotate an array by one position.
+13. Left rotate an array by K positions.
+14. Right rotate an array by K positions.
+
+==================== SEARCHING ====================
+
+15. Linear Search.
+16. Binary Search.
+17. Search in a Rotated Sorted Array.
+18. Find a Peak Element.
+
+==================== FREQUENCY & COUNTING ====================
+
+19. Count the frequency of each element.
+20. Find the most frequent element.
+21. Find the least frequent element.
+22. Majority Element (Moore's Voting Algorithm).
+
+==================== MISSING & DUPLICATE ====================
+
+23. Find the missing number.
+24. Find the duplicate number.
+25. Find all duplicate elements.
+26. Find the first missing positive number.
+
+==================== TWO POINTER ====================
+
+27. Two Sum.
+28. Three Sum.
+29. Four Sum.
+30. Remove duplicates from a sorted array.
+
+==================== ARRAY REARRANGEMENT ====================
+
+31. Move all zeroes to the end.
+32. Move all negative numbers to one side.
+33. Rearrange positive and negative numbers alternately.
+34. Sort an array of 0s, 1s, and 2s (Dutch National Flag Algorithm).
+
+==================== SUBARRAY PROBLEMS ====================
+
+35. Maximum Subarray Sum (Kadane's Algorithm).
+36. Maximum Product Subarray.
+37. Maximum Sum Circular Subarray.
+38. Longest Subarray with Sum K.
+
+==================== PREFIX SUM ====================
+
+39. Prefix Sum.
+40. Range Sum Query.
+41. Subarray Sum Equals K.
+42. Equilibrium Index.
+
+==================== SLIDING WINDOW ====================
+
+43. Maximum Sum Subarray of Size K.
+44. Sliding Window Maximum.
+45. Minimum Size Subarray Sum.
+
+==================== MATRIX (2D ARRAY) ====================
+
+46. Spiral Matrix Traversal.
+47. Rotate Matrix by 90 Degrees.
+48. Set Matrix Zeroes.
+49. Search in a 2D Matrix.
+
+==================== GREEDY / ADVANCED ====================
+
+50. Best Time to Buy and Sell Stock.
+51. Trapping Rain Water.
+52. Container With Most Water.
+53. Merge Intervals.
+54. Product of Array Except Self.
+55. Next Greater Element.
+56. Leaders in an Array.
+57. Longest Consecutive Sequence.
+58. Merge Two Sorted Arrays.
+59. Intersection of Two Arrays.
+60. Union of Two Arrays.
 
 
-STRINGS
-1. Reverse a String
-2. Check Palindrome String
-3. Check Anagram
-4. Find Duplicate Characters
-5. Remove Duplicate Characters
-6. Find First Non-Repeated Character
-7. Reverse Words in a Sentence
-8. Find Longest Word in a String
-9. Find Shortest Word in a String
-10. Count Vowels and Consonants
-11. Count Words in a String
-12. Count Occurrences of Character
-13. Check String Contains Only Digits
-14. Check String Contains Only Alphabets
-15. Check String Contains Special Characters
-16. Remove White Spaces from String
-17. Replace Spaces with Specific Character
-18. Find All Substrings
-19. Longest Substring Without Repeating Characters
-20. Longest Palindromic Substring
-21. String Compression
-22. Sort Characters in String
-23. Find Common Characters Between Two Strings
-24. Find Missing Characters from Alphabet
-25. Count Uppercase and Lowercase Characters
-26. Reverse Each Word in a Sentence
-27. Toggle Case of Characters
-28. Check Rotation of String
-29. Count Special Characters
-30. Remove Consecutive Duplicate Characters
 
-ARRAYS
-31. Find Largest Element
-32. Find Smallest Element
-33. Find Second Largest Element
-34. Find Second Smallest Element
-35. Reverse an Array
-36. Rotate Array Left
-37. Rotate Array Right
-38. Move Zeros to End
-39. Move Zeros to Beginning
-40. Find Missing Number in Array
-41. Find Duplicate Elements
-42. Remove Duplicates from Sorted Array
-43. Find Pair with Given Sum
-44. Find Triplet with Given Sum
-45. Find Intersection of Two Arrays
-46. Find Union of Two Arrays
-47. Merge Two Sorted Arrays
-48. Maximum Subarray Sum (Kadane’s Algorithm)
-49. Find Majority Element
-50. Product of Array Except Self
-51. Best Time to Buy and Sell Stock
-52. Find Kth Largest Element
-53. Find Kth Smallest Element
-54. Sort Array of 0s,1s,2s
-55. Rearrange Positive and Negative Numbers
-56. Find Leaders in Array
-57. Equilibrium Index
-58. Find Maximum Product Pair
-59. Find Frequency of Elements
-60. Find Longest Consecutive Sequence
 
-HASHMAP / HASHSET
-61. Two Sum
-62. Count Frequency of Characters
-63. Count Frequency of Array Elements
-64. First Unique Character
-65. Find Duplicate Elements
-66. Group Anagrams
-67. Longest Consecutive Sequence
-68. Count Distinct Elements
-69. Subarray with Given Sum
-70. Longest Subarray with Sum K
-71. Find Common Elements in Arrays
-72. Find Majority Element
-73. Check if Two Arrays are Equal
-74. Find Pair Difference K
-75. Find First Repeating Element
 
-LINKED LIST
-76. Reverse Linked List
-77. Find Middle Node
-78. Detect Loop in Linked List
-79. Remove Loop from Linked List
-80. Find Nth Node from End
-81. Merge Two Sorted Linked Lists
-82. Delete Node Without Head
-83. Remove Duplicates from Linked List
-84. Check Palindrome Linked List
-85. Reverse Linked List in Groups
-86. Intersection Point of Two Lists
-87. Flatten Linked List
-88. Segregate Even and Odd Nodes
-89. Sort Linked List
-90. Clone Linked List with Random Pointer
+==================== STRING BASICS ====================
 
-STACK
-91. Valid Parentheses
-92. Balanced Brackets
-93. Next Greater Element
-94. Previous Greater Element
-95. Next Smaller Element
-96. Previous Smaller Element
-97. Min Stack
-98. Implement Stack Using Queue
-99. Sort Stack
-100. Largest Rectangle in Histogram
-101. Stock Span Problem
-102. Remove Adjacent Duplicates
-103. Infix to Postfix Conversion
-104. Postfix Evaluation
-105. Celebrity Problem
+1. Reverse a String.
+2. Check if a String is a Palindrome.
+3. Find the Length of a String without using length().
+4. Count Vowels and Consonants.
+5. Count Uppercase, Lowercase, Digits, and Special Characters.
+6. Remove Whitespaces from a String.
+7. Convert Lowercase to Uppercase and Vice Versa.
+8. Print ASCII Value of Each Character.
+9. Reverse Each Word in a String.
+10. Reverse the Order of Words in a Sentence.
 
-QUEUE
-106. Implement Queue Using Stack
-107. Circular Queue
-108. First Non-Repeating Character in Stream
-109. Sliding Window Maximum
-110. Generate Binary Numbers
-111. Rotten Oranges
-112. Task Scheduler
-113. Reverse Queue
-114. Interleave Queue Halves
-115. Implement Deque
+==================== CHARACTER FREQUENCY ====================
 
-RECURSION
-116. Factorial
-117. Fibonacci Series
-118. Power Function
-119. Sum of Digits
-120. Reverse String Using Recursion
-121. Check Palindrome Using Recursion
-122. Generate Subsequences
-123. Generate Subsets
-124. Generate Permutations
-125. Tower of Hanoi
+11. Count Frequency of Each Character.
+12. Find the First Non-Repeating Character.
+13. Find the First Repeating Character.
+14. Find Duplicate Characters in a String.
+15. Find the Most Frequent Character.
+16. Count Occurrences of a Given Character.
+17. Find the Least Frequent Character.
+18. Print Characters with Frequency Greater than One.
 
-BACKTRACKING
-126. N-Queens
-127. Sudoku Solver
-128. Rat in a Maze
-129. Word Search
-130. Combination Sum
-131. Subset Sum
-132. Palindrome Partitioning
-133. Letter Combinations of Phone Number
-134. Restore IP Addresses
-135. Knight Tour Problem
+==================== STRING MANIPULATION ====================
 
-BINARY SEARCH
-136. Binary Search
-137. First Occurrence
-138. Last Occurrence
-139. Count Occurrences
-140. Search in Rotated Sorted Array
-141. Find Peak Element
-142. Square Root of Number
-143. Find Minimum in Rotated Array
-144. Koko Eating Bananas
-145. Capacity to Ship Packages
+19. Remove Duplicate Characters.
+20. Remove All Occurrences of a Character.
+21. Replace Spaces with "%20".
+22. Remove Extra Spaces Between Words.
+23. Capitalize the First Letter of Every Word.
+24. Toggle Case of Every Character.
+25. Check if One String is a Substring of Another.
+26. Concatenate Two Strings without Using '+' Operator.
 
-TREES
-146. Inorder Traversal
-147. Preorder Traversal
-148. Postorder Traversal
-149. Level Order Traversal
-150. Height of Binary Tree
-151. Diameter of Binary Tree
-152. Check Balanced Tree
-153. Lowest Common Ancestor
-154. Mirror Binary Tree
-155. Left View of Tree
-156. Right View of Tree
-157. Zigzag Traversal
-158. Boundary Traversal
-159. Vertical Order Traversal
-160. Top View
-161. Bottom View
-162. Maximum Path Sum
-163. Check Identical Trees
-164. Serialize and Deserialize Tree
-165. Convert Binary Tree to DLL
+==================== ANAGRAM & COMPARISON ====================
 
-BST
-166. Search Node in BST
-167. Insert Node in BST
-168. Delete Node in BST
-169. Validate BST
-170. Kth Smallest Element
-171. Kth Largest Element
-172. Floor and Ceil in BST
-173. Lowest Common Ancestor in BST
-174. Convert Sorted Array to BST
-175. BST Iterator
+27. Check if Two Strings are Anagrams.
+28. Group Anagrams.
+29. Check if One String is a Rotation of Another.
+30. Check if Two Strings are Isomorphic.
+31. Find the Longest Common Prefix.
+32. Compare Two Strings Lexicographically.
 
-HEAP / PRIORITY QUEUE
-176. Kth Largest Element
-177. Kth Smallest Element
-178. Top K Frequent Elements
-179. Merge K Sorted Arrays
-180. Merge K Sorted Lists
-181. Median from Data Stream
-182. Connect Ropes with Minimum Cost
-183. Sort Nearly Sorted Array
-184. Find K Closest Elements
-185. Reorganize String
+==================== SLIDING WINDOW / TWO POINTER ====================
 
-GRAPHS
-186. BFS Traversal
-187. DFS Traversal
-188. Detect Cycle in Undirected Graph
-189. Detect Cycle in Directed Graph
-190. Topological Sort
-191. Dijkstra Algorithm
-192. Bellman Ford Algorithm
-193. Floyd Warshall Algorithm
-194. Minimum Spanning Tree
-195. Number of Islands
-196. Clone Graph
-197. Course Schedule
-198. Rotten Oranges
-199. Word Ladder
-200. Connected Components
+33. Longest Substring Without Repeating Characters.
+34. Longest Palindromic Substring.
+35. Minimum Window Substring.
+36. Find All Anagrams of a Pattern.
+37. Permutation in String.
+38. Longest Repeating Character Replacement.
 
-DYNAMIC PROGRAMMING
-201. Fibonacci DP
-202. Climbing Stairs
-203. House Robber
-204. Coin Change
-205. Longest Common Subsequence
-206. Longest Increasing Subsequence
-207. 0/1 Knapsack
-208. Partition Equal Subset Sum
-209. Edit Distance
-210. Rod Cutting
-211. Matrix Chain Multiplication
-212. Word Break
-213. Egg Dropping Problem
-214. Maximum Product Subarray
-215. Palindrome Partitioning
-216. Minimum Path Sum
-217. Unique Paths
-218. Decode Ways
-219. Jump Game
-220. Target Sum
+==================== PALINDROME PROBLEMS ====================
 
-JAVA DESIGN / IMPLEMENTATION
-221. LRU Cache
-222. LFU Cache
-223. Custom HashMap
-224. Custom ArrayList
-225. Custom HashSet
-226. Singleton Pattern
-227. Thread Safe Singleton
-228. Producer Consumer Problem
-229. Parking Lot Design
-230. Elevator System Design
-231. Rate Limiter Design
-232. Logger Design
-233. URL Shortener Design
-234. ATM Machine Design
-235. Library Management System
-236. Online Shopping Cart Design
-237. Hotel Booking System
-238. Notification System
-239. File System Design
-240. Vending Machine Design
+39. Count Palindromic Substrings.
+40. Longest Palindromic Subsequence.
+41. Minimum Insertions to Make a Palindrome.
+42. Partition a String into Palindromes.
+
+==================== STACK-BASED STRING PROBLEMS ====================
+
+43. Valid Parentheses.
+44. Remove Outermost Parentheses.
+45. Remove Adjacent Duplicates.
+46. Decode String (e.g., 3[a2[c]]).
+47. Simplify File Path.
+
+==================== STRING MATCHING ALGORITHMS ====================
+
+48. Naive Pattern Searching.
+49. Rabin-Karp Algorithm.
+50. KMP (Knuth-Morris-Pratt) Algorithm.
+
+==================== ADVANCED STRING PROBLEMS ====================
+
+51. Edit Distance.
+52. Longest Common Subsequence (LCS).
+53. Longest Common Substring.
+54. String Compression.
+55. Zigzag Conversion.
+56. Minimum Deletions to Make Strings Equal.
+57. Check if Two Strings are One Edit Away.
+58. Count and Say.
+59. Implement atoi() (String to Integer).
+60. Multiply Two Large Numbers Represented as Strings.

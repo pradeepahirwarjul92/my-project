@@ -254,7 +254,7 @@ public class MajorityElement {
 package com.dsa.hashset;
 
 import java.util.HashMap;
-import java.util.Map;
+import java.util.Map;         
 
 public class SubarraySumEqualsK {
     
@@ -417,43 +417,6 @@ public class IsomorphicString {
     }
 }
 
-
-18. Longest Subarray With Sum K
-package com.dsa.hashset;
-
-import java.util.HashMap;
-import java.util.Map;
-
-public class LongestSubarrayWithSumK {
-    
-    public static int longestSubarray(int[] nums, int k ){
-        Map<Integer,Integer> map = new HashMap();
-        int prefixSum=0;
-        int maxLength=0;
-        
-        for(int i = 0 ; i< nums.length ; i++){
-            prefixSum +=nums[i];
-            
-            if(prefixSum == k){
-                maxLength= i + 1;
-            }
-            
-            if(map.containsKey(prefixSum - k )){
-                maxLength = Math.max(maxLength, i - map.get(prefixSum - k));
-            }
-            map.putIfAbsent(prefixSum, i);            
-        }
-        return maxLength;
-        
-     }
-    
-    public static void main(String[] args) {
-        int[] nums = {1,-1,5,-2,3};
-        
-        System.out.println(longestSubarray(nums, 3));
-    }
-    
-}
 
 
 19. Find Pair With Given Difference
